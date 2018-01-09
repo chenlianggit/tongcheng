@@ -1,0 +1,64 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/admin_banner'}
+<div class="info-content">
+<ul class="order">
+    {loop $list $item}
+    <li class="info-list">
+        <h2><i></i><span>{$item['cate_name']}</span>
+
+            <em><img src="{STYLE}images/g_time.png">
+                {if  $item['applytime']}
+                {php echo date('Y-m-d H:i', $item['applytime'])}
+                {else}
+                {php echo date('Y-m-d H:i', $item['starttime'])}
+                {/if}
+            </em></h2>
+
+        <p onclick="location.href='{php echo $this->createMobileUrl('shop_admin',array('shop_id'=>$item['shop_id'],'op'=>'info','check'=>1))}'">
+            <img src="{$item['logo']}"/>
+            <span>{$item['shop_name']}</span>
+        </p>
+
+        {if $item['area_name']}
+        <p class="borderb"><img src="{STYLE}images/list_icon.png"><span class="noborder">{$item['area_name']}</span></p>
+        {/if}
+
+        <h3>
+            <span class="label label-info">
+          {if $item['f_type']==1}
+            店铺入驻
+           {elseif  $item['f_type']==2}
+            首页推荐
+            {elseif  $item['f_type']==3}
+             秒杀专场
+            {elseif  $item['f_type']==4}
+            拼团
+             {elseif  $item['f_type']==5}
+            优惠买单
+            {/if}
+            </span>
+
+       {if $status==1}
+            <a class="current" href="{php echo $this->createMobileUrl('shop_admin',array('shop_id'=>$item['shop_id']))}"  >管理</a>
+        <a href="javascript:;"   onclick="admin_check_shop(this,2,{$item['shop_id']})">下架</a>
+        {else}
+     <a href="javascript:;"  class="current" onclick="admin_check_shop(this,1,{$item['shop_id']})">审核通过</a>
+     <a href="javascript:;" onclick="admin_check_shop(this,2,{$item['shop_id']})" >审核不通过</a>
+        {/if}
+        </h3>
+    </li>
+   {/loop}
+</ul>
+</div>
+<script>
+    $(function(){
+        var url=createAppUrl('admin','check_shop');
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        var page = 0;
+        pagelist(page,url,'.info-content','.order','check_shop');
+    })
+</script>
+{template '../mobile/footer'}
+

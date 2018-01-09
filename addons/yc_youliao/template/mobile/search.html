@@ -1,0 +1,59 @@
+{template '../mobile/header'}
+
+<link rel="stylesheet" href="{STYLE}css/reset.css"/>
+<link rel="stylesheet" href="{STYLE}iconfont/iconfont.css"/>
+<link rel="stylesheet" href="{STYLE}css/channel.css"/>
+<link  href="{STYLE}css/list.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/miaosha.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{STYLE}css/changeadd.css" type="text/css" />
+<script src="{STYLE}js/page.js"></script>
+
+<div class="order-panney md-5">
+    <div class="order-body {if $type=='1'}sel{/if} " onclick="location.href='{php echo $this->createMobileUrl('search',array('type'=>'1'))}'">
+       信息
+    </div>
+    <div class="order-body {if $type=='2'}sel{/if} " onclick="location.href='{php echo $this->createMobileUrl('search',array('type'=>'2'))}'">
+       商户
+    </div>
+</div>
+<div class="clearfix"></div>
+{php $advs= commonGetData::getAdv($adv_type);}
+<!--头部广告-->
+
+{if !empty($advs)}
+{template '../mobile/adv1'}
+{/if}
+<header data-am-widget="header" class="mt_10 am-header-default ">
+    <input type="text" class="search keyword" id="searchinput" placeholder="{if $type=='1'}请输入关键字{else}请输入商家名称、电话、地址{/if}" value=""/>
+    <div class="search-btn" >确定</div>
+</header>
+
+<div class="clearfix"></div>
+<div id="lists" class="content NotUesed2">
+</div>
+<input type="hidden" id='adv_type' value="9">
+{template '../mobile/footer'}
+<script>
+
+    $(".search-btn").click(function(){
+        $('.content').text('');
+        var search_input=$("#searchinput").val();
+        if(search_input=='')return;
+        {if $type=='1'}
+        //同城信息
+        var page = -1;
+        var url=createAppUrl('msglist', 'display');
+        url=url+'&keyword='+search_input;
+        getMsgReq(page,url,'.content','.NotUesed2');
+        {else}
+        //同城商家
+        var page = 0;
+        var url=createAppUrl('list','ajax_req');
+        url=url+'&type=9&keyword='+search_input;
+        ajaxReq(url);
+        pagelist(page,url,'.content','.NotUesed2','list');
+        {/if}
+    })
+
+
+</script>

@@ -1,0 +1,10 @@
+<div class="bd in-adv">
+    <ul>
+        {php $adv3= commonGetData::getAdv(3);}
+        {loop $adv3 $adv}
+        {if $adv['thumb']}
+        <li><a href="{if empty($adv['link'])}{else}{$adv['link']}{/if}"><img src="{$_W['attachurl']}{$adv['thumb']}" /></a></li>
+        {/if}
+        {/loop}
+    </ul>
+</div>

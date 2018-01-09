@@ -1,0 +1,84 @@
+{template '../mobile/header'}
+
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/shop_admin/shop_admin_banner'}
+<div class="info-content " >
+    {if $type==0}
+    <link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+    <div class="shop-admin order-panney ">
+        <div style="margin-left: 26%;"class="order-body {if $type=='0'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'goods'))}'">
+            商品列表
+        </div>
+        <div class="order-body {if $type=='1'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'goods','type'=>'1'))}'">
+            添加商品
+        </div>
+    </div>
+    {template '../mobile/shop_admin/shop_admin_goods_list'}
+    {elseif $type==1}
+    {template 'common/header'}
+    <script src="{STYLE}js/app.v2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            window.optionchanged = false;
+            $('.order-body a').click(function (e) {
+                $(".order-panney").removeClass('active');
+                $(this).parents('.order-body').addClass('active');
+                e.preventDefault();//阻止a链接的跳转行为
+                $(this).tab('show');//显示当前选中的链接及关联的content
+            })
+
+        });
+
+    </script>
+    <!--<link rel="stylesheet" href="../addons/yc_youliao/public/css/app.v2.css" type="text/css" />-->
+    <link  href="{STYLE}css/app.form.css" rel="stylesheet" type="text/css"/>
+    <div class="shop-admin order-panney goods-detail"  id="myTab">
+    <div  class="order-body  active" >
+        <a href="#tab_basic"> 基础</a>
+    </div>
+    <div class="order-body" >
+        <a href="#tab_des">描述</a>
+    </div>
+
+        {if $item['is_group']==1}
+    <div class="order-body" >
+        <a href="#tab_group">拼团</a>
+    </div>
+        {/if}
+        {if $item['is_time']==1}
+    <div class="order-body ">
+        <a href="#tab_activity">秒杀</a>
+    </div>
+        {/if}
+    <div class="order-body  " >
+        <a href="#tab_share"> 分享</a>
+    </div>
+</div>
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" onsubmit="return formcheck();">
+        <input type="hidden" name="id" value="{$item['goods_id']}" />
+    <div class="tab-content">
+        <div class="tab-pane  active" id="tab_basic">{template '../web/shop/goods_basic'}</div>
+        <div class="tab-pane" id="tab_des">{template '../web/shop/goods_des'}</div>
+        <div class="tab-pane" id="tab_param">{template '../web/shop/goods_param'}</div>
+        {if $item['is_group']==1}
+        <div class="tab-pane" id="tab_group">{template '../web/shop/goods_group'}</div>
+        {/if}
+        {if $item['is_time']==1}
+        <div class="tab-pane" id="tab_activity">{template '../web/shop/goods_activity'}</div>
+        {/if}
+        <div class="tab-pane" id="tab_share">{template '../web/shop/goods_share'}</div>
+    </div>
+    </div>
+<div class="form-submit">
+    <!--<img src="{STYLE}images/f_gou.png"/>-->
+        <input name="submit" type="submit" value="提交" class="btn btn-primary">
+</div>
+        <input type="hidden" name="token" value="{$_W['token']}" />
+</form>
+    {/if}
+</div>
+
+{template '../mobile/footer'}
+

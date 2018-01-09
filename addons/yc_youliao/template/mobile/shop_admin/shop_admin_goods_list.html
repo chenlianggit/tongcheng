@@ -1,0 +1,41 @@
+<div class="clearfix"></div>
+    <ul class="fresh-comment goods">
+    {loop $list $item}
+    <li class="info-list" >
+            <img src="{$_W['attachurl']}{$item['thumb']}">
+            <div class="text">
+                <h2>{$item['title']}</h2>
+                <p class="red">
+                  售价：￥{$item['marketprice']}
+                    {if $item['time_money']>0}<em class="ml-15">秒杀价:￥{$item['time_money']}</em>{/if}
+                    {if $item['groupprice']>0}<em class="ml-15">团购价:￥{$item['groupprice']}</em>{/if}
+                </p>
+            </div>
+        <div class="pro-list">
+            {if $item['is_hot'] == 1}<i>首页推荐</i>{/if}
+            {if $item['is_time'] == 1}<i>限时秒杀</i>{/if}
+            {if $item['is_group'] == 1}<i>拼团</i>{/if}
+        </div>
+            <div class="score" onclick="downscore(this)">
+                <img src="{STYLE}images/b_down.png" >
+                <div class="down-list-pro">
+                <a href="{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'goods','type'=>'1','id'=>$item['goods_id']))}"><i class="iconfont" style="color: #4fc0ea">&#xe62d;</i>编辑</a>
+                <a href="javascript:;" onclick="deletegoods({$item['goods_id']},this);"><i class="iconfont" style="color: #F5628C">&#xe635;</i>删除</a>
+                </div>
+
+            </div>
+
+    </li>
+   {/loop}
+</ul>
+</div>
+<script>
+    $(function(){
+        var url=createAppUrl('shop_admin','goods');
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        var page = 1;
+        pagelist(page,url,'.info-content','.fresh-comment','goods');
+    })
+</script>
+
+

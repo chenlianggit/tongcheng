@@ -1,0 +1,504 @@
+{template '../mobile/header'}
+<link rel="stylesheet" type="text/css" href="{STYLE}css/frame/commes.css" />
+<link rel="stylesheet" href="{STYLE}css/frame/photoswipe.css">
+<link rel="stylesheet" href="{STYLE}css/frame/default-skin/default-skin.css">
+<script src="{STYLE}js/frame/photoswipe.min.js"></script>
+<script src="{STYLE}js/frame/photoswipe-ui-default.min.js"></script>
+<link rel="stylesheet" href="{STYLE}iconfont/iconfont.css"/>
+<link rel="stylesheet" href="{STYLE}css/channel.css"/>
+<link rel="stylesheet" href="{STYLE}css/detail.css"/>
+<div class="moreOptBtn">
+	<p class="icon">+</p> 
+	<p class="btnTxt">更多</p> 
+</div>
+<!-- <div class="moreOptBox">
+	<div class="m-conboxWap">
+		<div class="m-box box1 m-col" onclick=" window.location.href ='{php echo $this->createMobileUrl('edit',array('mid'=>$message['mid']))}'">
+			我也要发布
+		</div>
+		{if $this->isShang()==0}
+		<div class="m-box box2 m-col">
+			给他打赏
+		</div>
+		{/if}
+
+		{if  $send==1 && $message['status']=='1' && $sameday==1 }
+		<div class="m-box box3 m-colWhite" data-id="{$id}">
+			刷新
+		</div>
+		{/if}
+
+		{if  $send==1 && $message['status']=='1' && $moduleres['zdprice'] > 0}
+		<div class="m-box box4 m-colWhite" onclick=" window.location.href ='{php echo $this->createMobileUrl('mylocal',array('op'=>'zhiding','id'=>$id))}'">
+			置顶</li>
+		</div>
+		{/if}
+	</div>
+</div> -->
+<div class="pickerWap">
+  	<div class="piMask"></div>
+    <div class="pickerBox">
+      	<ul>
+						{if  $send==1 && $message['status']=='1' && $moduleres['zdprice'] > 0}
+						<li class="pickLi" data-type="0"><img src="{STYLE}images/p-top.png" class="pickLiImg" alt="">置顶</li>
+						{/if}
+						{if $this->isShang()==0}
+						<li class="pickLi" data-type="1"><img src="{STYLE}images/p-red.png" class="pickLiImg" alt="">给他打赏</li>
+						{/if}
+      	  	<li class="pickLi" data-type="2"><img src="{STYLE}images/p-pub.png" class="pickLiImg" alt="">我也要发布</li>
+						<li class="pickLi" data-type="3"><img src="{STYLE}images/p-my.png" class="pickLiImg" alt="">个人中心</li>
+						{if  $send==1 && $message['status']=='1' && $sameday==1 }
+						<li class="pickLi" data-type="4" data-id="{$id}"><img src="{STYLE}images/p-re.png" class="pickLiImg" alt="">刷新</li>
+						{/if}
+      	  	<li class="pickLi" data-type="5"><img src="{STYLE}images/p-home.png" class="pickLiImg" alt="">返回首页</li>
+      	</ul>
+  	</div>
+</div>
+{if $fieldslist}
+<!--没有自定义页面-->
+<div class="form-group span12">
+	<div class="span12 box">
+
+		<div class="messidetail1 span12 border-b">
+			<div class="span12 title textellipsis2 canedit">{$content['title']}</div>
+			<div class="span12">
+			<div class="span5 mark">时间：<span class="canedit">{php echo date("Y-m-d H:s:i",$message['createtime'])}</span></div>
+			<div class="span4 mark">浏览：<span class="canedit">{$message['views']}</span></div>
+			<div class="span1 nocollected" id="collect">
+				<div class="iconfont text-c">&#xe60c;</div>
+
+			</div>
+
+			<div class="span2" id="haibao">
+				<div class="iconfont text-c"><img src="../addons/yc_youliao/public/images/ewm.png"></div>
+
+			</div>
+		</div>
+</div>
+		<div id="banner"></div>
+		{loop $fieldslist $row}
+		{if $row['mtype'] == 'text' || $row['mtype'] == 'idcard' }
+		<div class="input-item span12">
+			<div class="span3 height7 lineheight">{if $row['isrequired'] == 1 }{/if}{$row['name']}</div>
+			<div class="span9 height7">
+				<div class="height8">{$content[$row['enname']]}</div>
+				{if $row['danwei']}
+				<span class="danwei">{$row['danwei']}</span>
+				{/if}
+			</div>
+		</div>
+		{/if}
+		{if $row['mtype'] == 'number' || $row['mtype'] == 'telphone'}
+
+		<div class="input-item span12">
+			<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}{/if}{$row['name']}</div>
+			<div class="span9 height7">
+				<div class="height8">{$content[$row['enname']]}</div>
+				{if $row['danwei']}
+				<span class="danwei">{$row['danwei']}</span>
+				{/if}
+			</div>
+		</div>
+		{/if}
+		{if $row['mtype'] == 'longtext'}
+		<div class="input-item span12 d-border ">
+			<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}{/if}{$row['name']}</div>
+
+				<div class="height8">{$content[$row['enname']]}</div>
+
+		</div>
+		{/if}
+		{if $row['mtype'] == 'radio'}
+		<div class="input-item span12">
+			<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}{/if}{$row['name']}</div>
+			<div class="span9">
+				{loop $row['mtypeconarr'] $rowrow}
+				{if $content[$row['enname']] == $rowrow}
+				<div>
+					<div class="height8">{$rowrow}</div>
+				</div>
+				{/if}
+				{/loop}
+			</div>
+		</div>
+
+		{/if}
+		{if $row['mtype'] == 'checkbox'}
+		<div class="input-item span12 d-border">
+			<div class=" height7 ">{if $row['isrequired'] == 1}{/if}{$row['name']}</div>
+			<div class="fs0">
+				{loop $row['mtypeconarr'] $rowrow}
+				{if in_array($rowrow,$content[$row['enname']])}
+					<div class="checkboxWap">{$rowrow}</div>
+				{/if}
+				{/loop}
+			</div>
+		</div>
+
+		{/if}
+		{if $row['mtype'] == 'select'}
+		<div class="input-item span12">
+			<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}{/if}{$row['name']}</div>
+			<div class="span9 height7">
+			{loop $row['mtypeconarr'] $rowrow}
+				{if $content[$row['enname']] == $rowrow}
+				<div>
+					<div class="height8">{$rowrow}</div>
+				</div>
+				{/if}
+
+				{/loop}
+
+			</div>
+		</div>
+		{/if}
+
+		{if $row['mtype'] == 'date'}
+		<div class="input-item span12">
+			<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}{/if}{$row['name']}</div>
+			<div class="span9 height7">
+				<div class="height8">{$content[$row['enname']]}"</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+            $("#appDate{$row['id']}").mobiscroll($.extend(opt['date'], opt['default']));
+		</script>
+		{/if}
+		{if $row['mtype'] == 'datetime'}
+		<div class="input-item span12">
+			<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}{/if}{$row['name']}</div>
+			<div class="span9 height7">
+				<div class="height8">{$content[$row['enname']]}</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+            var optDateTime = $.extend(opt['datetime'], opt['default']);
+            $("#appDateTime{$row['id']}").mobiscroll(optDateTime).datetime(optDateTime);
+		</script>
+		{/if}
+
+		{/loop}
+		<div class="clearfix"></div>
+
+		<div class="messidetail6 span12 defult">
+			<div>
+				<div class="avatar"><img src="{$message['avatar']}"/></div>
+				<div class="span5 nickname">{$message['nickname']}</div>
+			</div>
+			<div class="span3 iconfont text-c dotel">&#xe645;<span class="pd-d">联系他</span></div>
+			<img class="span1" src="../addons/yc_youliao/public/images/sx.png">
+			<div class="span3 iconfont text-c dochat">&#xe60a;<span class="pd-d">微聊</span></div>
+		</div>
+
+
+{else}
+{$htmlres}
+{/if}
+
+{if $moduleres['show_location']==1 && !empty($message['lng']) && !empty($message['lat']) && !empty($message['address'])}
+<div class="clearfix"></div>
+<!--显示地图信息-->
+<div class="showlocation"><img  src="{STYLE}images/list_icon.png">
+	<span class='detail-address'> {$message['address']}</span>
+	<div class="gps-btn" onclick="getlocMap()"><span> <img  src="{STYLE}images/daohang.png">导航</span></div>
+</div>
+
+{/if}
+
+{if $moduleres['show_comment']==1 }
+<!--评论	-->
+		<div class="content rlist">
+			<span class="ml_3 pingnum"> {$commentNum}</span>条留言
+			<span class="content-title" onclick="comment(this)" >
+				<img src="{STYLE}images/edit3.png">
+			</span>
+			<div class="text-box">
+				<textarea class="comment" placeholder="评论…" autocomplete="off"></textarea>
+				<button class="btn" onclick="infoComment(this,{$message['id']});">回 复</button>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="clearfix"></div>
+			<div class="comment_flag {if $item['p'][0]}  comment-list{/if}">
+				{loop $comment $i}
+				<div class="comment-box" user="self">
+					<img class="myhead" src="{$i['avatar']}" alt=""/>
+					<div class="comment-content">
+						<p class="comment-text"><span class="user">{$i['nickname']}</span></p>
+						<span class="pingtext">{$i['info']}</span>
+						<p class="comment-time">
+							{php echo date('m-d H:i', $i['addtime'])}
+							{if $openid==$message['openid']}
+							<a href="javascript:;" onclick="replay(this,{$i['comment_id']});" class="comment-operate">回复 </a>
+							{/if}
+							{if $openid==$i['openid']}
+							<a href="javascript:;" onclick="cancelPing(this,{$i['comment_id']});" class="comment-operate">删除</a>
+							{/if}
+						</p>
+					</div>
+					{if $i['replay']}
+					{loop $i['replay'] $v}
+					<div class="replay" user="self">
+						<img class="myhead" src="{$v['avatar']}" alt=""/>
+						<div class="comment-content">
+							<p class="comment-text"><span class="user">{$v['nickname']}</span></p>
+							<span class="pingtext">{$v['info']}</span>
+							<p class="comment-time">
+								{php echo date('m-d H:i', $v['addtime'])}
+								{if $send==1}
+								<a href="javascript:;" onclick="replay(this,{$v['comment_id']});" class="comment-operate">回复</a>
+								{/if}
+								{if $openid==$v['openid']}
+								<a href="javascript:;" onclick="cancelPing(this,{$v['comment_id']});" class="comment-operate">删除 </a>
+								{/if}
+							</p>
+						</div>
+					{/loop}
+				{/if}
+				</div>
+				{/loop}
+
+			</div>
+		</div>
+
+{/if}
+{if $red_data}
+			<div class="detailWap">
+			<!-- 搭讪记录 -->
+
+			<ul class="listWap">
+				<div class="ml_3 pingnum margin_top_10px">打赏记录</div>
+				{loop $red_data $red}
+				<li class="d-list">
+					<div class="d-left"><img src="{$red['avatar']}" alt=""></div>
+					<div class="d-right">
+						<div class="nameDes">
+							<div class="name">{$red['nickname']}</div>
+							<div class="money">{$red['amount']}</div>
+						</div>
+						<div class="time">
+							{$red['create_time']}
+						</div>
+					</div>
+				</li>
+				{/loop}
+			</ul>
+			</div>
+<div class="clearfix"></div>
+			{/if}
+{php $advs= commonGetData::getAdv($adv_type);}
+{if !empty($advs)}
+<!--广告位-->
+{template '../mobile/adv1'}
+{/if}
+<!--置顶位-->
+{if $zdmessagelist}
+	<div class="clearfix"></div>
+	<div class="banner-title">
+		<span><i class="icon iconfont icon-xing"></i>为您推荐</span>
+		<div></div>
+	</div>
+	{loop $zdmessagelist $zdrow}
+	{template '../mobile/channel_list'}
+	{/loop}
+{/if}
+<div class="detail-line"></div>
+			{if (!empty($a_data) && $message['status']=='0') || ($send==1 && $message['status']=='1' && ($moduleres['zdprice'] > 0 || $sameday==1))}
+
+			{if !empty($a_data) && $message['status']=='0'}
+			{template '../mobile/block'}
+			<div id="wrapper">
+				<div id="toolbar">
+					<div id="editBlock" class="button"  ></div>
+					<ul class="icons">
+						<li onclick="admin_check_info(this,1,'{$id}')"><img  src="{STYLE}images/f_gou.png">通过</li>
+						<li onclick="admin_check_info(this,2,'{$id}')"><img  src="{STYLE}images/f_close.png">不通过</li>
+
+					</ul>
+				</div>
+			</div>
+			{/if}
+
+			<script type="text/javascript">
+                $( ".button" ).click(function() {
+                    $(this).toggleClass( "active" );
+                    $(".icons").toggleClass( "open" );
+                });
+			</script>
+			{/if}
+
+<script type="text/javascript">
+    function infoComment(obj,id){
+        var url=createAppUrl('detail', 'ping')
+        ajax_req(obj,url,id,'ping','');
+    }
+    function cancelPing(obj,id){
+        var url=createAppUrl('detail', 'cancelPing')
+        ajax_req(obj,url,id,'cancelPing','');
+    }
+    function replay(obj,id){
+        var url=createAppUrl('detail', 'ping')+'&pid='+id
+        ajax_req(obj,url,id,'ping','');
+    }
+$(function(){
+    // $('.moreOptBtn').on('click', function () {
+    //     $('.moreOptBox').show()
+    //     setTimeout(function() {
+    //         $('.m-box').css({transform: 'translateX(0)'})
+    //     }, 0);
+    // })
+    // $('.m-conboxWap').on('click', function () {
+    //     $('.m-box').css({transform: 'translateX(-120%)'})
+    //     setTimeout(function() {
+    //         $('.moreOptBox').hide()
+    //     }, 200);
+    // })
+    // $('.m-box.box2').on('click', function (e) {
+		// 		e.stopPropagation()
+		// 		$('.m-box').css({transform: 'translateX(-120%)'})
+		// 		$('.moreOptBox').hide()
+		// 		shang_show("{$message['id']}","{$message['openid']}")
+		// })
+		// $('.m-box.box3').on('click', function (e) {
+		// 		e.stopPropagation()
+		// 		var id = $(this).data('id')
+		// 		$('.m-box').css({transform: 'translateX(-120%)'})
+		// 		$('.moreOptBox').hide()
+		// 		refresh_info(this,id)
+		// })
+	$('.moreOptBtn').on('touchend', function () {
+    $('.pickerWap').show()
+    setTimeout(function () {
+      $('.pickerWap').addClass('show')
+    }, 0)
+  })
+  $('.pickerWap .piMask').on('touchend', pickerHide)
+  $('.pickLi').on('touchend', function () {
+    var type = $(this).data('type')
+    switch(type) {
+      case 0: 
+        window.location.href = "{php echo $this->createMobileUrl('mylocal',array('op'=>'zhiding','id'=>$id))}";
+        return 
+      case 1: 
+				$('.pickerWap').removeClass('show')
+				setTimeout(function () {
+					$('.pickerWap').hide()
+					shang_show("{$message['id']}","{$message['openid']}");
+    		}, 200)
+        return
+      case 2: 
+        window.location.href = "{php echo $this->createMobileUrl('edit',array('mid'=>$message['mid']))}";
+        return
+      case 3: 
+        window.location.href = "{$_W['siteroot']}app/index.php?i={$_W['uniacid']}&c=entry&do=user&m=yc_youliao";
+        return
+      case 4: 
+        var id = $(this).data('id');
+        pickerHide();
+        refresh_info(this,id);
+        return
+      case 5: 
+        window.location.href = "{$_W['siteroot']}app/index.php?i={$_W['uniacid']}&c=entry&do=index&m=yc_youliao";
+        return
+    }
+  })
+  function pickerHide() {
+    $('.pickerWap').removeClass('show')
+    setTimeout(function () {
+      $('.pickerWap').hide()
+    }, 300)
+  }
+	$.ajax({
+		url:"{php echo $this->createMobileUrl('getimage')}",
+		type:'post', 
+		data:{
+			message_id:{$message['id']},
+			moudleid:{$message['mid']},
+		},
+		dataType:'html',
+		success:function(data){
+			$("#banner").html(data);
+            photoSwipe();
+            getImageSize();
+		}
+	});
+	
+	$('.iconfont1 .iconfont').html('&#xe624;');
+	$('.iconfont2 .iconfont').html('&#xe6b0;');
+	//检查是否收藏
+	$.ajax({
+			url:"{php echo $this->createMobileUrl('mycollect')}",   
+			type:'post', 
+			data:{
+				message_id:{$message['id']},
+				op:'iscang',
+			},
+			dataType:'json',
+			success:function(data){
+				if (data.hascang == 1) {
+					$('.nocollected').addClass('collected').removeClass('nocollected');
+					$('.cangtext').text('已收藏');
+				}
+			}
+		});
+	
+	//收藏
+	$('#collect').click(function(){
+		$.ajax({
+			url:"{php echo $this->createMobileUrl('mycollect')}",   
+			type:'post', 
+			data:{
+				message_id:{$message['id']},
+				op:'do',
+			},
+			dataType:'json',
+			success:function(data){
+				if (data.error == 1) {
+					alert(data.msg);
+				}else{
+					if($('#collect').hasClass('collected')){
+						$('#collect').removeClass('collected').addClass('nocollected');
+						$('#collect .cangtext').text('收藏');
+					}else{
+						$('#collect').addClass('collected').removeClass('nocollected');
+						$('#collect .cangtext').text('已收藏');
+					}
+				}
+			}
+		});
+	});
+	
+	//海报
+	$('#haibao').click(function(){
+		window.location.href = "{php echo $this->createMobileUrl('hb_qr',array('id'=>$id))}";
+	});
+	//微信聊天
+	$('.dochat').click(function(){
+
+		{if $_W['fans']['from_user'] == $message['openid']}
+		tip('不能和自己聊天哦！');
+		tip_close();
+		{else}
+        window.location.href = "{php echo $this->createMobileUrl('chat',array('toopenid'=>$message['openid']))}";
+		{/if}
+
+	});
+	//拨打电话
+	$('.dotel').click(function(){
+		window.location.href = "tel:{$phone}";
+	});
+
+})
+function getlocMap() {
+    var lng = "{$message['lng']}"
+    var lat = "{$message['lat']}"
+    var address = "{$message['address']}"
+    var url = "{php echo $this->createMobileUrl('detail',array('gps'=>'1','id'=>$id))}"
+    getMap(lng,lat,address,url)
+}
+	function shang_show_list(){
+		shang_show({$message['id']},'{$message['openid']}');
+	}
+</script>
+{template '../mobile/photoswipe'}
+{template '../mobile/shang'}

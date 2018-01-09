@@ -1,0 +1,30 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}css/msg.css">
+<link rel="stylesheet" href="{STYLE}css/admin.css">
+<header data-am-widget="header" class="am-header am-header-default jz">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.back()" class="">
+      <img src="{STYLE}images/g_left.png">
+    </a>
+  </div>
+  <h1 class="am-header-title">
+    <a href="#title-link" class="">{if $type==1}公告内容{else}商户公告内容{/if}</a>
+  </h1>
+  <div class="am-header-right am-header-nav " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'msg','type' =>$type))}'">
+    <img src="{STYLE}images/more.png">
+
+  </div>
+</header>
+
+  <div class="contentBox">
+    <div class="title">{$item['msg_title']}
+    </div>
+
+    <div class="des">
+      时间: {php echo date("Y-m-d H:i:s",$item['add_time'])}
+    </div>
+    <div class="content">
+      {php echo htmlspecialchars_decode($item['msg_content']);}
+    </div>
+  </div>
+{template '../mobile/footer'}

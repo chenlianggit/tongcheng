@@ -1,0 +1,160 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}css/discount.css">
+<script src="{STYLE}js/ion.checkRadio.min.js"></script>
+{template '../mobile/top_btn'}
+<!--头部广告-->
+{php $advs= commonGetData::getAdv(1);}
+{if !empty($advs)}
+{template '../mobile/adv1'}
+{/if}
+<div class="wrap">
+<div class="shopico">
+    {if $item['logo']}
+    <img class="radius_50" src="{$_W['attachurl']}{$item['logo']}">
+    {else}
+    <img src="{STYLE}images/shop.png">
+    {/if}
+
+<h2 class="f_15 c_000 mb_5" >{$item['shop_name']}</h2>
+</div>
+
+        <form action="" method="post" name="addlist"  class="edit_cash" id="addlist">
+            <input type="hidden" name="op" value="submit" />
+            <input type="hidden" name="d_id" value="" class="d_id"/>
+            <input type="hidden" name="shop_id" value="{$shop_id}"/>
+            <input type="reset" class="none"  />
+            <p>消费总额</p>
+        <div class="shuru">
+            <span>&yen;</span>
+                <input  id="div"  type="number"  class="ipt" name="paynum"  value=""  onkeypress="return noNumbers(event)" onkeyup="document.getElementById('confirm_money').innerText='&yen;'+this.value;getdiscount();">
+        </div>
+        <p class="red">请与工作人员确认消费金额</p>
+    </form>
+
+    <div class="discount">
+
+        {if $discount[0]}
+        <div class="shop-par-pay">
+            <ul class="dzapp_buy_list h_60">
+
+                {loop $discount[0] $d}
+                <li>
+                    <div class="d-info">
+                        <div class="d-title">
+                            {$d['cardname']}
+                        </div>
+                        <em class="y">
+                            {if $d['fullmoney']==0}
+                            无限制使用
+                            {else}
+                            满{$d['fullmoney']}元可用
+                            {/if}
+                        </em>
+                        {if $d['cardtype'] == 1}
+                        抵扣{$d['cardvalue']}	元
+                        {elseif $d['cardtype'] ==3}
+                        最高减{$d['randomnum']}	元
+                        {else}
+                        {php echo $d['cardvalue']*10} </span>折
+                        {/if}
+                        {if $d['needcredit']>0}
+                        <p>您现有{$credit1}积分，需抵扣<span class="red"> {$d['needcredit']}</span>积分</p>
+                        {/if}
+                        <p>起：{php echo date('Y-m-d',$d['starttime'])}<span class="ml_5">止：{php echo date('Y-m-d',$d['endtime'])}</span></p>
+                    </div>
+
+                    <div class="d-radio zzsc">
+                        <div class="js-demo-1">
+                            <label><input type="radio" name="cardid" value="0"  /></label>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                {/loop}
+            </ul>
+
+        </div>
+        {/if}
+    </div>
+    <input type="hidden" name="token" value="{$_W['token']}" />
+    <div  class="submit redbtn" >确认支付<span  id="confirm_money"></span>
+    </div>
+</div>
+
+<script>
+    function getdiscount() {
+        var paynum = $("#div").val();
+        $.ajax({
+            type: 'get',
+            url: "{php echo $this->createMobileUrl('shop', array('op'=>'ajax_getdiscount'));}",
+            data: {paynum: paynum,shop_id: {$shop_id}},
+            dataType: 'json',
+            success: function (data) {
+                var str="";
+                if(data.list.length>=1) {
+                    str += ' <div class="shop-par-pay">';
+                    str += '<ul class="dzapp_buy_list h_60">';
+                    $.each(data.list, function (index,v) {
+                        str += ' <li onclick="changemoney('+v.nowmoney+')"> <div class="d-info"> <div class="d-title">';
+                        str += v.cardname;
+                        str += '</div><em class="y">';
+                        if(v.fullmoney==0) {
+                            str += '无限制使用';
+                        }else{
+                            str +=  '满'+v.fullmoney+'元可用';
+                        }
+                        str += ' </em>';
+                        if(v.cardtype==1) {
+                            str +=  '抵扣'+v.cardvalue+'元';
+                        }else if(v.cardtype==3) {
+                            str +=  '最高减'+v.randomnum+'元';
+                        }else{
+                            str +=  v.cardvalue*10+'折';
+                        }
+                       if (v.needcredit>0){
+                           str += '<p>'+'您现有{$credit1}积分，需抵扣<span class="red">';
+                           str += v.needcredit+'</span>积分</p>';
+                       }
+                        str += '<p>';
+                        str += unixToDatetime(v.starttime);
+                        str += '<span class="ml_5">~ ';
+                        str += unixToDatetime(v.endtime);
+                        str += '</span></p></div>'
+                        str += '<div class="d-radio zzsc"><div class="js-demo-1">';
+                        str += ' <label><input type="radio" name="cardid" value="'+v.id+'" /></label>';
+                        str += ' </div> </div> <div class="clear"></div>';
+                        str += ' </li>';
+                        $(".js-demo-1").find("input").ionCheckRadio();
+
+                    })
+                    str += '</ul>';
+                    str += '</div>';
+
+                }
+                    $('.discount').html(str);
+                $(".js-demo-1").find("input").ionCheckRadio();
+
+        }
+    });
+    }
+    $(function(){
+        $(".js-demo-1").find("input").ionCheckRadio();
+        $(".redbtn").click(function(){
+            var val=$("input[name='cardid']:checked").val();//radio
+            if(val!=undefined){
+                $('.d_id').val(val);
+            }
+            var money=$('#div').val();
+            if(money>0){
+                $('#addlist').submit();
+                $("input[type=reset]").trigger("click");//触发reset按钮
+            }
+
+        });
+    });
+   function changemoney(num){
+       document.getElementById('confirm_money').innerText='￥'+num;
+
+    }
+</script>
+{template '../mobile/footer'}

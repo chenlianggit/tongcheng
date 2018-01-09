@@ -1,0 +1,217 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}weui/css/weui.min.css">
+<link href="{STYLE}css/ring_add.css" rel="stylesheet" type="text/css" />
+<link href="{STYLE}css/redpackage.css" rel="stylesheet" type="text/css" />
+<style>
+    body {
+        background: rgba(255, 250, 250, 0.68);
+    }
+</style>
+<form method="post" action="./index.php">
+    <input type="hidden" name="c" value="entry" />
+    <input type="hidden" name="i" value="{$_W['uniacid']}" />
+    <input type="hidden" name="m" value="yc_youliao" />
+    <input type="hidden" name="do" value="redpackage" />
+    <input type="hidden" name="op" value="redpackage_add" />
+    <input type="hidden" name="add" value="1" />
+    <input type="hidden" name="allocation_way" id="allocation_way" value="1" />
+    <input type="hidden" name="model" id="model" value='1' />
+
+    <div class="redPacket">
+        <div class="selectWap">
+            <div class="select checked" data-type="0">拼手气红包</div>
+            <div class="select" data-type="1">普通红包</div>
+            <div class="select" data-type="2">口令红包</div>
+            <div class="mask"></div>
+        </div>
+        <div class="content">
+            <form method="post" action="./index.php">
+                <div class="switchWrapper">
+                    <div class="box">
+                        <span class="switchBox checked">
+                          </span>
+                    </div>
+                    <span class="lab" for="distance_way">是否仅附近人可抢红包</label>
+                </div>
+                <div id="distanceWap" class="textWrapper">
+                    <div class="txtWap">
+                        <div class="txt">范围</div>
+                        <div class="c-right"><input type="number" name="distance" id="distance" class="input judge" placeholder="请输入范围">公里</div>
+                    </div>
+                </div>
+                <ul class="conBoxWap">
+                    <div class="conBox type0">
+                        <div class="txtWap">
+                            <div class="txt">红包个数</div>
+                            <div class="c-right"><input type="number" name="total_num" class="input judge" placeholder="输入红包个数">个</div>
+                        </div>
+                        <div class="txtWap">
+                            <div class="txt">总金额</div>
+                            <div class="c-right"><input type="number" name="total_amount" class="input judge" placeholder="输入金额">元</div>
+                        </div>
+                        <p class="des">总金额将<span style="color: #CF3A50">随机</span>分配到每个红包</p>
+                </div>
+                <div class="conBox type1">
+                    <div class="txtWap">
+                        <div class="txt">红包个数</div>
+                        <div class="c-right"><input type="number" disabled="true" name="total_num" class="input judge" placeholder="输入红包个数">个</div>
+                    </div>
+                    <div class="txtWap">
+                        <div class="txt">总金额</div>
+                        <div class="c-right"><input type="number" disabled="true" name="total_amount" class="input judge" placeholder="输入金额">元</div>
+                    </div>
+                    <p class="des">总金额将<span style="color: #CF3A50">平均</span>分配到每个红包</p>
+                </div>
+                <div class="conBox type2">
+                    <div class="txtWap kl">
+                        <div class="txt">设置口令</div>
+                        <div class="c-right"><input type="text" disabled="true" name="kouling" class="input judge" placeholder="如 “新年快乐” "></div>
+                    </div>
+                    <p class="des">小伙伴需要回复口令抢红包</p>
+                    <div class="txtWap">
+                        <div class="txt">红包个数</div>
+                        <div class="c-right"><input type="number" disabled="true" name="total_num" class="input judge" placeholder="输入红包个数">个</div>
+                    </div>
+                    <div class="txtWap">
+                        <div class="txt">总金额</div>
+                        <div class="c-right"><input type="number" disabled="true" name="total_amount" class="input judge" placeholder="输入金额">元</div>
+                    </div>
+                </div>
+                </ul>
+                <div class="infoWap">
+                    <textarea name="info" placeholder="广告内容..." class="txtarea"></textarea>
+                </div>
+                <div class="mui-input-cell ml_10">
+                    <div class="weui-uploader__bd">
+                        <ul class="weui-uploader__files" id="imgsinput">
+                        </ul>
+                        <div class="weui-uploader__input-box" id="chooseImages"></div>
+                    </div>
+                </div>
+                <input type="submit" class="payBtn" value="塞钱" />
+            </form>
+        </div>
+    </div>
+</form>
+{template '../mobile/footer'}
+<script>
+    var len = 0;
+    function removeimage(obj) {
+        obj.parents('.weui-uploader__file').remove();
+        len--;
+        if (len < 9) {
+            $('#chooseImages').show();
+        }
+    }
+    $(function () {
+        var type = 0
+        var $type1Input = $('.type0 input')
+        var $type2Input = $('.type1 input')
+        var $type3Input = $('.type2 input')
+        var $typeInput = [$type1Input, $type2Input, $type3Input]
+        var data = {
+            type0: {
+                total_num: '',
+                total_amount: ''
+            },
+            type1: {
+                total_num: '',
+                total_amount: '',
+            },
+            type2: {
+                kouling: '',
+                total_num: '',
+                total_amount: ''
+            }
+        }
+        $('.switchWrapper').on('click', function () {
+            var box = $('.switchBox')
+            if (box.hasClass('checked')) {
+                box.removeClass('checked')
+                $('#distanceWap').hide()
+                $('#distance').val('')
+            } else {
+                box.addClass('checked')
+                $('#distanceWap').show()
+            }
+        })
+        $('.selectWap .select').on('click', function () {
+            var _this = $(this)
+            type = _this.data('type')
+            // tab 设置样式
+            _this.siblings('.checked').removeClass('checked')
+            _this.addClass('checked')
+            // 红包金额框移动
+            $('.selectWap .mask').css('transform', 'translate(' + type * 100 + '%)')
+            $('.conBoxWap').css('transform', 'translate(' + type * -33.33 + '%)')
+            // input框禁用
+            $typeInput.forEach(function (v, i) {
+                if (i == type) {
+                    v.attr('disabled', false)
+                } else {
+                    v.attr('disabled', true)
+                }
+            })
+            judgeBtn()
+        })
+        $('.content').on('input', '.judge', function (e) {
+            var _that = $(this)
+            data['type' + type][_that.attr('name')] = _that.val()
+            judgeBtn()
+        })
+        function judgeBtn() {
+            var flag = false
+            var typeData = data['type' + type]
+            var keys = Object.keys(typeData)
+            keys.every(function (v, i) {
+                if (typeData[v]) {
+                    var total
+                    if (i == keys.length - 1) {
+                        var total = typeData.total_amount
+                        $('.payBtn').addClass('btn-success').attr('disabled', false)
+                        $('.payBtn').val('塞钱' + total + '元')
+                    }
+                    return true
+                }
+                $('.payBtn').removeClass('btn-success').attr('disabled', true)
+                $('.payBtn').val('塞钱')
+                return false
+            })
+        }
+        $('#chooseImages').click(function () {
+            var url = "{php echo $this->createMobileUrl('releasehtml',array( 'op' => 'getmedia'))}"
+			var toLen = function () {
+				$('#chooseImages').hide();
+			}
+			var success = function (data) {
+				var imagehtml = '<li class="weui-uploader__file" style="background-image:url(' + data.imgurl + ')">'
+                    + '<i onclick="removeimage($(this));" class="img-delete"><img src="{STYLE}images/g_delete.png"></i>'
+                    + '<input type="hidden" name="xsthumb[]" value="' + data.realimgurl + '" />'
+                    + '</li>';
+                $('#imgsinput').append(imagehtml);
+			}
+			uploadImgByWx({url: url, toLen: toLen, success: success })
+        });
+        $('form').submit(function () {
+            // 判断是否随机
+            if (type == 0) {
+                $("#allocation_way").val("2")
+            } else {
+                $("#allocation_way").val("1")
+            }
+            if (type == 2) {
+                $("#model").val("2")
+            } else {
+                $("#model").val("1")
+            }
+            var total_amount = parseInt(data['type' + type].total_amount)
+            var total_num = parseInt(data['type' + type].total_num)
+            if (total_num > total_amount * 100) {
+                tip("最多只能发" + (total_amount * 100) + "个红包")
+                tip_close();
+                return false;
+            }
+        })
+    })
+
+</script>

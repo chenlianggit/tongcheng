@@ -1,0 +1,91 @@
+<!-- 打赏相关html -->
+<form action="{php echo $this->createMobileUrl('ring', array('op' => 'shang'))}" onsubmit="return shang_submit();" method="post">
+    <input type="hidden" name="id" id="shang_ring_id">
+    <input type="hidden" name="type" id="type_id" value="{if $_GPC['do']== 'ring'}2{else}3{/if}">
+    <input type="hidden" name="toOpenId" id="toOpenId" >
+    <input type="hidden" name="shang_amount" value="" id="shang_amount" />
+</form>
+<div class="sWap">
+    <div class="mask"></div>
+    <div class="reward">
+      <div class="icon">
+        赏
+      </div>
+      <div class="t-txt">
+        来！ 支持一波！
+      </div>
+      <div class="boxWap">
+        <div class="box"><span style="font-size: 16px">2</span>元</div>
+        <div class="box"><span style="font-size: 16px">4</span>元</div>
+        <div class="box"><span style="font-size: 16px">5</span>元</div>
+        <div class="box"><span style="font-size: 16px">10</span>元</div>
+        <div class="box"><span style="font-size: 16px">50</span>元</div>
+        <div class="box"><span style="font-size: 16px">100</span>元</div>
+      </div>
+      <p class="t-des col-b" id="selfReward">任意赏金</p>
+      <p class="t-des">打赏无悔，概不退款</p>
+    </div>
+    <div class="self">
+      <div class="title">
+        任意赏金
+      </div>
+      <input type="text" class="input" id="rewardInput" placeholder="请输入打赏金额">
+      <div class="btn" id="shangBtn">去打赏</div>
+    </div>
+</div>
+<script>
+  // 打赏相关操作
+  var ring_id = null;
+  var toOpenId = null;
+    $('.sWap .mask').on('click', function () {
+      $('.sWap .reward').removeClass('show')
+      setTimeout(function() {
+        $('.sWap').hide()
+        $('.sWap .self').hide()
+      }, 200);
+    })
+    $('#selfReward').on('click', function () {
+      $('.sWap .reward').removeClass('show')
+      $('.sWap .self').show()
+    })
+    $('.boxWap .box span').on('click',function () {
+        payRed($(this).text())
+    })
+    $('#shangBtn').on('click', function() {
+        var num = $('#rewardInput').val()
+        payRed(num)
+    })
+    function payRed(amount) {
+
+        $("#shang_ring_id").val(ring_id)
+        $("#shang_amount").val(amount);
+        $("#toOpenId").val(toOpenId);
+        $('form').submit()
+    }
+    function shang_show(id,openid){
+        setTimeout(function() {
+            $('.sWap .reward').addClass('show')
+        }, 0);
+        $('.sWap').show();
+
+        ring_id = id;
+
+        toOpenId = openid;
+        // $("#shang_div").toggle()
+        // $("#shang_ring_id").val($ring_id);
+    }
+    function shang_submit(){
+        var num = $("#shang_amount").val()
+        if(isNaN(num)) {
+            tip('请输入数字')
+            tip_close()
+            return false
+        }
+        if(num < 0 || num == '') {
+            tip('金额应大于0')
+            tip_close()
+            return false
+        }
+        return true
+    }
+</script>

@@ -1,0 +1,7 @@
+{if $item['status'] == 0}<span class="label label-danger text-danger">待付款</span>
+{elseif $item['ordertype'] == 1 && $item['status'] == 1 }<span class="label label-info">待使用</span>
+{elseif $item['ordertype'] != 1 && $item['status'] == 1 && $item['iscomplete'] != 1 }<span class="label label-info ">拼团中</span>
+{elseif $item['ordertype'] != 1 && $item['status'] == 1 && $item['iscomplete'] == 1 }<span class="label label-info ">待使用</span>
+{elseif $item['status'] == 3}<span class="label label-success ">已完成</span>
+{elseif $item['status'] >3}<span class="label label-warning ">交易关闭</span>
+{else}--{/if}

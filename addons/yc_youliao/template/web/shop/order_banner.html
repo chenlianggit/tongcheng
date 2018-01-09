@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+    <li {if $op == 'display' && $status == '-2' && $today == '1'}class="active"{/if}><a href="{php echo $this->createWebUrl('shop_order', array('op' => 'display', 'status' =>'-2', 'today' =>1))}">今日订单</a></li>
+    <li {if $op == 'display' && $status == '0'}class="active"{/if}><a href="{php echo $this->createWebUrl('shop_order', array('op' => 'display', 'status' => 0))}">待付款</a></li>
+    <li {if $op == 'display' && $status == '2'}class="active"{/if}><a href="{php echo $this->createWebUrl('shop_order', array('op' => 'display', 'status' => 2))}">待使用</a></li>
+    <li {if $op == 'display' && $status == '3'}class="active"{/if}><a href="{php echo $this->createWebUrl('shop_order', array('op' => 'display', 'status' => 3))}">已完成</a></li>
+    <li {if $op == 'display' && $status == '4' || $_GPC['do']=='shop_refund'}class="active"{/if}><a href="{php echo $this->createWebUrl('shop_order', array('op' => 'display', 'status' => 4))}">售后退款</a></li>
+    <li {if $op == 'display' && $status == '-1'}class="active"{/if}><a href="{php echo $this->createWebUrl('shop_order', array('op' => 'display', 'status' => -1))}">全部订单</a></li>
+
+</ul>

@@ -1,0 +1,53 @@
+<div style="padding:15px;" class=" main-823 panel-body table-responsive">
+    <table class="table table-hover">
+        <thead class="navbar-inner">
+        <tr>
+            <th style="width:150px;">订单编号</th>
+            <th style="width:100px;">用户名</th>
+            <th style="width:100px;">联系电话</th>
+            <th style="width:100px;">支付方式</th>
+            <th style="width:120px;">支付金额</th>
+            <th style="width:120px;">优惠金额</th>
+            <th style="width:150px;">状态</th>
+            <th style="width:150px;">支付时间</th>
+            <th style="width:120px;">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {loop $list $item}
+        <tr>
+            <td>{$item['ordersn']}</td>
+            <td>{$item['nickname']}</td>
+            <td>{$item['telphone']}</td>
+            <td>{template 'web/shop/order_paytype'}</td>
+
+            <td>{$item['paymoney']} 元</td>
+            <td>{php echo $item['aftermoney']-$item['paymoney']} 元</td>
+            <td>
+                {if $item['status'] == 1}<span class="label label-info">已支付</span>
+                {elseif $item['status'] == 0}<span class="label label-danger">待付款</span>{/if}
+            </td>
+            <td>{php echo date('Y-m-d H:i:s', $item['createtime'])}</td>
+
+
+
+
+            <td>
+                <a  href="{php echo $this->createWebUrl('shop_discount', array('op' => 'detail', 'id' => $item['id']))}"
+                    class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="查看详情"><i class="fa fa-pencil"></i>
+                </a>
+                {if $item['status']==0}
+                <a href="{php echo $this->createWebUrl('discount', array('id' => $item['id'], 'op' => 'delete_re'))}" onclick="return confirm('此操作不可恢复，确认删除？');"
+                   class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="删除"><i class="fa fa-times"></i>
+                </a>
+                {/if}
+            </td>
+
+
+        </tr>
+        {/loop}
+        </tbody>
+
+    </table>
+    {$pager}
+</div>

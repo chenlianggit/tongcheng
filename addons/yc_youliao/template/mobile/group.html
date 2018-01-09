@@ -1,0 +1,16 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/group.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{if $is_shop_admin==1}
+{template '../mobile/upload_img'}
+{template '../mobile/shop_admin/shop_admin_banner'}
+{/if}
+{if $op=='detail'}
+{template '../mobile/group_detail'}
+{else}
+{template '../mobile/group_list'}
+{/if}
+{template '../mobile/footer'}

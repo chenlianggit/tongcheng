@@ -1,0 +1,65 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<div class="info-content ">
+    <div class="shop-admin order-panney loop-li ">
+        <div  class="order-body {if $op=='withdraw'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'withdraw'))}'">
+            申请提现
+        </div>
+        <div class="order-body {if $op=='withdraw_record'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'withdraw_record'))}'">
+            提现记录
+        </div>
+
+    </div>
+    <div class=" form-content">
+        {if  $op=='withdraw'}
+        <div class="header-l"><img class="icon-level-p1" src="{if empty($item['avatar'])}{STYLE}images/avatar_default.jpg {else}{$item['avatar']}{/if}"/></div>
+        <div class="header-r">
+            <ul class="distributor-infor">
+                <li><span class="distributor-infor-c">{$item['nickname']}</span></li>
+            </ul>
+        </div>
+    {template '../mobile/withdraw_item'}
+    {elseif $op=='withdraw_record'}
+        {if $id>0}
+        {template '../mobile/account_detail'}
+        {else}
+        <script src="{STYLE}js/page.js"></script>
+        <ul class="order pt-15">
+            {loop $list $item}
+            <li class="info-list" >
+                <p > <span class="red">提现金额：￥{$item['amount']}</span> </p>
+                <p > <span>手续费：￥{$item['transfer']}</span> </p>
+                <p > <span>提现方式：
+          {if $item['paytype']==1}
+           微信
+           {elseif  $item['paytype']==2}
+            支付宝
+            {elseif  $item['paytype']==3}
+             银行卡
+             {elseif  $item['paytype']==4}
+            余额
+            {/if}
+        </span> </p>
+                <p > <span> 申请状态：{if $item['status']==1}<em class="green">已提现</em>{elseif $item['status']==2}<em class="red">已驳回{elseif $item['status']==0}<em class="red">待审核{/if}</em></span></p>
+                <p > <span>申请时间：{php echo date('Y-m-d H:i', $item['addtime'])}</span> </p>
+                <h3>
+
+                    <a href="javascript:;" class="current" onclick="location.href='{php echo $this->createMobileUrl('user',array('id'=>$item['cash_id'],'op'=>'withdraw_record'))}'">查看详情</a>
+
+                </h3>
+            </li>
+            {/loop}
+        </ul>
+        <script>
+            $(function(){
+                var url=createAppUrl('user','withdraw_record');
+                var page = 1;
+                pagelist(page,url,'.info-content','.order','withdraw_record');
+            })
+        </script>
+        {/if}
+    {/if}
+    </div>
+</div>
+{template '../mobile/footer'}

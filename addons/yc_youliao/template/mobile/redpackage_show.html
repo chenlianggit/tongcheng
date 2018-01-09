@@ -1,0 +1,161 @@
+{template '../mobile/header'}
+<link href="{STYLE}css/redpackage_show.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{STYLE}css/frame/commes.css" />
+<link rel="stylesheet" href="{STYLE}css/frame/photoswipe.css">
+<link rel="stylesheet" href="{STYLE}css/frame/default-skin/default-skin.css">
+<script src="{STYLE}js/frame/photoswipe.min.js"></script>
+<script src="{STYLE}js/frame/photoswipe-ui-default.min.js"></script>
+<script src="{STYLE}js/page.js"></script>
+<div class="d-wrapper" style="{if $redpackageData[0]['model'] == 2} padding-bottom:60px;{/if}">
+    <div class="d-top">
+        <p class="redType">
+
+            {if $redpackageData[0]['model'] == 2} 口令红包 {/if} 
+            {if $redpackageData[0]['model'] != 2}
+                {if $redpackageData[0]['allocation_way']== 1}
+                    普通红包 
+                {/if} 
+                {if $redpackageData[0]['allocation_way'] == 2}
+                    拼手气红包
+                {/if}
+            {/if}
+
+        </p>
+        <p class="total">共<span class="num">{$redpackageData[0]['total_amount']}</span>元</p>
+        <div class="avatar">
+            <img src="{$redpackageData[0]['avatar']}" alt="">
+        </div>
+        <p class="d-name">{$redpackageData[0]['nickname']}的红包</p>
+        <div class="mask"></div>
+    </div>
+    <p class="f-content">
+        {$redpackageData[0]['content']}
+    </p>
+    {if !empty($redpackageData[0]['xsthumb'])}
+    <div class="my-gallery f-imgs">
+        {php $xsthumb=json_decode($redpackageData[0]['xsthumb'])}
+        {loop $xsthumb $i}
+        <figure>
+            <a href="{php echo tomedia($i)}" class="gallery-a">
+                <img class="img" src="{php echo tomedia($i)}"> 
+            </a>
+        </figure>
+        {/loop}
+    </div>
+    {/if} {if $redpackageData[0]['model'] == 2}
+    <p class="kouling">
+        口令: <span style="color:#fb5100;">{$redpackageData[0]['kouling']}</span>
+    </p>
+    {/if}
+    <p class="numDes">领取{$redpackageData[0]['send_num']}/{$redpackageData[0]['total_num']}个</p>
+    <ul class="listWap">
+    {if !empty($getredpackageData)}
+
+        {loop $getredpackageData $item}
+        <li class="list">
+            <div class="d-left"><img src="{$item['avatar']}" alt=""></div>
+            <div class="d-right">
+                <div class="nameDes">
+                    <div class="name">{$item['nickname']}</div>
+                    <div class="money">{$item['get_amount']}元</div>
+                </div>
+                <div class="time">
+                    {php echo date('Y-m-d H:i:s', $item['create_time'])}
+                </div>
+            </div>
+        </li>
+        {/loop}
+    {/if}
+    </ul>
+</div>
+<div class="bom">
+    {if empty($userData) && !empty($userinfo)}
+    <div class="fetch {if $redpackageData[0]['model'] != 1}not{/if}">
+        {if $redpackageData[0]['model'] == 2}
+            <input type="text" placeholder="请输入口令" class="input" name="kouling" id="kouling">
+        {/if}
+        {if $redpackageData[0]['send_num'] < $redpackageData[0]['total_num']}
+            <div class="btn" onclick="getRedpackage({$redpackageData[0]['red_id']})" id="getred">我要抢福利</div>
+        {/if}
+    </div>
+    {if $redpackageData[0]['send_num'] >= $redpackageData[0]['total_num']}
+    <div class="no">
+        <div class="btn">出手慢了，福利已被抢完</div>
+    </div>
+    {/if}
+    {/if} {if !empty($userData)}
+    <div class="no">
+        <div class="btn" onclick="window.location.href='{php echo $this->createMobileUrl('user',array('op'=>'withdraw'))}' ">您已经抢过了,去提现>></div>
+    </div>
+    {/if}
+    <div class="had" style="display: none;">
+        <div class="avatar">
+            <img class="img" src="{$userinfo['avatar']}">
+        </div>
+        <div class="con" id="getMoney"></div>
+        <div class="option" onclick="window.location.href='{php echo $this->createMobileUrl('user',array('op'=>'withdraw'))}' ">马上提现</div>
+    </div>
+</div>
+{template '../mobile/footer'}
+<script>
+    /*
+$(function(){
+    photoSwipe();
+    getImageSize();
+var page = 0;
+var url=createAppUrl('{$_GPC['do']}','{$op}');
+ url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+pagelist(page,url,'.discount-content','#list','ring');
+});
+
+*/
+    $(function() {
+        photoSwipe();
+        getImageSize();
+    })
+    var url = "{php echo $this->createMobileUrl('redpackage')}";
+
+
+    function getRedpackage(redid) {
+        var kouling = $("#kouling").val();
+        $.ajax({
+            type: 'post',
+            url: url,
+            dataType: 'json',
+            data: { 'id': redid, 'op': 'getpackage', 'kouling': kouling },
+            success: function (data) {
+                if (data.code == 1000) {
+                    tip('抢到' + data.money + "元");
+                    $(".top").css("padding-bottom", 0)
+                    $('.fetch').hide()
+                    tip_close();
+                    $("#getred").hide();
+                    $("#kouling").hide();
+                    $("#getMoney").html("我抢到" + data.money + "元");
+                    $(".had").show();
+                    $(".numDes").html("领取{php echo $redpackageData[0]['send_num']+1}/{php echo $redpackageData[0]['total_num']}个");
+                    $(".listWap").append("<li class=\"list\"><div class=\"d-left\"><img src=\"{php echo tomedia($userinfo['avatar'])}\" alt=\"\"></div>" +
+                            "<div class=\"d-right\"><div class=\"nameDes\"> <div class=\"name\">{$userinfo['nickname']}</div><div class=\"money\">"+(data.money)+"元</div></div> <div class=\"time\">"+
+                            "{php echo date('Y-m-d H:i:s')} </div> </div> </li>");
+                } else if (data.code == 1001) {
+                    tip('福利红包不存在');
+                    tip_close();
+                } else if (data.code == 1002) {
+                    tip('红包已经领取完');
+                    tip_close();
+                } else if (data.code == 1003) {
+                    tip('福利红包口令错误');
+                    tip_close();
+                }else if (data.code == 1005) {
+                    tip('您已经领取福利红包');
+                    tip_close();
+                } else {
+                    tip('系统异常，稍后再试');
+                    tip_close();
+                }
+            }
+        });
+    }
+
+</script>
+{template '../mobile/photoswipe'}

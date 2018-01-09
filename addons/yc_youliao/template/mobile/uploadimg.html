@@ -1,0 +1,81 @@
+<script src="{STYLE}js/iscroll-zoom.js"></script>
+<script src="{STYLE}js/hammer.js"></script>
+<script src="{STYLE}js/jquery.photoClip.js"></script>
+<script>
+    var subUrl = "";
+    $(function(){
+        $("#logox").click(function(){
+            $(".htmleaf-container").show();
+        })
+        $("#clipBtn").click(function(){
+            $("#logox").empty();
+            $('.header-edit').html('<img src="' + imgsource + '" align="absmiddle" class="icon-level-p1" />  <i class="iconfont y">&#xe604;</i>');
+           // alert(imgsource);
+            $('#avatar').val(imgsource);
+            $(".htmleaf-container").hide();
+        })
+
+
+    });
+
+    var obUrl = ''
+    //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    $("#clipArea").photoClip({
+        width: 199,
+        height: 166,
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function() {
+            console.log("照片读取中");
+        },
+        loadComplete: function() {
+            console.log("照片读取完成");
+        },
+        clipFinish: function(dataURL) {
+            console.log(dataURL);
+        }
+    });
+
+    $("#file0").change(function(){
+        var objUrl = getObjectURL(this.files[0]) ;
+        obUrl = objUrl;
+        console.log("objUrl = "+objUrl) ;
+        if (objUrl) {
+            $("#img0").attr("src", objUrl).show();
+            $("#dpcert").val(obUrl);
+            $("#img-1").attr("src", obUrl);
+        }
+        else{
+            $("#img0").hide();
+        }
+    }) ;
+    $("#file2").change(function(){
+        var objUrl = getObjectURL(this.files[0]) ;
+        obUrl = objUrl;
+        console.log("objUrl = "+objUrl) ;
+        if (objUrl) {
+            $("#bgl").attr("src", obUrl);
+            $("#dplogo").val(obUrl);
+        }
+        else{
+            $("#img1").hide();
+        }
+    }) ;
+
+    $("#file3").change(function(){
+        var objUrl = getObjectURL(this.files[0]) ;
+        obUrl = objUrl;
+        console.log("objUrl = "+objUrl) ;
+        if (objUrl) {
+            $("#img3").attr("src", obUrl);
+            $("#dplogo").val(obUrl);
+            $("#img-3").attr("src", obUrl);
+        }
+        else{
+            $("#img3").hide();
+        }
+    }) ;
+
+
+</script>

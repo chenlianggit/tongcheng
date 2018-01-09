@@ -1,0 +1,32 @@
+<div class="info-content">
+<div class="shop-admin order-panney ">
+    <div  class="order-body {if $all==1}sel{else}nosel{/if} "  onclick="location.href='{php echo $this->createMobileUrl($do,array('op'=>'group','all'=>1))}'" >
+        全部团
+    </div>
+    <div class="order-body {if $gstatus==4 } sel {else}nosel{/if} " onClick="location.href='{php echo $this->createMobileUrl($do,array('op'=>'group','gstatus'=>4))}'">
+        待支付
+    </div>
+    <div class="order-body {if $gstatus==1} sel {else}nosel{/if} " onClick="location.href='{php echo $this->createMobileUrl($do,array('op'=>'group','gstatus'=>1))}'">
+        组团中
+    </div>
+    <div class="order-body {if $gstatus==3} sel {else}nosel{/if} " onClick="location.href='{php echo $this->createMobileUrl($do,array('op'=>'group','gstatus'=>3))}'">
+        已成功
+    </div>
+    <div class="order-body {if $gstatus==2} sel {else}nosel{/if} "onClick="location.href='{php echo $this->createMobileUrl($do,array('op'=>'group','gstatus'=>2))}'">
+        已失败
+    </div>
+</div>
+</div>
+<ul class="am-cf order-content" >
+    <div class="order-li">
+        {$str}
+    </div>
+</ul>
+<script>
+    $(function(){
+        var page = 1;
+        var url=createAppUrl('group','group')+'&gstatus='+'{$gstatus}'+'&is_shop_admin='+'{$is_shop_admin}'+'&shop_id='+'{$shop_id}';
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        getPageReq(page,url,'.order-li','.order-li');
+    });
+</script>

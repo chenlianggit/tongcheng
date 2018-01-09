@@ -1,0 +1,109 @@
+.f-zd{
+    width: 40px;
+    height: 40px;
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+
+.mui-table-view-cell>.mui-slider-left>.mui-btn, .mui-table-view-cell>.mui-slider-right>.mui-btn{
+    padding:0 2px;
+}
+
+#messagelist{
+    padding:0;
+}
+
+.mui-table-view-cell>.mui-slider-handle{
+    background: none;
+}
+.list-name{
+    color:#fb5100;
+    margin-right: 5px;
+}
+
+.mui-content-padded{
+    margin: 55px auto 0 auto;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.order-panney {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 1%;
+    padding-left: 32%;
+    margin-bottom: 4px;
+    position: fixed;
+    z-index: 9999;
+    border-bottom: 1px solid #efefef;
+}
+.m-5 {
+    margin: 5px;
+}
+.g-zd{
+    position: absolute;
+    right: 0;
+}
+.g-zd img{
+    width:40px;
+    height: 40px;
+}
+.mui-pull-caption {
+    font-size: 12px;
+    color: #A7A5A5;
+}
+
+.mui-badge-danger, .mui-badge-red {
+    background-color: #fb5100;
+}
+.chat-content{margin-top:5px;font-size:15px;}
+.w-8{
+    width: 80%;
+}
+#pullup{
+    margin-bottom: 50px;
+}
+.mui-btn-gray {
+    color: #fff;
+    border: 1px solid #dd524d;
+    background-color: #ccc;
+}
+.mui-btn-yellow {
+    color: #fff;
+    border: 1px solid #f70;
+    background-color: #f70;
+}
+.mui-btn-green {
+    color: #fff;
+    border: 1px solid #05B70E;
+    background-color: #05B70E;
+}
+.mui-btn.mui-icon {
+    font-size: 20px;
+}
+.list-btn-info{
+    font-family: Arial,"Microsoft YaHei";
+    padding-right: 12px;
+    font-size: 16px;
+}
+.mui-btn{
+    z-index: 9999;
+    top: 0;
+    width: 100px;
+}
+.mui-icon-trash:before {
+    font-size: 24px;
+    margin:0 5px 0 15px;
+}
+.mui-icon-weixin:before, .mui-icon-loop:before {
+    font-size: 22px;
+    margin:0 5px 0 15px;
+}
+ .mui-icon-arrowthinup:before {
+    margin:0 5px 0 8px;
+}
+.mui-scroll{
+    position: relative;
+}

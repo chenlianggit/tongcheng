@@ -1,0 +1,109 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<div class="panel memberhead" style=" background: url('{if empty($item['bgpic'])}{STYLE}images/topbg1.jpg {else}{$_W['attachurl']}{$item['bgpic']}{/if}') bottom; background-size: cover;height: 135px;"  id="qr_code">
+    <div class="header-l"><img class="icon-level-p1" src="{if empty($item['logo'])}{STYLE}images/avatar_default.jpg {else}{$_W['attachurl']}{$item['logo']}{/if}"/></div>
+    <div class="header-r">
+        <ul class="distributor-infor">
+            <li><span>{$item['shop_name']}</span></li>
+        </ul>
+        <ul class="nocheck shop-admin">
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'check'))}">余额：{$item['balance']}</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'check_shop'))}">已提现：{$account}</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'check_shop'))}">我的客户：{$memberNum}</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="clearfix" ></div>
+
+<div class="container-fluid clearFloat b-b-dcdcdc bag-fff">
+    <ul class="etc-nav">
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'check','status'=>'0'))}">
+            <li class="bt_none">
+                <i class="iconfont" style="color: #fea501">&#xe68e;</i>
+                <p class="text-center">订单管理</p>
+                <p class="text-center gray">快速管理订单</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'check','status'=>'1','isding'=>'1'))}">
+            <li class="ontc bt_none">
+                <i class="iconfont" style="color: #F5628C">&#xe647;</i>
+                <p class="text-center">拼团管理</p>
+                <p class="text-center gray">拼团列表信息</p>
+            </li>
+
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'check','status'=>'1'))}">
+            <li class="bt_none br_none">
+                <i class="iconfont" style="color:#f60;">&#xe651;</i>
+                <p class="text-center">优惠买单</p>
+                <p class="text-center gray">查看店铺营收</p>
+            </li>
+        </a>
+
+
+
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'goods'))}">
+            <li>
+                <i class="iconfont" style="color: #dd2727">&#xe668;</i>
+                <p class="text-center">商品管理</p>
+                <p class="text-center gray">快速管理商品</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'cate'))}">
+            <li class="ontc">
+                <i class="iconfont" style="color: #f00">&#xe624;</i>
+                <p class="text-center">分类管理</p>
+                <p class="text-center gray">商品分类</p>
+            </li>
+
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'account'))}">
+            <li class="br_none">
+                <i class="iconfont" style="color: #fea501">&#xe637;</i>
+                <p class="text-center">资金汇总</p>
+                <p class="text-center gray">资金流水</p>
+            </li>
+        </a>
+
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'shop_admin'))}">
+            <li>
+                <i class="iconfont" style="color: #4fc0ea">&#xe626;</i>
+                <p class="text-center">店员管理</p>
+                <p class="text-center gray">权限分配</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'add_shop_admin'))}">
+            <li class="ontc">
+                <i class="iconfont" style="color: #fea501">&#xe64b;</i>
+                <p class="text-center">添加店员</p>
+                <p class="text-center gray">快速添加</p>
+            </li>
+
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'info','po'=>'1'))}">
+            <li class="br_none">
+                <i class="iconfont" style="color: #a98a46">&#xe62d;</i>
+                <p class="text-center">店铺资料</p>
+                <p class="text-center gray">让用户了解更多</p>
+            </li>
+        </a>
+    </ul>
+</div>
+<div id="editBlock" class="move-qr-code" onclick="getShopQr('{$_W['attachurl']}{php echo $this->getShopQr();}')">
+        <img src="{STYLE}images/g_ewm.png">
+</div>
+<script>
+    //执行队列（处理拼团订单等）
+    var queueUrl=createAppUrl('ajax_req', 'queue');
+    $.ajax({
+        url:queueUrl,
+        type:'post',
+        dataType:'json',
+        success:function(data){
+        }
+    });
+</script>
+
+{template '../mobile/footer'}
+

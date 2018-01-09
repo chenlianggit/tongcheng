@@ -1,0 +1,8 @@
+<div class="advbanne"></div>
+<div class="my_findUL box_border bg_white am-sticky" data-am-sticky="" >
+    {if $this->isRedpacket()==0}
+    <a class="pdt-8{if $op =="redpackage"} active{/if}" href="{php echo $this->createMobileUrl('redpackage')}">抢福利</a>
+    {/if}
+    <a {if $this->isRedpacket()!=0}style='width:50%'; {/if} class="pdt-8{if $op =="display"} active{/if}" href="{php echo $this->createMobileUrl('ring')}">广场</a>
+    <a {if $this->isRedpacket()!=0}style='width:50%'; {/if} class="pdt-8{if $op =="follow"} active{/if}" href="{php echo $this->createMobileUrl('ring', array('op' => 'follow'))}">我的关注</a>
+</div>

@@ -1,0 +1,30 @@
+.radioWrapper,.checkboxWrapper{
+  background-color: #fff;
+  padding: 5px 5px;
+  font-size: 0;
+}
+.radioWrapper .p-label,.checkboxWrapper .p-label{
+  display: inline-block;
+  border-radius: 6px;
+  padding: 3px 8px;
+  border: 1px solid #eee;
+  background-color: #eee;
+  color: #888;
+  position: relative;
+  font-size: 12px;
+  margin: 5px;  
+}
+.radioWrapper .p-label.checked,.checkboxWrapper .p-label.checked{
+  border: 1px solid #f70;;
+  background-color: #f70;;
+  color: #fff;
+}
+.radioWrapper .p-radio, .checkboxWrapper .p-checkbox{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}

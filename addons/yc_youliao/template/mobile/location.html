@@ -1,0 +1,64 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}mui/css/mui.min.css">
+<link rel="stylesheet" href="{STYLE}mui/css/mui.indexedlist.css">
+
+		<style>
+			html,
+			body {
+				height: 100%;
+				overflow-x: hidden;
+			}
+			.mui-bar {
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+		</style>
+
+
+		<div class="mui-content">
+			<div id='list' class="mui-indexed-list">
+				<div class="city_container">
+					<div class="fl wc-20" onclick="javascript:window.location.href = document.referrer;"><img src="{STYLE}images/g_left.png"></div>
+
+
+				<div class="current_city">当前位置：<a href=""></a>
+					<a href="{php echo $this->createMobileUrl('index')">
+						{if $_COOKIE['city_name']}{$_COOKIE['city_name']}{$_COOKIE['district']}{else}定位中...{/if}</a></div>
+
+
+				<div class="city_list_hot">
+					<div class="city_list_T">热门</div>
+					<ul class="hot_city">
+						{loop $hotcitys $row}
+						<li>  <div  onclick="changlocation({$row['city_id']},'{$row['name'],{$row['area_id']},'{$row['area_name']}}','','');">{$row['area_name']}</div></li>
+						{/loop}
+					</ul>
+				</div>
+				</div>
+				<div class="mui-indexed-list-bar">
+					{loop $firstz $row}
+					<a>{$row}</a>
+					{/loop}
+				</div>
+				<div class="mui-indexed-list-alert"></div>
+				<div class="mui-indexed-list-inner">
+					<div class="mui-indexed-list-empty-alert">没有数据</div>
+					<ul class="mui-table-view">
+						{loop $allcitys $row}
+							<li data-group="{$row['zimu']}" class="mui-table-view-divider mui-indexed-list-group">{$row['zimu']}</li>
+							{loop $row['citys'] $crow}
+								<li data-value="{$crow['areaname']}" data-tags="{$crow['areaname']}" class="mui-table-view-cell mui-indexed-list-item"><div  onclick="changlocation({$crow['city_id']},'{$crow['name']}','','');" >{$crow['name']}</div></li>
+
+						{loop $crow['area'] $area}
+						<li data-value="{$area['area_name']}" data-tags="{$area['area_name']}" class="mui-table-view-cell mui-indexed-list-item pd-25"><div onclick="changlocation({$crow['city_id']},'{$crow['name']}',{$area['area_id']},'{$area['area_name']}');" >{$area['area_name']}</div></li>
+						{/loop}
+							{/loop}
+						{/loop}					
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,188 @@
+{loop $fieldslist $row} {if $row['mtype'] == 'text' || $row['mtype'] == 'idcard'}
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" name="{$row['enname']}" value="{$row['defaultval']}" type="text" placeholder="请填写{$row['name']}"
+            /> {if $row['danwei']}
+            <span style="position:absolute;right:15px;top:10px;">{$row['danwei']}</span> {/if}
+        </div>
+    </div>
+</div>
+{/if} {if $row['mtype'] == 'number' || $row['mtype'] == 'telphone'}
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" name="{$row['enname']}" value="{$row['defaultval']}" type="tel" placeholder="请填写{$row['name']}"
+            /> {if $row['danwei']}
+            <span style="position:absolute;right:15px;top:10px;">{$row['danwei']}</span> {/if}
+        </div>
+    </div>
+</div>
+{/if} {if $row['mtype'] == 'longtext'}
+<div class="weui-cells__title">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <textarea class="weui-textarea" name="{$row['enname']}" placeholder="请填写{$row['name']}" rows="3">{$row['defaultval']}</textarea>
+        </div>
+    </div>
+</div>
+{/if} {if $row['mtype'] == 'radio'}
+<div class="weui-cells__title">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+<div class="radioWrapper">
+    {loop $row['mtypeconarr'] $key $rowrow}
+    <label class="p-label {if $rowrow == $row['defaultval']}checked{/if}" for="{$row['enname']}{$key}">
+        <span>{$rowrow}</span>
+        <input name="{$row['enname']}" class="p-radio" {if $rowrow == $row['defaultval']}checked="checked"{/if} value="{$rowrow}" id="{$row['enname']}{$key}" type="radio">
+    </label> {/loop}
+</div>
+<script>
+    $('.p-radio').on('click', function () {
+        $(this).parent().parent().find('.p-label.checked').removeClass('checked')
+        $(this).parent().addClass('checked')
+    })
+
+</script>
+<!-- <div class="weui-cells weui-cells_radio">
+	{loop $row['mtypeconarr'] $key $rowrow}
+	<label class="weui-cell weui-check__label" for="{$row['enname']}{$key}">
+			<div class="weui-cell__bd">
+			  <p>{$rowrow}</p>
+			</div>
+			<div class="weui-cell__ft">
+			  <input name="{$row['enname']}" value="{$rowrow}" class="weui-check" id="{$row['enname']}{$key}" {if $rowrow == $row['defaultval']}checked="checked"{/if} type="radio">
+			  <span class="weui-icon-checked"></span>
+			</div>
+		</label> {/loop}
+</div> -->
+{/if} {if $row['mtype'] == 'checkbox'}
+<div class="weui-cells__title">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+<div class="checkboxWrapper">
+    {loop $row['mtypeconarr'] $key $rowrow}
+    <label class="p-label {if $rowrow == $row['defaultval']}checked{/if}" for="{$row['enname']}{$key}">
+            <span>{$rowrow}</span>
+            <input name="{$row['enname']}[]"  class="p-checkbox" value="{$rowrow}" {if $rowrow == $row['defaultval']}checked="checked"{/if} id="{$row['enname']}{$key}" class="p-checkbox" type="checkbox">
+        </label> {/loop}
+</div>
+<!-- <div class="weui-cells weui-cells_checkbox">
+	{loop $row['mtypeconarr'] $key $rowrow}
+	<label class="weui-cell weui-check__label" for="{$row['enname']}{$key}">
+			<div class="weui-cell__bd">
+			  <p>{$rowrow}</p>
+			</div>
+			<div class="weui-cell__hd">
+			  <input class="weui-check" name="{$row['enname']}[]" value="{$rowrow}" id="{$row['enname']}{$key}" {if $rowrow == $row['defaultval']}checked="checked"{/if} type="checkbox">
+			  <i class="weui-icon-checked"></i>
+			</div>
+        </label> {/loop}
+</div> -->
+<script>
+    $('.p-checkbox').on('click', function () {
+        $(this).parent().toggleClass('checked')
+    })
+</script>
+{/if} {if $row['mtype'] == 'select'}
+<div class="weui-cell weui-cell_select weui-cell_select-after">
+    <div class="weui-cell__hd">
+        <label class="weui-label">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</label>
+    </div>
+    <div class="weui-cell__bd">
+        <select name="{$row['enname']}" class="weui-select">
+			{loop $row['mtypeconarr'] $rowrow}
+			<option value="{$rowrow}" {if $rowrow == $row['defaultval']}selected="selected"{/if}>{$rowrow}</option>
+			{/loop}
+		  </select>
+    </div>
+</div>
+</div>
+{/if} {if $row['mtype'] == 'date'}
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" name="{$row['enname']}" value="{$row['defaultval']}" type="text" placeholder="请填写{$row['name']}"
+                id="datetime-picker{$row['id']}" />
+        </div>
+    </div>
+</div>
+<script>
+    $("#datetime-picker{$row['id']}").calendar();
+
+</script>
+{/if} {if $row['mtype'] == 'datetime'}
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" name="{$row['enname']}" value="{$row['defaultval']}" type="text" placeholder="请填写{$row['name']}"
+                id="datetime-picker{$row['id']}" />
+        </div>
+    </div>
+</div>
+<script>
+    $("#datetime-picker{$row['id']}").datetimePicker();
+
+</script>
+{/if} {if $row['mtype'] == 'images'}
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <div class="weui-uploader">
+                <div class="weui-uploader__hd">
+                    <p class="weui-uploader__title">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</p>
+                </div>
+                <div class="weui-uploader__bd">
+                    <ul class="weui-uploader__files" id="imgsinput{$row['id']}">
+
+                    </ul>
+                    <div class="weui-uploader__input-box" id="chooseImages{$row['id']}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var len = 0;
+    function removeimage(obj) {
+        obj.parents('.weui-uploader__file').remove();
+        len--;
+        if (len < 9) {
+            $('#chooseImages{$row['id']}').show();
+        }
+    }
+    var images = {
+        localIds: [],
+    };
+    $(function () {
+        $('#chooseImages{$row['id']}').click(function () {
+            var url = "{php echo $this->createMobileUrl('releasehtml',array( 'op' => 'getmedia'))}"
+		    var toLen = function () {
+		    	$('#chooseImages{$row['id']}').hide();
+		    }
+		    var success = function (data) {
+		    	var imagehtml = '<li class="weui-uploader__file" style="background-image:url(' + data.imgurl + ')">'
+                + '<i onclick="removeimage($(this));" class="img-delete"><img src="{STYLE}images/g_delete.png"></i>'
+                + '<input type="hidden" name="{$row['enname']}[]" value="'+ data.realimgurl + '" />'
+                + '</li>';
+            $('#imgsinput{$row['id']}').append(imagehtml);
+		    }
+		    uploadImgByWx({url: url, toLen: toLen, success: success })
+        })
+        
+    })
+
+</script>
+{/if} {/loop} {if $moduleres['isneedpay'] == 1 && $moduleres['needpay']>0}
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell weui-cell_warn">
+        <div class="weui-cell__bd">
+            <input class="weui-input" value="发布信息需要支付{$moduleres['needpay']}元才能审核通过" readonly="readonly" type="text">
+        </div>
+        <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+        </div>
+    </div>
+</div>
+{/if}

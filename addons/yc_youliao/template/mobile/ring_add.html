@@ -1,0 +1,76 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}weui/css/weui.min.css">
+<link  href="{STYLE}css/ring_add.css" rel="stylesheet" type="text/css"/>
+<form method="post"  action="./index.php">
+    <input type="hidden" name="c" value="entry" />
+    <input type="hidden" name="i" value="{$_W['uniacid']}" />
+    <input type="hidden" name="m" value="yc_youliao" />
+    <input type="hidden" name="do" value="ring" />
+    <input type="hidden" name="op" value="ring_add" />
+    <input type="hidden" name="add" value="1" />
+    <input type="hidden" name="ring_id" value="{$item['ring_id']}">
+    <input type="hidden" name="token" value="{$_W['token']}" />
+    <div class="am-panel issue_feed am-cf">
+        <div class="issue_feedbtn cancel">
+
+            <a href="{php echo $this->createMobileUrl('ring')}" class="z">
+                <span data-am-modal-close class="iconfont">&#xe605;</span>
+                <em>取消</em></a>
+            <div class="feed_header y"><button type="submit" >发布</button></div>
+        </div>
+
+        <div class="feed_text"><textarea name="info" id="info" value="{$item['info']}" placeholder="分享新鲜事..."></textarea></div>
+    </div>
+
+    <div class="mui-input-cell mr_10 fr">
+        <div class="weui-uploader__bd">
+            <ul class="weui-uploader__files" id="imgsinput">
+            </ul>
+            <div class="weui-uploader__input-box" id="chooseImages"></div>
+        </div>
+    </div>
+
+</form>
+{template '../mobile/footer'}
+<script>
+    $('form').submit(function(){
+        var info = $("#info").val();
+        if(info==""){
+            tip("请填写内容");
+            tip_close();
+            return false;
+        }
+    })
+
+
+    var len=0;
+    function removeimage(obj){
+        obj.parents('.weui-uploader__file').remove();
+        len--;
+        if(len<9){
+            $('#chooseImages').show();
+        }
+    }
+    $(function(){
+        $('#chooseImages').click(function(){
+            var url = "{php echo $this->createMobileUrl('releasehtml',array( 'op' => 'getmedia'))}"
+		    var toLen = function () {
+		    	$('#chooseImages').hide();
+		    }
+		    var success = function (data) {
+		    	var imagehtml = '<li class="weui-uploader__file" style="background-image:url('+data.imgurl+')">'
+                    +'<i onclick="removeimage($(this));" class="img-delete"><img src="{STYLE}images/g_delete.png"></i>'
+                    +'<input type="hidden" name="xsthumb[]" value="'+data.realimgurl+'" />'
+                    +'</li>';
+                $('#imgsinput').append(imagehtml);
+		    }
+		    uploadImgByWx({url: url,toLen: toLen, success: success })
+        });
+    })
+</script>
+
+
+
+
+
+

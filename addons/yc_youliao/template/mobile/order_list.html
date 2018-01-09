@@ -1,0 +1,63 @@
+<ul class="am-cf order-content" >
+    <div class="order-li">
+        {loop $list $item}
+        <li class="space_list_li bg_white mb_10 " >
+            <div class="my_dis_content f_14 c_999 am-cf mt_10 z order-status">编号：{$item['ordersn']}
+                {if $item['status'] == 0}
+                <span >未付款</span>
+                {elseif $item['status'] == 1 }
+                <span >未使用</span>
+                {elseif $item['status'] == 3}
+                <span >已使用</span>
+                {elseif $item['status'] == 4}
+                <span >交易关闭</span>
+                {/if}
+            </div>
+            <div class="d_time">{$item['createtime']}</div>
+
+            <div class="clearfix"></div>
+
+            {loop $item['goods'] $goods}
+            {php $name.=$goods['title'];}
+            <div class="listDiv_group mr_10 mt_5 my_dis_group am-cf">
+                <div class="listDiv_groupImg  mr_10">
+                    <a href="{php echo $this->createMobileUrl('good', array('id' => $goods['goods_id'],'shop_id' => $item['shop_id']))}"><img src="{$_W['attachurl']}{$goods['thumb']}" >
+                        <h6 class="listDiv_groupH6 mt_5 cl">{$goods['title']}</h6>
+                        <div class="list_desc ">
+                            <p class="f_12 ml_15">数量：{$goods['total']}<span class="f_12 ml_15">单价：￥{$goods['price']}</span> </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {/loop}
+            <div class="my_dis_love am-cf">
+                <span class="follow " >
+                    {if $item['nickname']}
+                    <span class="left avatar-nickname"><img src="{$item['avatar']}"> <em>{$item['nickname']}</em></span>
+                    {/if}
+                    <span class="red f_14 left">支付：￥{$item['price']}</span>
+                    <span class="right" >
+                    {if $item['status'] == 0}
+                    <a  href='{php echo $this->createMobileUrl('pay', array('type' => 'good','ordersn' => $item['ordersn'],'name' => $name))}' class="gopay">去支付</a>
+                    <a  href='javascript:;' onclick="deleteorder(this,{$item['shop_id']},{$item['id']})" class="godelete ">删除</a>
+
+                    {/if}
+                    <a href="{php echo $this->createMobileUrl('order', array('op' => 'detail','shop_id' => $item['shop_id'],'id' => $item['id']))}"  >   <em  class="godetail">查看详情</em>
+                </a>
+                    </span>
+                </span>
+            </div>
+
+            <div class="clearfix"></div>
+        </li>
+        {/loop}
+    </div>
+</ul>
+<script>
+    $(function(){
+        var page = 0;
+        var url=createAppUrl('{$_GPC['do']}','{$op}')+'&status='+'{$status}'+'&my='+'{$my}';
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        pagelist(page,url,'.order-content','.order-li','order');
+    });
+</script>

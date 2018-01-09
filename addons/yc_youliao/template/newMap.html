@@ -1,0 +1,201 @@
+<script type="text/javascript" src="{php echo $this->mapUrl()}"></script>
+<div class="mapWap">
+  <div class="addressInput">
+    <div class="back"></div>
+    <div class="inputWap"><input class="input" type="text" id="suggestId" placeholder="请输入准确地址"></div>
+  </div>
+  <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+  <div class="map">
+    <span class="mpaIcon" style="background-image: url({STYLE}images/mapIcon.png)"></span>
+    <div id="allmap"></div>
+  </div>
+  <div class="address">
+    <div class="itemWap">
+      <div class="item checked" data-list="0">全部</div>
+      <div class="item" data-list="1">小区</div>
+      <div class="item" data-list="2">写字楼</div>
+      <div class="item" data-list="3">学校</div>
+      <div class="sflag"></div>
+    </div>
+    <ul class="addressWap">
+    </ul>
+  </div>
+</div>
+<script>
+  function Map (options) {
+    this.map = null
+    this.options = options
+    this.geoc = null
+    this.mapInit()
+  }
+  Map.prototype.mapInit =  function () {
+    var _self = this
+    var searchList = ['全部', '小区', '写字楼', '学校']
+    var list = 0
+    var nowPoint = {
+      lng: 116.331398,
+      lat: 39.897445
+    }
+    _self.map = new BMap.Map("allmap")
+    var point = new BMap.Point(116.331398, 39.897445)
+    _self.geoc = new BMap.Geocoder()
+    _self.map .addControl(new BMap.NavigationControl())
+    var myValue
+    _self.map .centerAndZoom(point, 16)
+    // 初始定位
+    var geolocation = new BMap.Geolocation()
+    geolocation.getCurrentPosition(function (r) {
+      if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+        nowPoint.lat = r.point.lat
+        nowPoint.lng = r.point.lng
+        _self.map .panTo(r.point)
+        if(!$(_self.options.lat).val() || !$(_self.options.lng).val()){
+          // 经纬度获取地址
+          _self.getMapByXY(r.point,function (rs) {
+            $(_self.options.aDiv).text(rs.address)
+            $(_self.options.lat).val(rs.lat)
+            $(_self.options.lng).val(rs.lng)
+          })
+        }
+        searchLocation()
+      }
+    }, { enableHighAccuracy: true })
+    
+    // 搜索栏
+    function G(id) {
+      return document.getElementById(id)
+    }
+
+    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+      {
+        "input": "suggestId"
+        , "location": _self.map
+      })
+
+    ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
+      var str = ""
+      var _value = e.fromitem.value
+      var value = ""
+      if (e.fromitem.index > -1) {
+        value = _value.province + _value.city + _value.district + _value.street + _value.business
+      }
+      str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value
+
+      value = ""
+      if (e.toitem.index > -1) {
+        _value = e.toitem.value
+        value = _value.province + _value.city + _value.district + _value.street + _value.business
+      }
+      str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value
+      G("searchResultPanel").innerHTML = str
+    })
+
+    ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
+      var _value = e.item.value
+      myValue = _value.province + _value.city + _value.district + _value.street + _value.business
+      G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue
+      $('#suggestId').blur()
+      setPlace()
+    })
+
+    function setPlace() {
+      _self.map .clearOverlays()    //清除地图上所有覆盖物
+      function myFun() {
+        var pp = local.getResults().getPoi(0).point
+        nowPoint.lat = pp.lat
+        nowPoint.lng = pp.lng
+        searchLocation()
+        _self.map .centerAndZoom(pp, 18)
+      }
+      var local = new BMap.LocalSearch(_self.map , { //智能搜索
+        onSearchComplete: myFun
+      })
+      local.search(myValue)
+    }
+
+    // 监听移动
+    _self.map .addEventListener("dragend", function (e) {
+      $('.mpaIcon').css({ marginTop: '0' })
+      nowPoint.lat = e.point.lat
+      nowPoint.lng = e.point.lng
+      searchLocation()
+    })
+    _self.map .addEventListener("dragstart", function (e) {
+      $('.mpaIcon').css({ marginTop: '-3px' })
+    })
+    // 搜索并渲染
+    function searchLocation() {
+      var local
+      var options = {
+        onSearchComplete: function (results) {
+          // 判断状态是否正确
+          if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+            var str = '';
+            for (var i = 0; i < results.getCurrentNumPois(); i++) {
+              var v = results.getPoi(i)
+              str += '<li class="addressLIst" data-lat="' + v.point.lat + '" data-lng="' + v.point.lng + '">\
+          <span class="icon"><img src="{STYLE}images/location_3.png" alt=""></span>\
+          <div class="addressTxt">\
+            <p class="a-title">' + v.title + '</p>\
+            <p class="a-address">' + v.address + '</p>\
+          </div>\
+        </li>'
+            }
+            $('.addressWap').html(str)
+          }
+        }
+      }
+      if (list !== 0) {
+        var local = new BMap.LocalSearch(_self.map, options);
+        local.searchNearby(searchList[list], new BMap.Point(nowPoint.lng, nowPoint.lat), 2000, options)
+      } else {
+        _self.geoc.getLocation(new BMap.Point(nowPoint.lng, nowPoint.lat), function (rs) {
+          var addComp = rs.addressComponents;
+          var str = ''
+          rs.surroundingPois.forEach(function (v, i) {
+            str += '<li class="addressLIst" data-lat="' + v.point.lat + '" data-lng="' + v.point.lng + '">\
+          <span class="icon"><img src="{STYLE}images/location_3.png" alt=""></span>\
+          <div class="addressTxt">\
+            <p class="a-title">' + v.title + '</p>\
+            <p class="a-address">' + v.address + '</p>\
+          </div>\
+        </li>'
+          })
+          $('.addressWap').html(str)
+        }, { poiRadius: 500 })
+      }
+
+    }
+    $('.mapWap .address .item').on('click', function () {
+      var _this = $(this)
+      _this.siblings('.checked').removeClass('checked')
+      _this.addClass('checked')
+      list = _this.data('list')
+      $('.sflag').css({ transform: 'translateX(' + list + '00%)' })
+      searchLocation()
+    })
+    $('.addressWap').on('click', '.addressLIst', function () {
+      $('.mapWap').removeClass('checked')
+          var _this = $(this)
+          var lat = _this.data('lat')
+          var lng = _this.data('lng')
+          var title = _this.find('.a-title').text()
+          var address = _this.find('.a-address').text()
+          _self.options.listClick({lat:lat,lng:lng,title:title,address:address})
+    })
+  }
+  Map.prototype.getMapByXY = function (pt,fn){
+      this.geoc.getLocation(pt, function (rs) {
+        fn(rs)
+      })
+    }
+  Map.prototype.getMapByAddress = function (str, fn) {
+    this.geoc.getPoint(str, function(point){
+		if (point) {
+      fn(point)
+		  }else{
+			  alert("您选择地址没有解析到结果!");
+		  }
+	  });
+  }
+</script>

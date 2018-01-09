@@ -1,0 +1,535 @@
+{template 'web/header'}
+{template 'web/left'}
+
+<section id="content">
+	<section class="vbox">
+		<section class="padder">
+			<ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+				<li><a href="{php echo $this->createWebUrl("index")}"><i class="fa fa-home"></i>首页</a></li>
+				<li class="active">频道管理</li>
+			</ul>
+
+			<ul class="nav nav-tabs">
+	<li {if $operation == 'display'}class="active"{/if}><a href="{php echo $this->createWebUrl('channel', array('op' => 'display'))}">频道分类</a></li>
+	<li {if $operation == 'post'}class="active"{/if}><a href="{php echo $this->createWebUrl('channel', array('op' => 'post'))}">{if empty($item['id'])}添加频道{else}编辑频道{/if}</a></li>
+</ul>
+{if $operation == 'post'}
+<style type='text/css'>
+	.tab-pane {padding:20px 0 20px 0;}
+</style>
+<div class="main">
+	<form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" id="form1">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				{if empty($item['id'])}添加频道{else}编辑频道{/if}
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="active" role="presentation"><a aria-expanded="true" aria-controls="tab_basic" data-toggle="tab" role="tab" href="#tab_basic">基本信息</a></li>
+					<li role="presentation"><a aria-expanded="true" aria-controls="tab_share" data-toggle="tab" role="tab" href="#tab_share">分享设置</a></li>
+					<li role="presentation"><a aria-expanded="true" aria-controls="tab_switch" data-toggle="tab" role="tab" href="#tab_switch">开关设置</a></li>
+					<li role="presentation"><a aria-expanded="true" aria-controls="tab_haibao" data-toggle="tab" role="tab" href="#tab_haibao">海报设置</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane  active" id="tab_basic">{template 'web/module_basic'}</div>
+					<div class="tab-pane" id="tab_share">{template 'web/module_share'}</div>
+					<div class="tab-pane" id="tab_switch">{template 'web/module_switch'}</div>
+					<div class="tab-pane" id="tab_haibao">{template 'web/module_haibao'}</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-sm-12 form-submit">
+			<input type="submit" name="submit" value="提交" class="btn btn-primary" onclick="return check(this.form)" />
+			<input type="hidden" name="token" value="{$_W['token']}" />
+		</div>
+	</form>
+</div>
+{/if}
+
+
+{if $operation == 'display'}
+<div class="panel panel-default tdbox">
+	<div class="table-responsive">
+		<form action="" method="post">
+		<table class="table table-hover">
+			<thead class="navbar-inner">
+				<tr>
+					<!--<th style="width:3%;">ID</th>-->
+					<th style="width:6%;">排序</th>
+					<th style="width:10%;">频道图标</th>
+					<th style="width:17%;">频道名称</th>
+					<th style="width:8%;">发布信息</th>
+					<th style="width:8%;">信息审核</th>
+					<th style="width:56%;">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{loop $list $item}
+				<tr>
+					<!--<td>{if count($children[$item['id']]) > 0}<a href="javascript:;"><i class="fa fa-chevron-down" data-id="{$item['id']}"></i></a>{/if}</td>-->
+					<td><input class="form-control" name="displayorder[{$item['id']}]" value="{$item['displayorder']}" type="text"></td>
+					<td class="tableBox">
+						<img src="{php echo tomedia($item['thumb']);}"
+							 onerror="javascript:this.src='{SQ}public/images/noimg.png'"  />
+						<a href="{php echo $this->createWebUrl('channel',array('op'=>'post','fid'=>$item['id']))}"><i class="fa fa-plus-circle"></i> 子分类</a>
+					</td>
+					<td><span class="label label-default">{$item['name']}</span> {if $item['ison'] == 1}<span class="label label-success">展示</span>{else}<span class="label label-danger">不展示</span>{/if}</td>
+					<td>
+						{if count($children[$item['id']]) <= 0}
+							{if $item['canrelease'] == 1}<span class="label label-success">允许</span>{else}<span class="label label-danger">不允许</span>{/if}
+						{/if}
+					</td>
+					<td>
+						{if count($children[$item['id']]) <= 0}
+							{if $item['isshenhe'] == 1}<span class="label label-success">开启</span>{else}<span class="label label-danger">关闭</span>{/if}
+						{/if}
+					</td>
+					<td style="text-align:right;">
+						{if count($children[$item['id']]) <= 0}
+						<button type="button" data-toggle="modal" data-target="#formModal{$item['id']}" class="btn btn-info btn-sm">添加自定义属性</button>
+						<button type="button" data-toggle="modal" data-target="#customModal{$item['id']}" class="btn btn-info btn-sm">查看自定义属性{if $item['fieldnum'] > 0}<span class="label label-warning" style="margin-left:5px;">{$item['fieldnum']}</span>{/if}</button>
+						<div class="fl">
+						<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'], 'op' => 'html','type'=>'list'))}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="自定义列表页面" target="_blank">自定义列表页面</a>
+						</div>
+						<div class="fl">
+						<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'], 'op' => 'html','type'=>'detail'))}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="自定义详情页面" target="_blank">自定义详情页面</a>
+						</div>
+						{/if}
+	<div class="fl">
+						<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'], 'op' => 'post'))}" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="编辑"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+						<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'], 'op' => 'delete'))}" onclick="return confirm('删除频道将删除频道对应的所有信息，确认删除吗？');return false;" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="删除"><i class="fa fa-times"></i></a>
+	</div>
+					</td>
+				</tr>
+				{loop $children[$item['id']] $item}
+					<tr data-parentid="{$item['fid']}">
+
+						<td><input class="form-control" name="displayorder[{$item['id']}]" value="{$item['displayorder']}" type="text"></td>
+						<td>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-default">{$item['name']}</span>
+						</td>
+						<td>{if $item['ison'] == 1}<span class="label label-success">展示</span>{else}<span class="label label-danger">不展示</span>{/if}</td>
+						<td>{if $item['canrelease'] == 1}<span class="label label-success">允许</span>{else}<span class="label label-danger">不允许</span>{/if}</td>
+						<td>{if $item['isshenhe'] == 1}<span class="label label-success">开启</span>{else}<span class="label label-danger">关闭</span>{/if}</td>
+						<td style="text-align:right;">
+							<button type="button" data-toggle="modal" data-target="#formModal{$item['id']}" class="btn btn-info btn-sm">添加自定义属性</button>
+							<button type="button" data-toggle="modal" data-target="#customModal{$item['id']}" class="btn btn-info btn-sm">查看自定义属性{if $item['fieldnum'] > 0}<span class="label label-warning" style="margin-left:5px;">{$item['fieldnum']}</span>{/if}</button>
+							<div class="fl">
+							<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'], 'op' => 'html','type'=>'list'))}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="自定义列表页面" target="_blank">自定义列表页面</a>
+							</div>
+							<div class="fl">
+							<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'], 'op' => 'html','type'=>'detail'))}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="自定义详情页面" target="_blank">自定义详情页面</a>
+							</div>
+							<div class="fl">
+							<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'],'fid' => $item['fid'], 'op' => 'post'))}" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="编辑"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+							<a href="{php echo $this->createWebUrl('channel', array('id' => $item['id'], 'op' => 'delete'))}" onclick="return confirm('删除频道将删除频道对应的所有信息，确认删除吗？');return false;" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="删除"><i class="fa fa-times"></i></a>
+							</div>
+						</td>
+					</tr>
+				{/loop}
+				{/loop}
+				{if $list}
+				<tr>
+					<td colspan="7">
+						<input name="submit" class="btn btn-primary i-t-md" value="提交" type="submit">
+						<input name="token" value="{$_W['token']}" type="hidden">
+					</td>
+				</tr>
+			{/if}
+			</tbody>
+		</table>
+		</form>
+	</div>
+	</div>
+</div>
+
+{loop $list2 $item}
+<div class="modal fade" id="formModal{$item['id']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form action="" method="post" class="form-horizontal form">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">添加<strong>{$item['name']}</strong>自定义属性</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">添加信息提示名称</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="name" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">前端页面显示名称</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="showname" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">字段英文名</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="enname" class="form-control" />
+						<span class="help-block" style="color:#900;">
+						信息标题字段英文名务必填写成title
+						<br />请填写英文名称,不要填写和系统内置字段相同的名称
+						<br />如：area,createtime,nickname,id,weid,mid,avatar,province,city,district,lng,lat,views,status,module,isneedpay,haspay
+						</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">类型</label>
+					<div class="col-sm-9 col-xs-12">
+						<select name="mtype" class="form-control">
+							<option value="text" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').show();">文本</option>
+							<option value="number" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').show();">数字</option>
+							<option value="longtext" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').hide();">长文本</option>
+							<option value="select" onclick="$('#mtypecon{$item['id']}').show();$('#danwei{$item['id']}').hide();">下拉选项</option>
+							<option value="checkbox" onclick="$('#mtypecon{$item['id']}').show();$('#danwei{$item['id']}').hide();">多选框</option>
+							<option value="radio" onclick="$('#mtypecon{$item['id']}').show();$('#danwei{$item['id']}').hide();">单选框</option>
+							<option value="images" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').hide();">图片</option>
+							<option value="date" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').hide();">日期</option>
+							<option value="datetime" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').hide();">日期时间</option>
+							<option value="telphone" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').hide();">手机</option>
+							<option value="idcard" onclick="$('#mtypecon{$item['id']}').hide();$('#danwei{$item['id']}').hide();">身份证</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group" id="danwei{$item['id']}" style="display:none;">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">单位</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="danwei" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">默认值</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="defaultval" class="form-control" />
+						<span class="help-block" style="color:#900;">图片不支持默认值</span>
+					</div>
+				</div>
+				<div class="form-group" id="mtypecon{$item['id']}" style="display:none;">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">类型初始化值</label>
+					<div class="col-sm-9 col-xs-12">
+						<textarea class="form-control" name="mtypecon"></textarea>
+						<span class="help-block" style="color:#900;">多个请用|隔开</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">分享类型</label>
+					<div class="col-sm-9 col-xs-12">
+						<label class="radio-inline"><input type="radio" name="sharetype" checked="checked" value="0" /> 无</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" name="sharetype" value="1" /> 分享标题</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" name="sharetype" value="2" /> 分享描述</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否必填</label>
+					<div class="col-sm-9 col-xs-12">
+						<label class="radio-inline"><input type="radio" name="isrequired" value="1" /> 是</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" name="isrequired" value="0" /> 否</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否验证字符长度</label>
+					<div class="col-sm-9 col-xs-12">
+						<label class="radio-inline"><input type="radio" onclick="$('.lengroup').show();" name="islenval" value="1" /> 验证</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" onclick="$('.lengroup').hide();" name="islenval" value="0" /> 不验证</label>
+					</div>
+				</div>
+				<div class="form-group lengroup" style="display:none;">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">最小长度</label>
+					<div class="col-sm-3 col-xs-12">
+						<div class="input-group">
+							<input type="text" name="minlen" class="form-control" />
+							<span class="input-group-addon">个字符</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group lengroup" style="display:none;">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">最大长度</label>
+					<div class="col-sm-3 col-xs-12">
+						<div class="input-group">
+							<input type="text" name="maxlen" class="form-control" />
+							<span class="input-group-addon">个字符</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+					<div class="col-sm-2 col-xs-12">
+						<input type="text" name="displayorder" class="form-control" />
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input name="op" value="custom" type="hidden">
+				<input name="mid" value="{$item['id']}" type="hidden">
+				<input name="submit" class="btn btn-primary" value="提交" type="submit">
+				<input name="token" value="{$_W['token']}" type="hidden">
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+
+{if $item['fieldslist']}
+{loop $item['fieldslist'] $rowrow}
+<div class="modal" id="formupModal{$rowrow['id']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<form action="" method="post" class="form-horizontal form">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">修改<strong>{$item['name']}</strong>自定义属性</h4>
+			</div>
+			<div class="modal-body">				
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">添加信息提示名称</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="name" class="form-control" value="{$rowrow['name']}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">前端页面显示名称</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="showname" class="form-control" value="{$rowrow['showname']}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">字段英文名</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="enname" value="{$rowrow['enname']}" class="form-control" />
+						<span class="help-block" style="color:#900;">
+						信息标题字段英文名务必填写成title
+						<br />请填写英文名称,不要填写和系统内置字段相同的名称
+						<br />如：area,createtime,nickname,id,weid,mid,avatar,province,city,district,lng,lat,views,status,module,isneedpay,haspay
+						</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">类型</label>
+					<div class="col-sm-9 col-xs-12">
+						<select name="mtype" class="form-control">
+							<option value="text" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').show();" {if $rowrow['mtype'] == 'text'}selected="selected"{/if}>文本</option>
+							<option value="number" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').show();" {if $rowrow['mtype'] == 'number'}selected="selected"{/if}>数字</option>
+							<option value="longtext" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'longtext'}selected="selected"{/if}>长文本</option>
+							<option value="select" onclick="$('#mtypecon{$rowrow['id']}').show();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'select'}selected="selected"{/if}>下拉选项</option>
+							<option value="checkbox" onclick="$('#mtypecon{$rowrow['id']}').show();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'checkbox'}selected="selected"{/if}>多选框</option>
+							<option value="radio" onclick="$('#mtypecon{$rowrow['id']}').show();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'radio'}selected="selected"{/if}>单选框</option>
+							<option value="images" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'images'}selected="selected"{/if}>图片</option>
+							<option value="date" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'date'}selected="selected"{/if}>日期</option>
+							<option value="datetime" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'datetime'}selected="selected"{/if}>日期时间</option>
+							<option value="telphone" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'telphone'}selected="selected"{/if}>手机</option>
+							<option value="idcard" onclick="$('#mtypecon{$rowrow['id']}').hide();$('#danwei{$rowrow['id']}').hide();" {if $rowrow['mtype'] == 'idcard'}selected="selected"{/if}>身份证</option>
+						</select>
+					</div>
+				</div>
+				
+				{if $rowrow['mtype'] == 'text' || $rowrow['mtype'] == 'number'}
+				<div class="form-group" id="danwei{$rowrow['id']}">
+				{else}
+				<div class="form-group" id="danwei{$rowrow['id']}" style="display:none;">
+				{/if}
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">单位</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="danwei" class="form-control" value="{$rowrow['danwei']}" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">默认值</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="defaultval" class="form-control" value="{$rowrow['defaultval']}" />
+						<span class="help-block" style="color:#900;">图片不支持默认值</span>
+					</div>
+				</div>
+				
+				{if $rowrow['mtype'] == 'select' || $rowrow['mtype'] == 'checkbox' || $rowrow['mtype'] == 'radio'}
+				<div class="form-group" id="mtypecon{$rowrow['id']}">
+				{else}
+				<div class="form-group" id="mtypecon{$rowrow['id']}" style="display:none;">
+				{/if}
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">类型初始化值</label>
+					<div class="col-sm-9 col-xs-12">
+						<textarea class="form-control" name="mtypecon">{$rowrow['mtypecon']}</textarea>
+						<span class="help-block" style="color:#900;">多个请用|隔开</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">分享类型</label>
+					<div class="col-sm-9 col-xs-12">
+						<label class="radio-inline"><input type="radio" name="sharetype" {if $rowrow['sharetype'] == 0}checked="checked"{/if} value="0" /> 无</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" name="sharetype" {if $rowrow['sharetype'] == 1}checked="checked"{/if} value="1" /> 分享标题</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" name="sharetype" {if $rowrow['sharetype'] == 2}checked="checked"{/if} value="2" /> 分享描述</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否必填</label>
+					<div class="col-sm-9 col-xs-12">
+						<label class="radio-inline"><input type="radio" name="isrequired" value="1" {if $rowrow['isrequired'] == 1}checked="checked"{/if} /> 是</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" name="isrequired" value="0" {if $rowrow['isrequired'] == 0}checked="checked"{/if} /> 否</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">是否验证字符长度</label>
+					<div class="col-sm-9 col-xs-12">
+						<label class="radio-inline"><input type="radio" onclick="$('.lengroup').show();" {if $rowrow['islenval'] == 1}checked="checked"{/if} name="islenval" value="1" /> 验证</label>
+						&nbsp;&nbsp;&nbsp;
+						<label class="radio-inline"><input type="radio" onclick="$('.lengroup').hide();" {if $rowrow['islenval'] == 0}checked="checked"{/if} name="islenval" value="0" /> 不验证</label>
+					</div>
+				</div>
+				{if $rowrow['islenval'] == 1}
+				<div class="form-group lengroup">
+				{else}
+				<div class="form-group lengroup" style="display:none;">
+				{/if}
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">最小长度</label>
+					<div class="col-sm-3 col-xs-12">
+						<div class="input-group">
+							<input type="text" name="minlen" class="form-control" value="{$rowrow['minlen']}" />
+							<span class="input-group-addon">个字符</span>
+						</div>
+					</div>
+				</div>
+				{if $rowrow['islenval'] == 1}
+				<div class="form-group lengroup">
+				{else}
+				<div class="form-group lengroup" style="display:none;">
+				{/if}
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">最大长度</label>
+					<div class="col-sm-3 col-xs-12">
+						<div class="input-group">
+							<input type="text" name="maxlen" class="form-control" value="{$rowrow['maxlen']}" />
+							<span class="input-group-addon">个字符</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+					<div class="col-sm-2 col-xs-12">
+						<input type="text" name="displayorder" class="form-control" value="{$rowrow['displayorder']}" />
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input name="op" value="custom" type="hidden">
+				<input name="mid" value="{$rowrow['mid']}" type="hidden">
+				<input name="id" value="{$rowrow['id']}" type="hidden">
+				<input name="submit" class="btn btn-primary" value="提交" type="submit">
+				<input name="token" value="{$_W['token']}" type="hidden">
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+{/loop}
+{/if}
+
+<div class="modal" id="customModal{$item['id']}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title"><strong>{$item['name']}</strong>自定义属性列表</h4>
+			</div>
+			<div class="modal-body table-responsive">
+				{if $item['fieldslist']}
+					<form action="" method="post">
+					<table class="table table-hover table-bordered">
+						<thead class="navbar-inner">
+							<tr>
+								<th style="width:10%;">排序</th>
+								<th style="width:20%;">展示名称</th>
+								<th style="width:15%;">字段名称</th>
+								<th style="width:15%;">类型</th>
+								<th style="width:15%;">默认值</th>
+								<th style="width:10%;">必填</th>
+								<th style="width:15%;text-align:right;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							{loop $item['fieldslist'] $rowrow}
+							<tr>
+								<td>
+									<input class="form-control" name="displayorder[{$rowrow['id']}]" value="{$rowrow['displayorder']}" type="text">
+								</td>
+								<td>
+									<span class="label label-success">{$rowrow['showname']}</span>
+									{if $rowrow['sharetype'] > 0}
+										<span class="label label-warning">{if $rowrow['sharetype'] == 1}分享标题{/if}{if $rowrow['sharetype'] == 2}分享描述{/if}</span>
+									{/if}
+								</td>
+								<td>
+									<span class="label label-success">{$rowrow['enname']}</span>
+								</td>
+								<td>
+									<span class="label label-primary">{php echo $this->getfieldtype($rowrow['mtype']);}</span>
+								</td>
+								<td>
+									<span class="label label-success">{$rowrow['defaultval']}</span>
+								</td>
+								<td>
+									{if $rowrow['isrequired'] == 1}
+									<span class="label label-success">必填</span>
+									{else}
+									<span class="label label-danger">非必填</span>
+									{/if}
+								</td>
+								<td style="text-align:right;">
+									<button type="button" data-toggle="modal" data-target="#formupModal{$rowrow['id']}" onclick="$('#customModal{$item['id']}').modal('hide');" class="btn btn-info btn-sm">修改</button>
+									<a href="{php echo $this->createWebUrl('channel', array('id' => $rowrow['id'], 'op' => 'deletefield'))}" onclick="return confirm('此操作不可恢复，确认删除？');return false;" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="删除"><i class="fa fa-times"></i></a>
+								</td>
+							</tr>
+							{/loop}
+							<tr>
+								<td colspan="7">
+									<input name="op" value="customdisplayorder" type="hidden">
+									<input name="submit" class="btn btn-primary" value="排序" type="submit">
+									<input name="token" value="{$_W['token']}" type="hidden">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</form>
+				{else}
+					<table class="table table-hover table-bordered">
+						<thead class="navbar-inner">
+							<tr><th colspan="7">暂无记录</th></tr>
+						</thead>
+					</table>
+				{/if}
+			</div>
+		</div>
+	</div>
+</div>
+{/loop}
+{/if}
+<script>
+    function check(){
+        var n = $("input[name='name']").val();
+        if(n==""){
+            tip("频道名称不能为空");
+            tip_close();
+            return false;
+        }
+
+    }
+$(function(){
+	$(".fa").click(function(){
+		$("tr[data-parentid="+$(this).attr('data-id')+"]").toggle();
+		if($(this).hasClass("fa-chevron-down")){
+			$(this).removeClass('fa-chevron-down').addClass('fa-chevron-up');
+		}else{
+			$(this).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+		}
+	});
+})
+</script>
+{template 'web/footer'}

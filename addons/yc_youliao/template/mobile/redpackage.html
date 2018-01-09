@@ -1,0 +1,56 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/ring.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/redpackage.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/ring_banner'}
+<!--头部广告-->
+{php $advs= commonGetData::getAdv($adv_type);}
+{if !empty($advs)}
+{template '../mobile/adv1'}
+{/if}
+<div id="list">
+    {template '../mobile/redpackage_list'}
+    <div style="display:none;">
+        touchstart,touchmove,
+        touchend,touchcancel
+    </div>
+<div id="editBlock"  >
+    <a href="javascript:;" onclick="checkRedpackage();">
+        <img src="{STYLE}images/fahongbao.gif"></a>
+</div>
+</div>
+
+{template '../mobile/block'}
+{template '../mobile/footer'}
+<script>
+
+    $(function(){
+        var len=5;//控制要显示的数量
+        var arr=$(".comment-list .comment-box:not(:hidden)");
+        if(arr.length<len){
+            $(".comment-btn").hide();
+        }
+        if(arr.length>len){
+            $('.comment-list .comment-box:gt('+(len-1)+')').hide();
+        }
+
+        $(".comment-btn").click(function(){
+            var arr=$(".comment-list .comment-box:not(:hidden)");
+            if(arr.length>len){
+                $('.comment-list .comment-box:gt('+(len-1)+')').hide();
+            }
+            else{
+                $('.comment-list .comment-box:gt('+(len-1)+')').show();
+            }
+        });
+
+
+
+    });
+
+    function checkRedpackage(){
+        window.location.href='{php echo $this->createMobileUrl('redpackage', array('op' => 'redpackage_add'))}';
+
+    }
+</script>
+

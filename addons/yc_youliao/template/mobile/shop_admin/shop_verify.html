@@ -1,0 +1,73 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/shop_admin/shop_admin_banner'}
+<div class="info-content verify">
+    <div class="shop-admin order-panney loop-li ">
+        <div  class="order-body {if $type==0}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('shop_admin',array('op'=>'verify'))}'">
+            核销订单
+        </div>
+        <div class="order-body {if $type==1}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl('shop_admin',array('type'=>'1','op'=>'verify'))}'">
+            核销记录
+        </div>
+
+    </div>
+    <div class=" form-content" >
+     {if  $type==0}
+        <div class="search-layout">
+            <span class="icon iconfont" id="scan"><img src="{STYLE}images/g_scan.png"/></span>
+        </div>
+        <div class="header-l"><img class="icon-level-p1" src="{if empty($userinfo['avatar'])}{STYLE}images/avatar_default.jpg {else}{$userinfo['avatar']}{/if}"/></div>
+        <div class="header-r">
+            <ul class="distributor-infor">
+                <li><span class="distributor-infor-c">{$item['shop_name']}</span></li>
+                <li><div class="f_14 margin_top_5px">{$userinfo['nickname']}</div></li>
+            </ul>
+        </div>
+
+        <form name="input"   method="post">
+            <div >
+
+                    <input  name="qrcode" type="text" class="ipt" id="qrcode" value=""
+                            placeholder="请输入核销码" onkeyup="countmoney()">
+                    <div class="money_show"><span  id="confirm_str"></span></div>
+
+
+                <input type="hidden" name="paytype"  value="" class="ui-field" id="paytype" />
+            </div>
+            <a class="btn btn-success  btn-sm verifybtn" onclick="doConfirm(); " >
+                确认核销</a>
+        </form>
+    {elseif $type==1}
+        {template '../mobile/order_list'}
+
+    {/if}
+    </div>
+</div>
+<script>
+    function doConfirm(id){ //确认核销
+        var qrcode=$('#qrcode').val();
+        var url=createAppUrl('verification','submit');
+            $.ajax({
+            type:'post',
+            url:url,
+            dataType: 'json',
+            data:{'qrcode':qrcode,'isajax':'1','shop_id':{$item['shop_id']}},
+        success:function(data){
+                tip(data.str);
+                tip_close();
+        }
+    });
+
+
+    }
+    function countmoney(){
+        var sum=$('#qrcode').val();
+        $('#confirm_str').text(sum);
+    }
+
+
+</script>
+{template '../mobile/footer'}

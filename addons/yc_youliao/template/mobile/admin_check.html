@@ -1,0 +1,74 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/admin_banner'}
+<div class="info-content">
+<ul class="order">
+    {loop $lastedmessagelist $item}
+    <li class="info-list">
+        <h2><i></i><span>{$item['modulename']}</span>
+
+            <em><img src="{STYLE}images/g_time.png">{$item['createtime']}</em></h2>
+
+        <p onclick="location.href='{php echo $this->createMobileUrl('detail',array('id'=>$item['id']))}'">
+            <img src="{$item['avatar']}"/>
+            <span>{$item['con']['title']}</span>
+        {if $item['con']['thumbs']}
+        <div class="mimg">
+            {loop $item['con']['thumbs'] $i}
+            <img src="{$_W['attachurl']}{$i}" class="img2">
+            {/loop}
+        </div>
+        {/if}
+        </p>
+        {if $item['address']}
+        <p class="borderb"><img src="{STYLE}images/list_icon.png"><span class="noborder">{$item['address']}</span></p>
+        {/if}
+        <h3>
+            {if $item['isneedpay']==1 && $item['haspay']==1 }
+            <span class="green">已支付￥{$item['needpay']}</span>
+            {elseif $item['isneedpay']==1 && $item['haspay']==0}
+            <span>待支付￥{$item['needpay']}</span>
+            {else}
+            <span>免费发布</span>
+            {/if}
+            {if $item['status']==0 }
+            <a href="javascript:;" class="current" onclick="admin_check_info(this,1,{$item['id']})">审核通过</a>
+            <a href="javascript:;" onclick="admin_check_info(this,2,{$item['id']})" >审核不通过</a>
+            {elseif $item['status']==1 }
+                {if $item['isding']==1 }
+                <a href="javascript:;" class="current" onclick="admin_check_info(this,4,{$item['id']})">取消置顶</a>
+                {else}
+                <a href="javascript:;" class="current mui-calendar-picker" >置顶</a>
+                 <input class="infoid" type="hidden"   value="{$item['id']}" name="">
+
+                {/if}
+            <a href="javascript:;" class="current" onclick="admin_check_info(this,5,{$item['id']})">刷新</a>
+            <a href="javascript:;"  onclick="admin_check_info(this,6,{$item['id']})">删除</a>
+
+            {/if}
+        </h3>
+    </li>
+   {/loop}
+</ul>
+</div>
+<script>
+    $(document).on("tap", ".mui-calendar-picker", function(){
+        var $this = $(this);
+        util.datepicker({type: "date", beginYear: 2017, endYear: 2050}, function(rs){
+            var infoid=$this.next().val();
+            admin_check_info(this,3,infoid,rs.value);
+        });
+    });
+
+
+    $(function(){
+        var url=createAppUrl('admin','check');
+        url=url+'&status='+'{$status}'+'&isding='+'{$isding}';
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        var page = 0;
+        pagelist(page,url,'.info-content','.order','admin_info');
+    })
+</script>
+{template '../mobile/footer'}
+

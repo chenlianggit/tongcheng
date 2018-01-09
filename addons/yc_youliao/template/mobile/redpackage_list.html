@@ -1,0 +1,65 @@
+<link rel="stylesheet" type="text/css" href="{STYLE}css/frame/commes.css" />
+<link rel="stylesheet" href="{STYLE}css/frame/photoswipe.css">
+<link rel="stylesheet" href="{STYLE}css/frame/default-skin/default-skin.css">
+<script src="{STYLE}js/frame/photoswipe.min.js"></script>
+<script src="{STYLE}js/frame/photoswipe-ui-default.min.js"></script>
+<div class="c-wrapper">
+    <ul class="c-li">
+        {loop $list  $item}
+        <li class="list" style="border-bottom: 1px solid #eee">
+            <div class="c-left">
+                <div class="avatar"><img src="{$item['avatar']}"></div>
+            </div>
+            <div class="c-right">
+                <div onclick="toshow({$item['red_id']})">
+                    <div class="c-title" style="text-align: left;">
+                        <div class="name">{$item['nickname']}</div>
+                        <div class="desWap">
+                            <span class="distance">{$item['distance']}km</span>
+                            <span class="hot">{$item['total_amount']}元</span>
+                        </div>
+                    </div>
+            
+                    <div class="c-content" style="text-align: left;">{$item['content']}</div>
+                </div>
+                {php $num=count($item['xsthumb'])}
+                {if $num>0}
+                <div class="my-gallery c-imgs" style="text-align: left;">
+                    {loop $item['xsthumb'] $i}
+                    <figure>
+                        <a href="{$i}" class="gallery-a">
+                            <img  class="img" src="{$i}">
+                        </a>
+                    </figure>
+                    {/loop}
+                </div>
+                {/if}
+                {if $item['total_num']==$item['send_num']}
+                <div class="gray" onclick="toshow({$item['red_id']})">
+                   <span >福利已抢光</span>
+                {else}
+                <div class="des" onclick="toshow({$item['red_id']})">
+                    <span>抢福利进行中</span>
+                {/if}
+                </div>
+            </div>
+        </li>
+        {/loop}
+    </ul>
+</div>
+<script>
+
+     $(function(){
+        photoSwipe();
+        getImageSize();
+        var url=createAppUrl('redpackage','redpackage');
+        var page = 1;
+        pagelist(page,url,'.c-wrapper','.c-li','redpackage');
+     });
+
+    function toshow(redid){
+        window.location.href="{php echo $this->createMobileUrl('redpackage', array('op' => 'showredpackage'))}&id="+redid;
+    }
+</script>
+{template '../mobile/photoswipe'}
+

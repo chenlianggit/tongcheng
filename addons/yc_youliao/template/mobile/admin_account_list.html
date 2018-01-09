@@ -1,0 +1,69 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/admin_banner'}
+
+<div class="info-content">
+    {if $id==0}
+    <div class="shop-admin order-panney loop-li ">
+        <div  class="order-body {if $status==0}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'account'))}'">
+            待处理
+        </div>
+        <div class="order-body {if $status==1}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'account','status'=>'1'))}'">
+            已处理
+        </div>
+
+    </div>
+
+        <ul class="order">
+    {loop $list $item}
+    <li class="info-list" >
+        {if $item['logo']}
+        <h2><div class="logo"> <img src="{php echo tomedia($item['logo'])}"/>{$item['shop_name']}</div>
+           </h2>
+        {/if}
+        <p > <span class="red">提现金额：￥{$item['amount']}</span> </p>
+        <p > <span>手续费：￥{$item['transfer']}</span> </p>
+        <p > <span>提现方式：
+          {if $item['paytype']==1}
+           微信
+           {elseif  $item['paytype']==2}
+            支付宝
+            {elseif  $item['paytype']==3}
+             银行卡
+              {elseif  $item['paytype']==4}
+            余额
+            {/if}
+        </span> </p>
+        <p > <span> 申请状态：{if $item['status']==1}<em class="green">已提现</em>{elseif $item['status']==2}<em class="red">已驳回{elseif $item['status']==0}<em class="red">待审核{/if}</em></span></p>
+        <p > <span>申请人：<img class="account-avatar" src="{$item['avatar']}"/>{$item['nickname']}</span> </p>
+        <p > <span>申请时间：{php echo date('Y-m-d H:i', $item['addtime'])}</span> </p>
+
+        {if $item['check_admin']}<p > <span>处理人：<img class="account-avatar" src="{$item['check_avatar']}"/>{$item['check_nickname']}</span> </p>{/if}
+        {if $item['checktime']}<p > <span>处理时间：{php echo date('Y-m-d H:i', $item['checktime'])}</span> </p>{/if}
+
+        <h3>
+            {if $item['status']==0}
+     <a href="javascript:;"  class="current" onclick="admin_check_account(this,1,{$item['cash_id']},'{$openid}')">确认打款</a>
+            {/if}
+     <a href="javascript:;" onclick="location.href='{php echo $this->createMobileUrl('admin',array('id'=>$item['cash_id'],'op'=>'account'))}'">查看详情</a>
+
+        </h3>
+    </li>
+   {/loop}
+</ul>
+
+<script>
+    $(function(){
+        var url=createAppUrl('admin','account');
+        url=getSearchUrl(url)+'&status={$status}';//获取查询的关键字和日期来组装url
+        var page = 0;
+        pagelist(page,url,'.info-content','.order','admin_account');
+    })
+</script>
+{elseif $id>0}
+    {template '../mobile/account_detail'}
+{/if}
+</div>
+{template '../mobile/footer'}
+

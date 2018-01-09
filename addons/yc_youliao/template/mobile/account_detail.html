@@ -1,0 +1,104 @@
+<link  href="{MIHUA_STYLE}css/pay.css" rel="stylesheet" type="text/css">
+<div class="pay-info">
+<div class="header">
+{if $item['logo']}
+    <a href="{php echo $this->createMobileUrl('shop', array('shop_id' => $item['shop_id']))}">
+        {if $item['logo']}
+        <img class="radius_50" src="{$_W['attachurl']}{$item['logo']}">
+        {else}
+        <img src="{MIHUA_STYLE}images/shop.png">
+        {/if}
+        <div class="name">{$item['shop_name']}</div>
+        </a>
+{/if}
+    <div class="money">￥{$item['amount']}</div>
+  
+</div>
+
+<ul class="content">
+    <li>
+        <div class="info-left">提现类型</div>
+        <div class="info-right">{if $item['shop_id']>0}商户{else}个人{/if}</div>
+    </li>
+    <li>
+    <div class="info-left">提现方式</div>
+    <div class="info-right">
+        {if $item['paytype']=='1'}
+        微信
+    </div>
+        {else if $item['paytype']=='2'}
+            支付宝
+            </div>
+            <div class="info-left">支付宝账号</div>
+            <div class="info-right">{$item['alipay_account']}</div>
+            <div class="info-left">支付宝姓名</div>
+            <div class="info-right">{$item['alipay_name']}</div>
+        {else if $item['paytype']=='3'}
+        银行卡
+            </div>
+            <div class="info-left">银行卡账号</div>
+            <div class="info-right">{$item['bank_num']}</div>
+            <div class="info-left">银行卡姓名</div>
+            <div class="info-right">{$item['bank_realname']}</div>
+            <div class="info-left">开户行</div>
+            <div class="info-right">{$item['bank_branch']}</div>
+       {/if}
+
+
+    </li>
+<li>
+    <div class="info-left">提现编号</div>
+    <div class="info-right">{$item['ordersn']}</div>
+</li>
+
+<li>
+    <div class="info-left">申请状态</div>
+    <div class="info-right">{if $item['status']==0}申请中{elseif $item['status']==1}<em class="green">已提现</em>{elseif $item['status']==2}<em class="red">已驳回</em>{/if}</div>
+</li>
+<div class="line"></div>
+    <li>
+        <div class="info-left">申请人</div>
+        <div class="info-right"><img class="account-avatar mr_10" src="{$item['avatar']}"/>{$item['nickname']}</div>
+    </li>
+    <li>
+        <div class="info-left">申请时间</div>
+        <div class="info-right">{php echo date('Y-m-d H:i',$item['addtime'])}</div>
+    </li>
+
+
+
+{if $item['check_admin']}
+<div class="line"></div>
+<li>
+    <div class="info-left">处理人</div>
+    <div class="info-right"><img class="account-avatar mr_10" src="{$item['check_avatar']}"/>{$item['check_nickname']}</div>
+</li>
+
+<li>
+    <div class="info-left">处理时间</div>
+    <div class="info-right">{php echo date('Y-m-d H:i',$item['checktime'])}</div>
+</li>
+{/if}
+</ul>
+
+
+</div>
+
+{if $item['status']==0 && !empty($a_data)}
+<div class="account-btn">
+<div class="btn1">
+    <a href="javascript:;"  onclick="admin_check_account(this,2,{$item['cash_id']},'{$openid}')">驳回申请</a>
+</div>
+<div class="btn1">
+<a href="javascript:;"  class="btn-current" onclick="admin_check_account(this,1,{$item['cash_id']},'{$openid}')">确认打款</a>
+</div>
+    <div class="clearfix mt_10"></div>
+
+    <p>使用微信付款（在线）：</p>
+    <p class=" ml_15"><a class="underline" href="https://pay.weixin.qq.com/wiki/doc/api/tools/mch_pay.php?chapter=14_1">1、开通微信“企业付款到零钱”产品，开通及注意事项请点击此处;</a>
+    <p class=" ml_15"> 2、上传证书到微擎-支付参数- 退款配置。</p>
+
+    <p class=" mt_10">使用支付宝、银行卡付款（线下）：</p>
+    <p class=" ml_15"> 均需线下操作成功后，在这里点击确认。</p>
+</div>
+{/if}

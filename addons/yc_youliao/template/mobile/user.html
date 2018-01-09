@@ -1,0 +1,125 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<div class="panel memberhead" style=" {if $userbg}background:url('{$_W['attachurl']}{$userbg['thumb']}');background-size: cover;{/if}">
+    <div class="header-l"><img class="icon-level-p1" src="{if empty($userinfo['avatar'])}{STYLE}images/avatar_default.jpg {else}{$userinfo['avatar']}{/if}"/></div>
+    <div class="header-r">
+        <ul class="distributor-infor">
+            <li><span class="distributor-infor-c">{$userinfo['nickname']}</span></li>
+            </li>
+            <li class="credit">
+                <span class="jifen"> 积分：{$credits['credit1']}</span>
+                &nbsp;| &nbsp;<a href="{php echo $this->createMobileUrl('balance')}" class="yinyuan">
+                <span>余额：{$credits['credit2']} </span></a>
+                {if $this->isRedpacket()==0}
+                &nbsp;| &nbsp;<a href="{php echo $this->createMobileUrl('user',array('op'=>'withdraw'))}" class="yinyuan">
+                <span>红包：{php echo  round($userinfo['balance'],2)}</span></a>
+                {/if}
+            </li>
+
+        </ul>
+    </div>
+    <div class='msg'>
+        <a href="{php echo $this->createMobileUrl('user',array('op'=>'msg'))}">
+            <img src='{STYLE}images/msg.png' width="30px" height="30px">
+            {if $msg_count>0}<span></span>{/if}
+        </a>
+    </div>
+<div class="water"><div class="water-c"><div class="water-1"></div><div class="water-2"></div></div></div>
+</div>
+
+<div class="clearfix" ></div>
+
+<div class="user_block">
+    <ul class="am-avg-sm-5">
+        <li><a href="{php echo $this->createMobileUrl('user',array('op'=>'myinfo'))}"><i class="iconfont" style="color: #fea501">&#xe62d;</i> 个人资料</a></li>
+        <li><a href="{php echo $this->createMobileUrl('user',array('op'=>'mycollect','type'=>'2'))}"><i class="iconfont" style="color: #F40">&#xe623;</i> 我的收藏</a></li>
+        <li><a href="{php echo $this->createMobileUrl('user',array('op'=>'mydiscount'))}"><i class="iconfont" style="color: #F5628C">&#xe647;</i>优惠买单</a></li>
+        <li>
+       {php $isshop_admin=$this->isshop_admin();}
+        {if !empty($isshop_admin)}
+            <a href="{php echo $this->createMobileUrl('shop_admin',array('shop_id'=>$isshop_admin['shop_id']))}"><i class="iconfont" style="color: #dd2727">&#xe668;</i>店铺管理</a>
+            {else}
+       <a href="{php echo $this->createMobileUrl('user',array('op'=>'shop_in'))}"><i class="iconfont" style="color: #dd2727">&#xe668;</i>商家入驻</a>
+        {/if}
+        </li>
+    </ul>
+</div>
+<div class="user_block mt_10">
+    <h2>
+        <a href="{php echo $this->createMobileUrl('user',array('op'=>'red_record'))}" class="y f_12 c_999"><i class="iconfont">&#xe604;</i></a>我的钱包</h2>
+    <ul class="am-avg-sm-5">
+        {if $this->isRedpacket()==0}
+        <li><a href="{php echo $this->createMobileUrl('user',array('op'=>'red_record','type'=>0))}"><i class="iconfont" style="color:#f60;">&#xe651;</i>红包</a></li>
+        {/if}
+        {if $this->isShang()==0}
+        <li><a href="{php echo $this->createMobileUrl('user',array('op'=>'red_record','type'=>2))}"><i class="iconfont" style="color:#a98a46;">&#xe66a;</i>打赏</a></li>
+        {/if}
+        <li><a href="{php echo $this->createMobileUrl('balance')}"><i class="iconfont" style="color:#6FB934;;">&#xe637;</i>积分余额</a></li>
+        <li><a href="{php echo $this->createMobileUrl('user',array('op'=>'withdraw'))}"><i class="iconfont" style="color:#dd2727;;">&#xe646;</i>零钱提现</a></li>
+
+    </ul>
+</div>
+
+<div class="user_block mt_10">
+    <h2>
+    <a href="{php echo $this->createMobileUrl('order',array('status'=>'all'))}" class="y f_12 c_999"><i class="iconfont">&#xe604;</i></a>我的订单</h2>
+    <ul class="am-avg-sm-5">
+        <li><a href="{php echo $this->createMobileUrl('order',array('status'=>0))}"><i class="iconfont" style="color:#f60;">&#xe664;</i>待付款</a></li>
+        <li><a href="{php echo $this->createMobileUrl('order',array('status'=>1))}"><i class="iconfont" style="color:#a98a46;">&#xe661;</i>未使用</a></li>
+        <li><a href="{php echo $this->createMobileUrl('order',array('status'=>3))}"><i class="iconfont" style="color:#dd2727;;">&#xe636;</i>已使用</a></li>
+        <li><a href="{php echo $this->createMobileUrl('order',array('status'=>4))}"><i class="iconfont" style="color:#6FB934;;">&#xe64c;</i>退款订单</a></li>
+
+    </ul>
+</div>
+
+<div class="user_block mt_10">
+
+    <h2>
+        <a href="{php echo $this->createMobileUrl('group',array('all'=>1))}" class="y f_12 c_999"><i class="iconfont">&#xe604;</i></a>
+        我的拼团</h2>
+    <ul class="am-avg-sm-5">
+        <li><a href="{php echo $this->createMobileUrl('group',array('gstatus'=>4))}"><i class="iconfont" style="color:#f60;">&#xe664;</i>待付款</a></li>
+        <li><a href="{php echo $this->createMobileUrl('group',array('gstatus'=>1))}"><i class="iconfont" style="color:#a98a46;">&#xe661;</i>组团中</a></li>
+        <li><a href="{php echo $this->createMobileUrl('group',array('gstatus'=>3))}"><i class="iconfont" style="color:#dd2727;;">&#xe636;</i>已成功</a></li>
+        <li><a href="{php echo $this->createMobileUrl('group',array('gstatus'=>2))}"><i class="iconfont" style="color:#6FB934;;">&#xe64c;</i>已失败</a></li>
+
+    </ul>
+</div>
+
+
+<div class="user_block mt_10">
+    <h2>
+    <a href="{php echo $this->createMobileUrl('mylocal',array('status'=>1))}" class="y f_12 c_999"><i class="iconfont">&#xe604;</i></a>同城信息</h2>
+    <ul class="am-avg-sm-5">
+        <li><a href="{php echo $this->createMobileUrl('edit')}"><i class="iconfont" style="color:#4fc0ea;">&#xe62d;</i>发布</a></li>
+        <li><a href="{php echo $this->createMobileUrl('mylocal',array('status'=>1))}"><i class="iconfont" style="color:#9266f9;">&#xe669;</i>记录</a></li>
+        <li>{if $message>0}<div class="message-mark"></div> {/if}
+            <a href="{php echo $this->createMobileUrl('mylocal',array('op'=>'chat_display'))}"><i class="iconfont" style="color:#f60;">&#xe631;</i>消息</a></li>
+        <li><a href="{php echo $this->createMobileUrl('mylocal',array('haspay'=>'1'))}"><i class="iconfont" style="color:#4fc0ea;">&#xe68e;</i>订单</a></li>
+
+    </ul>
+</div>
+
+<div class="user_block mt_10">
+    <h2>
+    <a href="{php echo $this->createMobileUrl('ring',array('my'=>'1'))}" class="y f_12 c_999"><i class="iconfont">&#xe604;</i></a>
+        我的圈子</h2>
+    <ul class="am-avg-sm-5">
+        <li><a href="{php echo $this->createMobileUrl('ring',array('op'=>'ring_add'))}"><i class="iconfont" style="color:#9266f9;">&#xe62d;</i>发布</a></li>
+        <li><a href="{php echo $this->createMobileUrl('ring',array('my'=>'1'))}"><i class="iconfont" style="color:#f60;">&#xe669;</i>记录</a></li>
+        <li><a href="{php echo $this->createMobileUrl('ring',array('op'=>'follow'))}"><i class="iconfont" style="color:#F5628C;">&#xe66a;</i>关注</a></li>
+        <li><a href="{php echo $this->createMobileUrl('ring',array('replay'=>'1'))}"><i class="iconfont" style="color:#4fc0ea;">&#xe62d;</i>回复</a></li>
+    </ul>
+</div>
+{if !empty($isadmin)}
+<div id="editBlock" class="adminLink">
+    <a href="{php echo $this->createMobileUrl('admin')}">
+        <img src="{STYLE}images/g_admin.png">
+       </a>
+</div>
+{template '../mobile/block'}
+{/if}
+
+
+{template '../mobile/footer'}
+

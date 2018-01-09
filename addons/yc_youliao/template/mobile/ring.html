@@ -1,0 +1,63 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/ring.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/ring_banner'}
+
+<!--头部广告-->
+{php $advs= commonGetData::getAdv(1);}
+{if !empty($advs)}
+{template '../mobile/adv1'}
+{/if}
+<div id="list">
+    {template '../mobile/ring_list'}
+<div style="display:none;">
+    touchstart,touchmove,
+    touchend,touchcancel
+</div>
+<div id="editBlock">
+    <a href="javascript:;" onclick="checkRing();">
+        <img src="{STYLE}images/edit3.png"></a>
+</div>
+</div>
+{template '../mobile/block'}
+{template '../mobile/footer'}
+<script>
+
+    $(function(){
+        var len=3;//控制要显示的数量
+        var arr=$(".comment-list .comment-box:not(:hidden)");
+        if(arr.length<len){
+            $(".comment-btn").hide();
+        }
+        if(arr.length>len){
+            $('.comment-list .comment-box:gt('+(len-1)+')').hide();
+        }
+
+        $(".comment-btn").click(function(){
+            var arr=$(".comment-list .comment-box:not(:hidden)");
+            if(arr.length>len){
+                $('.comment-list .comment-box:gt('+(len-1)+')').hide();
+            }
+            else{
+                $('.comment-list .comment-box:gt('+(len-1)+')').show();
+            }
+        });
+
+
+
+    });
+    
+    // 发布圈子信息
+    function checkRing(){
+        {if $ring_creidit_flag==1}
+        tip('很抱歉，您需要满足{$ring_creidit}积分才可以发布圈子信息');
+        tip_close();
+        {elseif $ring_num_flag==1}
+        tip('很抱歉，每天只能发布{$ring_num}条圈子信息');
+        tip_close();
+        {else}
+        window.location.href='{php echo $this->createMobileUrl('ring', array('op' => 'ring_add'))}';
+        {/if}
+    }
+</script>
+{template '../mobile/shang'}

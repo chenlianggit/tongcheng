@@ -1,0 +1,88 @@
+{loop $fieldslist $row}
+{if $row['mtype'] == 'text' || $row['mtype'] == 'idcard'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		<input name="{$row['enname']}" type="text" class="form-control" value="{$content[$row['enname']]}" placeholder="请填写{$row['name']}" />
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'number' || $row['mtype'] == 'telphone' || $row['mtype'] == 'numprice' || $row['mtype'] == 'numstock' || $row['mtype'] == 'numbuy' || $row['mtype'] == 'numexpress'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		<input name="{$row['enname']}" type="number" class="form-control" value="{$content[$row['enname']]}" placeholder="请填写{$row['name']}" />
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'longtext'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		<textarea name="{$row['enname']}" class="form-control" placeholder="请填写{$row['name']}">{$content[$row['enname']]}</textarea>
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'radio'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		{loop $row['mtypeconarr'] $rowrow}
+		<label class='radio-inline'>
+			<input name="{$row['enname']}" value="{$rowrow}" {if $content[$row['enname']] == $rowrow}checked="checked"{/if} type="radio" /> {$rowrow}
+		</label>
+		{/loop}
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'checkbox'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		{loop $row['mtypeconarr'] $rowrow}
+		<label class='checkbox-inline'>
+			<!--<input  type="checkbox"  name="{$row['enname']}[]" value="{$rowrow}" {if in_array($rowrow,$content[$row['enname']])}checked="checked"{/if}/> {$rowrow}-->
+			<input  type="checkbox"  name="{$row['enname']}[]" value="{$rowrow}" /> {$rowrow}
+
+		</label>
+		{/loop}
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'select'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		<select name="{$row['enname']}">
+			{loop $row['mtypeconarr'] $rowrow}
+			<option value="{$rowrow}" {if $content[$row['enname']] == $rowrow}selected="selected"{/if}>{$rowrow}</option>
+			{/loop}
+		</select>
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'date' || $row['mtype'] == 'goodsdatetime' || $row['mtype'] == 'goodssdatetime'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		{php echo tpl_form_field_date($row['enname'],date('Y-m-d',$content[$row['enname']]));}
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'datetime'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		{php echo tpl_form_field_date($row['enname'],date('Y-m-d H:i',strtotime($content[$row['enname']])),true);}
+	</div>
+</div>
+{/if}
+{if $row['mtype'] == 'images' || $row['mtype'] == 'goodsthumbs' || $row['mtype'] == 'goodsbaoliao'}
+<div class="form-group">
+	<label class="col-xs-12 col-sm-3 col-md-2 control-label">{$row['name']}{if $row['danwei']}(单位：{$row['danwei']}){/if}</label>
+	<div class="col-sm-9 col-xs-12">
+		{php echo tpl_form_field_multi_image($row['enname'], $content[$row['enname']])}
+	</div>
+</div>
+{/if}
+{/loop}

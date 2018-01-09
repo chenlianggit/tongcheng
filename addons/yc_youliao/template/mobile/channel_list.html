@@ -1,0 +1,123 @@
+<div class="mmsg " >
+    <div onclick="location.href = '{if $mrow['autourl'] != ''}{$mrow['autourl']}{else}{php echo $this->createMobileUrl('detail',array('id'=>$zdrow['id']))}{/if}'">
+    <div class="nickname" >
+        <img src="{$zdrow['avatar']}"/>
+        <span class="nick-name">{$zdrow['nickname']}</span>
+        {if $zdrow['fmid']!=0 || $adv_type==1}
+            <span class="moduname {if $zdrow['mid']%5==0}color0{elseif $zdrow['mid']%5==1} color1{elseif $zdrow['mid']%5==2} color2{elseif $zdrow['mid']%5==3} color3{elseif $zdrow['mid']%5==4} color4{elseif $zdrow['mid']%5==5}color5{/if}">{$zdrow['modulename']}</span>
+        {/if}
+    </div>
+    <a class="list-chat" href='{php echo $this->createMobileUrl('chat',array('toopenid'=>$zdrow['openid']))}'>
+        <div class="span2 iconfont text-c dochat" ><img src="{STYLE}images/g_chat.png"><span class="pd-d">微聊</span></div>
+    </a>
+
+
+    <div class="clearfix"></div>
+    <div class="mtitle" {if empty($zdrow['con']['thumbs'])}style="width: 100%"{/if}>
+        <div class="title">{if $zdrow['isding']==1}<span class="zding">置顶</span> {/if} {$zdrow['con']['title']}</div>
+        <div class="info-input">
+            {if $zdrow['con']['price']}
+            <span class="redbox">￥{$zdrow['con']['price']}</span>
+            {/if}
+            {if $zdrow['con']['xinshui']}
+            <span class="redbox">{$zdrow['con']['xinshui']}</span>
+            {/if}
+            {if $zdrow['con']['feiyong']}
+            <span class="redbox">￥{$zdrow['con']['feiyong']}</span>
+            {/if}
+
+            {if $zdrow['con']['ziding1']}
+            <span class="redbox">{$zdrow['con']['ziding1']}</span>
+            {/if}
+
+            {if $zdrow['con']['ziding2']}
+            <span class="graybox">{$zdrow['con']['ziding2']}</span>
+            {/if}
+
+            {if $zdrow['con']['yuanjia']}
+            <span class="graybox line-through">￥{$zdrow['con']['yuanjia']}</span>
+            {/if}
+
+            {if $zdrow['con']['huxing']}
+            <span class="graybox">{$zdrow['con']['huxing']}</span>
+            {/if}
+            {if $zdrow['con']['zhuangxiu']}
+            <span class="graybox">{$zdrow['con']['zhuangxiu']}</span>
+            {/if}
+            {if $zdrow['con']['age']}
+            <span class="graybox">{$zdrow['con']['age']}岁</span>
+            {/if}
+            {if $zdrow['con']['zwtitle']}
+            <span class="graybox">{$zdrow['con']['zwtitle']}</span>
+            {/if}
+
+            {if $zdrow['con']['qiwangzw']}
+            <span class="graybox">{$zdrow['con']['qiwangzw']}</span>
+            {/if}
+            {if $zdrow['con']['xueli']}
+            <span class="graybox">{$zdrow['con']['xueli']}</span>
+            {/if}
+
+
+
+        </div>
+        <div>
+            {if $zdrow['con']['cfcity']}
+            <div class="backbox">出发：{$zdrow['con']['cfcity']}</div>
+            {/if}
+            {if $zdrow['con']['ddcity']}
+            <div class="backbox">目的：{$zdrow['con']['ddcity']}</div>
+            {/if}
+            {if $zdrow['con']['gotime']}
+            <div class="backbox">出行时间：{$zdrow['con']['gotime']}</div>
+            {/if}
+        </div>
+        <div class="info-checkbox">
+
+            {if $zdrow['con']['type']}
+            <span class="greenbox">{$zdrow['con']['type']}</span>
+            {/if}
+
+
+            {if $zdrow['con']['fuli']}
+            {loop $zdrow['con']['fuli'] $fuli}
+            <span class="greenbox">{$fuli}</span>
+            {/loop}
+            {/if}
+
+            {if $zdrow['con']['peizhi']}
+            {loop $zdrow['con']['peizhi'] $i}
+            <span class="greenbox">{$i}</span>
+            {/loop}
+            {/if}
+
+            {if $zdrow['con']['ziding3']}
+            {loop $zdrow['con']['ziding3'] $i}
+            <span class="greenbox">{$i}</span>
+            {/loop}
+            {/if}
+
+        </div>
+
+    </div>
+    {if $zdrow['con']['thumbs']}
+    <div class="mimg" >
+        <img src="{$zdrow['con']['thumbs'][0]}" class="img2">
+    </div>
+    {/if}
+</div>
+
+<div class="fr">
+    {if $this->isShang()==0}
+    <span class="shangWap" onclick="shang_show({$zdrow['id']},'{$zdrow['openid']}');"><span class="shang-icon" ></span></span>
+    {/if}
+        <span class="graybox timer">
+    {if $zdrow['freshtime']}
+    {$zdrow['freshtime']}
+    {else}
+    {$zdrow['createtime']}
+    {/if}
+        </span>
+</div>
+</div>
+<div class="line"></div>

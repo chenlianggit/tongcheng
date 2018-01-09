@@ -1,0 +1,330 @@
+{template 'common/header'}
+<script src="https://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+<script src="{STYLE}js/common.js"></script>
+<script src="{STYLE}js/mobile_basic.js"></script>
+<link  href="{STYLE}css/common.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/footer.css" rel="stylesheet" type="text/css"/>
+<style>
+    .tangram-suggestion-main {
+      z-index: 3000;
+    }
+    .mapWap{
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      z-index: 2000;
+      transition: transform .3s;
+    }
+    .mapWap.checked{
+	    transform: translateX(0);
+    }
+    .noAdd{
+      padding-left: 16px;
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+    }
+</style>
+<form class="form-horizontal" method="post" role="form" >
+<input type="hidden" name="goodstype" value="{$goodstype}" />
+<div class="order-main">
+
+
+	<div id="myaddress">
+	{loop $address $row}
+                <div id='address_{$row['id']}' class="{if $row['isdefault']==1}shopcart-main1{else}shopcart-main{/if} img-rounded address_item" style='margin:0;padding:10px;margin:10px 0;cursor:pointer'>
+	 <span>{$row['province']} {$row['city']} {$row['area']} {$row['address']} <br/> {$row['realname']}, {$row['mobile']}<br/>{$row['inco']}</span>
+                    <br/><span>
+                           <a href="javascript:;" class="defult" onclick="saveDefaultAddress(event,{$row['id']})">{if $row['isdefault']==1}默认{else}设为默认{/if}</a>
+						   <a href="javascript:;" style="margin-left: 5%;"onclick="editAddress({$row['id']},{php echo $row['isdefault']==1?'1':'0'})">编辑</a>
+                            <a href="javascript:;" class="delete-address" onclick="removeAddress(event,{$row['id']})" ><img src="{STYLE}images/delete.png"></a>
+         </span>
+                </div>
+	{/loop}
+	</div>
+	<div><button type="button" class="edit" onclick="addAddress()" ><i class="icon-plus"></i> 添加地址</button></div>
+<div class="add-address img-rounded" id="addAddressPanel" {if !empty($address)} style="display:none;"{/if}>
+
+		<div class="add-address-main">
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">收货人：</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="realname">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">联系电话：</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="mobile">
+				</div>
+			</div>
+			<div class="form-group" id="districtBox">
+				<label class="col-sm-3 control-label">地区</label>
+				<div class="col-sm-9">
+					<div class="form-control" id="districtTxt"></div>
+				</div>
+				<input type="hidden" name="lng" id="map_x">
+				<input type="hidden" name="lat" id="map_y">
+				<input type="hidden" name="province" id="map_province">
+				<input type="hidden" name="city" id="map_city">
+				<input type="hidden" name="area" id="map_area">
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">详细地址：<span style="font-size: 12px">（需补充更详细）</span></label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" id="address">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-3 control-label">标记：</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="inco" id="inco" placeholder="如：家 或 企业">
+				</div>
+			</div>
+			<input type="hidden" id="addressid" value="" />
+
+		</div>
+	</div>
+
+</div>
+</form>
+<div class="form-group">
+				<div class="col-sm-12" style="text-align:center;">
+					{if 	$shownotice != 1}
+					<button type="button" class="btn btn-danger wxedit" onclick="getaddrinfo()" >使用微信地址</button>
+					{/if}
+					<button type="button" class="btn btn-danger" onclick="saveAddress()" >保存地址</button>
+					<button type="button" class="btn" onclick="addAddress();$('#addAddressPanel').hide();$('#addressid').val('');">取消</button>
+				</div>
+			</div>
+
+<script type="text/javascript" src="{STYLE}/js/cascade.js"></script>
+
+<script type="text/javascript">
+function getaddrinfo(){
+
+	{if empty($addresses) && $_W['account']['level'] == ACCOUNT_SERVICE_VERIFY}
+		wx.ready(function () {
+			wx.openAddress({
+				success : function(result) {
+					//此处获取到地址信息
+					addAddress();
+					$('#realname').val(result.userName);
+					$('#mobile').val(result.telNumber);
+					$('#districtTxt').text(result.provinceName + result.cityName + result.countryName)
+					$('#map_province').val(result.provinceName);
+					$('#map_city').val(result.cityName);
+					$('#map_area').val(result.countryName);
+					$('#address').val(result.detailInfo);
+				}
+			});
+		});
+		{/if}
+}
+	var from='{$_GPC['from']}';
+	var returnurl = '{$_GPC['returnurl']}';
+
+	function saveAddress() {
+		var realname = $('#realname').val();
+		var mobile = $('#mobile').val();
+		var province = $('#map_province').val();
+		var city = $('#map_city').val();
+		var area = $('#map_area').val();
+		var lat = $('#map_y').val();
+		var lng = $('#map_x').val();
+		var address = $('#address').val();
+		var inco = $('#inco').val();
+		if (!realname) {
+			tip('请输入您的真实姓名！');
+			tip_close();
+			return false;
+		}
+		if (!mobile) {
+            tip('请输入您的手机号码！');
+            tip_close();
+			return false;
+		}
+		if (mobile.search(/^([0-9]{11})?$/) == -1) {
+            tip('请输入正确的手机号码！');
+            tip_close();
+			return false;
+		}
+		if (!address) {
+            tip('请输入您的详细地址！');
+            tip_close();
+			return false;
+		}
+		tip("正在处理数据...");
+		$.post('{php echo $this->createMobileUrl('user')}', {
+			'op' : 'address',
+      'type' : 'post',
+			'realname' : realname,
+			'mobile' : mobile,
+			'province' : province,
+			'city' : city,
+			'area' : area,
+			'address' : address,
+			"lat": lat,
+			"lng": lng,
+			"inco": inco,
+			'id' : $('#addressid').val()
+		}, function(s) {
+			tip_close();
+			if (s.message != 0) {
+				if (from == 'confirm') {
+					if (returnurl != '') {
+						window.location.href = decodeURIComponent(returnurl);;
+						return;
+					}
+                    window.location.href = document.referrer;
+				}
+				$("input [name='address']").attr('checked', false);
+                $('.defult').text("设为默认");
+				var html='<div class="address_item shopcart-main1 img-rounded" style="margin:0;padding:10px;margin-bottom:10px;cursor:pointer" onclick="editAddress(' + s.message +')">';
+				var html1='<span>'+province+' '+city+' '+area+' '+''+address+' '+' <br/> ' +realname+', '+mobile+'</span>' +
+					' <br/><span>' +' <a href="javascript:;" class="defult" onclick="saveDefaultAddress(event,' + s.message +')">默认</a> <a href="javascript:;" style="margin-left: 5%;"onclick="editAddress({$row['id']},' + s.message +')">编辑</a> <a href="javascript:;" class="delete-address" onclick="removeAddress(event,' + s.message +')" ><img src="{STYLE}images/delete.png"></a>';
+				var html2= '</span></div>';
+
+				if ($('#address_'+s.message).get(0)) {
+					$('#address_'+s.message).html(html1);
+				} else {
+					$(".address_item").removeClass("shopcart-main1").addClass("shopcart-main");
+					$('#myaddress').append($(html + html1 + html2));
+				}
+
+        tip('操作成功');
+        tip_close();
+				$('#realname').val('');
+				$('#mobile').val('');
+				$('#address').val('');
+				$('#map_y').val('');
+				$('#map_x').val('');
+				$('#address').val('');
+			}
+			$('#addAddressPanel').hide();
+			if (returnurl != '') {
+				window.location.href = decodeURIComponent(returnurl);
+				return;
+			}
+      tip('操作成功');
+      tip_close();
+		}, 'json');
+	}
+
+
+	function addAddress() {
+		$('#addAddressPanel').show();
+		$('#realname').val('');
+		$('#mobile').val('');
+		$('#address').val('');
+		$('#addressid').val('');
+		$('#map_y').val('');
+		$('#map_x').val('');
+		$('#districtTxt').val('');
+		$('#map_province').val('');
+		$('#map_city').val('');
+		$('#map_area').val('');
+	}
+
+	function saveDefaultAddress(e,id) {
+		tip("正在处理数据...");
+		$.post('{php echo $this->createMobileUrl('user', array('op' => 'address','type' => 'default'))}', {
+			'id' : id,
+		}, function(s) {
+			$(".address_item").removeClass("shopcart-main1").addClass("shopcart-main");
+      $("#address_"+id+' .defult').text("默认");
+			$("#address_"+id).addClass("shopcart-main1");
+			tip_close();
+		}, 'json');
+		e.stopPropagation() ;
+	}
+
+	function removeAddress(e,id){
+		if(confirm('确认要删除此收货地址吗?')){
+			 tip("正在处理数据...");
+			$.post('{php echo $this->createMobileUrl('user', array('op' => 'address','type' => 'remove'))}',
+					{ 'id' : id,},
+					function(s) {
+						$("#address_"+id).remove();
+						if(s.maxid!='0'){
+							$(".address_item").removeClass("shopcart-main1").addClass("shopcart-main");
+							$("#address_"+s.maxid).addClass("shopcart-main1");
+						}
+						tip_close();
+					},
+					'json');
+			e.stopPropagation() ;
+		}
+	}
+
+	var isdef = 0;
+
+	function editAddress(id) {
+		if (false && from == 'confirm'){
+			tip("正在处理数据...");
+			$.post('{php echo $this->createMobileUrl('user', array('op' => 'address','type' => 'default'))}', {'id' : id}, function(s) {
+				tip_close();
+				if (returnurl != '') {
+					window.location.href = returnurl;
+					return;
+				}
+        tip('操作成功');
+        tip_close();
+			});
+			return;
+		}
+
+		tip("正在处理数据...");
+		$.get('{php echo $this->createMobileUrl('user', array('op' => 'address','type' => 'detail'))}', {'id' : id}, function(s){
+			tip_close();
+
+
+			if (s.message) {
+				$('#addAddressPanel').show();
+				$('#realname').val(s.message.realname);
+				$('#mobile').val(s.message.mobile);
+				$('#address').val(s.message.address);
+				$('#districtTxt').text(s.message.province + s.message.city + s.message.area)
+				$('#addressid').val(s.message.id);
+				$('#inco').val(s.message.inco == null ? '' : s.message.inco)
+				$('#map_y').val(s.message.lat);
+				$('#map_x').val(s.message.lng);
+				$('#map_province').val(s.message.province)
+				$('#map_city').val(s.message.city)
+				$('#map_area').val(s.message.area)
+			}
+		}, 'json');
+	}
+</script>
+{template '../newMap'}
+<script>
+    $(function () {
+        var mymap = new Map({aDiv: '',aInput: '',lat: '',lng: '', listClick:listClick})
+        function listClick(data) {
+            $('#map_y').val(data.lat)
+            $('#map_x').val(data.lng)
+            mymap.getMapByXY(new BMap.Point(data.lng, data.lat), function (rs) {
+							var p = rs.addressComponents.province
+							var c = rs.addressComponents.city
+							var d = rs.addressComponents.district
+							$('#districtTxt').text(p + c + d)
+							$('#map_province').val(p)
+							$('#map_city').val(c)
+							$('#map_area').val(d)
+							$('#address').val(data.title)
+						})
+        }
+    })
+    $('#districtBox').on('click', function () {
+        $('.mapWap').addClass('checked')
+    })
+    $('.back').on('click', function () {
+        $('.mapWap').removeClass('checked')
+    })
+</script>
+{template 'common/footer'}
+{template '../mobile/footer'}
+
+

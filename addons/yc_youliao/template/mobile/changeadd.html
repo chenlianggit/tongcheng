@@ -1,0 +1,97 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}css/changeadd.css" type="text/css" />
+<style>
+    .tangram-suggestion-main {
+      z-index: 3000;
+    }
+    .mapWap{
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      z-index: 2000;
+      transition: transform .3s;
+    }
+    .mapWap.checked{
+	    transform: translateX(0);
+    }
+</style>
+<form method="post" class="form-horizontal form" enctype="multipart/form-data">
+    <input type="hidden" name="lng" id="map_x" value="{$item['lng']}" class="scAddTextName w200">
+    <input type="hidden" name="lat" id="map_y" value="{$item['lat']}" class="scAddTextName w200">
+    <!-- <input type="hidden" name="op" value="changexy" > -->
+</form>
+<div class="topBan">
+    <span class="iconWap"><span class="icon-f"></span></span>
+    切换地址
+</div>
+<p class="tit">当前地址&nbsp;&nbsp;<span style="font-size: 12px">(点击选择新地址)</span></p>
+<div class="nowAdd">
+  <div class="rg"><img class="r-icon" src="{STYLE}images/relocation.png" alt="">重新定位</div>
+  <div class="le"></div>
+</div>
+<p class="tit">已保存地址&nbsp;&nbsp;<span style="font-size: 12px">(点击跳到已保存地址)</span></p>
+<div class="hasAdd">
+</div>
+<div class="addAbtn"><a href="{php echo $this->createMobileUrl('user',array('op'=>'address'))}">新增&nbsp;/&nbsp;修改保存地址</a></div>
+
+{template '../newMap'}
+<script>
+    $(function () {
+        var mymap = new Map({aDiv: '.nowAdd .le',aInput: '#searchBtn',lat: '#map_y',lng: '#map_x', listClick:listClick})
+        function listClick(data) {
+            $('#map_y').val(data.lat)
+            $('#map_x').val(data.lng)
+            changeadd(data.lat,data.lng)
+        }
+        $.ajax({
+            url: createAppUrl('ajax_req','getAddress'),
+            success: function (res) {
+                var str = ''
+                res = JSON.parse(res)
+                if (res.len > 0) {
+                    str += '<ul>'
+                    res.list.forEach(function (v, i) {
+                        str += '<li class="adList" data-lat="' + v.lat + '" data-lng="' + v.lng + '"  >'
+                        if (v.inco) {
+                            str +='<p class="ad"><span class="flag col' + i%2 + '">' + v.inco + '</span>' + v.province + v.city + v.area + v.address + '</p>'
+                        } else {
+                            str +='<p class="ad">' + v.province + v.city + v.area + v.address + '</p>'
+                        }
+                        str +=  '<p class="pho"><span class="name">' + v.realname +'</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="pho">' + v.mobile +'</span></p>'
+
+                        str += '</li>'
+                    })
+                    str += '</ul>'
+                } else {
+                    str += '<p class="noAdd">当前无保存地址</p>'
+                }
+                $(str).appendTo($('.hasAdd'))
+            }
+        })
+        $('.hasAdd').on('click', '.adList' , function () {
+            var _this = $(this)
+            var lat = _this.data('lat')
+            var lng = _this.data('lng')
+            if( lat && lng ) {
+                changeadd(lat, lng)
+            } else {
+                var str = _this.find('.ad').text()
+                mymap.getMapByAddress(str,function(pt) {
+                    changeadd(pt.lat, pt.lng)
+                })
+            }
+        }) 
+    })
+    $('.iconWap').on('click', function () {
+        self.location=document.referrer
+    })
+    $('.nowAdd').on('click', function () {
+        $('.mapWap').addClass('checked')
+    })
+    $('.back').on('click', function () {
+        $('.mapWap').removeClass('checked')
+    })
+</script>
+<!-- {template '../mapjs'} -->
+{template '../mobile/footer'}

@@ -1,0 +1,540 @@
+{template '../mobile/header'}
+
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/shop_in.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/uploadimg.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/iscroll-zoom.js"></script>
+<script src="{STYLE}js/hammer.js"></script>
+<script src="{STYLE}js/jquery.photoClip.js"></script>
+<style>
+    /* 地图的特定样式 */
+    .tangram-suggestion-main {
+      z-index: 3000;
+    }
+    .mapWap{
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      z-index: 2000;
+      transition: transform .3s;
+    }
+    .mapWap.checked{
+	    transform: translateX(0);
+    }
+</style>
+{if $item['status']==1}
+<!--已入驻：修改资料-->
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+{template '../mobile/shop_admin/shop_admin_banner'}
+
+{else}
+<!--申请入驻-->
+    {template '../mobile/top_btn'}
+    <!--头部广告-->
+    {php $advs= commonGetData::getAdv(1);}
+    {php $hidewater= 1;}
+    {if !empty($advs)}
+    {template '../mobile/adv1'}
+    {/if}
+
+    {if empty($item)}
+    <div class="step">
+        <img src="{STYLE}images/step1.png"/>
+    </div>
+
+    {elseif $item['status']==0}
+    <div class="step">
+    <img src="{STYLE}images/step2.png"/>
+    </div>
+    {elseif $item['status']==2}
+    <div class="step">
+    <img src="{STYLE}images/step3.png"/>
+    </div>
+    {/if}
+{/if}
+<form method="post" class="form-horizontal form" enctype="multipart/form-data">
+    <input type="hidden" name="op" value="{$op}" />
+    <input type="hidden" name="po" value="1" />
+    <input type="hidden" name="token" value="{$_W['token']}" />
+<section class="logo-license">
+    <div class="half dplogo">
+        <a class="logo" >
+            <img class='mainImg' id="bgl" src="{if empty($item['logo'])}{STYLE}images/logo_n.png{else}{$_W['attachurl']}{$item['logo']}{/if}"/>
+        </a>
+        <p class="f12">
+            店铺LOGO
+            <img src="{STYLE}images/upImg.png" class="shopUpimg" alt="">
+            {if $check!=1}
+            <input  id="file2" name="logo" class="file" type="file" size="30" onChange="javascript:setImagePreview();" accept="image/*" multiple value=""/>
+            {/if}
+        </p>
+    </div>
+
+
+    <div class="half">
+        <div class="uploader blue">
+            <a class="license">
+                <img id="img-1" class='mainImg'  src="{if empty($item['shop_cert'])}{STYLE}images/logo_l.png{else}{$_W['attachurl']}{$item['shop_cert']}{/if}"/>
+            </a>
+            <p class="f12">
+                营业执照
+                <img src="{STYLE}images/upImg.png" class="shopUpimg" alt="">
+                {if $check!=1}
+                <input id="file0" name="shop_cert" class="file" type="file" size="30" onChange="javascript:setImagePreview();" accept="image/*" multiple />
+                {/if}
+            </p>
+        </div>
+    </div>
+        <div class="half">
+            <div class="uploader blue">
+                <a class="license">
+                    <img id="img-3" class='mainImg'  src="{if empty($item['bgpic'])}{STYLE}images/logo_n.png{else}{$_W['attachurl']}{$item['bgpic']}{/if}"/>
+                </a>
+                <p class="f12">
+                    店铺形象
+                    <img src="{STYLE}images/upImg.png" class="shopUpimg" alt="">
+                    {if $check!=1}
+                    <input id="file3" name="bgpic" class="file" type="file" size="30" onChange="javascript:setImagePreview();" accept="image/*" multiple />
+                    {/if}
+                </p>
+                <p class="f10">768px*300px</p>
+            </div>
+
+
+    <div class="clearfix"></div>
+</section>
+
+<article class="info">
+    <ul>
+        <li>
+            <div class="left">
+                <span class="red">*</span> 店铺名称:
+            </div>
+            <div class="right">
+                <input id="name"   name="shop_name" type="text" value="{$item['shop_name']}" placeholder="例:{$_W['uniaccount']['name']}">
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <div class="left">
+                <span class="red">*</span> 联系人:
+            </div>
+            <div class="right">
+                <input  name="manage"  type="text" value="{$item['manage']}" placeholder="例:李XX">
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <div class="left">
+                <span class="red">*</span>联系电话:
+            </div>
+            <div class="right">
+                <input  name="telphone"   id="phone" type="number" size="11" value="{$item['telphone']}" placeholder="例:13888888888" onkeyup="vailPhone();">
+                <div class="red" id="phoneP"></div>
+            </div>
+            <div class="clear"></div>
+        </li>
+
+        <li>
+            <div class="left">
+                <span class="red">*</span>所属行业:
+            </div>
+            <div class="right">
+                <div class="mask"></div>
+                <div class="divselecty">
+                    <select class="form-control" style="margin-right:15px;" name="pcate_id"    onchange="changeline(this.options[this.selectedIndex].value)" >
+                        {if $cate }
+                        <option value="0">行业分类</option>
+                        {loop $cate $row}
+                        <option value="{$row['cate_id']}" {if $row['cate_id'] == $item['pcate_id']} selected="selected"{/if}>{$row['cate_name']}</option>
+                        {/loop}
+
+                        {else}
+                        <option>暂无分类</option>
+                        {/if}
+                    </select>
+                    <select class="form-control" style="margin-right:15px;"  name="ccate_id"  >
+                        {if $ccate }
+                        <option value="0">行业子类</option>
+                        {loop $ccate $row}
+                        <option value="{$row['cate_id']}" {if $row['cate_id'] == $item['ccate_id']} selected="selected"{/if}>{$row['cate_name']}</option>
+                        {/loop}
+
+                        {else}
+                        <option value="0">暂无分类</option>
+                        {/if}
+
+
+                    </select>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+        </li>
+
+        <li>
+            <div class="left">
+                <span class="red">*</span>所属城市:
+            </div>
+            <div class="right">
+                <div class="mask"></div>
+                <div class="divselecty">
+                    <select class="form-control" style="margin-right:15px;"  name="city_id" onchange="changearea(this.options[this.selectedIndex].value)"  >
+                        {if $city}
+                        <option value="0">城市</option>
+                        {loop $city $row}
+                        <option value="{$row['city_id']}" {if $row['city_id'] == $item['city_id']} selected="selected"{/if}>{$row['name']}</option>
+                        {/loop}
+
+                        {else}
+                        <option value="0">暂无城市</option>
+                        {/if}
+
+                    </select>
+                    <select class="form-control" style="margin-right:15px;"  name="area_id" onchange="changebusiness(this.options[this.selectedIndex].value)"  >
+                        {if $area}
+                        <option value="0">区域</option>
+                        {loop $area $row}
+                        <option value="{$row['area_id']}" {if $row['area_id']  == $item['area_id']} selected="selected"{/if}>{$row['area_name']}</option>
+                        {/loop}
+
+                        {else}
+                        <option value="0">暂无区域</option>
+                        {/if}
+
+                    </select>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+        </li>
+
+        <li>
+            <div class="left">
+                所属商圈:
+            </div>
+            <div class="right">
+                <div class="mask"></div>
+                <div class="divselecty">
+
+        <select class="form-control"  name="business_id" >
+            {if $business}
+            <option value="0">商圈</option>
+            {loop $business $row}
+            <option value="{$row['area_id']}" {if $row[area_id] == $item['business_id']} selected="selected"{/if}>{$row['area_name']}</option>
+            {/loop}
+
+            {else}
+            <option value="0">暂无商圈</option>
+            {/if}
+
+        </select>
+
+                </div>
+            </div>
+        <div class="clear"></div>
+        </li>
+        <li>
+            <div class="left">
+                <span class="red"></span> 店铺地址:
+            </div>
+            <div class="right">
+                <div class="adminSearchWap form-control">{$item['address']}</div>
+                <input type="hidden" name="address" id="searchBtn" value="{$item['address']}" >
+                <input type="hidden" name="lng" id="map_x" value="{$item['lng']}">
+                <input type="hidden" name="lat" id="map_y" value="{$item['lat']}">
+            </div>
+            <div class="clear"></div>
+        </li>
+        <li>
+            <div class="left">
+                <span class="red"></span> 门牌号:
+            </div>
+            <div class="right">
+                <div class="divselecty">
+                    <input type="text" name="address_detail" value="{$item['address_detail']}" class="scAddTextName w200 form-control" placeholder="例:1栋1001">
+                </div>
+
+                <!-- <a style="margin-left: 10px;" onclick="getMapXY();"   class="seleSj blue">搜索坐标</a> -->
+
+            </div>
+            <!-- <input type="text" class="form-control input-text" id="suggestId" style="display:none;" placeholder="可以输入指定位置搜索"> -->
+
+            <!-- <div id="searchResultPanel" ></div> -->
+
+            <!-- <div id="allmap" ></div> -->
+            <div class="clear"></div>
+        </li>
+    </ul>
+
+    <!-- {template '../mobile/upload_img'} -->
+    {if $item['status']==1}
+    <!--已入驻：修改资料-->
+        <ul>
+
+
+
+            <li>
+                <div class="left">
+                    <span class="red"></span> 店铺描述:
+                </div>
+                <div class="right">
+                    <textarea name="intro" rows="2">{$item['intro']}</textarea>
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li>
+                <div class="left">
+                    <span class="red"></span> 人均消费:
+                </div>
+                <div class="right">
+                    <input    name="renjun" type="text" value="{$item['renjun']}" >
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li>
+                <div class="left">
+                    <span class="red"></span> 店铺标签:
+                </div>
+                <div class="right">
+                    {php $item['inco']=json_decode($item['inco'])}
+                    <label><input type="checkbox" name="inco[]" {if in_array('正品保证',(array)$item['inco'])}checked="checked"{/if} value="干净卫生" > 干净卫生</label>
+                    <label><input type="checkbox" name="inco[]" {if in_array('限时抢购',(array)$item['inco'])}checked="checked"{/if} value="环境优雅" > 环境优雅</label>
+
+                    {loop $item['inco'] $i}
+                    {if !in_array($i,array('干净卫生','环境优雅'))}
+                    <label>
+                        <input type="checkbox" name="inco[]"checked="checked" value="{$i}" > {$i}
+                    </label>
+                    {/if}
+                    {/loop}
+                </div>
+                <div class="clear"></div>
+            </li>
+
+            <li>
+                <div class="left">
+                    营业时间:
+                </div>
+                <div class="right">
+                    <div class="mask"></div>
+                    <div class="divselecty">
+                        <select name="opendtime" class="hour form-control" >
+                            <option value="">营业</option>
+                            <option value="0" {if $item['opendtime']==0}selected="selected"{/if}>00 : 00</option>
+                            <option value="1" {if $item['opendtime']==1}selected="selected"{/if}>01 : 00</option>
+                            <option value="2" {if $item['opendtime']==2}selected="selected"{/if}>02 : 00</option>
+                            <option value="3" {if $item['opendtime']==3}selected="selected"{/if}>03 : 00</option>
+                            <option value="4" {if $item['opendtime']==4}selected="selected"{/if}>04 : 00</option>
+                            <option value="5" {if $item['opendtime']==5}selected="selected"{/if}>05 : 00</option>
+                            <option value="6" {if $item['opendtime']==6}selected="selected"{/if}>06 : 00</option>
+                            <option value="7" {if $item['opendtime']==7}selected="selected"{/if}>07 : 00</option>
+                            <option value="8" {if $item['opendtime']==8}selected="selected"{/if}>08 : 00</option>
+                            <option value="9" {if $item['opendtime']==9}selected="selected"{/if}>09 : 00</option>
+                            <option value="10" {if $item['opendtime']==10}selected="selected"{/if}>10 : 00</option>
+                            <option value="11" {if $item['opendtime']==11}selected="selected"{/if}>11 : 00</option>
+                            <option value="12" {if $item['opendtime']==12}checked="checked"{/if}>12 : 00</option>
+                            <option value="13" {if $item['opendtime']==13}selected="selected"{/if}>13 : 00</option>
+                            <option value="14" {if $item['opendtime']==14}selected="selected"{/if}>14 : 00</option>
+                            <option value="15" {if $item['opendtime']==15}selected="selected"{/if}>15 : 00</option>
+                            <option value="16" {if $item['opendtime']==16}selected="selected"{/if}>16 : 00</option>
+                            <option value="17" {if $item['opendtime']==17}selected="selected"{/if}>17 : 00</option>
+                            <option value="18" {if $item['opendtime']==18}selected="selected"{/if}>18 : 00</option>
+                            <option value="19" {if $item['opendtime']==19}selected="selected"{/if}>19 : 00</option>
+                            <option value="20" {if $item['opendtime']==20}selected="selected"{/if}>20 : 00</option>
+                            <option value="21" {if $item['opendtime']==21}selected="selected"{/if}>21 : 00</option>
+                            <option value="22" {if $item['opendtime']==22}selected="selected"{/if}>22 : 00</option>
+                            <option value="23" {if $item['opendtime']==23}selected="selected"{/if}>23 : 00</option>
+                        </select>
+
+                        <select name="closetime" class="hour form-control">
+                            <option value="">打烊</option>
+                            <option value="0" {if $item['closetime']==0}selected="selected"{/if}>00 : 00</option>
+                            <option value="1" {if $item['closetime']==1}selected="selected"{/if}>01 : 00</option>
+                            <option value="2" {if $item['closetime']==2}selected="selected"{/if}>02 : 00</option>
+                            <option value="3" {if $item['closetime']==3}selected="selected"{/if}>03 : 00</option>
+                            <option value="4" {if $item['closetime']==4}selected="selected"{/if}>04 : 00</option>
+                            <option value="5" {if $item['closetime']==5}selected="selected"{/if}>05 : 00</option>
+                            <option value="6" {if $item['closetime']==6}selected="selected"{/if}>06 : 00</option>
+                            <option value="7" {if $item['closetime']==7}selected="selected"{/if}>07 : 00</option>
+                            <option value="8" {if $item['closetime']==8}selected="selected"{/if}>08 : 00</option>
+                            <option value="9" {if $item['closetime']==9}selected="selected"{/if}>09 : 00</option>
+                            <option value="10" {if $item['closetime']==10}selected="selected"{/if}>10 : 00</option>
+                            <option value="11" {if $item['closetime']==11}selected="selected"{/if}>11 : 00</option>
+                            <option value="12" {if $item['closetime']==12}selected="selected"{/if}>12 : 00</option>
+                            <option value="13" {if $item['closetime']==13}selected="selected"{/if}>13 : 00</option>
+                            <option value="14" {if $item['closetime']==14}selected="selected"{/if}>14 : 00</option>
+                            <option value="15" {if $item['closetime']==15}selected="selected"{/if}>15 : 00</option>
+                            <option value="16" {if $item['closetime']==16}selected="selected"{/if}>16 : 00</option>
+                            <option value="17" {if $item['closetime']==17}selected="selected"{/if}>17 : 00</option>
+                            <option value="18" {if $item['closetime']==18}selected="selected"{/if}>18 : 00</option>
+                            <option value="19" {if $item['closetime']==19}selected="selected"{/if}>19 : 00</option>
+                            <option value="20" {if $item['closetime']==20}selected="selected"{/if}>20 : 00</option>
+                            <option value="21" {if $item['closetime']==21}selected="selected"{/if}>21 : 00</option>
+                            <option value="22" {if $item['closetime']==22}selected="selected"{/if}>22 : 00</option>
+                            <option value="23" {if $item['closetime']==23}selected="selected"{/if}>23 : 00</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+            </li>
+            {if !empty($a_data)}
+            <li>
+                <div class="left">
+                    <span class="red"></span> 交易费率:
+                </div>
+                <div class="right">
+                    <input    name="rate" type="text" value="{$item['rate']}" >
+                    <p>仅同城管理员可见</p>
+                    </textarea>
+
+                </div>
+                <div class="clear"></div>
+            </li>
+            {/if}
+
+    {/if}
+    {if empty($item['shop_id'])}
+            <div class="info">
+            <ul>
+            <li>
+                <div class="left">
+                    <span class="red"></span> 入驻套餐:
+                </div>
+                <div class="right">
+                    <div class="m-radiobox">
+                        {if is_numeric($cfg['one_year_money']) === true}
+                        <label for="renew0" class="m-label">
+                            <input type="radio" name="shop_renew" value="1" checked class="s-checkbox" id="renew0">
+                            <span class="s-checkbox__inner is-checked"></span>
+                            <span class="s-text">一年缴费{$cfg['one_year_money']}元</span>
+                        </label>
+                        {/if}
+                        {if is_numeric($cfg['two_year_money']) === true}
+                        <label for="renew1" class="m-label">
+                            <input type="radio" name="shop_renew" value="2"  class="s-checkbox" id="renew1">
+                            <span class="s-checkbox__inner"></span>
+                            <span class="s-text">两年缴费{$cfg['two_year_money']}元</span>
+                        </label>
+                        {/if}
+                        {if is_numeric($cfg['three_year_money']) === true}
+                        <label for="renew2" class="m-label">
+                            <input type="radio" name="shop_renew" value="3"  class="s-checkbox" id="renew2">
+                            <span class="s-checkbox__inner"></span>
+                            <span class="s-text">三年缴费{$cfg['three_year_money']}元</span>
+                        </label>
+                        {/if}
+                        {if  is_numeric($cfg['one_year_money']) === false && is_numeric($cfg['two_year_money']) === false  && is_numeric($cfg['three_year_money']) === false}
+                        <label for="renew3" class="m-label">
+                            <input type="radio" name="shop_renew" value="0"  class="s-checkbox" id="renew3">
+                            <span class="s-checkbox__inner"></span>
+                            <span class="s-text">免费入驻一年</span>
+                        </label>
+                        {/if}
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </li>
+        </ul>
+
+    {if $contract}
+    <div class="xieyi">
+        <span class="s-checkbox__inner is-checked"></span><span class='margin_left10'> 已查看并同意商铺入住协议</span></div>
+    {/if}
+
+    <div class="chect-btn">
+        <input name="submit" type="submit"  value="{if $item['contract']}同意协议并入驻{else}申请入驻{/if}" class="submit bluebtn mb10"   onclick="return checkform(this.form)">
+    </div>
+    {elseif $check==1 }
+    <!--管理员审核-->
+    <article>
+    <div class="chect-btn">
+    <a href="javascript:;" onclick="admin_check_shop(this,2,{$item['shop_id']})" >审核不通过</a>
+    <a href="javascript:;" class="current" onclick="admin_check_shop(this,1,{$item['shop_id']})">审核通过</a>
+    <input class="infoid" type="hidden"   value="{$item['shop_id']}" name="">
+    <input class="checktime" type="hidden"  value="" name="">
+    </div>
+    </article>
+    <script>
+        $('input').attr("readonly",true);
+        $('select').attr("disabled",true);//将input元素设置为disabled
+    </script>
+    {else}
+    <!--商户提交-->
+    
+
+    <div class="chect-btn">
+        <input name="submit" type="submit"  value="{if $item['shop_id']}确认修改{else}同意协议并入驻{/if}" class="submit bluebtn mb10"   onclick="return checkform(this.form)">
+    </div>
+    {/if}
+    <style>
+        select{
+            background: #fff;
+        }
+    </style>
+
+
+
+</form>
+<!-- 协议弹出框 -->
+<div class="xieyiBox contract">
+    <div class="x-mask"></div>
+    <div class="xieyiWap">
+        <p class="tit">入驻协议</p>
+
+        <div class="cont">   {php echo htmlspecialchars_decode($contract);}</div>
+        <div class="check">确认</div>
+    </div>
+</div>
+{if $check!=1 }
+{template '../newMap'}
+<script>
+    $(function () {
+        // 当经纬度没有时，会赋值当前定位
+        new Map({aDiv: '.adminSearchWap',aInput: '#searchBtn',lat: '#map_y',lng: '#map_x', listClick:listClick})
+        function listClick(data) {
+            $('#searchBtn').val(data.address + data.title)
+            $('.adminSearchWap').text(data.address + data.title)
+            $('#map_y').val(data.lat)
+            $('#map_x').val(data.lng)
+        }
+        $('.adminSearchWap').on('click', function () {
+            $('.mapWap').addClass('checked')
+        })
+        $('.back').on('click', function () {
+            $('.mapWap').removeClass('checked')
+        })
+    })
+</script>
+{/if}
+
+{template '../mobile/uploadimg'}
+<script>
+    $(function () {
+        $('.xieyi').on('click', function () {
+            $('.xieyiBox').show()
+            setTimeout(function () {
+                $('.xieyiBox').addClass('show')
+            }, 0)
+        })
+        $('.xieyiBox .x-mask').on('click', xieyiHide)
+        $('.xieyiBox .check').on('click', xieyiHide)
+        $('.s-checkbox[name="shop_renew"]').on('change', function () {
+            $('.m-label .is-checked').removeClass('is-checked')
+            $(this).siblings('.s-checkbox__inner').addClass('is-checked')
+        })
+        function xieyiHide() {
+            $('.xieyiBox').removeClass('show')
+            setTimeout(function () {
+                $('.xieyiBox').hide()
+            }, 300)
+        }
+        
+    })
+</script>
+
+

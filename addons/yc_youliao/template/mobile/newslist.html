@@ -1,0 +1,78 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}css/msg.css">
+<div class="conWap">
+  <ul class="listWap">
+    {loop $list $item}
+    <li class="list">
+      <a href="{php echo $this->createMobileUrl('user', array('op' => 'msg','msg_id' => $item['msg_id']))}">
+        <div class="top">
+          <span class="title">{$item['msg_title']}</span>
+          <span class="time">{php echo date("Y-m-d H:i",$item['add_time'])}</span>
+        </div>
+        <div class="bom">
+          <div class="content">
+            {$item['msg_content']}
+          </div>
+        </div>
+      </a>
+    </li>
+    {/loop}
+  </ul>
+  <div class="loading">
+    <img src="{STYLE}images/loading.png" class="loadImg" alt="" style="width: 26px;height: 26px;">
+  </div>
+</div>
+
+<script>
+  var toBom = false
+  var complete = false
+  var page = 2
+  var url = createAppUrl('user', 'msg') + '&type={$type}&isajax=1';
+  $('.conWap').on('scroll', function (e) {
+    if (e.target.scrollHeight - e.target.offsetHeight - e.target.scrollTop < 30 && !toBom && !complete) {
+      toBom = true
+      getMsg()
+    }
+  })
+  function getMsg() {
+    // 模仿异步ajax
+    $('.loading').show()
+    $.ajax({
+      type: 'get',
+      url: url + "&page=" + page,
+      success: function (res) {
+        var res = JSON.parse(res)
+        if (res.length == 0) {
+          complete = true
+          $('.loading').hide()
+          return
+        }
+        var str = ''
+        var time = 0
+        var div = document.createElement('div')
+        res.list.forEach(function (v, i) {
+          time =unixToDatetime(v.add_time );
+          div.innerHTML = v.msg_content
+          v.msg_content = div.innerText
+          str += '<li class="list">\
+              <div class="top" >\
+                <span class="title">' + v.msg_title + '</span>\
+                <span class="time">' + time + '</span>\
+              </div >\
+              <div class="bom">\
+                <div class="content">' +
+                v.msg_content
+            + '</div>\
+              </div>\
+            </li>'
+        })
+        $('.listWap').append($(str))
+        toBom = false
+        page++
+        $('.loading').hide()
+      }
+    })
+  }
+
+</script>
+{template '../mobile/footer'}

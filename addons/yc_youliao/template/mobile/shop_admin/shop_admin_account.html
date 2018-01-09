@@ -1,0 +1,92 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/shop_admin/shop_admin_banner'}
+<div class="info-content " >
+
+        <link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+        <div class="shop-admin order-panney loop-li ">
+            <div  class="order-body {if $type=='0'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'account'))}'">
+               账单明细
+            </div>
+            <div class="order-body {if $type=='1'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'account','type'=>'1'))}'">
+              提现记录
+            </div>
+            <div class="order-body {if $type=='2'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'account','type'=>'2'))}'">
+             申请提现
+            </div>
+        </div>
+    <div class="clearfix"></div>
+    {if $id>0}
+    {template '../mobile/account_detail'}
+    {elseif $type==0 }
+    <ul class="fresh-comment  cate ">
+    <div class="left w5b text-c h35 {if $flag=='0'}now{/if}  order-ba"  onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'account'))}'">商品订单</div>
+    <div class="left w5b text-c h35  {if $flag=='1'}now{/if} discount-ba" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'account','flag'=>'1'))}'">优惠买单</div>
+<div class="none" id="flag">1</div>
+    <div class="clearfix"></div>
+    {loop $list $item}
+    <li class="info-list discount-re  account">
+        <div>
+            <h2 class="redb">￥ {if $flag==0}{$item['price']}{else}{$item['paymoney']}{/if}</h2>
+            <p>
+                <i class="iconfont">&#xe669;</i> {$item['ordersn']}
+                <i class="ml_15 iconfont">&#xe7b0;</i> {php echo date('Y-m-d H:i', $item['createtime'])}
+            </p>
+        </div>
+
+            <div class="score">
+                {if $flag==0}
+                <a href="{php echo $this->createMobileUrl(order,array('op'=>'detail','id'=>$item['ogid']))}"><i class="iconfont" >&#xe604;</i></a>
+                {else}
+                <a href="{php echo $this->createMobileUrl(shop_admin,array('op'=>'discount','id'=>$item['id']))}"><i class="iconfont" >&#xe604;</i></a>
+                {/if}
+            </div>
+
+
+    </li>
+    {/loop}
+    </ul>
+    {elseif $type==1}
+    <ul class="fresh-comment  cate ">
+        <div class="left w5b text-c h35 {if $flag=='0'}now{/if}  order-ba"  onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('type'=>'1','op'=>'account'))}'">审核中</div>
+        <div class="left w5b text-c h35  {if $flag=='1'}now{/if} discount-ba" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('type'=>'1','op'=>'account','flag'=>'1'))}'">已通过</div>
+        <div class="none" id="flag">1</div>
+        <div class="clearfix"></div>
+        {loop $list $item}
+        <li class="info-list discount-re account">
+            <div>
+                <h2 class="redb">￥ {$item['amount']}</h2>
+                <p>
+                    <i class="iconfont">&#xe669;</i> {$item['ordersn']}
+                    <i class="ml_15 iconfont">&#xe7b0;</i> {php echo date('Y-m-d H:i', $item['addtime'])}
+                </p>
+            </div>
+            <div class="score">
+                    <a href="{php echo $this->createMobileUrl(shop_admin,array('op'=>'account','id'=>$item['cash_id']))}"><i class="iconfont">&#xe604;</i></a>
+            </div>
+
+        </li>
+        {/loop}
+    </ul>
+       {elseif $type==2}
+    {template '../mobile/withdraw_item'}
+    {/if}
+
+    <script>
+        {if $type<2}
+        $(function(){
+            var url=createAppUrl('shop_admin','account');
+            url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+            var flag=$('#flag').text();
+            url=url+'&type={$type}'+'&flag={$flag}';
+            var page =1;
+            pagelist(page,url,'.info-content','.fresh-comment','account');
+        })
+
+        {/if}
+
+    </script>
+
+{template '../mobile/footer'}

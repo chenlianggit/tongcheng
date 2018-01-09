@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>二维码海报图片</title>
+    <link rel="stylesheet" href="{STYLE}css/reset.css"/>
+    <script>
+        var deviceWidth = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+    </script>
+	<style>
+	.wrap{width:7.5rem;}
+	.wrap img{max-width:100%;width:100%;}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<div style="font-size:0.4rem;text-align:center;padding:0.2rem 0;background:#fff;">长按海报图片可以保存到相册哦</div>
+	<img src="{$imgurl}" />
+</div>
+<script src="{STYLE}js/jquery-3.1.1.min.js"></script>
+</body>
+</html>

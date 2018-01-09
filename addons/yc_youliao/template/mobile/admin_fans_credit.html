@@ -1,0 +1,43 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+
+{template '../mobile/admin_banner'}
+<div class="info-content ">
+    <div class=" form-content">
+    <div class="header-l"><img class="icon-level-p1" src="{if empty($user['avatar'])}{STYLE}images/avatar_default.jpg {else}{$user['avatar']}{/if}"/></div>
+    <div class="header-r">
+        <ul class="distributor-infor">
+            <li><span class="distributor-infor-c">{$user['nickname']}</span></li>
+
+            <li class="credit">
+                <em class="jifen"> 积分：</em><em id="credit1">{$credits['credit1']}</em></span>
+                &nbsp;| &nbsp;<a href="{php echo $this->createMobileUrl('balance')}" class="yinyuan">
+                        <span>余额：<em id="credit2">{$credits['credit2']} </em></span></a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="row extract-monynumber">
+        <div class="large-12 columns">
+            <input  name="acceptname" type="num" class="ipt"
+                    placeholder=" {if $credit_type==1}请输入您要充值的积分{else}请输入您要充值的金额{/if}"
+                    onkeyup="document.getElementById('confirm_money').innerText=this.value">
+
+            <div style="" id="detail">扣除请填写负数，如：-1	</div>
+            <div class="money_show">&yen;<span  id="confirm_money"></span></div>
+        </div>
+    </div>
+    <div class="extract">
+    {if $credit_type==1}
+    <div  onclick="getCredit(1,'{$mid}');"  class="button">确认充值积分</div>
+    {else}
+    <div  onclick="getCredit(2,'{$mid}');"  class="button">确认充值余额</div>
+    {/if}
+    </div>
+</ul>
+    </div>
+</div>
+
+{template '../mobile/footer'}
+

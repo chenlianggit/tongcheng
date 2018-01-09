@@ -1,0 +1,229 @@
+{template '../mobile/header'}
+{template '../mobile/top_btn'}
+<link rel="stylesheet" href="{STYLE}css/reset.css"/>
+<link rel="stylesheet" href="{STYLE}iconfont/iconfont.css"/>
+
+<form id="fieldsform" action="{php echo $this->createMobileUrl('mylocal',array('op'=>'update'))}" method="POST">
+<div class="form-group span12">
+	<div class="span12 box">
+		{loop $fieldslist $row}
+			{if $row['mtype'] == 'text' || $row['mtype'] == 'idcard'}
+			<div class="input-item span12">
+				<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9 height7">
+					<input name="{$row['enname']}" type="text" value="{$content[$row['enname']]}" placeholder="请填写{$row['name']}" />
+					{if $row['danwei']}
+						<span class="danwei">{$row['danwei']}</span>
+					{/if}
+				</div>
+			</div>
+			{/if}
+			{if $row['mtype'] == 'number' || $row['mtype'] == 'telphone'}
+			<div class="input-item span12">
+				<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9 height7">
+					<input name="{$row['enname']}" type="tel" value="{$content[$row['enname']]}" placeholder="请填写{$row['name']}" />
+					{if $row['danwei']}
+						<span class="danwei">{$row['danwei']}</span>
+					{/if}
+				</div>
+			</div>
+			{/if}
+			{if $row['mtype'] == 'longtext'}
+			<div class="input-item span12">
+				<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9">
+					<textarea name="{$row['enname']}" rows="5" placeholder="请填写{$row['name']}">{$content[$row['enname']]}</textarea>
+				</div>
+			</div>
+			{/if}
+			{if $row['mtype'] == 'radio'}	
+			<div class="input-item span12">
+				<div class="span3 height7">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9">
+					{loop $row['mtypeconarr'] $rowrow}
+					<div class="radio-group {if $content[$row['enname']] == $rowrow}on{/if}">
+						<div class="span8">{$rowrow}</div>
+						<div class="span4 iconfont text-r">&#xe614;</div>
+						<input name="{$row['enname']}" value="{$rowrow}" style="display:none;" {if $content[$row['enname']] == $rowrow}checked="checked"{/if} type="radio">
+					</div>
+					{/loop}
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(".radio-group").click(function(){
+					$(this).parents('.span9').children('.radio-group').removeClass('on');
+					$(this).parents('.span9').children('input').removeAttr('checked');
+					$(this).children('input').eq(0).attr('checked','checked');
+					$(this).addClass('on');
+				});
+			</script>
+			{/if}
+			{if $row['mtype'] == 'checkbox'}
+			<div class="input-item span12">
+				<div class="span3 height7">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9">
+					{loop $row['mtypeconarr'] $rowrow}
+					<div class="checkbox-group {if in_array($rowrow,$content[$row['enname']])}on{/if}">
+						<div class="span8">{$rowrow}</div>
+						<div class="span4 iconfont text-r">&#xe624;</div>
+						<input name="{$row['enname']}[]" value="{$rowrow}" style="display:none;" {if in_array($rowrow,$content[$row['enname']])}checked="checked"{/if} type="checkbox">
+					</div>
+					{/loop}
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(".checkbox-group").click(function(){
+					if($(this).hasClass('on')){
+						$(this).removeClass('on');
+						$(this).children('input').eq(0).removeAttr('checked');
+					}else{
+						$(this).addClass('on');
+						$(this).children('input').eq(0).attr('checked','checked');
+					}
+				});
+			</script>
+			{/if}
+			{if $row['mtype'] == 'select'}	
+			<div class="input-item span12">
+				<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9 height7">
+					<select name="{$row['enname']}">
+						{loop $row['mtypeconarr'] $rowrow}
+						<option value="{$rowrow}" {if $content[$row['enname']] == $rowrow}selected="selected"{/if}>{$rowrow}</option>
+						{/loop}
+					</select>
+				</div>
+			</div>
+			{/if}
+			{if $row['mtype'] == 'date' || $row['mtype'] == 'datetime'}	
+			<script src="{STYLE}mobiscroll/mobiscroll_002.js" type="text/javascript"></script>
+			<script src="{STYLE}mobiscroll/mobiscroll_004.js" type="text/javascript"></script>
+			<link href="{STYLE}mobiscroll/mobiscroll_002.css" rel="stylesheet" type="text/css">
+			<link href="{STYLE}mobiscroll/mobiscroll.css" rel="stylesheet" type="text/css">
+			<script src="{STYLE}mobiscroll/mobiscroll.js" type="text/javascript"></script>
+			<script src="{STYLE}mobiscroll/mobiscroll_003.js" type="text/javascript"></script>
+			<script src="{STYLE}mobiscroll/mobiscroll_005.js" type="text/javascript"></script>
+			<link href="{STYLE}mobiscroll/mobiscroll_003.css" rel="stylesheet" type="text/css">
+			<script type="text/javascript">
+				var currYear = (new Date()).getFullYear();	
+				var opt={};
+				opt.date = {preset : 'date'};
+				opt.datetime = {preset : 'datetime'};
+				opt.time = {preset : 'time'};
+				opt.default = {
+					theme: 'android-ics light', //皮肤样式
+					display: 'modal', //显示方式 
+					mode: 'scroller', //日期选择模式
+					dateFormat: 'yyyy-mm-dd',
+					lang: 'zh',
+					showNow: true,
+					nowText: "今天",
+					startYear: currYear - 10, //开始年份
+					endYear: currYear + 10 //结束年份
+				};
+			</script>
+			{/if}
+			{if $row['mtype'] == 'date'}
+			<div class="input-item span12">
+				<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9 height7">
+					<input name="{$row['enname']}" id="appDate{$row['id']}" readonly="readonly" type="text" value="{$content[$row['enname']]}" placeholder="请选择{$row['name']}" />
+				</div>
+			</div>
+			<script type="text/javascript">	
+			$("#appDate{$row['id']}").mobiscroll($.extend(opt['date'], opt['default']));
+			</script>
+			{/if}
+			{if $row['mtype'] == 'datetime'}
+			<div class="input-item span12">
+				<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9 height7">
+					<input name="{$row['enname']}" id="appDateTime{$row['id']}" readonly="readonly" type="text" value="{$content[$row['enname']]}" placeholder="请选择{$row['name']}" />
+				</div>
+			</div>
+			<script type="text/javascript">
+			var optDateTime = $.extend(opt['datetime'], opt['default']);
+			$("#appDateTime{$row['id']}").mobiscroll(optDateTime).datetime(optDateTime); 
+			</script>
+			{/if}
+			{if $row['mtype'] == 'images'}
+			<div class="input-item span12">
+				<div class="span3 height7 lineheight">{if $row['isrequired'] == 1}<span style="color:red;">*</span>{/if}{$row['name']}</div>
+				<div class="span9" id="imgsinput{$row['id']}">
+					<div class="span4 text-c" id="chooseImages{$row['id']}" style="font-size:1rem;height:1.2rem;line-height:1.2rem;overflow:hidden;color:#666;">
+						<span class="iconfont">&#xe66e;</span>
+					</div>
+					{if $content[$row['enname']]}
+					{loop $content[$row['enname']] $imgsrow}
+					<div class='span4 img-item' style='text-align:left;height:1.2rem;line-height:1.2rem;overflow:hidden;'>
+						<img style='width:1.2rem;height:1.2rem' src="{php echo tomedia($imgsrow);}" />
+						<input type='hidden' name="{$row['enname']}[]" value="{$imgsrow}" />
+						<span class='iconfont' style='position:absolute;z-index:95;background:#900;color:#fff;border-radius:100%;font-size:0.2rem;width:20px;height:20px;line-height:20px;text-align:center;margin-left:-10px;' onclick='removeimage($(this));'>&#xe736;</span>
+					</div>
+					{/loop}
+					{/if}
+				</div>
+			</div>
+			<script type="text/javascript">
+            var len=0;
+			function removeimage(obj){
+				obj.parents('.img-item').remove();
+                len--;
+                if(len<9){
+                    $('#chooseImages{$row['id']}').show();
+                }
+			}
+			$(function(){
+				$('#chooseImages{$row['id']}').click(function(){
+					var url = "{php echo $this->createMobileUrl('releasehtml',array( 'op' => 'getmedia'))}"
+					var toLen = function () {
+						$('#chooseImages{$row['id']}').hide();
+					}
+					var success = function (data) {
+						$('#imgsinput{$row['id']}').append("<div class='span4 img-item' style='text-align:left;height:1.2rem;line-height:1.2rem;overflow:hidden;'><img style='width:1.2rem;height:1.2rem' src='"+data.imgurl+"' /><input type='hidden' name='{$row['enname']}[]' value='"+data.realimgurl+"' /><span class='iconfont' style='position:absolute;z-index:95;background:#900;color:#fff;border-radius:100%;font-size:0.2rem;width:20px;height:20px;line-height:20px;text-align:center;margin-left:-10px;' onclick='removeimage($(this));'>&#xe736;</span></div>");
+					}
+					uploadImgByWx({url: url, toLen: toLen, success: success })
+				});
+			})
+			</script>
+			{/if}
+		{/loop}
+		{if $message['isneedpay'] == 1 && $message['haspay'] == 0}
+			<div class="input-item span12 text-c" style="color:#900;font-size:0.25rem;">
+				发布信息需要支付{$moduleres['needpay']}元才能审核通过
+			</div>
+		{/if}
+	</div>
+</div>
+
+<div class="button-item">
+	<input type="hidden" name="id" value="{$message['id']}" />
+	<button type="submit" class="dosub btn-success">
+		<img class="f-update" src="{STYLE}images/f_update.png">确认</button>
+</div>
+</form>
+<script type="text/javascript" src="{STYLE}weui/jquery.form.js"></script>
+<script type="text/javascript" src="{STYLE}mui/mui.min.js"></script>
+<script type="text/javascript">
+$("#fieldsform").ajaxForm({
+	type: "POST",
+	dataType:"json",
+	beforeSubmit: function(){
+		$('.dosub').attr("disabled","disabled");
+	},
+	success: function(data) {
+		if(data.error == 1){
+			alert(data.message);
+			$('.dosub').removeAttr("disabled");
+		}else{
+			alert(data.message);
+			if(data.ispay == 1){
+				window.location.href = "{php echo $this->createMobileUrl('pay')}"+"&ordersn="+data.ordersn+"&type=message";
+			}else{
+				mui.back();
+			}
+		}
+	},
+});
+</script>

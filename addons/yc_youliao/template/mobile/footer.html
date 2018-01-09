@@ -1,0 +1,121 @@
+<div class="clearfix" ></div>
+{php $cfg= $this->module['config']}
+
+<div class="copyright">
+   {if !empty($cfg['footer'])}{php echo $cfg['footer']}{/if}</div>
+
+<div class="footer_nav"></div>
+<div class="wx_nav">
+
+   <ul>
+      <li>
+         <a class="{if $_GPC['do']=='index'}active{/if}"
+            href=" {if !empty($cfg['btn1_link'])}{php echo $cfg['btn1_link']}{else}{php echo $this->createMobileUrl('index')}{/if}"  data-href="###" ptag="37080.1.1" ><em class="home"></em><p>
+            {if !empty($cfg['btn1_name'])}{php echo $cfg['btn1_name']}{else}首页{/if}</p></a>
+      </li>
+      <li>
+         <a class="{if ($_GPC['do']=='list' && $_GPC['type']=='9' )}active{/if}" href="{if !empty($cfg['btn2_link'])}{php echo $cfg['btn2_link']}{else}{php echo $this->createMobileUrl('list',array('type'=>'9'))}{/if}" ptag="37080.1.2"><em class="list"></em><p>{if !empty($cfg['btn2_name'])}{php echo $cfg['btn2_name']}{else}附近{/if}</p></a>
+      </li>
+      <li>
+         <a  href="{if !empty($cfg['btn3_link'])}{php echo $cfg['btn3_link']}{/if}"  ptag="37080.1.3" >
+            {if !empty($cfg['btn3_name'])} <em class="edit"></em><p>{php echo $cfg['btn3_name']}</p>{/if}
+         </a>
+      </li>
+      <li>
+         <a class="{if ($_GPC['do']=='ring' || $_GPC['do']=='redpackage')}active{/if}" href="{if !empty($cfg['btn4_link'])}{php echo $cfg['btn4_link']}{else}{php echo $this->createMobileUrl('redpackage')}{/if}"  ptag="37080.1.4"><em class="ring"></em><p>{if !empty($cfg['btn4_name'])}{php echo $cfg['btn4_name']}{else}圈子{/if}</p></a>
+      </li>
+      <li>
+         <a class="{if ($_GPC['do']=='user' || $_GPC['do']=='order'|| $_GPC['do']=='mylocal'|| $_GPC['do']=='myring')}active{/if}" href="{if !empty($cfg['btn5_link'])}{php echo $cfg['btn5_link']}{else}{php echo $this->createMobileUrl('user')}{/if}"  ptag="37080.1.4"><em class="my"></em><p>{if !empty($cfg['btn5_name'])}{php echo $cfg['btn5_name']}{else}我的{/if}</p></a>
+      </li>
+
+
+   </ul>
+</div>
+{if empty($cfg['btn3']) || empty($cfg['btn3_name'])}
+<div id="edit_banner">
+      <img id="add" src="{STYLE}images/add2.png" onClick="showlist();"/>
+   <img id="xadd"  class="none" src="{STYLE}images/xadd.png" onClick="showlist();"/>
+   <div class="fabu">发布</div>
+</div>
+{/if}
+<div id="showlist" class="none">
+   <div class="fabuico">
+      <a href="{php echo $this->createMobileUrl('msglist');}">
+      <img class="icon" src="{STYLE}images/fabu_1.png"/>
+      <div class="icon-name">发布信息</div>
+      </a>
+
+      {php $isshop_admin=$this->isshop_admin();}
+      {if !empty($isshop_admin)}
+      <a href="{php echo $this->createMobileUrl('shop_admin',array('shop_id'=>$isshop_admin['shop_id']))}">
+         <img class="icon" src="{STYLE}images/fabu_2.png"/>
+         <div class="icon-name">店铺管理</div>
+      </a>
+      {else}
+      <a href="{php echo $this->createMobileUrl('user',array('op'=>'shop_in'));}">
+         <img class="icon" src="{STYLE}images/fabu_2.png"/>
+         <div class="icon-name">商家入驻</div>
+      </a>
+      {/if}
+   </div>
+
+</div>
+<style>
+   {if !empty($cfg['btn1'])}
+   .wx_nav ul li a em.home {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn1']}) ;
+   }
+   {/if}
+   {if !empty($cfg['btn2'])}
+   .wx_nav ul li a em.list {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn2']}) ;
+   }
+   {/if}
+   {if !empty($cfg['btn3'])}
+   .wx_nav ul li a em.edit {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn3']}) ;
+   }
+   {/if}
+   {if !empty($cfg['btn4'])}
+   .wx_nav ul li a em.ring {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn4']}) ;
+   }
+   {/if}
+   {if !empty($cfg['btn5'])}
+   .wx_nav ul li a em.my {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn5']}) ;
+   }
+   {/if}
+
+   {if !empty($cfg['btn1_hover'])}
+   .wx_nav ul li a.active em.home {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn1_hover']}) ;
+
+   }
+   {/if}
+   {if !empty($cfg['btn2_hover'])}
+   .wx_nav ul li a.active em.list {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn2_hover']}) ;
+   }
+   {/if}
+   {if !empty($cfg['btn3_hover'])}
+   .wx_nav ul li a.active em.ring {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn3_hover']}) ;
+
+   }
+   {/if}
+   {if !empty($cfg['btn4_hover'])}
+   .wx_nav ul li a.active em.edit {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn4_hover']});
+
+   }
+   {/if}
+   {if !empty($cfg['btn5_hover'])}
+   .wx_nav ul li a.active em.my {
+      background-image:url({php echo $_W['attachurl'].$cfg['btn5_hover']}) ;
+
+   }
+   {/if}
+</style>
+</body>
+</html>

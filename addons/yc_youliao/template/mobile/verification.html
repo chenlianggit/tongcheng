@@ -1,0 +1,134 @@
+{template '../mobile/header'}
+<link href="{STYLE}css/order.css" rel="stylesheet" type="text/css" />
+
+<div class="myoder img-rounded" >
+
+
+	<div class="myoder-detail">
+		<a href="{php echo $this->createMobileUrl('good', array('id' => $g['goods_id'],'shop_id' => $item['shop_id']))}">
+			<div class="orderthumb">
+				<img src="{$_W['attachurl']}{$g['thumb']}" width="160"></a>
+	</div>
+	<div>
+		<div class="name"><a href="{php echo $this->createMobileUrl('good', array('shop_id' => $item['shop_id'],'id' => $g['goods_id']))}">{$g['title']}</a></div>
+		{if $g['optiontitle']}<div class="name">{$g['optiontitle']}</div>{/if}
+		<div class="price">
+			<span>&yen;{if $item['ordertype']==2 ||$item['ordertype']==3 }{$g['groupprice']}{else}{$g['marketprice']}{/if}{if $g['unit']} / {$g['unit']}{/if}</span>
+			<span class="num">{$g['ototal']}</span>
+
+			<span class="num red">
+					{if $item['groupid']}
+					<a href="{php echo $this->createMobileUrl('group', array('op' => 'detail','groupid' => $item['groupid']))}"> {if $item['ordertype'] == 2}参团订单{elseif $item['ordertype'] == 3}建团订单{/if}</a>				{/if}
+
+					</span>
+
+		</div>
+	</div>
+</div>
+<div class="myoder-hd">
+	<span class="pull-left">订单编号：{$item['ordersn']}</span>
+	<span class="right">{php echo date('Y-m-d H:i', $item['createtime'])}</span>
+</div>
+<div class="myoder-express">
+	<span class="express-company">状态</span>
+	<span class="express-num">
+		{template '../web/shop/order_status'}
+		</span>
+</div>
+
+
+<div class="myoder-express">
+		<span class="express-company">核销状态</span>	
+		<span class="express-num">		
+		<span >{if $g['verified']==1}已核销	{else}待核销{/if}</span>
+		</span>
+	</div>
+{if $g['verified']==1}
+{php $verifyuser=Member::getMemberByopenid($g['verifyopenid'])}
+
+<div class="myoder-express">
+		<span class="express-company">核销员</span>	
+		<span class="express-num">		
+		<span class="avatar"><img src="{$verifyuser['avatar']}">{$verifyuser['nickname']}</span>
+		</span>
+	</div>
+
+	<div class="myoder-express">
+		<span class="express-company">核销时间</span>	
+		<span class="express-num">		
+		<span >{php echo date('Y-m-d H:i', $g['verifytime'])}</span>
+		</span>
+	</div>
+	{/if}
+
+	{if $item['virtual_str']}
+<div class="myoder-express">
+		<span class="express-company">{$item['virtual_str']}</span>		
+	</div>
+	{/if}
+{if $item['addressid']!=0}
+
+	<div class="myoder-express">
+		<span class="express-company">联系方式</span>		
+	</div>
+	<div class="express-address">
+		<span>姓名：<p class="address_desc">{$address['realname']}</p></span>
+		<span>电话：<p class="address_desc">{$address['mobile']}</p></span>
+		{if $address['province']}
+		<span>地址：<p class="address_desc">{$address['province']} 
+			{$address['city']} {$address['area']} {$address['address']}</p></span>
+		{/if}	
+		
+	</div>
+
+	{/if}
+	
+    {if !empty($item['remark'])}
+   <div class="myoder-express" style='margin-top:10px;'>
+		<span class="express-company">订单备注</span>
+		
+	</div>
+        <div style='float:left;margin:10px;overflow:hidden;word-break:break-all;width:100%;'>
+            {$item['remark']}
+        </div> 
+        {/if}
+		
+	<div class="myoder-total" >
+		 {if !empty($count_ded)}
+						使用{$item['deductible']}积分，抵扣{$count_ded}元
+
+						
+						 	<br/>
+							  {/if}
+		<div>支付：<span class="false">
+                     {if $item['dispatchprice']<=0}
+                        {$item['price']} 元
+                        {else}
+                        {$item['price']} 元 (含运费 {$item['dispatchprice']} 元) 
+                        {/if}
+
+						{if $item['send_redpacket']==1}
+						返现：{$red_packet}元
+						 {/if}
+                    </span>
+
+					
+         </div>
+	
+			
+	</div>
+	</div>
+
+{if $g['verified']!=1}
+<form name="input"   method="post">
+	<input type="hidden" name="shopid"  value="{$shop_id}"  />
+	<input type="hidden" name="oid"  value="{$oid}"  />
+	<input type="hidden" name="op"  value="submit"  />
+	<input type="submit"   value="确认核销" class="btn btn-success verifybtn btn-sm " />
+</form>
+{/if}
+
+
+
+
+{template '../mobile/footer'}

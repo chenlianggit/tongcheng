@@ -1,0 +1,168 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/shop_admin/shop_admin_banner'}
+<div class="info-content">
+{if $_GPC['post']=='add'}
+    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" onsubmit="return checkAdmin();">
+    <div class="detail-comment" >
+        <div class='shop-logo'><img  id="picc" src="{if $_GPC['avatar']}{$_GPC['avatar']}{else}{$item['avatar']}{/if}" onerror="this.src='../addons/yc_youliao/public/images/avatar_default.jpg'"/></div>
+    <input type='hidden' id='openid' name='openid' value="{if $_GPC['openid']}{$_GPC['openid']}{else}{$item['openid']}{/if}" />
+        <input type='hidden' name='ispost' value="1" />
+    <input type='hidden' id='nickname' name='nickname' value="{if $_GPC['nickname']}{$_GPC['nickname']}{else}{$item['nickname']}{/if}" />
+    <input type='hidden' id='avatar' name='avatar' value="{if $_GPC['avatar']}{$_GPC['avatar']}{else}{$item['avatar']}{/if}" />
+    <div class="form-group">
+        <label class=" control-label"></label>
+        <div class="input-content ">
+            <div class="col-sm-7  pull-right nonefloat">
+                <button class="btn btn-default"  type="button" onclick="showModal();"> <img src="{STYLE}images/b_search.png"> 选择管理员</button>
+            </div>
+            <p class="help-block">为方便接收微信模板消息通知，管理员必须关注公众号： {$_W['uniaccount']['name']}</p>
+        </div>
+    </div>
+
+        <div class="clearfix"></div>
+    <div id="modal-module-menus"  class="modal fade" tabindex="-1">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header"><button onclick="showModal();" class="close" type="button">×</button><h3>选择管理员</h3></div>
+                <div class="modal-body" >
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="keyword" value="" id="search-kwd" placeholder="请输入粉丝昵称/姓名/手机号" />
+                            <span class='input-group-btn fr mb_10'><button type="button" class="btn btn-default" onclick="search_members_app();">搜索</button></span>
+                        </div>
+                    </div>
+                    <div id="module-menus" style="padding-top:5px;"></div>
+                </div>
+                <div class="modal-footer"><a href="#" class="btn btn-default" onclick="showModal();">关闭</a></div>
+            </div>
+
+        </div>
+    </div>
+
+
+        <div class="clearfix"></div>
+<div class="form-group">
+    <label class=" control-label"><span class="red">*</span>角色</label>
+    <div class="input-content ">
+        <div class="radio">
+            <label class="radio-custom admintype-1">
+                <input  type="radio" name="admin_type" value="1" {if $item['admin_type']==1}checked="checked"{/if}>
+                超级管理员：全部权限 </label>
+        </div>
+        <div class="radio">
+            <label class="radio-custom admintype-1">
+                <input type="radio" {if $item['admin_type']==2}checked="checked"{/if} name="admin_type"  value="2">
+                操作员：商品管理、订单管理、核销订单 </label>
+        </div>
+        <div class="radio">
+            <label class="radio-custom admintype-3">
+                <input type="radio" {if $item['admin_type']==3}checked="checked"{/if} name="admin_type" value="3">
+                核销员：核销订单</label>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="form-group">
+    <label class=" control-label">用户名</label>
+    <div class="input-content ">
+        <input class="form-control" name="passport" id="passport" type="text" value="{$item['passport']}">
+    </div>
+</div>
+<div class="form-group">
+    <label class=" control-label">密码</label>
+    <div class="input-content ">
+        <input class="form-control" name="password" id="password" type="password" value="{$item['password']}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class=" control-label">姓名</label>
+    <div class="input-content ">
+        <input class="form-control" name="admin_name" id="admin_name" type="text" value="{$item['admin_name']}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class=" control-label">电话</label>
+    <div class="input-content ">
+        <input class="form-control" name="mobile" id="mobile" type="text" value="{$item['mobile']}">
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="form-group">
+    <label class=" control-label">消息通知</label>
+    <div class="input-content ">
+        <input type="radio" name="msg_flag"  value="0" {if $item['msg_flag']==0}checked="checked"{/if}/> 开
+        <input type="radio" class="wl2 mar_left_10" name="msg_flag" {if $item['msg_flag']==1}checked="checked"{/if} value="1" class="radiomar"/>关
+    </div>
+</div>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <label class=" control-label">设为客服</label>
+            <div class="input-content ">
+                <input type="radio" name="customer"  value="1" {if $item['customer']==1}checked="checked"{/if}/> 是
+                <input type="radio" class="wl2 mar_left_10" name="customer" {if $item['customer']==0}checked="checked"{/if} value="0" class="radiomar"/>否
+            </div>
+        </div>
+<div class="clearfix"></div>
+<div class="form-group">
+    <label class=" control-label">状态</label>
+    <div class="input-content ">
+        <input type="radio" name="status"  value="0" {if $item['status']==0}checked="checked"{/if}/> 正常
+        <input type="radio" class="wl2 mar_left_10" name="status" {if $item['status']==1}checked="checked"{/if} value="1" class="radiomar"/>暂停
+    </div>
+</div>
+<div class="clearfix"></div>
+<input type="hidden" name="token" value="{$_W['token']}" />
+<input type="hidden" name="admin_id" value="{$item['admin_id']}" />
+<div class="form-submit">
+    <input name="submit" type="submit" value="提交" class="btn btn-primary">
+</div>
+
+
+</form>
+</div>
+
+{else}
+<ul class="fresh-comment">
+    {loop $list $item}
+    <li class="info-list" onclick="location.href='{php echo $this->createMobileUrl(shop_admin,array('op'=>'admin','post'=>'add','admin_id'=>$item['admin_id']))}'">
+            <img src="{$item['avatar']}">
+            <div class="text">
+                <h2>{if $item['nickname']}{$item['nickname']}{else}{$item['admin_name']}{/if}</h2>
+                <p>
+                    <i class="iconfont">&#xe626;</i>权限：{if $item['admin_type']==1}超级管理员{elseif $item['admin_type']==2}操作员{elseif $item['admin_type']==3}核销员{/if}
+                    <em class="ml-15">状态：{if $item['status']==0}正常{else}暂停{/if}</em>
+                </p>
+
+            </div>
+        <div class="score" onclick="downscore(this)">
+            <img src="{STYLE}images/b_down.png" >
+            <div class="down-list-pro">
+                <a href="{php echo $this->createMobileUrl(shop_admin,array('op'=>'admin','post'=>'add','admin_id'=>$item['admin_id']))}"><i class="iconfont" style="color: #4fc0ea">&#xe62d;</i>编辑</a>
+                <a href="javascript:;" onclick="deleteAdmin(this,'{$item['admin_id']}')"><i class="iconfont" style="color: #fea501">&#xe68e;</i>删除</a>
+            </div>
+
+        </div>
+
+    </li>
+   {/loop}
+</ul>
+
+
+<div id="editBlock" class="adminLink">
+    <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'admin','post'=>'add'))}">
+        <img src="{STYLE}images/b_add.png">
+    </a>
+</div>
+{/if}
+</div>
+
+
+
+{template '../mobile/block'}
+
+{template '../mobile/footer'}
+

@@ -1,0 +1,26 @@
+{template 'web/shop/shop_header'}
+{template 'web/shop/shop_left'}
+<link href="{STYLE}css/refund.css" rel="stylesheet">
+
+<style>
+  .clear {
+        clear: both;
+    }
+</style>
+   <section id="content">
+        <section class="vbox">
+          <section class="scrollable padder">
+            <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+              <li><a href="{php echo $this->createWebUrl("index")}"><i class="fa fa-home"></i>首页</a></li>
+              <li class="active">订单管理</li>             
+            </ul>
+              {template 'web/shop/order_banner'}
+
+<div class="main">
+    {template './mobile/refund_pro'}
+</div>
+</section>
+</section>
+</section>
+
+{template 'web/footer'}

@@ -1,0 +1,28 @@
+
+<div class="cate_type right input-group select_btn">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {if $_GPC['cate_type']=='0'}商铺消费
+            {elseif $_GPC['cate_type']=='1'}酒店预订
+            {elseif $_GPC['cate_type']=='2'}影院订座
+            {elseif $_GPC['cate_type']=='3'}外卖点餐
+            {elseif $_GPC['cate_type']=='4'}微商城
+            {else}请选择业务类型
+            {/if}
+
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="{php echo $this->createWebUrl($_GPC['do'], array('cate_type' => '0'))}"> 商铺消费</a></li>
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="{php echo $this->createWebUrl($_GPC['do'], array('cate_type' => '1'))}"> 酒店预订</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="{php echo $this->createWebUrl($_GPC['do'], array('cate_type' => '2'))}"> 影院订座</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="{php echo $this->createWebUrl($_GPC['do'], array('cate_type' => '3'))}"> 外卖点餐</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="{php echo $this->createWebUrl($_GPC['do'], array('cate_type' => '4'))}"> 微商城</a></li>-->
+
+        </ul>
+    </div>
+</div>

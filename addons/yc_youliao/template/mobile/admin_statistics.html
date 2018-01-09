@@ -1,0 +1,88 @@
+{template '../mobile/header'}
+<script type="text/javascript" src="{STYLE}/js/highcharts/highcharts.js"></script>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/admin_banner'}
+<div class="info-content" >
+    <div class="order-panney" >
+        <div class="order-body {if $type==0}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>$op))}'">
+            日
+        </div>
+        <div class="order-body {if $type==1}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>$op,'type'=>1))}'">
+            周
+        </div>
+        <div class="order-body {if $type==2}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>$op,'type'=>2))}'">
+            月
+        </div>
+        <div class="order-body {if $type==3}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>$op,'type'=>3))}'">
+            年
+        </div>
+
+    </div>
+
+    <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+    <script type="text/javascript">
+        $(function () {
+            $('#container').highcharts({
+                credits: {
+                    enabled:false
+                },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '{if $type==0}今日{else if $type==1}本周{else if $type==2}本月{else if $type==3}本年度{/if}{$banner_title}'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Arial Microsoft YaHei'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ''
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: '{point.y}{if $op=='account_order'}（元）{else}（条）信息{/if}</b>'
+                },
+                series: [{
+                    name: 'Population',
+                    color: '{if $op=='account_order'}#fb5100{else}#03a9f4{/if}',
+                    data: [
+                        {php $index=0}
+                        {loop $list $item}
+                            ['{$item['name']}', {if empty($item['num'])}0{else}{$item['num']}{/if}],
+                    {php $index++}
+                    {/loop}
+            ],
+            dataLabels: {
+                enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                    fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        }]
+        });
+        });
+    </script>
+{template '../mobile/footer'}
+

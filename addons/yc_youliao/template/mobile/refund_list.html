@@ -1,0 +1,24 @@
+{template '../mobile/header'}
+  
+    <div  class="my-memvers">
+    <!--count-->
+    <section class="member-count">
+
+        <div class="row member-count-row" style="margin-top: 5px;">
+            <div class="small-4 columns member-count-column" style="width: 50%;"><a href="{php echo $this->createMobileUrl('refund_list', array('status'=>'2'))}"><span class="member-count-label" style="font-size: 16px;" >
+				待审核</span><em class="member-count-number">{$count1}</em></a></div>
+            <div class="small-4 columns member-count-column" style="width: 50%;"><a href="{php echo $this->createMobileUrl('refund_list', array('status'=>'3'))}"><span class="member-count-label" style="font-size: 16px;">
+				已审核</span><em class="member-count-number">{$count2}</em></a></div>
+            </div>
+    </section>
+    <!--count-->
+
+	
+	    <section class="member-browse" style="padding: 0 5px">
+            {template 'olist'}
+    </section>
+{$pager}
+</div>
+
+{template 'wx_nav'}
+

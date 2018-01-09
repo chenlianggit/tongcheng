@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.0418it.com" versionCode="0.8,1.0">
+	<application setting="true">
+		<name><![CDATA[米花同城社区]]></name>
+		<identifie><![CDATA[yc_youliao]]></identifie>
+		<version><![CDATA[6.1.95]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[米花同城社区，同城论坛，同城生活]]></ability>
+		<description><![CDATA[米花同城社区，同城论坛，同城生活,米花同城便民]]></description>
+		<author><![CDATA[清峰科技]]></author>
+		<url><![CDATA[https://www.0418it.com]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+		<card embed="false" />
+		<supports>
+			<item type="app" />
+			<item type="wxapp" />
+		</supports>
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="手机端社区入口" do="index" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="独立后台入口" do="index" state="" direct="false" />
+		</menu>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

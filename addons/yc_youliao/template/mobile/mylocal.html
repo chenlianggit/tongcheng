@@ -1,0 +1,246 @@
+{template '../mobile/header'}
+
+<link rel="stylesheet" href="{STYLE}mui/css/mui.min.css">
+<link rel="stylesheet" href="{STYLE}css/mylocal.css">
+<div class="order-panney md-5">
+	{if $haspay==1 || $isding==1}
+	<div class="order-body {if $haspay==1}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('mylocal',array('haspay'=>1))}'">
+		发布
+	</div>
+	<div class="order-body {if $isding==1}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('mylocal',array('isding'=>1))}'">
+		置顶
+	</div>
+	{else}
+	<div class="order-body {if $status==1}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('mylocal',array('status'=>1))}'">
+		已审核
+	</div>
+	<div class="order-body {if empty($status)}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('mylocal')}'">
+		未审核
+	</div>
+	{/if}
+</div>
+
+<div class="clearfix"></div>
+	{if $mymessagelist}
+	<div id="pullup" class="mui-content">
+		<div class="mui-scroll">
+
+			<h5 class="mui-content-padded"><<< 向左滑动可编辑删除信息 <<<</h5>
+			<ul id="messagelist" class="mui-table-view">
+				{loop $mymessagelist $row}
+				{if $row['isding'] == 1 && $haspay!=1}
+				<div class="g-zd"><img  src="{STYLE}images/g_zd.png"></div>
+				<li class="mui-table-view-cell list-update" id="{$row['id']}">
+				{else}
+				<li class="mui-table-view-cell list-update" id="{$row['id']}">
+				{/if}
+
+
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-blue m-edit mui-icon mui-icon-compose" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('mylocal',array('op'=>'post','id'=>$row['id']))}"><span class="list-btn-info">编辑</span></a>
+
+						<a class="mui-btn mui-btn-green m-top mui-icon mui-icon-arrowthinup" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('mylocal',array('op'=>'zhiding','id'=>$row['id']))}"><span class="list-btn-info">置顶</span>
+						</a>
+						<a class="mui-btn mui-icon mui-icon mui-icon-loop m-update mui-btn-yellow" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('mylocal',array('op'=>'refresh','id'=>$row['id']))}" >
+							<span class="list-btn-info">刷新</span>
+						</a>
+
+						<a class="mui-btn  mui-icon mui-icon-trash m-delete mui-btn-gray" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('mylocal',array('op'=>'delete','id'=>$row['id']))}">
+							<span class="list-btn-info">删除</span>
+						</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-row">
+							<div class="mui-col-sm-12 mui-col-xs-12"><span class="list-name">[{php echo getmodulename($row['weid'],$row['mid']);}]</span>{$row['feildlist']['title']}</div>
+						</div>
+						<div class="mui-row">
+							<div class="m-5"><span>添加时间：{php echo date("Y-m-d H:i:s",$row['createtime'])}</span></div>
+							{if  $row['infoprice']>0 && $haspay==1}
+							<div class="m-5">发布支付：<span class="red">￥ {$row['infoprice']}</span></div>
+							<div class="m-5">交易时间：<span class="red">{php echo date('Y-m-d H:i:s',$row['infotime']);}</span></div>
+							{/if}
+							{if  $row['zdprice']>0 && $isding==1}
+							<div class="m-5">置顶支付：<span class="red">￥ {$row['zdprice']}</span></div>
+							<div class="m-5">交易时间：<span class="red">{php echo date('Y-m-d H:i:s',$row['zdtime']);}</span></div>
+							{/if}
+
+							{if $row['isding'] == 1 && $haspay!=1}
+							<div><span class="mui-badge left">置顶至：{php echo date('Y-m-d H:i:s',$row['dingtime']);}</span></div>
+							{/if}
+						</div>
+					</div>
+				</li>
+				{/loop}
+			</ul>
+		</div>
+	</div>
+
+	{else}
+<div class="content">
+	<div class="NotUesed2">
+		<img class="nopic" src="{STYLE}images/tuan_pic3.png" /><span class="nonetext">亲，暂时没有更多了~</span>
+	</div>
+</div>
+	{/if}
+
+<script src="{STYLE}mui/js/mui.min.js"></script>
+<script>
+	function refresh(id){
+        url:"{php echo $this->createMobileUrl('mylocal',array('op'=>'refresh'))}",
+        $.ajax({
+            url:url,
+            type:'post',
+            dataType:'json',
+            data:{id:id},
+            success:function(data){
+                if(data.error == 0){
+                    tip(data.msg);
+                    tip_close();
+                }else{
+                    tip('刷新失败');
+                    tip_close();
+                }
+
+            },
+            error:function(){
+
+            }
+
+        });
+	}
+	mui.init({
+		pullRefresh : {
+			container:'#pullup',
+			up : {
+				contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+				contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+				callback :pullupRefresh
+			}
+		}
+	});
+
+	/**
+	 * 上拉加载具体业务实现
+	 */
+	var count = 2;
+	function pullupRefresh() {
+		setTimeout(function() {
+			$.ajax({
+				url:"{php echo $this->createMobileUrl('mylocal')}",
+				data:{
+					page:count,
+					isajax:1,
+                    status:'{$status}',
+                    isding:'{$isding}',
+                    haspay:'{$haspay}',
+				},
+				dataType:'html',
+				type:'post',
+				success:function(data){
+					$('#messagelist').append(data);
+					mui('#pullup').pullRefresh().endPullupToRefresh((++count > {$allpage})); //参数为true代表没有更多数据了。
+				},
+			});
+		}, 500);
+	}
+	(function($) {
+		var btnArray = ['确认', '取消'];
+		$('#messagelist').on('tap', '.m-delete', function(event) {
+			var elem = this;
+			var li = elem.parentNode.parentNode;
+			mui.confirm('确认删除该条记录？', '删除信息', btnArray, function(e) {
+				if (e.index == 0) {
+					mui.ajax(elem.href,{
+						data:{},
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；
+						headers:{'Content-Type':'application/json'},
+						success:function(data){
+							if(data.error == 1){
+								mui.toast(data.message);
+							}else{
+								alert(data.message);
+								li.parentNode.removeChild(li);
+							}
+						},
+					});
+				} else {
+					setTimeout(function() {
+						$.swipeoutClose(li);
+					}, 0);
+				}
+			});
+		});
+        $('#messagelist').on('tap', '.m-edit', function(event) {
+            var elem = this;
+            mui.openWindow({
+                url:elem.href,
+                id:'editmessage',
+                styles:{
+                    top:'45px',//新页面顶部位置
+                    bottom:'0px',//新页面底部位置
+                },
+                createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                show:{
+                    autoShow:true,//页面loaded事件发生后自动显示，默认为true
+                    aniShow:'slide-in-top',
+                },
+                waiting:{
+                    autoShow:true,//自动显示等待框，默认为true
+                    title:'正在加载...',//等待对话框上显示的提示内容
+                }
+            })
+        });
+        $('#messagelist').on('tap', '.m-update', function(event) {
+            var elem = this;
+            var li = elem.parentNode.parentNode;
+            mui.confirm('确认刷新该条记录？', '刷新信息', btnArray, function(e) {
+                if (e.index == 0) {
+                    mui.ajax(elem.href,{
+                        data:{},
+                        dataType:'json',//服务器返回json格式数据
+                        type:'post',//HTTP请求类型
+                        timeout:10000,//超时时间设置为10秒；
+                        headers:{'Content-Type':'application/json'},
+                        success:function(data){
+                         tip(data.message);
+                         tip_close();
+
+                        },
+                    });
+                } else {
+                    setTimeout(function() {
+                        $.swipeoutClose(li);
+                    }, 0);
+                }
+            });
+        });
+
+
+
+
+        $('#messagelist').on('tap', '.m-top', function(event) {
+            var elem = this;
+            mui.openWindow({
+                url:elem.href,
+                id:'zhidingmessage',
+                styles:{
+                    top:'45px',//新页面顶部位置
+                    bottom:'0px',//新页面底部位置
+                },
+                createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                show:{
+                    autoShow:true,//页面loaded事件发生后自动显示，默认为true
+                    aniShow:'slide-in-top',
+                },
+                waiting:{
+                    autoShow:true,//自动显示等待框，默认为true
+                    title:'正在加载...',//等待对话框上显示的提示内容
+                }
+            })
+        });
+	})(mui);
+</script>
+
+{template '../mobile/footer'}

@@ -1,0 +1,11 @@
+<div class="clear relative"></div>
+<div class="footmark">
+    足迹：
+    {loop $footmark $item}
+    {if $item['type']==1}
+    <a href="{php echo $this->createMobileUrl('msglist',array('id'=>$item['id']));}">{$item['name']}</a>
+    {elseif $item['type']==2}
+    <a href="{php echo $this->createMobileUrl('good',array('id'=>$item['id']));}">{$item['name']}</a>
+    {/if}
+    {/loop}
+</div>

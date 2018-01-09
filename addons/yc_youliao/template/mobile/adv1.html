@@ -1,0 +1,43 @@
+<script type="text/javascript" src="{STYLE}js/TouchSlide.1.1.js"></script>
+<div id="viewport" class="viewport">
+    <div class="slider card card-nomb" style="visibility: visible;">
+        <div id="focus" class="focus">
+            <div class="hd">
+                <ul>
+                </ul>
+            </div>
+            <div class="bd">
+                    <ul>
+                        {php $advs= commonGetData::getAdv($adv_type);}
+                    {loop $advs $adv}
+                    {if $adv['thumb']}
+                    <li><a href="{if empty($adv['link'])}{else}{$adv['link']}{/if}">
+                        <img src="{$_W['attachurl']}{$adv['thumb']}" /></a></li>
+                    {/if}
+                    {/loop}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {if $adv['thumb'] && $adv_type!=12 && $hidewater!=1 && intval($cfg['showWater'])==0}
+    <div class="water"><div class="water-c"><div class="water-1"></div><div class="water-2"></div></div></div>
+{/if}
+
+</div>
+    <!-- banner轮播End -->
+
+<script type="text/javascript">
+    TouchSlide({
+        slideCell:"#focus",
+        titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+        mainCell:".bd ul",
+        delayTime:600,
+        interTime:4000,
+        effect:"leftLoop",
+        autoPlay:true,//自动播放
+        autoPage:true, //自动分页
+        switchLoad:"_src" //切换加载，真实图片路径为"_src"
+    });
+</script>
+<div class="clearfix"></div>
+

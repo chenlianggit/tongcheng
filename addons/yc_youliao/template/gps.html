@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="am-touch js cssanimations">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1,user-scalable=no">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{if !empty($title)}{$title}{else}{php echo $this->module['config']['index_title']}{/if}</title>
+    <meta name="keywords" content="{$title}" />
+    <meta name="description" content="{$setting['title']}--{$title}" />
+    <script type="text/javascript" src="{STYLE}js/jquery-2.1.4.min.js"></script>
+    <script>
+        var deviceWidth = document.documentElement.clientWidth;
+        document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+    </script>
+    <link rel="stylesheet" type="text/css" href="{STYLE}css/footer.css"/>
+    <link rel="stylesheet" href="../addons/yc_youliao/public/css/common.css" type="text/css" />
+    <link rel="stylesheet" href="../addons/yc_youliao/public/css/detail.css" type="text/css" />
+
+</head>
+<body>
+
+<link rel="stylesheet" href="{STYLE}css/detail.css"/>
+<script type="text/javascript" src="{php echo $this->mapUrl()}"></script>
+<div id="search">
+    <div class="span12 title textellipsis2 showlocation"><img src="{STYLE}images/list_icon.png">您的位置
+        <input type="text" id="start" placeholder="正在定位您的位置..."  /></div>
+
+    <input type="hidden" id="end" value="{$formatted_address}" readonly="true" />
+    <input type="hidden" id="start_point" value=""/>
+    <input type="hidden" id="end_point" value="{$lng},{$lat}"/>
+    <input type="hidden" id="start_location" value=""/>
+    <div class="btn-group">
+        <button id="bus-search">公交</button>
+        <button id="driver-search">驾车</button>
+        <button id="walk-search">步行</button>
+    </div>
+</div>
+<div id="showMap" class="hide">
+    <div class="nav">
+        <div class="nav-inner">
+            <div class="nav-sub"><a href="#" class="bus"><i></i></a></div>
+            <div class="nav-sub"><a href="#" class="driver cur"><i></i></a></div>
+            <div class="nav-sub"><a href="#" class="walk"><i></i></a></div>
+        </div>
+        <!-- <a href="javascript:;" id="reLocation">重新导航</a> -->
+    </div>
+    <div id="l-map"></div>
+    <div id="r-result"></div>
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+
+        var ep = $("#end_point").val().split(",");
+        var map = new BMap.Map("l-map");
+        var point = new BMap.Point(ep[0], ep[1]);
+        map.centerAndZoom(point, 16);
+
+        // 定位对象
+        var geoc = new BMap.Geocoder();
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                //var mk = new BMap.Marker(r.point);
+                //map.addOverlay(mk);
+                //map.panTo(r.point);
+                $("#start_point").val(r.point.lng+','+r.point.lat);
+                setLocation(r.point);
+                showMap();
+
+            }else {
+                $("#start").attr("placeholder","请输入您的当前位置")
+                alert('无法定位到您的当前位置，导航失败，请手动输入您的当前位置！'+this.getStatus());
+            }
+        },{enableHighAccuracy: true});
+
+        $(".nav .nav-sub a").click(function(){
+            $(".nav .nav-sub a").removeClass('cur');
+            $(this).addClass('cur');
+            searchRoute();
+        })
+
+        $("#reLocation").click(function(){
+            reLocation();
+        });
+
+        $("#bus-search,#driver-search,#walk-search").click(function(){
+            var id = $(this).attr("id");
+            $(".nav .nav-sub a").removeClass('cur');
+            if(id == "bus-search"){
+                $(".nav .nav-sub a.bus").addClass('cur');
+            }else if(id == "driver-search"){
+                $(".nav .nav-sub a.driver").addClass('cur');
+            }else if(id == "walk-search"){
+                $(".nav .nav-sub a.walk").addClass('cur');
+            }
+            showMap();
+        })
+
+        function reLocation(){
+            $("#search").show();
+            $("#showMap").hide();
+            map = new BMap.Map("l-map");
+        }
+
+        function showMap(){
+            $("#srarch").hide();
+            $("#showMap").show();
+            searchRoute();
+        }
+
+        function setLocation(point){
+            geoc.getLocation(point, function(rs){
+                var addComp = rs.addressComponents;
+                var result = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+                $("#start").val(result);
+                $("#start_location").val(result);
+                searchRoute();
+            });
+        }
+
+        function searchRoute(s_, e_){
+            map = new BMap.Map("l-map");
+            var cur = $(".nav .nav-sub a.cur");
+            var type = "";
+
+            if(cur.hasClass('bus')){
+                type = "bus";
+            }else if(cur.hasClass('driver')){
+                type = "driver";
+            }else if(cur.hasClass('walk')){
+                type = "walk";
+            }else{
+                type = "driver";
+            }
+
+            var s_;
+            var e_;
+
+            var sl = $("#start_location").val();
+            var s = $("#start").val();
+            var sp = $("#start_point").val();
+            var e = $("#end").val();
+            var ep = $("#end_point").val();
+
+            if(s != sl){// 如果用户修改了地址（与定位的位置不一致）则使用地址搜索
+                s_ = s;
+                e_ = e;
+            }else if(sp){// 否则使用坐标搜索
+                var ps = sp.split(",");
+                var pe = ep.split(",");
+                s_ = new BMap.Point(ps[0], ps[1]);
+                e_ = new BMap.Point(pe[0], pe[1]);
+            }
+
+            if(type == "bus"){
+                var transit = new BMap.TransitRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
+                transit.search(s_, e_);
+            }else if(type == "driver"){
+                var driving = new BMap.DrivingRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
+                driving.search(s_, e_);
+            }else if(type == "walk"){
+                var walking = new BMap.WalkingRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
+                walking.search(s_, e_);
+            }
+        }
+    })
+
+</script>
+{template '../mobile/footer'}

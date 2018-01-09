@@ -1,0 +1,32 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/shop_admin/shop_admin_banner'}
+<div class="info-content">
+<ul class="fresh-comment">
+    {loop $list $item}
+    <li class="info-list">
+            <img src="{$item['avatar']}">
+            <div class="text">
+                <h2>{$item['nickname']}</h2>
+                <p>
+                    <i class="iconfont">&#xe647;</i>消费:{$item['amount']}元<em class="ml-15"><i class="iconfont">&#xe637;</i>消费:{$item['num']}次</em>
+                </p>
+
+            </div>
+
+
+    </li>
+   {/loop}
+</ul>
+</div>
+<script>
+    $(function(){
+        var url=createAppUrl('shop_admin','fans');
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        var page = 1;
+        pagelist(page,url,'.info-content','.fresh-comment','shop_fans');
+    })
+</script>
+{template '../mobile/footer'}
+

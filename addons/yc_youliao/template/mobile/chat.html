@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html style="font-size: 32px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <script>
+        !function (n) {
+            var e = n.document, t = e.documentElement, i = 720, o = i / 32, a = "orientationchange" in n ? "orientationchange" : "resize", d = function () {
+                var n = t.clientWidth || 320, n = n > 720 ? 720 : 320 > n ? 320 : n;
+                t.style.fontSize = n / o + "px"
+            };
+            e.addEventListener && n.addEventListener(a, d, !1), d()
+        }(window);
+    </script>
+    <link href="" rel="shortcut icon">
+    <link rel="apple-touch-icon" href="">
+    <link rel="apple-touch-icon" sizes="72x72" href="">
+    <link rel="apple-touch-icon" sizes="114x114" href="">
+    <link rel="apple-touch-icon" sizes="144x144" href="">
+    <script type="text/javascript" src="{STYLE}js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="{STYLE}js/common.js"></script>
+    <script type="text/javascript" src="{STYLE}js/jquery.emoticons.js"></script>
+    <script type="text/javascript" src="{STYLE}js/mobile_basic.js"></script>
+    <link rel="stylesheet" type="text/css" href="{STYLE}css/common.css">
+    <link rel="stylesheet" type="text/css" href="{STYLE}css/chat.css">
+    {php echo register_jssdk(false);}
+    <title>{$touser['nickname']}</title>
+    <script>
+        wx.ready(function () {
+            var c=window.location.href;
+            sharedata = {
+                title: "{if !empty($share_title)}{$share_title}{else}{php echo $this->module['config']['share_title']}{/if}",
+                desc: "{if !empty($share_info)}{$share_info}{else}{php echo $this->module['config']['share_info']}{/if}",
+                link: '{$share_link}',
+                imgUrl: "{if !empty($share_img)}{php echo tomedia($share_img)}{else}{php echo tomedia($this->module['config']['share_img'])}{/if}",
+                success: function(){
+            },
+            cancel: function(){
+            }
+        };
+        });
+    </script>
+</head>
+
+<body>
+    {template '../mobile/top_btn'}
+    <div class="chat">
+        <div class="topBox">
+            <div class="scroll-content">
+                <div class="chatContent">
+
+                    {if $chatcon} {loop $chatcon $row}
+
+                    <div class="clearfix slideInUp">
+                        {if $row['openid'] != $openid}
+                        <div class="message">{else}
+                            <div class="message me">{/if}
+                                <div class="avatar" data-author-id="me">
+                                    <img src="{$row['avatar']}" />
+                                </div>
+                                <div class="content">
+                                    <p class="author_name">
+                                        {$row['nickname']}
+                                        <time style="font-size:0.7rem;margin-left:0.5rem;">{php echo date('Y-m-d H:i:s',$row['time'])}</time>
+                                    </p>
+                                    {if $row['openid'] != $openid}
+                                    <div class="bubble bubble_default left">{else}
+                                        <div class="bubble bubble_primary right">{/if}
+                                            {if $row['flag'] == 0}
+                                            <div class="bubble_cont">
+                                                <div class="plain">
+                                                    <p>{$row['content']}</p>
+                                                </div>
+                                            </div>{elseif $row['flag'] == 1}
+                                            <div class="chat-img">
+                                                <img src="{php echo tomedia($row['content'])}" alt="">
+                                            </div>{/if}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/loop} {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="bombox">
+                    <div class="ipWap">
+                        <img src="{STYLE}images/emotion.png" class="emo"></span>
+                        <div class="flex">
+                            <input type="text" class="input" id="chatvalue"/>
+                        </div>
+                        <div class="sendBox">
+                            <button class="send" id='btnSend'>发送</button>
+                            <img src="{STYLE}images/addImg.png" class="sendImg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="toopenid" value="{$toopenid}" />
+            <input type="hidden" id="timestamp" value="{$timestamp}" />
+            <input type="hidden" id="maxid" value="{$maxid}" />
+            <script type="text/javascript">
+                var datamsg = '';
+                var emoApi = null
+                // 图片上传要len, 实际没作用
+                var len = 0
+                function initTxt(api, str) {
+                    return api.format(str)
+                }
+                $(function () {
+                    $('#chatvalue').on('input', function (e) {
+                        if(e.target.value.length > 0) {
+                          $('.sendImg').fadeOut(200)
+                          $('.send').fadeIn(200)
+                        } else {
+                          $('.send').fadeOut(200)
+                          $('.sendImg').fadeIn(200)
+                        }
+                    })
+                    $('.bombox').on('click', 'li',function () {
+                        $('.sendImg').fadeOut(200)
+                        $('.send').fadeIn(200)
+                    })
+                    $("#btnSend").click(function () {
+                        sendMsg({flag:0})
+                    })
+                    $('.sendImg').on('touchend', function () {
+                        var url = "{php echo $this->createMobileUrl('releasehtml',array( 'op' => 'getmedia'))}"
+				        var toLen = function () {
+				        }
+				        var success = function (data) {
+                            sendMsg({flag:1,url: data.realimgurl})
+				        }
+				        uploadImgByWx({url: url, toLen: toLen, success: success })
+                    })
+                    $.emoticons({
+                        'activeCls': 'active',
+                        'triggerCls': 'emo',
+                        'publisherCls': 'bombox',
+                        'path': '{STYLE}images/emotion/'
+                    }, function (api) {
+                        emoApi = api
+                        $('.message .plain').each(function (i, v) {
+                            $(this).html(api.format(v.innerHTML))
+                        })
+                        calcH()
+                        shuaxin();
+                    });
+                })
+                function sendMsg (options) {
+                    var data
+                    if (options.flag == 0) {
+                        $(this).attr("disabled", "disabled");
+                        var con = $('#chatvalue').val();
+                        $('#chatvalue').val("");
+                        $('.send').fadeOut(200)
+                        $('.sendImg').fadeIn(200)
+                        if (con == "") return;
+                        data = {
+                            toopenid: $('#toopenid').val(),
+                            content: con,
+                            flag: 0
+                        }
+                    } else {
+                        data = {
+                            toopenid: $('#toopenid').val(),
+                            content: options.url,
+                            flag: 1
+                        }
+                    }
+                    $.ajax({
+                        url: "{php echo $this->createMobileUrl('chat',array('op'=>'addchat'))}",
+                        type: 'post',
+                        data: data,
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.error == 1) {
+                                tip(data.msg);
+                                tip_close();
+                            } else {
+                                var str = emoApi.format(data.msg)
+                                $('.chatContent').append('<div class="nowreaply">' + str + '</div>');
+                                $('#maxid').val(data.maxid);
+                                $('.scroll-content').scrollTop($('.chatContent')[0].offsetHeight - $('.scroll-content')[0].offsetHeight);
+                            }
+
+                        },
+                        error: function () {
+
+                        }
+
+                    });
+                }
+                function shuaxin() {
+                    var maxid = $('#maxid').val();
+                    $.ajax({
+                        url: "{php echo $this->createMobileUrl('chat',array('op'=>'say'))}" + '&maxid=' + maxid,
+                        type: 'post',
+                        data: {
+                            toopenid: $('#toopenid').val(),
+                            timestamp: $('#timestamp').val(),
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.msg != null && data.msg != '') {
+                                if (datamsg != data.msg || datamsg == '') {
+                                    // $(".nowreaply").remove();
+                                    var msg = emoApi.format(data.msg)
+                                    $('.chatContent').append(msg);
+                                    datamsg = data.msg;
+                                   $('.scroll-content').scrollTop($('.chatContent')[0].offsetHeight - $('.scroll-content')[0].offsetHeight);
+                                }
+                                
+                            }
+                            $('#timestamp').val(data.timestamp);
+                            setTimeout(function() {
+                                shuaxin()
+                            }
+                            , 3000);
+
+                        }
+
+                    });
+                    $("#btnSend").removeAttr("disabled");
+                }
+                
+                function calcH () {
+                    var topH = document.body.offsetHeight - 60
+                    $('.topBox').css({height: topH + 'px'})
+                    $('.scroll-content').scrollTop($('.chatContent')[0].offsetHeight - $('.scroll-content')[0].offsetHeight);
+                    $('.emo').on('click', handleH)
+                    $('.input').on('click', handleH)
+                    function handleH() {
+                        if(!$(this).hasClass('active')){
+                            $('.topBox').css({height: topH + 'px'})
+                        } else {
+                            $('.topBox').css({height: topH - $.emoticons.height + 'px'})
+                        }
+                    }
+                    $('.scroll-content').on('click',function(e){
+                        if ($('.emo').hasClass('active')){
+                            console.log(1)
+                            $('.topBox').css({height: topH + 'px'})
+                        }
+                    })
+                }
+                var h = document.body.scrollHeight
+                window.addEventListener('resize', () => {
+                    if (document.body.scrollHeight < h) {
+                        var topH = document.body.offsetHeight - 60
+                        $('.topBox').css({transition: 'none'})
+                        $('.topBox').css({height: topH + 'px'})
+                    } else {
+                        var topH = document.body.offsetHeight - 60
+                        $('.topBox').css({height: topH + 'px'})
+                        $('.topBox').css({transition: 'height 0.3s'})
+                    }
+                })
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+{template '../mobile/header'}
+<link  href="{MIHUA_STYLE}css/admin.css" rel="stylesheet" type="text/css">
+<link  href="{MIHUA_STYLE}css/pay.css" rel="stylesheet" type="text/css">
+{if $_GPC['do'=='admin']}
+{template '../mobile/admin_banner'}
+{else}
+{template '../mobile/shop_admin/shop_admin_banner'}
+{/if}
+<div class="info-content " >
+<div class="pay-info">
+<div class="header">
+{if $item['logo']}
+    <a href="{php echo $this->createMobileUrl('shop', array('shop_id' => $item['shop_id']))}">
+        {if $item['logo']}
+        <img class="radius_50" src="{$_W['attachurl']}{$item['logo']}">
+        {else}
+        <img src="{MIHUA_STYLE}images/shop.png">
+        {/if}
+        <div class="name">{$item['shop_name']}</div>
+        </a>
+{/if}
+    <div class="money">￥{$item['price']}</div>
+  
+</div>
+
+<ul class="content">
+    <li>
+        <div class="info-left">缴费类型</div>
+        <div class="info-right">{if $item['flag']==0}入驻{elseif $item['flag']==1}续期{/if}</div>
+    </li>
+
+    <li>
+        <div class="info-left">缴费日期</div>
+        <div class="info-right">{php echo date('Y-m-d',$item['starttime'])} ~ {php echo date('Y-m-d',$item['endtime'])}</div>
+    </li>
+    <li>
+    <div class="info-left">支付方式</div>
+    <div class="info-right">
+        {if $item['paytype']=='1'}
+       余额
+        {elseif $item['paytype']=='2'}
+        微信
+
+        {else if $item['paytype']=='3'}
+        支付宝
+
+        {else if $item['paytype']=='4'}
+        银行卡
+
+       {/if}
+    </div>
+
+    </li>
+<li>
+    <div class="info-left">提现编号</div>
+    <div class="info-right">{$item['ordersn']}</div>
+</li>
+
+<li>
+    <div class="info-left">支付状态</div>
+    <div class="info-right">{if $item['status']==0}未支付{elseif $item['status']==1}<em class="green">已支付</em>{/if}</div>
+</li>
+<div class="line"></div>
+    <li>
+        <div class="info-left">商户名称</div>
+        <div class="info-right">{$item['shop_name']}</div>
+    </li>
+    <li>
+        <div class="info-left">操作人</div>
+        <div class="info-right"><img class="account-avatar mr_10" src="{$item['avatar']}"/>{$item['nickname']}</div>
+    </li>
+    <li>
+        <div class="info-left">提交时间</div>
+        <div class="info-right">{php echo date('Y-m-d H:i',$item['createtime'])}</div>
+    </li>
+
+
+
+{if $item['check_admin']}
+<div class="line"></div>
+<li>
+    <div class="info-left">处理人</div>
+    <div class="info-right"><img class="account-avatar mr_10" src="{$item['check_avatar']}"/>{$item['check_nickname']}</div>
+</li>
+
+<li>
+    <div class="info-left">处理时间</div>
+    <div class="info-right">{php echo date('Y-m-d H:i',$item['checktime'])}</div>
+</li>
+{/if}
+</ul>
+
+
+</div>
+
+</div>
+{template '../mobile/footer'}

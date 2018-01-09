@@ -1,0 +1,55 @@
+<div class="form-group">
+    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否参与秒杀</label>
+    <div class="col-sm-9 col-xs-12">
+        <label for="is_time" class="radio-inline op-toggle-1"><input type="radio" name="is_time" value="1" {if  $item['is_time'] == 1}checked="true"{/if}  /> 参与</label>
+        &nbsp;&nbsp;&nbsp;
+        <label for="is_time" class="radio-inline op-toggle-2"><input type="radio" name="is_time" value="0"  {if !empty($item['is_time']) && $item['is_time'] == 0}checked="true"{/if} /> 不参与</label>
+
+    </div>
+</div>
+<div class="cotent-toggle">
+<div class="form-group ">
+    <label class="col-xs-12 col-sm-3 col-md-2 control-label">秒杀起始日期</label>
+
+    <div class="col-md-4">
+{php echo tpl_form_field_date('datestart', !empty($item['datestart']) ? date('Y-m-d',$item['datestart']) : date('Y-m-d'), 0)} -
+    </div>
+    <div class="col-md-4">
+  {php echo tpl_form_field_date('dateend', !empty($item['dateend']) ? date('Y-m-d',$item['dateend']) : date('Y-m-d'), 0)} -
+    </div>
+
+
+</div>
+
+<div class="form-group">
+    <label class="col-xs-12 col-sm-3 col-md-2 control-label">秒杀专场</label>
+    <div class="col-md-6">
+        <select class="form-control tpl-category-parent" id="time_id" name="time_id">
+            {loop $timelist $time}
+            <option {if $time['time_id']==$item['time_id']} selected{/if} value="{$time['time_id']}">{$time['timestart']}: 00~{$time['timeend']}: 00</option>
+            {/loop}
+        </select>
+    </div>
+</div>
+    <div class="form-group">
+        <label class="col-xs-12 col-sm-3 col-md-2 control-label">秒杀价格</label>
+        <div class="col-sm-8">
+            <div class="col-sm-6 input-group">
+                <input type="text" onkeyup="clearNoNum(this);" name="time_money"  class="form-control" value="{$item['time_money']}" />
+                <span class="input-group-addon">元</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="mt_10"></div>
+    <div class="form-group">
+        <label class="col-xs-12 col-sm-3 col-md-2 control-label">秒杀数量</label>
+        <div class="col-sm-8">
+            <div class="col-sm-6 input-group">
+                <input type="text" onkeyup="clearNoNum(this);" name="time_num"  class="form-control" value="{$item['time_num']}" />
+                <span class="input-group-addon">件</span>
+            </div>
+
+        </div>
+    </div>
+</div>

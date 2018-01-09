@@ -1,0 +1,136 @@
+body,html{
+  height: 100%;
+}
+.contentBox{
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  padding-top: 10px;
+}
+.contentBox .title {
+    font-size: 16px;
+    text-align: center;
+    line-height: 16px;
+    padding: 10px 0;
+    color: #222;
+    margin-top: 50px;
+}
+.contentBox .des{
+  font-size: 12px;
+  line-height: 12px;
+  color: #666;
+  text-align: center;
+  clear: both;
+}
+.contentBox .content{
+  font-size: 13px;
+  padding: 10px 20px;
+  line-height: 22px;
+  color: #222;
+}
+a{
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+body,html{
+  height: 100%;
+}
+.conWap{
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+.listWap{
+  padding-top: 20px;
+
+}
+.listWap .list{
+  margin: 0 2%;
+  background-color: #fff;
+  padding: 0 10px;
+  border-radius: 6px;
+  box-shadow: 1px 2px 6px rgba(0,0,0,.3);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.list .top{
+  border-bottom: 1px solid #eee;
+  display: flex;
+  padding: 10px 0;
+}
+.list .icon{
+  width: 16px;
+  height: 16px;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: middle
+}
+.list .title{
+  flex: 1;
+  padding-left: 12px;
+  line-height: 18px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  border-left: 3px solid #2196F3;
+
+}
+.list .time{
+  font-size: 12px;
+  line-height: 18px;
+  color: #999;
+}
+.list .bom{
+  padding-top: 10px;
+}
+.list .bom .er{
+  padding: 9px 0;
+  font-size: 12px;
+  line-height: 12px;
+  color: #999;
+}
+.list .bom .content{
+  font-size: 12px;
+  line-height: 20px;
+  color: #333;
+  max-height: 40px;
+  overflow: hidden;
+  text-indent: 2em;
+}
+.loading{
+  padding: 10px 0;
+  text-align: center;
+  display: none;
+}
+.loadImg{
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  transform: rotate(0);
+  animation: circle 1s linear infinite;
+  -webkit-animation: circle 1s linear infinite; /* Safari and Chrome */
+}
+@keyframes circle
+{
+  from {transform: rotate(0)}
+  to {transform: rotate(360deg)}
+}
+@-webkit-keyframes circle /* Safari and Chrome */
+{
+  from {transform: rotate(0)}
+  to {transform: rotate(360deg)}
+}
+.msg_more {
+  float: right;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.msg_more img {
+  width: 30px;
+  height: 30px;
+}

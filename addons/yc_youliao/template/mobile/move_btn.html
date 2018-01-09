@@ -1,0 +1,63 @@
+{if $cfg['show_service']==0 ||  ($cfg['show_service']==2 && $_GPC['do']=='index')}
+{if !empty($cfg['service_btn']) && $service_flag!=1}
+{php $w=$cfg['service_w']; $h=$cfg['service_h'];$b=$cfg['service_b']; $l=$cfg['service_l'];}
+<div id="service_btn"  style="{if !empty($w) && !empty($h)}width:{$w}px; height:{$h}px;{/if} {if !empty($b) }bottom: {$b}px;{/if} {if !empty($l) }left: {$l}px;{/if}">
+	<a href="{if !empty($cfg['service_link'])}{php echo $cfg['service_link']}{else}#{/if}">
+		<img src="{php echo tomedia($cfg['service_btn'])}"
+      style="{if !empty($w) && !empty($h)}width:{$w}px; height:{$h}px;{/if}  "></a>
+</div>
+{/if}
+{elseif $_GPC['do']=='good' || $_GPC['do']=='shop'}
+{php $serviceadmin=$this->getCustomerById($_GPC['shop_id']);}
+{if   $serviceadmin}
+{php $w=$cfg['service_w']; $h=$cfg['service_h'];$b=$cfg['service_b']; $l=$cfg['service_l'];}
+<div id="service_btn" >
+	{loop $serviceadmin $a}
+	<a href="{php echo $this->createMobileUrl('chat',array('toopenid'=>$a['openid']))}">
+		<img src="{php echo tomedia($cfg['shop_service_btn'])}" onerror="this.src='{$a['avatar']}'; this.style='border-radius:50%;box-shadow: 1px 2px 2px #777;'" ></a>
+	{/loop}
+</div>
+{/if}
+<div style="display:none;">
+	touchstart,touchmove,
+	touchend,touchcancel
+</div>
+<script type="text/javascript">
+var canmore = false;
+$(function(){	
+	var block = document.getElementById("service_btn");
+  var oW,oH;
+  // 绑定touchstart事件
+  block.addEventListener("touchstart", function(e) {
+   console.log(e);
+   var touches = e.touches[0];
+   oW = touches.clientX - block.offsetLeft;
+   oH = touches.clientY - block.offsetTop;
+   //阻止页面的滑动默认事件
+   document.addEventListener("touchmove",defaultEvent,false);
+  },false)
+ 
+  block.addEventListener("touchmove", function(e) {
+   var touches = e.touches[0];
+   var oLeft = touches.clientX - oW;
+   var oTop = touches.clientY - oH;
+   if(oLeft < 0) {
+    oLeft = 0;
+   }else if(oLeft > document.documentElement.clientWidth - block.offsetWidth) {
+    oLeft = (document.documentElement.clientWidth - block.offsetWidth);
+   }
+   block.style.left = oLeft + "px";
+   block.style.top = oTop + "px";
+  },false);
+   
+  block.addEventListener("touchend",function() {
+   document.removeEventListener("touchmove",defaultEvent,false);
+  },false);
+  function defaultEvent(e) {
+   e.preventDefault();
+  }
+})
+</script>
+
+
+{/if}

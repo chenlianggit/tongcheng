@@ -1,0 +1,333 @@
+html,body{
+  height: 100%;
+}
+.c-wrapper{
+  width: 100%;
+}
+.c-wrapper .list{
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+.noboxshadow{
+  box-shadow: none;
+}
+.c-wrapper .list .c-left{
+  float: left;
+  padding-right: 6px;
+}
+.c-wrapper .list .c-left .avatar{
+  width: 40px;
+  height: 40px;
+  background-color: beige;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.c-wrapper .list img{
+  width: 100%;
+  height: 100%;
+}
+.c-wrapper .list .c-right {
+  overflow: hidden;
+}
+.c-wrapper .list .c-title{
+  padding-top: 3px;
+  font-size: 14px;
+  color: #5B749D;
+  line-height: 16px;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+.c-wrapper .list .c-title .desWap{
+  float: right;
+}
+.c-wrapper .list .c-title .name{
+  float: left;
+  width: 50%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.c-wrapper .list .c-title .distance{
+  color: #888;
+  font-size: 12px;
+  padding-right: 10px;
+}
+.c-wrapper .list .c-title .hot{
+  font-size: 12px;
+  color: #fb5100;
+}
+.c-wrapper .list .c-content{
+  font-size: 14px;
+  color: #222;
+  line-height: 18px;
+}
+.c-wrapper .list .c-imgs{
+  font-size: 0;
+}
+.c-wrapper .list .c-imgs .img{
+  display: inline-block;
+  width: 1.80rem;
+  margin-right: 0.1rem;
+  margin-bottom: 0.1rem;
+  height: 1.80rem;
+}
+.c-wrapper .list .c-imgs .img:nth-child(-n + 3) {
+  margin-top: 5px;
+}
+.c-wrapper .list .c-imgs .img:nth-child(3n) {
+  margin-right: 0;
+}
+.c-wrapper .list .des{
+  font-size: 12px;
+  line-height: 16px;
+  background: #FF9800;
+  justify-content: space-between;
+  padding: 2px ;
+  width: 80px;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+}
+.c-wrapper .list .gray{
+  font-size: 12px;
+  line-height: 16px;
+  background: #FF9800;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 2px;
+  background: #b5b4b4;
+  width: 80px;
+  text-align: center;
+  color: #fff;
+}
+.c-wrapper .list .des .icon{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("./money.png") no-repeat;
+  background-size: cover;
+  vertical-align: top;
+}
+div#editBlock{
+  width: 85px;
+  height: 85px;
+  box-shadow: none;
+}
+div#editBlock img{
+  width: 80px;
+  height: 80px;
+  box-shadow: none;
+}
+.redPacket{
+  height: 100%;
+  overflow: hidden;
+  background-color: #F7F0F2;
+}
+.redPacket .selectWap{
+  background-color: #CF3A50;
+  display: flex;
+  position: relative;
+}
+.redPacket .selectWap .mask{
+  position: absolute;
+  height: 4px;
+  width: 33.3%;
+  bottom: 0;
+  transition: transform 0.3s;
+  background-color: #FBD49D;
+}
+.redPacket .select{
+  flex: 1;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #f2baba;
+  text-align: center;
+}
+.redPacket .select.checked{
+  color: #FBD49D;
+}
+.redPacket .content{
+  padding-bottom: 70px;
+}
+.redPacket .content .conBoxWap{
+  width: 300%;
+  display: flex;
+  transition: transform 0.3s;
+  overflow: hidden;
+}
+.redPacket .content .conBox{
+  width: 33.333%
+}
+.redPacket .content .conBox.checked{
+  /* display: block; */
+}
+.redPacket .txtWap {
+  padding: 16px;
+  display: flex;
+  font-size: 0;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+.redPacket .txtWap .txt,.redPacket .txtWap .c-right{
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000;
+}
+.redPacket .txtWap .c-right .input{
+  display: inline-block;
+  text-align: right;
+  font-size: 16px;
+  line-height: 16px;
+  color: #666;
+  border: none;
+  outline: none;
+  width: 100px;
+  margin-right: 10px;
+}
+.redPacket .txtWap.kl .c-right{
+  flex: 1;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.redPacket .txtWap.kl .c-right .input{
+  width: 100%;
+  text-align: left;
+}
+.redPacket .des{
+  font-size: 12px;
+  line-height: 12px;
+  padding: 10px;
+  color: #808080;
+}
+.redPacket .payBtn{
+  border: none;
+  width: 90%;
+  height: 46px;
+  line-height: 46px;
+  background-color: #E79CA7;
+  text-align: center;
+  border-radius: 6px;
+  position: fixed;
+  bottom: 70px;
+  left: 5%;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 6px;
+}
+.redPacket .payBtn.sure{
+  background-color: #CE3B4D;
+}
+.redPacket .infoWap{
+  padding-top: 10px;
+  width: 100%;
+}
+.redPacket .txtarea{
+  border: none;
+  outline: none;
+  resize: none;
+  width: 100%;
+  color: #666;
+  font-size: 14px;
+  padding: 10px 1%;
+  line-height: 24px;
+  resize: none;
+  height: auto;
+  min-height: 160px;
+  background: #fff;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.weui-uploader__input-box {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  float: right;
+}
+.weui-uploader__bd {
+ margin: 0;
+}
+.feed_header button {
+  display: block;
+  width: 60%;
+  clear: both;
+  line-height: 35px;
+  border: none;
+  color: #fff;
+  margin: 4% 20%;
+  font-size: 16px;
+}
+.ml_10{
+  margin-left: 10px;
+  padding-top: 10px;
+}
+.switchWrapper .switchBox{
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+.switchWrapper .switchBox.checked{
+  background-color: #CF3A50;;
+  border-color: #CF3A50;;
+}
+.switchWrapper .switchBox:after{
+  content: " ";
+  border-radius: 100%;
+  top: 5px;
+  left: 5px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s,-webkit-transform .2s;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+.switchWrapper .switchBox.checked:after{
+  background-color: #fff;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.switchWrapper .switchBox .switch{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  opacity: 0;
+}
+.switchWrapper{
+  padding: 10px;
+  display: flex;
+  font-size: 13px;
+  line-height: 16px;
+}
+.switchWrapper{
+  line-height: 20px;
+}
+.switchWrapper .lab{
+  line-height: 20px;
+  height: 20px;
+  flex: 1;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+.c-wrapper .list .my-gallery{
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  float: none;
+}

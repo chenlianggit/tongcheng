@@ -1,0 +1,129 @@
+{template '../mobile/header'}
+{template '../mobile/top_btn'}
+	<link rel="stylesheet" href="{STYLE}weui/css/weui.min.css">
+	<link rel="stylesheet" href="{STYLE}weui/css/jquery-weui.min.css">
+	<link rel="stylesheet" href="{STYLE}weui/css/messi.css">
+	<link rel="stylesheet" href="{STYLE}css/fix.css">
+	<link rel="stylesheet" href="{STYLE}css/pubEdit.css">
+<script type="text/javascript" src="{php echo $this->mapUrl()}"></script>
+<div class="weui-content" >
+	<form id="fieldsform" action="{php echo $this->createMobileUrl('addmsg')}" method="POST">
+		<input type="hidden" name="lng" id="lng" value="" />
+		<input type="hidden" name="lat" id="lat" value="" />
+		<input type="hidden" name="province" id="province" value="" />
+		<input type="hidden"  name="city" id="city" value="" />
+		<input type="hidden"  name="district" id="district" value="" />
+		<div>
+
+				  <div class="weui-cells">
+				<div class="weui-cell__bd">
+				  <select id="mid" name="mid" class="weui-select pl-50" onchange="getreleasehtml($(this).val());">
+					<option value="0">请选择频道</option>
+					{loop $modulelist $item}
+						{if $item['children']}
+							<optgroup label="{$item['name']}">
+								{loop $item['children'] $mrowrow}
+								<option value ="{$mrowrow['id']}" {if $_GPC['mid'] == $mrowrow['id']}selected="selected"{/if}>┗ {$mrowrow['name']}</option>
+								{/loop}
+							</optgroup>
+						{else}
+							<option value="{$item['id']}" {if $_GPC['mid'] == $item['id']}selected="selected"{/if}>{$item['name']}</option>
+						{/if}
+					{/loop}
+				  </select>
+				</div>
+			  </div>
+
+			</div>
+		<div class="weui-cells weui-cells_form">
+			<div class="weui-cell address-input" >
+				<div class="weui-cell__hd">
+
+				</div>
+				<div class="weui-cell__bd" onclick="location.href='{php echo $this->createMobileUrl('changeadd')}'" >
+					<div  class="seleSj">
+						<img src="{STYLE}images/location_3.png"/><span id="localnow"></span>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+			<div id="releasehtml">
+				<div class="weui-loadmore">
+				  <i class="weui-loading"></i>
+				  <span class="weui-loadmore__tips">正在加载</span>
+				</div>
+			</div>
+
+
+			<div  class="pd-15"></div>
+
+				<button type="submit" class="weui-btn_primary dosub mihua-btn">提 交<i class="weui-icon-success-circle"></i></button></button>
+	</form>
+		</div>
+
+</div>
+
+
+
+<script src="{STYLE}weui/jquery-weui.min.js"></script>
+<script src="{STYLE}weui/city-picker.min.js"></script>
+<script type="text/javascript" src="{STYLE}weui/jquery.form.js"></script>
+<script src="{STYLE}weui/fastclick.js"></script>
+<script>
+
+function getreleasehtml(mid){
+	$('#releasehtml').show();
+	$.ajax({
+		url:"{php echo $this->createMobileUrl('releasehtml')}",
+		type:'post',
+		data:{
+			id:mid,
+		},
+		dataType:'html',
+		success:function(data){
+			$('#releasehtml').html(data);
+		}
+	});
+}
+
+getreleasehtml($("[name='mid']").val());
+
+$("#fieldsform").ajaxForm({
+	type: "POST",
+	dataType:"json",
+    error:function(xhr){alert('发生错误：'+xhr.responseText);},
+	beforeSubmit: function(){
+		$('.dosub').attr("disabled","disabled");
+	},
+	success: function(data) {
+		if(data.error == 1){
+			$.alert(data.message);
+			$('.dosub').removeAttr("disabled");
+		}else{
+			$.alert(data.message,function(){
+				if(data.ispay == 1){
+					window.location.href = "{php echo $this->createMobileUrl('pay')}"+"&ordersn="+data.ordersn+"&type=message";
+				}else{
+					window.location.href = "{php echo $this->createMobileUrl('index')}";
+				}
+			});
+		}
+	},
+});
+$(function() {
+    $('#lng').val('{php echo $this->getLng()}');
+    $('#lat').val('{php echo $this->getLat()}');
+    $('#province').val('{php echo $this->getProvince()}');
+    $('#city').val('{php echo $this->getCity_name()}');
+    $('#district').val('{php echo $this->getDistrict()}');
+    $('#localnow').text('{php echo $this->getAddress()}');
+	FastClick.attach(document.body);
+});
+
+
+</script>
+
+

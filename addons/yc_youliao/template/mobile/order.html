@@ -1,0 +1,26 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/list.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+<div class="order-panney md-5">
+    <div class="order-body {if $status=='all'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('order',array('status'=>'all'))}'">
+       全部订单
+    </div>
+    <div class="order-body {if $status==0 && $status!='all'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('order',array('status'=>0))}'">
+        待付款
+    </div>
+    <div class="order-body {if $status==1}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('order',array('status'=>1))}'">
+        未使用
+    </div>
+    <div class="order-body {if $status==3}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('order',array('status'=>3))}'">
+        已完成
+    </div>
+    <div class="order-body {if $status==4}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('order',array('status'=>4))}'">
+        退款
+    </div>
+
+</div>
+
+{template '../mobile/order_list'}
+{template '../mobile/footer'}

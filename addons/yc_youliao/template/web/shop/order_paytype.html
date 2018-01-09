@@ -1,0 +1,6 @@
+{if $item['paytype'] == 1}<span class="label-important">余额支付</span>{/if}
+{if $item['paytype'] == 2}<span class="label-important">微信支付</span>{/if}
+{if $item['paytype'] == 3}<span class="label-warning">支付宝支付</span>{/if}
+{if $item['paytype'] == 4}<span class="label-important">{php echo $cfg['bm_payms_title'] ? $cfg['bm_payms_title']: '银行版收银台';}</span>
+{if $item['paytype'] == 5}<span class="label-warning">货到付款</span>{/if}
+{/if}

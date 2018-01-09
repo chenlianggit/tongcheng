@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+<li {if  $op =='display'} class="active" {/if}><a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao&op=display">基础设置</a></li>
+<li {if  $op =='page'} class="active" {/if}><a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao&op=page">页面设置</a></li>
+<li {if  $op =='shop'} class="active" {/if}><a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao&op=shop">商户设置</a></li>
+<li {if  $op=='share'} class="active" {/if}><a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao&op=share">分享设置</a></li>
+<li {if  $op=='btn'} class="active" {/if}><a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao&op=btn">自定义导航</a></li>
+<li{if  $_GPC['do'] == 'tpl'} class="active" {/if}><a href="{php echo $this->createWebUrl('tpl')}">模板消息设置</a></li>
+<li {if  $op=='sign'} class="active" {/if}><a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao&op=sign">请求参数设置</a></li>
+<li {if  $op =='word'} class="active" {/if}><a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao&op=word">敏感词设置</a></li>
+</ul>

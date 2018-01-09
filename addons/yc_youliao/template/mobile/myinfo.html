@@ -1,0 +1,105 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/uploadimg.css" rel="stylesheet" type="text/css"/>
+
+<div class="panel memberhead" >
+    <div class="header-l"><img class="icon-level-p1" src="{if empty($userinfo['avatar'])}{STYLE}images/avatar_default.jpg {else}{$userinfo['avatar']}{/if}"/></div>
+    <div class="header-r">
+        <ul class="distributor-infor">
+            <li><span class="distributor-infor-c">{$userinfo['nickname']}</span></li>
+            </li>
+            <li class="credit">
+                <span class="jifen"> 积分：{$credits['credit1']}</span>
+                &nbsp;| &nbsp;<a href="{php echo $this->createMobileUrl('balance')}" class="yinyuan">
+                <span>余额：{$credits['credit2']} </span></a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="clearfix" ></div>
+    <form action="" method="post" class="form-horizontal form">
+    <input type="hidden" name="op" value="myinfo" />
+<div class="personal-list bg_white">
+    <ul>
+        <li>
+                <div class="membercenter-rightText am-cf">头像
+                    <div class="header-edit"  id="logox">
+                        <div class="mui-input-cell personal-txtDiv">
+                            <div class="header-edit"><img class="icon-level-p1" src="{if empty($userinfo['avatar'])}{STYLE}images/avatar_default.jpg {else}{$userinfo['avatar']}{/if}"/>
+
+                            <i class="iconfont y">&#xe604;</i>
+                        </div>
+                     </div>
+                </div>
+                </div>
+        </li>
+        <li>
+                <div class="membercenter-rightText am-cf">昵称
+                    <input type="text" name="nickname" value="{$userinfo['nickname']}" class="personal-txtDiv">
+                </div>
+
+        </li>
+        <li>
+
+                <div class="membercenter-rightText am-cf">性别
+                    <select name="gender" class="personal-txtDiv">
+                        <option value="0" {if $userinfo['gender']==0}selected{/if}>女</option>
+                        <option value="1" {if $userinfo['gender']==1}selected{/if}>男</option>
+                    </select>
+
+        </li>
+
+
+                <li>
+                        <div class="membercenter-rightText am-cf">手机号码
+                            <input type="number" name="telphone" value="{$userinfo['telphone']}" class="personal-txtDiv">
+                        </div>
+
+                </li>
+
+
+        <li>
+            <a href="{php echo $this->createMobileUrl('user',array('op'=>'address'))}">
+                <div class="membercenter-rightText am-cf noborder">地址管理
+                    <i class="iconfont y personal-txtDiv">&#xe604;</i>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--<div class="personal-list bg_white">-->
+    <!--<ul>-->
+        <!--<li>-->
+            <!--<a href="plugin.php?id=dzapp_vip&amp;mobile=2">-->
+                <!--<div class="membercenter-rightText am-cf">会员身份-->
+                    <!--<i class="iconfont y">&#xe604;</i>-->
+                    <!--<div class="personal-txtDiv">成为VIP享受特权</div>-->
+                <!--</div>-->
+            <!--</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+        <article class="htmleaf-container">
+            <div id="clipArea"></div>
+            <div class="foot-use">
+                <div class="uploader1 blue openimg">
+                    <input type="button" name="file" class="button" value="打开"/>
+                    <input id="file" type="file"  value="{$userinfo['avatar']}"  onChange="javascript:setImagePreview();" accept="image/*" multiple  />
+                </div>
+                <div id="clipBtn">截取</div>
+            </div>
+            <div id="view"></div>
+        </article>
+        <input  type="hidden" name="avatar" id="avatar" value=""   />
+    <input name="token" value="{$_W['token']}" type="hidden">
+    <input type="submit" name="submit"  class="submit" value="确认提交" >
+
+
+
+</form>
+
+{template '../mobile/uploadimg'}
+{template '../mobile/footer'}
+

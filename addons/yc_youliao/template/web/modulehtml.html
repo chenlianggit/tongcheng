@@ -1,0 +1,334 @@
+{template 'web/header'}
+{template 'web/left'}
+<link rel="stylesheet" href="{STYLE}css/iconfont.css"/>
+<section id="content">
+	<section class="vbox">
+		<section class="scrollable padder">
+			<ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+				<li><a href="{php echo $this->createWebUrl("index")}"><i class="fa fa-home"></i>首页</a></li>
+				<li class="active">频道管理</li>
+			</ul>
+
+
+			<link rel="stylesheet" href="{SQ}public/css/channel.css"/>
+			<link rel="stylesheet" href="{SQ}public/css/diy_channel.css"/>
+
+			<script>
+	document.documentElement.style.fontSize = 320 / 7.5 + 'px';
+</script>
+
+
+
+<div class="messimain">
+	<div class="btns">
+		<button type="button" class="text-c sure-btn">保存</button>
+		<button type="button" class="text-c clear-btn" style="background:#fb5100;">清空内容</button>
+	</div>
+	<div class="deigner">
+		<div class="deigner-header"></div>
+		<div class="deigner-title">
+			<span class="ng-binding">{$moduleres['name']}</span>
+		</div>
+		<ul class="deigner-body">
+			<li>
+				<div class="list_messi_text" style="background:#fff;margin-bottom:0.2rem;">
+					<div class="span12 title textellipsis1 canedit">样式标题</div>
+					<div class="des span12">
+						<div class="span6 canedit">样式</div>
+						<div class="span6 text-r canedit">样式</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="list_messi_text_oneimg" style="background:#fff;margin-bottom:0.2rem;">
+					<div class="img_item text-c">
+						<img src="{SQ}public/images/quesheng.jpg" />
+					</div>
+					<div class="text_item marl">
+						<div class="text_item_text textellipsis2 canedit">样式标题</div>
+						<div class="user_item">
+							<div class="nickname canedit">样式姓名</div>
+							<div class="createtime text-r canedit">[样]2017-06-28</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="list_messi_text_oneimg" style="background:#fff;margin-bottom:0.2rem;">
+					<div class="text_item">
+						<div class="text_item_text textellipsis2 canedit">样式标题</div>
+						<div class="user_item">
+							<div class="nickname canedit">样式姓名</div>
+							<div class="createtime text-r canedit">[样]2017-06-28</div>
+						</div>
+					</div>
+					<div class="img_item text-c marl">
+						<img src="{SQ}public/images/quesheng.jpg" />
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="list_messi_text_oneimg" style="background:#fff;margin-bottom:0.2rem;">
+					<div class="img_item text-c">
+						<img src="{SQ}public/images/quesheng.jpg" />
+					</div>
+					<div class="text_item marl">
+						<div class="text_item_text_price">
+							<div class="span8 textellipsis1 canedit">样式标题</div>
+							<div class="span4 text-r canedit">样式金额</div>
+						</div>
+						<div class="des_item canedit">样式描述 </div>
+						<div class="icon_item textellipsis1 canedit">
+							<span class="iconfont">&#xe624;</span><span>样式描述</span>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="deigner" style="float:right;">
+		<div class="deigner-header"></div>
+		<div class="deigner-title">
+			<span class="ng-binding">{$moduleres['name']}</span>
+		</div>
+		<ul class="deigner-body" id="autocontent">{if $showhtml}{$showhtml}{/if}</ul>
+	</div>	
+</div>
+
+
+<div class="blackbg hide"></div>
+<div class="alerts hide">
+	<div class="alert">
+		<div class="alert-close">
+			<div class="span8">
+				<span id="tihuantext" style="font-size:16px;">替换<strong style='color:#900;'></strong>内容</span>
+			</div>
+			<div class="span4 text-r"><span class="iconfont">&#xe736;</span></div>
+		</div>
+		<div class="allfields">
+			{loop $fieldslist $frow}
+				<span data-enname="{$frow['enname']}" class="noneizhi">{$frow['showname']}</span>
+			{/loop}
+			<span data-enname="nickname" class="neizhi">发布人名称</span>
+			<span data-enname="province" class="neizhi">发布省份</span>
+			<span data-enname="city" class="neizhi">发布城市</span>
+			<span data-enname="district" class="neizhi">发布区/县</span>
+			<span data-enname="createtime" class="neizhi">发布时间</span>
+			<span data-enname="views" class="neizhi">浏览数</span>
+		</div>
+    </div>
+</div>
+
+<script>
+$(function(){
+    //出入允许拖拽节点的父容器，一般是ul外层的容器
+    drag.init('messimain');
+	
+	$('.alert-close').click(function(){
+		$('.blackbg').addClass('hide');
+		$(this).parents('.alerts').addClass('hide');
+	});
+	
+	$(".canedit").mousedown(function(){
+		$("#tihuantext strong").html($(this).html());
+		$('.alerts').removeClass("hide");
+		$(".blackbg").removeClass("hide");
+		$(this).addClass('nowedit');
+	});
+	
+	$('.allfields .noneizhi').click(function(){
+		$('.blackbg').addClass('hide');
+		$('.alerts').addClass("hide");
+		$('.nowedit').text("["+$(this).attr('data-enname')+"]").removeClass('nowedit');
+	});
+	
+	$('.allfields .neizhi').click(function(){
+		$('.blackbg').addClass('hide');
+		$('.alerts').addClass("hide");
+		$('.nowedit').text("["+$(this).attr('data-enname')+"]").removeClass('nowedit');
+	});
+	
+	$('.sure-btn').click(function(){
+		$.ajax({   
+			 url:"{php echo $this->createWebUrl('channel',array('op'=>'changehtml'))}",
+			 type:'post', 
+			 data:{
+				htmlcon:$('#autocontent').html(),
+				type:"{$type}",
+				id:{$id},
+			 },
+			 dataType:'json',
+			 success:function(data){   
+				if (data.error == 1) {
+					alert(data.message);
+				} else{
+					alert(data.message);
+				}
+			 }
+		});
+	});
+	
+	$('.clear-btn').click(function(){
+		$('#autocontent').html("");
+	});
+
+});
+//拖拽
+var drag = {
+    class_name : null,  //允许放置的容器
+	permitDrag : false,	//是否允许移动标识
+	_x : 0,             //节点x坐标
+    _y : 0,			    //节点y坐标
+    _left : 0,          //光标与节点坐标的距离
+    _top : 0,           //光标与节点坐标的距离
+    old_elm : null,     //拖拽原节点
+    tmp_elm : null,     //跟随光标移动的临时节点
+    new_elm : null,     //拖拽完成后添加的新节点
+
+    //初始化
+    init : function (className){
+
+        //允许拖拽节点的父容器的classname(可按照需要，修改为id或其他)
+        drag.class_name = className;
+
+        //监听鼠标按下事件，动态绑定要拖拽的节点（因为节点可能是动态添加的）
+        $('.' + drag.class_name).on('mousedown', 'ul li div:not(\'.canedit\')', function(event){
+            //当在允许拖拽的节点上监听到点击事件，将标识设置为可以拖拽
+            drag.permitDrag = true;
+            //获取到拖拽的原节点对象
+            drag.old_elm = $(this).parents('li');
+            //执行开始拖拽的操作
+            drag.mousedown(event);
+            return false;
+        });
+
+        //监听鼠标移动
+        $(document).mousemove(function(event){
+            //判断拖拽标识是否为允许，否则不进行操作
+            if(!drag.permitDrag) return false;
+            //执行移动的操作
+            drag.mousemove(event);
+            return false;
+        });
+
+        //监听鼠标放开
+        $(document).mouseup(function(event){
+            //判断拖拽标识是否为允许，否则不进行操作
+            if(!drag.permitDrag) return false;
+            //拖拽结束后恢复标识到初始状态
+            drag.permitDrag = false;
+            //执行拖拽结束后的操作
+            drag.mouseup(event);
+            return false;
+        });
+
+    },
+
+	//按下鼠标 执行的操作
+	mousedown : function (event){
+        //1.克隆临时节点，跟随鼠标进行移动
+        drag.tmp_elm = $(drag.old_elm).clone();
+        //2.计算 节点 和 光标 的坐标
+        drag._x = $(drag.old_elm).offset().left;
+        drag._y = $(drag.old_elm).offset().top;
+
+        var e = event || window.event;
+        drag._left = e.pageX - drag._x;
+        drag._top = e.pageY - drag._y;
+	
+        //3.修改克隆节点的坐标，实现跟随鼠标进行移动的效果
+        $(drag.tmp_elm).css({
+            'position' : 'absolute',
+            'background-color' : '#FF8C69',
+            'left' : drag._x,
+            'top' : drag._y,
+        });
+
+        //4.添加临时节点
+        tmp = $(drag.old_elm).parent().append(drag.tmp_elm);
+        drag.tmp_elm = $(tmp).find(drag.tmp_elm);
+        $(drag.tmp_elm).css('cursor', 'move');
+
+	},
+
+	//移动鼠标 执行的操作
+	mousemove : function (event){
+        //2.计算坐标
+        var e = event || window.event;
+        var x = e.pageX - drag._left;
+        var y = e.pageY - drag._top;
+        var maxL = $(document).width() - $(drag.old_elm).outerWidth();
+        var maxT = $(document).height() - $(drag.old_elm).outerHeight();
+        //不允许超出浏览器范围
+        x = x < 0 ? 0: x;
+        x = x > maxL ? maxL: x;
+        y = y < 0 ? 0: y;
+        y = y > maxT ? maxT: y;
+
+        //3.修改克隆节点的坐标
+        $(drag.tmp_elm).css({
+            'left' : x,
+            'top' : y,
+        });
+
+        //判断当前容器是否允许放置节点
+        $.each($('.' + drag.class_name + ' ul'), function(index, value){
+
+            //获取容器的坐标范围 (区域)
+            var box_x = $(value).offset().left;     //容器左上角x坐标
+            var box_y = $(value).offset().top;      //容器左上角y坐标
+            var box_width = $(value).outerWidth();  //容器宽
+            var box_height = $(value).outerHeight();//容器高
+            
+            //给可以放置的容器加背景色
+            if(e.pageX > box_x && e.pageX < box_x-0+box_width && e.pageY > box_y && e.pageY < box_y-0+box_height){
+
+                //判断是否不在原来的容器下（使用坐标进行判断：x、y任意一个坐标不等于原坐标，则表示不是原来的容器）
+                if($(value).offset().left !== drag.old_elm.parent().offset().left 
+                || $(value).offset().top !== drag.old_elm.parent().offset().top){
+                    $(value).css('background-color', '#FFEFD5');
+                }
+            }else{
+                //恢复容器原背景色
+                $(value).css('background-color', '#F1F1F1');
+            }
+
+        });
+
+	},
+
+    //放开鼠标 执行的操作
+    mouseup : function (event){
+        //移除临时节点
+        $(drag.tmp_elm).remove();
+        //判断所在区域是否允许放置节点
+        var e = event || window.event;
+        $.each($('.' + drag.class_name + ' ul'), function(index, value){
+            //获取容器的坐标范围 (区域)
+            var box_x = $(value).offset().left;     //容器左上角x坐标
+            var box_y = $(value).offset().top;      //容器左上角y坐标
+            var box_width = $(value).outerWidth();  //容器宽
+            var box_height = $(value).outerHeight();//容器高
+            //判断放开鼠标位置是否想允许放置的容器范围内
+            if(e.pageX > box_x && e.pageX < box_x-0+box_width && e.pageY > box_y && e.pageY < box_y-0+box_height){
+                //判断是否不在原来的容器下（使用坐标进行判断：x、y任意一个坐标不等于原坐标，则表示不是原来的容器）
+                if($(value).offset().left !== drag.old_elm.parent().offset().left 
+                || $(value).offset().top !== drag.old_elm.parent().offset().top){
+                    //向目标容器添加节点并删除原节点
+                    tmp = $(drag.old_elm).clone();
+                    var newObj = $(value).append(tmp);
+                    $(drag.old_elm).remove();
+                    //获取新添加节点的对象
+                    drag.new_elm = $(newObj).find(tmp);
+                }
+            }
+            //恢复容器原背景色
+            $(value).css('background-color', '#F1F1F1');
+        });
+
+    },
+};
+</script>
+</body>
+</html>

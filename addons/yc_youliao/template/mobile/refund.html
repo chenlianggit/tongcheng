@@ -1,0 +1,135 @@
+{template '../mobile/header'}
+	<link href="{STYLE}css/refund.css" rel="stylesheet">
+ {template 'top_btn'}
+ {if $order_status==1 || $order_status==9}
+ <!--1已支付申请退款-->
+ <div class="mui-content">
+ <ul class="mui-table-view mui-table-view-chevron js-height">
+	 <li class="mui-table-view-cell" >
+		 <a class="mui-navigate-right mui-media js-pay" href="javascript:;" onclick="refundpro('1');">
+
+			 <img src="{STYLE}images/refund1.png" alt="" class="mui-media-object refund-money">
+			 <div class="mui-media-body mui-block">
+				 <div class="re-title">退货退款</div>
+					<div class="deatil">已收到货，需要退还已收到的货物</div>
+
+
+			 <div class="ringbtn">
+				 <img src="{STYLE}images/right.png" alt="" >
+			 </div>
+			</div>
+		 </a>
+
+	 </li>
+
+	 <li class="mui-table-view-cell">
+		 <a class="mui-navigate-right mui-media js-pay" href="javascript:;" onclick="refundpro('2');">
+			 <img src="{STYLE}images/refund2.png" alt="" class="mui-media-object mui-pull-left">
+			 <span class="mui-media-body mui-block">
+					<div class="re-title">仅退款</div>
+					<div class="deatil">未收到货，或已协商同意前提下申请</div>
+
+			 <div class="ringbtn">
+				 <img src="{STYLE}images/right.png" alt="" >
+			 </div>
+			 </span>
+		 </a>
+
+	 </li>
+ </ul>
+
+</div>
+ <form method="post" class="refund-input info form" enctype="multipart/form-data">
+	 <input type="hidden" name="ogid" value="{$ogid}">
+	 <input type="hidden" name="token" value="{$_W['token']}" />
+
+<ul>
+	<li>
+		<div class="left">
+			<span class="red">*</span>申请服务:
+		</div>
+		<div class="right">
+			<div class="mask"></div>
+			<div class="divselecty">
+				<select class="form-control selector" style="margin-right:15px;" name="type" autocomplete="off">
+
+				</select>
+
+			</div>
+
+		</div>
+		<div class="clear"></div>
+	</li>
+	<li>
+		<div class="left">
+			<span class="red">*</span>退款金额:
+		</div>
+		<div class="right">
+			<input  name="refundMoney"  type="text" size="100" value="{$refundMoney}"  placeholder="例:13888888888"  >
+			<div class="danwei">￥</div>
+		</div>
+		<div class="clear"></div>
+	</li>
+
+	<li>
+		<div class="left">
+			<span class="red"></span>退款原因:
+		</div>
+		<div class="right">
+			<textarea  name="resean"  type="text" size="100" value="{$item['resean']}" ></textarea>
+		</div>
+		<div class="clear"></div>
+	</li>
+
+</ul>
+	 <input name="submit" type="submit" value="提交申请" class="submit ">
+ </form>
+ </div>
+<div class="need-refund">
+	 {if $refundDetail}
+	 {$refundDetail}
+	 {else}
+<p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 14px; line-height: 24px; color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;; white-space: normal; background-color: rgb(255, 255, 255);">
+	<span style="color: rgb(255, 0, 0);"><strong>一.退货具体说明</strong></span>
+</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 14px; line-height: 24px; color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;; white-space: normal; background-color: rgb(255, 255, 255);">
+	1、七日内无条件退货退款；<br/>2、超出七天或者已经使用的商品将不在退货范围，或已使用的商品，不予以退货；<br/>
+</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 14px; line-height: 24px; color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;; white-space: normal; background-color: rgb(255, 255, 255);">
+	<strong><span style="color: rgb(255, 0, 0);">二.退货注意事项:</span></strong><span style="color: rgb(255, 0, 0);"><br/></span>1、退货需要保证，产品包装完整。
+</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 14px; line-height: 24px; color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;; white-space: normal; background-color: rgb(255, 255, 255);">
+	3、退货来回邮费，买家承担。
+</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 14px; line-height: 24px; color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;; white-space: normal; background-color: rgb(255, 255, 255);">
+	<span style="color: rgb(255, 0, 0);">三.退货流程;</span>
+</p>
+<p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; font-size: 14px; line-height: 24px; color: rgb(68, 68, 68); font-family: &quot;Microsoft YaHei&quot;; white-space: normal; background-color: rgb(255, 255, 255);">
+	<strong>1、提交申请<br/>2、等待审核<br/>3、审核允许退货/不允许退货<br/>4、回寄需退的商品<br/>5、等待退款<br/></strong>小贴示：如客户不喜欢商品退货，买家需承担来回运费；如商品质量问题退回，我们承担运费（退运费标准，江浙沪退5元，其它地区8-10元不等）。回寄商品时请务必将原包装一起寄回，如果损坏，根据商品的折旧率从退款里扣除。
+</p>
+	 </div>
+
+	 <div class="clear"></div>
+	 {/if}
+ <script>
+     function refundpro(type){
+         $('.mui-content').css('display','none');
+         $('.refund-input').css('display','block');
+
+         if(type=="2"){
+             var option = '<option value="2" selected="selected">仅退款</option>';
+             option += '<option value="1" >退货退款</option>';
+         }else{
+             var option = '<option value="1" selected="selected">退货退款</option>';
+             option += '<option value="2" >仅退款</option>';
+         }
+         $(".selector").append(option);
+     }
+ </script>
+
+{elseif $order_status>=2}
+ {template 'refund_pro'}
+{/if}
+
+
+

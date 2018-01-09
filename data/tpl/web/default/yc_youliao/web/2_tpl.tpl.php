@@ -1,0 +1,140 @@
+<?php defined('IN_IA') or exit('Access Denied');?><?php (!empty($this) && $this instanceof WeModuleSite || 1) ? (include $this->template('web/header', TEMPLATE_INCLUDEPATH)) : (include template('web/header', TEMPLATE_INCLUDEPATH));?>
+<?php (!empty($this) && $this instanceof WeModuleSite || 1) ? (include $this->template('web/left', TEMPLATE_INCLUDEPATH)) : (include template('web/left', TEMPLATE_INCLUDEPATH));?>
+
+   <section id="content">
+        <section class="vbox">
+          <section class="scrollable padder">
+            <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+              <li><a href="<?php  echo $this->createWebUrl('index')?>"><i class="fa fa-home"></i>首页</a></li>
+              <li class="active">社区设置</li>
+              
+            </ul>
+ <?php (!empty($this) && $this instanceof WeModuleSite || 1) ? (include $this->template('web/settting_banner', TEMPLATE_INCLUDEPATH)) : (include template('web/settting_banner', TEMPLATE_INCLUDEPATH));?>
+<div class="margin-10 setting">
+
+<!--模板消息开始-->
+  <div class="setting-hidden" <?php  if($_GPC['do']=="tpl") { ?>style="display:block;"<?php  } ?> >
+              <?php  load()->func('tpl')?>
+
+                  <div class="alert alert-danger" role="alert">微信公众平台选择：IT科技 互联网|电子商务 即可一键同步模板消息。为防止重复添加，如已在公众号添加该模板消息请选择‘手动添加模板消息’</div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">模板列表</div>
+                      <div class="panel-body">
+                          <!--<a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'TM00001'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 购买成功</a>-->
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'TM00015','tpl_title'=>'订单支付成功'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>订单支付成功</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM406726102','tpl_title'=>'用户下单通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 用户下单通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM405896004','tpl_title'=>'核销成功通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 核销成功通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM407307456','tpl_title'=>'开团成功提醒'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 开团成功提醒</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM400048581','tpl_title'=>'参团成功通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 参团成功通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM407456411','tpl_title'=>'拼团成功通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>拼团成功通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM400833482','tpl_title'=>'组团失败提醒'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 组团失败提醒</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'TM00850','tpl_title'=>'订单取消通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 订单取消通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM200565278','tpl_title'=>'订单退款提醒'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i> 订单退款提醒</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'TM00431','tpl_title'=>'退款申请通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>退款申请通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM405486816','tpl_title'=>'退款申请结果通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>退款申请结果通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'TM00303','tpl_title'=>'商品已发出通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>商品已发出通知</a>
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM207327169','tpl_title'=>'客服提醒'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>客服提醒</a>
+
+
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM409023186','tpl_title'=>'管理员审核提醒'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>管理员审核提醒</a>
+
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM405884804','tpl_title'=>'审核结果通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>审核结果通知</a>
+
+                          <a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'create','tplbh'=>'OPENTM405485000','tpl_title'=>'提现申请通知'))?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"> </i>提现申请通知</a>
+                          <!--<button type="button" class="btn btn-info"><i class="glyphicon glyphicon-refresh"> </i> 同步模板列表</button>-->
+                          <button type="button" class="btn manual btn-info"><i class="glyphicon glyphicon-refresh"> </i> 手动添加模板消息</button>
+                          <br /><br />
+                          <table class="table table-hover">
+                              <thead>
+                              <th width="80">序号</th>
+                              <th width="200">标题</th>
+                              <th width="200">模板编号</th>
+                              <th width="400">模板ID</th>
+                              <th style="text-align:right;">操作</th>
+                              </thead>
+                              <tbody>
+                              <tr class="none manual-input">
+                                  <td></td>
+                                  <td>
+                                      <select class="form-control" name="tplbh" id="tplbh"  autocomplete="off" onchange= "document.getElementById( 'tpl_title').value=this.value; "  >
+                                          <option value="">请选择模板名称</option>
+                                          <option value="TM00015">订单支付成功</option>
+                                          <option value="OPENTM406726102">用户下单通知</option>
+                                          <option value="OPENTM405896004">核销成功通知</option>
+                                          <option value="OPENTM407307456">开团成功提醒</option>
+                                          <option value="OPENTM400048581">参团成功通知</option>
+                                          <option value="OPENTM407456411">拼团成功通知</option>
+                                          <option value="OPENTM400833482">组团失败提醒</option>
+                                          <option value="TM00850">订单取消通知</option>
+                                          <option value="OPENTM200565278">订单退款提醒</option>
+                                          <option value="OPENTM405486816">退款申请结果通知</option>
+                                          <option value="TM00431">退款申请通知</option>
+                                          <option value="TM00303">商品已发出通知</option>
+                                          <option value="OPENTM207327169">客服提醒</option>
+                                          <option value="OPENTM409023186">管理员审核提醒</option>
+                                          <option value="OPENTM405884804">审核结果通知</option>
+                                          <option value="OPENTM405485000">提现申请通知</option>
+                                      </select>
+                                  </td>
+                                  <td>
+                                      <input class="form-control" value="" id="tpl_title" name="tpl_title">
+                                  </td>
+                                  <td>
+                                      <input class="form-control" value="" id="tpl_id" name="tpl_id">
+                                  </td>
+                                  <td>
+                                      <button type="button" class="btn submit-manual btn-info right">确认提交</button>
+                                  </td>
+                              </tr>
+                              <?php  if(is_array($list)) { foreach($list as $row) { ?>
+                              <tr>
+                                  <td><?php  echo $row['id'];?></td>
+                                  <td><?php  echo $row['tpl_title'];?></td>
+                                  <td><?php  echo $row['tplbh'];?></td>
+                                  <td><?php  echo $row['tpl_id'];?></td>
+                                  <td class="text-right"><a href="<?php  echo $this->createWebUrl('tpl',array('op' =>'delete','tplid'=>$row['tpl_id']))?>" onclick="return confirm('此操作不可恢复，确认删除？');return false;" class="btn btn-default btn-sm" title="删除"><i class="fa fa-times"></i></a></td>
+                              </tr>
+                              <?php  } } ?>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+
+             
+  </div>
+
+<!--模板消息结束-->
+
+<?php (!empty($this) && $this instanceof WeModuleSite || 1) ? (include $this->template('web/footer', TEMPLATE_INCLUDEPATH)) : (include template('web/footer', TEMPLATE_INCLUDEPATH));?>
+              <script>
+
+                  $(".manual").click(function(){
+                      $('.manual-input').toggle();
+                  });
+
+                  $(".submit-manual").click(function(){
+                      var tpl_title= $("#tplbh").find("option:selected").text();
+                      var tpl_id= $('#tpl_id').val();
+                      var tplbh= $('#tplbh').val();
+                      if(tpl_id==""){
+                          tip('请填写模板ID');
+                          tip_close();
+                      }
+                      var url=createWebUrl('tpl','manual');
+                      $.ajax({
+                          type:'post',
+                          url:url,
+                          dataType: 'json',
+                          data:{'tpl_title':tpl_title,'tpl_id':tpl_id,'tplbh':tplbh},
+                          success:function(data){
+                              tip(data.str);
+                              tip_close();
+                              if(data.status=='1'){
+                                  window.location.reload();
+                              }
+
+
+                          }
+                      });
+                  });
+              </script>

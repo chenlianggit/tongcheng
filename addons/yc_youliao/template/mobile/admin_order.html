@@ -1,0 +1,43 @@
+{template '../mobile/header'}
+{template '../mobile/upload_img'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/admin_banner'}
+<style>
+    .order-body{
+        width: 20%;
+    }
+</style>
+<div class="info-content" >
+    <div class="order-panney">
+        <div class="order-body {if $op=='order'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>'order'))}'">
+            商品
+        </div>
+        <div class="order-body {if $op=='discount'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>'discount'))}'">
+            买单
+        </div>
+        <div class="order-body {if $op=='renew'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>'renew'))}'">
+            商户
+        </div>
+        <div class="order-body {if $op==order_info && $type=='0'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>'order_info','type'=>'0'))}'">
+            发布
+        </div>
+        <div class="order-body {if $op==order_info && $type=='1'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>'order_info','type'=>'1'))}'">
+            置顶
+        </div>
+    </div>
+    {if $op=='order'}
+    {template '../mobile/order_list'}
+    {elseif $op=='discount'}
+    {template '../mobile/discount_list'}
+    {elseif $op=='order_info'}
+    {template '../mobile/info_list'}
+    {elseif $op=='renew'}
+    {template '../mobile/renew_list'}
+    {/if}
+</div>
+
+{template '../mobile/footer'}
+

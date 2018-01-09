@@ -1,0 +1,219 @@
+{template 'web/header'}
+{template 'web/left'}
+
+<section id="content">
+<section class="vbox">
+    <section class="scrollable padder">
+        <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+            <li><a href="{php echo $this->createWebUrl("index")}"><i class="fa fa-home"></i>首页</a></li>
+            <li class="active">县/区管理</li>
+        </ul>
+
+        <ul class="nav nav-tabs">
+            <li {if $do =='city'} class="active" {/if}><a href="{php echo $this->createWebUrl('city',array('op' =>'display'))}">城市管理</a></li>
+            <li {if $do =='area'} class="active" {/if}><a href="{php echo $this->createWebUrl('area',array('op' =>'display'))}">县/区管理</a></li>
+
+        </ul>
+
+
+        <div class="main">
+            {if $op == 'display'}
+            <div class="panel panel-info" >
+                <div class="panel-body  table-responsive">
+                    <div class="jsglNr">
+                        <div class="selectNr" >
+                            <div class="left">
+                                <a href="{php echo $this->createWebUrl('area',array('op' =>'post'))}">添加县/区</a>
+                            </div>
+                            <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data" onsubmit='return formcheck()'>
+                                <div class="right">
+                                    <input type="text" name="keyword" value="{$keyword}"  placeholder="请输入分类名称" class="inptText" /><input type="submit" value="  搜索"  class="inptButton" />
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tableBox">
+                            <form action="" method="post" onsubmit="return formcheck(this)">
+                            <table bordercolor="#dbdbdb" cellspacing="0" width="100%" border="1px"  class="tablestyle" >
+                                <tr class="theader">
+
+                                    <td class="w80">排序</td>
+                                    <td colspan="2">区域/商圈名称</td>
+                                    <td>是否热门</td>
+                                    <td class="w120">操作</td>
+                                </tr>
+                                {loop $list $item}
+                                {if empty($item['parent_id']) || $k==2}
+                                <tr class="bggreen">
+                                    <td><input  name="displayorder[{$item['area_id']}]" value="{$item['orderby']}" type="text" class="remberinput w80" /></td>
+
+                                    <td colspan="2">{$item['area_name']}</td>
+                                    <td>{if $item['is_hot']==1}<img src="{STYLE}images/hot.png" />{/if}</td>
+                                    <td class="listbtn">
+                                        {if empty($item['parent_id'])}
+                                        <a href="{php echo $this->createWebUrl('area', array('op' => 'post', 'parent_id' => $item['area_id']))}"><i class="fa fa-plus-square"></i>添加商圈</a>
+                                        {/if}
+                                        <a href="{php echo $this->createWebUrl('area', array('op' => 'post', 'area_id' => $item['area_id']))}"><i class="fa fa-edit"></i>修改</a>
+                                        <a class="label label-danger pad-5 " href="{php echo $this->createWebUrl('area', array('op' => 'delete', 'area_id' => $item['area_id']))}"><i class="fa fa-exclamation-triangle"></i>删除</a>
+                                    </td>
+
+                                </tr>
+                                {/if}
+                                {loop $children[$item['area_id']] $item}
+                                <tr class="nonebg">
+
+
+                                    <td><input  name="displayorder[{$item['area_id']}]" value="{$item['orderby']}" type="text" class="remberinput w80" /></td>
+                                    <td class="tdnone"></td>
+                                    <td>{$item['area_name']}</td>
+                                    <td>{if $item['is_hot']==1}<img src="{STYLE}images/hot.png" />{/if}</td>
+                                    <td class="listbtn">
+
+                                        <a href="{php echo $this->createWebUrl('area', array('op' => 'post','area_id' => $item['area_id'],'parent_id' => $item['parent_id']))}"><i class="fa fa-edit"></i>修改</a>
+                                        <a class="label label-danger pad-5 "  href="{php echo $this->createWebUrl('area', array('op' => 'delete', 'area_id' => $item['area_id']))}"><i class="fa fa-exclamation-triangle"></i>删除</a> </td>
+                                </tr>
+                                {/loop}
+                                {/loop}
+
+                            </table>
+                            {$page}
+                                {if $list}
+
+                                <div class="width100 btn2">
+                                    <input name="submit" class="btn btn-primary i-t-md" value="提交" type="submit">
+                                    <input name="token" value="{$_W['token']}" type="hidden">
+                                </div>
+
+                                {/if}
+                        </div>
+
+
+                    </div>
+
+                </div>
+                {elseif $op == 'post'}
+
+                <div class="panel panel-info" >
+
+                    <form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+
+                        <div class=" panel-default">
+                            <div class="panel-heading">
+                               编辑
+                            </div>
+                            <div class="panel-body" >
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>
+                                        {if $_GPC['parent_id']}所属县/区{else}所属城市{/if}</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" style="margin-right:15px;" id="city_id" name="city_id" {if $_GPC['parent_id']}onchange="fetchoption(this.options[this.selectedIndex].value)" {/if} autocomplete="off">
+                                            {if $city}
+                                            {loop $city $row}
+                                            <option value="{$row['city_id']}" {if $row['city_id'] == $city_id ||$row['city_id'] == $item['city_id']} selected="selected"{/if}>{$row['name']}</option>
+                                            {/loop}
+
+                                            {else}
+                                            <option value="0">暂无城市</option>
+                                            {/if}
+
+                                        </select>
+                                    </div>
+                                    {if !empty($parentid)}
+                                    <div class="col-sm-2">
+                                        <select class="form-control"  name="area_id" autocomplete="off">
+                                            <option value=""></option>
+                                            {if  $area}
+                                            {loop $area $row}
+
+                                            <option value="{$row[area_id]}" {if $row[area_id] == $item['area_id']} selected="selected"{/if}>{$row['area_name']}</option>
+
+                                            {/loop}
+                                            {else}            <option value="0">暂无区域</option>
+                                            {/if}
+                                        </select>
+
+                                    </div>
+                                    {/if}
+
+                                </div>
+                                <div style="margin-left: 18%">需填全称，如宝安区，需填：宝安区。如县级上无市级，请选择直辖县</div>
+                                </div>
+
+                                <div class="form-group" >
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="red mr5">*</span>名称</span></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="area_name" id='name' class="form-control" value="{$item['area_name']}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否热门</label>
+                                    <div class="col-sm-9 col-xs-12">
+                                        <label class="radio-inline"><input type="radio" value="1" name="is_hot"   {if   $item['is_hot'] == 1}checked="true"{/if} /> 是</label>
+                                        <label class="radio-inline"><input type="radio" value="0" name="is_hot"    {if  $item['is_hot'] == 0}checked="true"{/if} /> 否</label>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="orderby" class="form-control" value="{$item['orderby']}" />
+                                        </div>
+                                    </div>
+
+
+                            <input type="hidden" name="token" value="{$_W['token']}" />
+                        <input type="hidden" name="parent_id" value="{$parent['area_id']}" />
+                        <input type="hidden" name="area_id" value="{$item['area_id']}" />
+                            <input type="hidden" name="op" value="post" />
+                            <div class="width100 btn2">
+                                <input name="submit" type="submit" value="提交"
+                                       class="btn btn-primary" onclick="return check(this.form)">
+                            </div>
+
+
+                    </form>
+                </div>
+
+
+                {/if}
+    </section>
+</section>
+</section>
+<script>
+    function check(){
+    var n = $("#name").val();
+    if(n==""){
+        tip("名称不能为空");
+        tip_close();
+        return false;
+    }
+
+}
+        function fetchoption(optionstr){
+            $('select[name="area_id"]').find("option").remove();
+            $.ajax({
+                type:'post',
+                url:"{php echo $this->createWebUrl('ajax_req')}",
+                dataType: 'json',
+                data:{'id':optionstr,'op':'changearea'},
+                success:function(data){
+                    if(data.status=='1'){
+                        var content="";
+                        $.each(data.list,function(k,v){
+                            content+=("<option value='"+v.id+"'>"+v.name+"</option>");
+                        })
+                        $('select[name="area_id"]').append(content);
+
+                    }else{
+                        tip(data.str);
+                        tip_close();
+                    }
+
+                }
+            });
+
+
+        }
+</script>
+
+{template 'web/footer'}

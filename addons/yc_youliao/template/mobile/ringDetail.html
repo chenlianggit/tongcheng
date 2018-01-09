@@ -1,0 +1,119 @@
+{template '../mobile/header'}
+<link href="{STYLE}css/ring.css" rel="stylesheet" type="text/css" />
+<div class="detailWap">
+    <div class="rlist">
+        <div class="box">
+            <div class="my_dis_left am-cf">
+                <div class="dis_left_pic">
+                    <a href="">
+                      <img src="{$item['avatar']}">
+                  </a>
+                </div>
+                <div class="dis_left_info">
+                    <h2 class="wrap">
+                        <span class="">{$item['nickname']}</span>
+                        <span class="f_12 c_999">{$item['distance']}km</span>
+                    </h2>
+                </div>
+                <div class="my_follow">
+                    <div class="feed_follow">
+                        {if $item['isme']==1 || $item['isadmin']==1}
+                        <a href="javascript:;" onclick="delete_r(this,{$item['ring_id']});" class="feed_delete "><em>删 除</em></a>                        {else}
+                        <a href="javascript:;" onclick="guanzhu(this,{$item['ring_id']});" class="follow "><em>{if $item['guanzhu']==1}<span class="green">已关注</span>{else}+关注{/if}
+                      </em></a> {/if}
+
+                    </div>
+                </div>
+                ​
+            </div>
+
+            <div class="content">
+                <div class="main ring">
+                    <p class="txt">
+                        {$item['info']}
+                    </p>
+
+                    {php $num=count($item['xsthumb'])} {if $num>0}
+                    <div class="my-gallery">
+                        {loop $item['xsthumb'] $i}
+                        <figure>
+
+                            <a href="{$i}" class="gallery-a">
+                  <img class="pic" {if $num==1}style=width:30%;height:auto;{elseif $num==2}style=width:25%;height:100px;{/if} src="{$i}"   alt=""/>
+                       </a>
+                        </figure>
+                        {/loop}
+                    </div>
+                    {/if}
+                </div>
+                <div class="info">
+                    <span class="time">{php echo date('m-d H:i', $item['addtime'])}</span>
+                    {if $this->isShang()==0}
+                    <a class="comment-u" onclick="shang_show({$item['ring_id']});"><span class="shang-icon" ></span> 打赏</a>
+                    {/if}
+                    <a class="comment-u" onclick="comment(this)"><i class="iconfont">&#xe62c;</i>
+                      <span class="ml_3 pingnum"> {$item['pnum']}</span></a>
+
+                    <a class="praise {loop $item['z'][0] $a} {if $a['iszan']==1}ye{/if}" {/loop} href="javascript:;" onclick="zan(this,{$item['ring_id']});"><i class="iconfont">&#xe643;</i>
+                  <span class="ml_3 zanum">{$item['znum']}</span></a>
+
+                </div>
+                <div class="text-box">
+                    <textarea class="comment" placeholder="评论…" autocomplete="off"></textarea>
+                    <button class="btn" onclick="ping(this,{$item['ring_id']});">回 复</button>
+                    <span class="word"><span class="length">0</span>/140</span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="text-box1" style="display: none;">
+                    <input type="number" class="comment" placeholder="请输入打赏金额。。。" />
+                    <button class="btn" onclick="shang(this,{$item['ring_id']});">打赏</button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="{if $item['z'][0]}zan-total{/if} zan-avatar">
+
+                    {loop $item['z'][0] $i}
+                    <img src="{$i['avatar']}" /> {/loop}
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="comment_flag {if $item['p'][0]}  comment-list{/if}">
+
+                    {loop $item['p'][0] $i}
+                    <div class="comment-box" user="self">
+                        <img class="myhead" src="{$i['avatar']}" alt="" />
+                        <div class="comment-content">
+                            <p class="comment-text"><span class="user">{$i['nickname']}</span></p>
+                            <span class="pingtext">{$i['info']}</span>
+                            <p class="comment-time">
+                                {php echo date('m-d H:i', $i['addtime'])} {if $i['isping']==1 || $item['isadmin']==1}
+                                <a href="javascript:;" onclick="cancelPing(this,{$item['ring_id']});" class="comment-operate"><i class="iconfont">&#xe635;</i> </a>                                {/if}
+                            </p>
+                        </div>
+                    </div>
+                    {/loop} {if count($item['p'][0])>3}<a href="javascript:;" class="comment-btn">更多评论...</a>{/if}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 搭讪记录 -->
+    <ul class="listWap">
+        {loop $red_data $red}
+        <li class="d-list">
+            <div class="d-left"><img src="{$red['avatar']}" alt=""></div>
+            <div class="d-right">
+                <div class="nameDes">
+                    <div class="name">{$red['nickname']}</div>
+                    <div class="money">{$red['amount']}</div>
+                </div>
+                <div class="time">
+                    {$red['create_time']}
+                </div>
+            </div>
+        </li>
+        {/loop}
+    </ul>
+</div>
+<!-- 打赏的表单 -->
+{template '../mobile/shang'}
+
+

@@ -1,0 +1,74 @@
+
+<div class="form-group">
+    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否开启团购</label>
+    <div class="col-sm-6 col-xs-6">
+
+        <label class="radio-inline op-toggle-1"><input type="radio" name="is_group" value="1" <?php  if ($item['is_group'] ==1) { ?>checked="true"<?php  } ?>  /> 是</label>
+        <label class="radio-inline op-toggle-2"><input type="radio" name="is_group" value="2" <?php  if ($item['is_group'] ==2) { ?>checked="true"<?php  } ?>   />否</label>
+     
+    </div>
+</div>
+<div class="cotent-toggle">
+<div class="form-group">
+    <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否显示最近团</label>
+    <div class="col-sm-8">
+
+        <label class="radio-inline"><input type="radio" name="isshowgroup" value="1" <?php  if ($item['isshowgroup'] ==1) { ?>checked="true"<?php  } ?>  /> 是</label>
+        <label class="radio-inline"><input type="radio" name="isshowgroup" value="0" <?php  if ($item['isshowgroup'] ==0) { ?>checked="true"<?php  } ?>   />否</label>
+      <div> 提示：最近团是在商品详情显示的最近开启的团，便于会员快速组团，开启后最多显示3个团。</div>
+    </div>
+</div>   
+
+</div>
+<div class="form-group">
+  <div class="input_item item_cell_box">
+      <label class="col-xs-12 col-sm-3 col-md-2 control-label">团购价</label>
+      <div class="col-sm-5">
+          <div class="input-group">
+				<input type="text" class="form-control" name="groupprice" value="{$item['groupprice']}">
+          <span class="input-group-addon">元</span>
+      </div>
+      </div>
+	 </div>
+</div>
+    <!--<div class="form-group">-->
+        <!--<div class="input_item item_cell_box">-->
+            <!--<label class="col-xs-12 col-sm-3 col-md-2 control-label">团购库存</label>-->
+            <!--<div class="col-sm-4 col-md-3">-->
+                <!--<div class="input-group">-->
+            <!--<input type="text" class="form-control" name="group_num" value="{$item['group_num']}">-->
+                <!--<span class="input-group-addon">件</span>-->
+            <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<div class="form-group">
+    <div class="input_item item_cell_box">
+        <label class="col-xs-12 col-sm-3 col-md-2 control-label">满团人数</label>
+        <div class="col-sm-5 ">
+            <div class="input-group">
+                <input type="text" class="form-control" name="groupnum" value="{$item['groupnum']}">
+                <span class="input-group-addon">人</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="input_item item_cell_box">
+        <label class="col-xs-12 col-sm-3 col-md-2 control-label">组团时间</label>
+        <div class="col-sm-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="groupendtime" value="{$item['groupendtime']}">
+                <span class="input-group-addon">小时内</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+      <label class="col-md-2"></label>
+      <div class="col-md-8">提示：组团限时可填小数，填0.1是0.1小时，也就是6分钟，人数必须为整数</div>
+
+

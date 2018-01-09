@@ -1,0 +1,52 @@
+{template '../mobile/header'}
+
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+{template '../mobile/shop_admin/shop_admin_banner'}
+
+<div class="info-content " >
+
+
+        <link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+        <div class="shop-admin order-panney ">
+            <div style="margin-left: 26%;"class="order-body {if $type=='0'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'cate'))}'">
+                分类列表
+            </div>
+            <div class="order-body {if $type=='1'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'cate','type'=>'1'))}'">
+                添加分类
+            </div>
+
+        </div>
+    <div class="clearfix"></div>
+    {if $type==0}
+<ul class="fresh-comment  cate">
+    {loop $list $item}
+    <li class="info-list">
+        {if $item['thumb']}
+            <img src="{$_W['attachurl']}{$item['thumb']}">
+        {/if}
+            <div class="text">
+                <h2>{$item['name']}</h2>
+            </div>
+            <div class="score" onclick="downscore(this)">
+                <img src="{STYLE}images/b_down.png" >
+                <div class="down-list-pro">
+                <a href="{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'cate','type'=>'1','id'=>$item['id']))}"><i class="iconfont" style="color: #4fc0ea">&#xe62d;</i>编辑</a>
+                <a href="javascript:;" onclick="deletegoods({$item['id']},this);"><i class="iconfont" style="color: #F5628C">&#xe635;</i>删除</a>
+                </div>
+            </div>
+
+    </li>
+   {/loop}
+
+    {else}
+    {template 'common/header'}
+        <link  href="{STYLE}css/app.form.css" rel="stylesheet" type="text/css"/>
+        <div class="goods-detail">
+        {template '../web/shop/categrory_detail'}
+        </div>
+    {/if}
+</ul>
+
+
+{template '../mobile/footer'}

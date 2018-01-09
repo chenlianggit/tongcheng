@@ -1,0 +1,103 @@
+<header data-am-widget="header" class="am-header am-header-default jz">
+    <div class="am-header-left am-header-nav">
+        <a href="javascript:history.back()" class="">
+           <img src="{STYLE}images/g_left.png">
+        </a>
+    </div>
+    <h1 class="am-header-title">
+        <a href="#title-link" class="">{$banner_title}</a>
+    </h1>
+    {if $search!=1}
+    <div class="banner-search">
+        <img src="{STYLE}images/g_search.png">
+    </div>
+    {/if}
+    <div class="am-header-right am-header-nav " id="header-more">
+            <img src="{STYLE}images/g_more.png">
+
+    </div>
+    <dd>
+        <img src="{STYLE}images/upsj.png" class="slide sildeimg">
+        <ul class="slide downlist">
+            <li><a href="{php echo $this->createMobileUrl('shop_admin')}"><i class="iconfont" style="color: #01AF63">&#xe64b;</i>管理员中心</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'verify'))}"><i class="iconfont" style="color: #a98a46">&#xe634;</i>核销管理</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'order','status'=>'all'))}"> <i class="iconfont" style="color: #fea501">&#xe68e;</i>订单管理</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'group','status'=>'1'))}"> <i class="iconfont" style="color:#f60;">&#xe647;</i>拼团管理</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'discount'))}"><i class="iconfont" style="color: #a98a46">&#xe651;</i>优惠买单</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'goods'))}"><i class="iconfont" style="color: #dd2727">&#xe668;</i>商品管理</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'cate'))}"><i class="iconfont" style="color: #f00">&#xe624;</i>分类管理</a></li>
+            {if $s_data['admin_type']==1  || !empty($a_data)}
+            <li>   <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'account'))}"> <i class="iconfont" style="color: #01AF63">&#xe637;</i>资金汇总</a></li>
+            <li>   <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'fans'))}"> <i class="iconfont" style="color: #fea501">&#xe64b;</i>会员管理</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'admin'))}">  <i class="iconfont" style="color: #4fc0ea">&#xe626;</i>店员管理</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'info','applay'=>'1'))}">  <i class="iconfont" style="color: #fea501">&#xe62d;</i>店铺资料</a></li>
+        {/if}
+
+        </ul>
+    </dd>
+</header>
+<div class="clearfix" ></div>
+<div class="search-form {if empty($starttime) && empty($endtime) && empty($keyword)}none{/if}">
+    <form id="fieldsform" action="{php echo $this->createMobileUrl($do)}" method="POST">
+        <input type="hidden" name="op" value="{$op}" />
+        <input type="hidden" name="c" value="entry" />
+        <input type="hidden" name="i" value="{$_W['uniacid']}" />
+        <input type="hidden" name="m" value="yc_youliao" />
+        {if $op=='order'}
+        <div class="form-group">
+            <label class=" control-label">订单状态</label>
+            <div class="input-content ">
+               <select class="select-list" name="status">
+                   <option value="all" {if $status=='all' || empty($status)}checked{/if}>全部订单</option>
+                   <option value="0" {if $status=='0'}checked{/if}>待付款</option>
+                   <option value="1" {if $status=='1'}checked{/if}>已支付</option>
+                   <option value="3" {if $status=='3'}checked{/if}>已完成</option>
+                   <option value="4" {if $status=='4'}checked{/if}>已退款</option>
+               </select>
+            </div>
+        </div>
+
+        {else}
+        <input type="hidden" name="status" value="{$status}" />
+        {/if}
+        {if $search!=2}
+        <div class="form-group">
+            <label class=" control-label">关键词</label>
+            <div class="input-content ">
+                <input class="form-control" name="keyword" id="keyword" type="text" value="{$keyword}" placeholder="{if $input_detail}{$input_detail}{else}可查询关键词{/if}">
+            </div>
+        </div>
+        {/if}
+        <div class="form-group">
+            <label class="  control-label">日期</label>
+            <div class="input-content ">
+                <input class="form-control starttime"  readonly id="starttime" name="starttime" type="text" value="{$_GPC['starttime']}" placeholder="开始日期">
+                <input class="form-control endtime" readonly id="endtime" name="endtime" type="text" value="{$_GPC['endtime']}" placeholder="结束日期">
+
+            </div>
+
+            <div class="col-sm-7  pull-right nonefloat">
+                <button class="btn btn-default"> <img src="{STYLE}images/b_search.png"> 搜索</button>
+                {if $total>0}
+                <button type="button" class="btn btn-default">总记录数：{$total}</button>
+                {/if}
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script>
+    $(document).on("tap", ".starttime", function(){
+        var $this = $(this);
+        util.datepicker({type: "date", beginYear: 2017, endYear: 2050}, function(rs){
+            $('.starttime').val(rs.value);
+        });
+    });
+    $(document).on("tap", ".endtime", function(){
+        var $this = $(this);
+        util.datepicker({type: "date", beginYear: 2017, endYear: 2050}, function(rs){
+            $('.endtime').val(rs.value);
+        });
+    });
+</script>

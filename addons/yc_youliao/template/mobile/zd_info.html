@@ -1,0 +1,63 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}mui/css/mui.min.css">
+<div class="mui-content">
+	<div class="mui-row" style="padding:10px 15px;border-bottom:solid 1px #efefef;background:#fff;">想在海量信息中优先展示吗？试试置顶功能吧！</div>
+	<div class="mui-row" style="padding:10px 15px;background:#fff;border-bottom:solid 1px #efefef;">
+		<div class="mui-col-sm-6 mui-col-xs-6" style="color:#900;height:35px;line-height:35px;">
+			置顶{$module['zdprice']}元/天
+		</div>
+		
+		<div class="mui-col-sm-6 mui-col-xs-6" style="text-align:right;">
+			<div class="mui-numbox">
+				<button class="mui-btn mui-btn-numbox-minus" type="button" onclick="changemoney()">-</button>
+				<input class="mui-input-numbox" id="days" value="1" type="tel" onkeyup="changemoney()">
+				<button class="mui-btn mui-btn-numbox-plus" type="button" onclick="changemoney()">+</button>
+			</div>
+		</div>
+	</div>
+	<div class="mui-row" style="padding:10px 15px;background:#fff;">
+		<div class="mui-col-sm-12 mui-col-xs-12">
+			<button type="button" class="mui-btn mui-btn-block mui-btn-success" id="sub" style="padding:8px 0;margin-bottom:0px;">确认
+				<span  id="confirm_money">￥{$module['zdprice']}</span>
+			</button>
+		</div>
+	</div>
+</div>
+<script src="{STYLE}mui/js/mui.min.js"></script>
+<script type="text/javascript">
+    function changemoney(){
+        var num=$('#days').val();
+        if(num<=0){
+            $('#days').val(1);
+            num=1;
+        }
+        var price="{$module['zdprice']}";
+        num=num*parseFloat(price);
+        $('#confirm_money').text('￥'+parseFloat(num).toFixed(2));
+
+    }
+mui.init();
+document.getElementById('sub').addEventListener('click', function(event) {
+	$.ajax({
+		url:"{php echo $this->createMobileUrl('mylocal',array('op'=>'dozhiding'))}",   
+		type:'post', 
+		data:{
+			days:$('#days').val(),
+			id:'{$id}',
+		},
+		dataType:'json',
+		success:function(data){
+			if (data.error == 1) {
+				mui.toast(data.message);
+			}else{
+				if(data.needpay == 0){
+					mui.back();
+				}else{
+					window.location.href = "{php echo $this->createMobileUrl('pay')}"+"&ordersn="+data.ordersn+"&type=zhiding";
+				}
+			}
+		}
+	});
+});
+</script>
+{template '../mobile/footer'}

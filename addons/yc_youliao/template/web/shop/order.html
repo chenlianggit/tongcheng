@@ -1,0 +1,206 @@
+{template 'web/shop/shop_header'}
+{template 'web/shop/shop_left'}
+   <section id="content">
+        <section class="vbox">
+          <section class="scrollable padder">
+            <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+              <li><a href="{php echo $this->createWebUrl("index")}"><i class="fa fa-home"></i>首页</a></li>
+              <li class="active">订单管理</li>
+            </ul>
+
+{template 'web/shop/order_banner'}
+			  <div class="main">
+{if $op == 'display'}
+
+				  {template 'web/shop/search_input'}
+
+				  {template 'web/shop/order_item'}
+
+				  {elseif $op == 'detail'}
+
+ <div class="order-detail">
+	<div class="col-sm-6">
+			<section class="panel panel-default">
+				<header class="panel-heading"> <strong>订单详情</strong> </header>
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">订单编号</label>
+						<div class="col-sm-9">
+							{$item['ordersn']}
+						</div>
+					</div>
+					<div class="line line-dashed line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">支付金额</label>
+						<div class="col-sm-9">
+							{$item['price']} 元
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">下单时间</label>
+						<div class="col-sm-9">
+							{php echo date('Y-m-d H:i:s', $item['createtime'])}
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">支付方式</label>
+						<div class="col-sm-9">
+							{template 'web/shop/order_paytype'}
+						</div>
+					</div>
+					<div class="line line-dashed line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">订单类型</label>
+						<div class="col-sm-9">
+							{if $item['ordertype'] == 1}<span>普通订单</span>
+							{elseif $item['ordertype'] ==2}<span class="label label-info">参团订单</span>
+							{elseif $item['ordertype'] == 3}<span class="label label-success">建团订单</span>
+							{/if}
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">订单状态</label>
+						<div class="col-sm-9">
+							{template 'web/shop/status'}
+						</div>
+					</div>
+					<div class="line line-dashed line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">订单留言</label>
+						<div class="col-sm-9">
+							{$item['remark']}
+						</div>
+					</div>
+
+					<div class="line line-dashed line-lg pull-in"></div>
+					{if $item['user']}
+					<div class="form-group">
+						<label class="col-sm-3 control-label">联系人</label>
+						<div class="col-sm-9">
+							{$item['user']['realname']}
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">联系电话</label>
+						<div class="col-sm-9">
+							{$item['user']['mobile']}
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">联系地址</label>
+						<div class="col-sm-9">
+							{$item['user']['province']}{$item['user']['city']}{$item['user']['area']}{$item['user']['address']}
+						</div>
+					</div>
+					{else}
+					{php $userData= Member::getUserByid($item['userid'])}
+					<div class="form-group">
+						<label class="col-sm-3 control-label">用户名</label>
+						<div class="col-sm-9">
+							{$userData['nickname']}
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">联系电话</label>
+						<div class="col-sm-9">
+							{$userData['telphone']}
+						</div>
+					</div>
+
+					{/if}
+				</div>
+			</section>
+	</div>
+
+
+
+
+	 <div class="col-sm-6">
+		 <section class="panel panel-default">
+			 <header class="panel-heading"> <strong>商品详情</strong> </header>
+			 <div class="panel-body">
+
+				 {loop  $goodData $goods}
+
+				 <div class="form-group">
+					 <label class="col-sm-3 control-label">商品标题</label>
+					 <div class="col-sm-9">
+						 <a target="_blank" href="{php echo $this->createWebUrl('shop_goods', array('id' => $goods['goods_id'], 'op' => 'post'))}">{if $goods['thumb']}<img class="goodsimg" src="{$_W['attachurl']}{$goods['thumb']}" >{/if}{$goods['title']}</a>
+					 </div>
+				 </div>
+				{if $goods['optionname']}
+				 <div class="form-group">
+					 <label class="col-sm-3 control-label">商品规格</label>
+					 <div class="col-sm-9">
+						 {$goods['optionname']}
+					 </div>
+				 </div>
+				{/if}
+				 <div class="form-group">
+					 <label class="col-sm-3 control-label">成交价</label>
+					 <div class="col-sm-9">
+						 {$goods['orderprice']}
+					 </div>
+				 </div>
+
+				 <div class="form-group">
+					 <label class="col-sm-3 control-label">购买数量</label>
+					 <div class="col-sm-9">
+						 {$goods['total']}
+					 </div>
+				 </div>
+				 {if $goods['order_status'] >= 2}
+				 {php $g=$goods}
+				 <div class="form-group">
+
+					 <label class="col-sm-3 control-label">退款状态</label>
+					 <div class="col-sm-9">
+						 {template 'web/shop/order_status'}
+						 <a href="{php echo $this->createWebUrl('shop_refund', array('ogid' => $goods['ogid']))}"
+							class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="bottom" title="操作"><i class="fa fa-pencil"></i> </a>
+					 </div>
+
+
+
+				 </div>
+
+				 {/if}
+			{/loop}
+			 </div>
+
+		 </section>
+
+	 </div>
+
+	 <div class="col-sm-6">
+ <div class="panel panel-default">
+        <div class="panel-heading">
+           管理员备注
+        </div>
+        <div class="panel-body table-responsive">
+			 <form action="./index.php"  class="form-horizontal" role="form" onSubmit="return check_adminRemark(this)" method="post">
+                <input type="hidden" name="c" value="site" />
+                <input type="hidden" name="a" value="entry" />
+                <input type="hidden" name="m" value="yc_youliao" />
+                <input type="hidden" name="do" value="shop_order" />
+                <input type="hidden" name="op" value="admin_remark" />
+				<input type="hidden" name="id" value="{$item['id']}" />
+				 <input name="token" value="{$_W['token']}" type="hidden">
+		<textarea style="height:150px;" class="span7" id="admin_remark" name="admin_remark" cols="70"
+		 placeholder="订单备注信息（仅管理员可见）" value=""  >{$item['admin_remark']}</textarea>
+
+			<button type="submit" style="float:right" class="btn btn-success span2" >确认提交</button>
+			 </form>
+            </div>
+        </div>
+	 </div>
+
+{/if}
+ </div>
+ </div>
+</div>
+</div>
+ {template 'web/footer'}

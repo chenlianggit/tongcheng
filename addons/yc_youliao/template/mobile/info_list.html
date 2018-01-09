@@ -1,0 +1,46 @@
+<ul class="am-cf discount-content" >
+    <div class="discount-li">
+{loop $list $item}
+<li class="space_list_li bg_white mb_10 ">
+    <div class="my_dis_content f_14 c_999 am-cf mt_10 z">编号：{$item['ordersn']}</div>
+    <div class="d_time">{$item['createtime']}</div>
+    <div class="clearfix"></div>
+    <div class="listDiv_group mr_10 mt_5 my_dis_group am-cf">
+        <a href="{php echo $this->createMobileUrl('detail', array('id' => $item['id']))}" target="_blank">
+            <div class="listDiv_groupImg  mr_10">
+                {if $item['con']['thumbs']}
+                <img class="radius_50" src="{$_W['attachurl']}{$item['con']['thumbs'][0]}">
+                {/if}
+                <h6 class="listDiv_groupH6 mt_5 cl">{$item['con']['title']}</h6>
+                <div>
+                    {if $item['infoprice'] >0}
+                    <div class="m-5">支付：<span class="red">￥{$item['infoprice']}</span></div>
+                    {elseif $item['zdprice'] >0}
+                    <div class="m-5">支付：<span class="red">￥{$item['zdprice']}</span></div>
+                        {if $item['dingtime']}
+                        <div class="m-5">置顶至{php echo date('Y-m-d H:i:s',$item['dingtime'])}</div>
+                        {/if}
+                    {/if}
+
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="my_dis_love am-cf">
+        {if $item['nickname']}
+        <span class="ml_15"><img src="{$item['avatar']}"> <em>{$item['nickname']}</em></span>
+        {/if}
+    </div>
+    <div class="clearfix"></div>
+</li>
+{/loop}
+    </div>
+</ul>
+<script>
+    $(function(){
+        var page = 0;
+        var url=createAppUrl('admin','order_info');
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        pagelist(page,url,'.discount-content','.discount-li','order_info');
+    });
+</script>

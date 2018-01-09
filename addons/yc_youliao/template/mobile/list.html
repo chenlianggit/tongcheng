@@ -1,0 +1,247 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/list.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/miaosha.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+<!--筛选条件-->
+<section class="job-module">
+    <dl class="retrie">
+        <dt>
+            <a id="area" href="javascript:;">区域</a>
+            <a id="wage" href="javascript:;">商圈</a>
+            <a id="near" href="javascript:;">附近</a>
+            <a id="zn"  href="javascript:;">智能排序</a>
+        </dt>
+        <dd class="area">
+            <ul class="slide downlist">
+                {loop $area $item}
+                <li><a href="javascript:;"
+                       onClick="getData('area','{$item['area_id']}');">{$item['area_name']}</a></li>
+                {/loop}
+
+            </ul>
+        </dd>
+        <dd class="wage">
+            <ul class="slide downlist" style="left: 10%;">
+                {loop $business $item}
+                <li><a href="javascript:;"
+                       onClick="getData('business','{$item['area_id']}');">{$item['area_name']}</a></li>
+                {/loop}
+                </li>
+            </ul>
+        </dd>
+        <dd class="near">
+            <ul class="slide downlist " style="left: 30%;">
+                <li><a href="javascript:;" onclick="getData('near','0')">距离最近</a></li>
+                <li><a href="javascript:;" onclick="getData('near','1')">1km</a></li>
+                <li><a href="javascript:;" onclick="getData('near','2')">2km</a></li>
+                <li><a href="javascript:;" onclick="getData('near','3')">3km</a></li>
+                <li><a href="javascript:;" onclick="getData('near','5')">5km</a></li>
+                <li><a href="javascript:;" onclick="getData('near','6')">10km</a></li>
+
+            </ul>
+        </dd>
+        <dd class="zn">
+            <ul class="slide downlist" style="left: 50%;">
+                <li><a href="javascript:;" onclick="getData('zn','1')">人均消费价格排序</a></li>
+                <li><a href="javascript:;" onclick="getData('zn','2')">商家星级排序</a></li>
+                <li><a href="javascript:;" onclick="getData('zn','3')">默认排序</a></li>
+            </ul>
+        </dd>
+    </dl>
+    <div class="datatype"></div>
+    <div class="type_id"></div>
+</section>
+
+<!--头部广告-->
+{php $advs= commonGetData::getAdv(1);}
+{if !empty($advs)}
+{template '../mobile/adv1'}
+{/if}
+
+
+{if $cate}
+<!--滑动开始-->
+<div id="header" class="swiper-container-horizontal swiper-container-free-mode">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a onClick="getCate(0); changeColor(this);" >
+                    <div class="name{if empty($cate_id)} listactive{/if}">全部</div>
+                </a>
+            </div>
+            {loop $cate $item}
+            <div class="swiper-slide">
+                <a onClick="getCate({$item['cate_id']});changeColor(this);" >
+                    <div class="cid">{$item['cate_id']}</div>
+                    <div class="name">{$item['cate_name']}</div>
+                </a>
+            </div>
+            {/loop}
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    var mySwiper = new Swiper('.swiper-container',{
+        slidesPerView : 3,
+        slidesPerGroup : 3,
+        prevButton:'.swiper-button-prev',
+        nextButton:'.swiper-button-next',
+
+    })
+</script>
+<!--滑动结束-->
+{/if}
+
+
+
+
+<!--列表-->
+{if $isgroup}
+<!--优惠买单-->
+<div class="content">
+    <div class="NotUesed2">
+{if $adv_type==7 || $adv_type==9}
+<div class="shop-list">
+    <ul id="mihua_sq_list" class="am-cf">
+        {loop $isgroup $item}
+        <li class="shop-list-li">
+            <a href="{php echo $this->createMobileUrl('shop', array('shop_id' => $item['shop_id']))}">
+                <div class="shop-list-li-img">
+                    <img class="lazy inline"  src="{$item['logo']}"  onerror="this.src='{$shopLogo}'" >
+                </div>
+
+                <div class="shop-list-info">
+                    {php $distance= util::getDistance($item['lat'], $item['lng'], $_COOKIE['lat'], $_COOKIE['lng']);}
+                    {if $distance>0}
+                    <div class="y">{$distance}km</div>
+                    {/if}
+                    <div class="wap1 mr_5 title">{$item['shop_name']}</div>
+
+                    <div>
+                        {if !empty($item['dp']) && $item['dp']>0}
+                        <div class="shop_star_s mr_10"><img src="{STYLE}images/{if $item['dp']>=5}5x{elseif $item['dp']>=4 && $item['dp']<=4.9}4x{elseif $item['dp']>=3 && $item['dp']<=3.9}3x{elseif $item['dp']>=2&& $item['dp']<=2.9}2x{elseif $item['dp']>=1 && $item['dp']<=1.9}1x{else}0x{/if}.png"></span></div>
+                        {/if}
+                        {if $item['renjun']>0}
+                        <div class="renjun"><cite>￥</cite>{$item['renjun']}/人</div>
+                        {/if}
+
+                        <div class="shop-list-addr">
+                            <div class="wap1">
+                                {loop $item['inco'] $i}
+                                <i>{$i}</i>
+                                {/loop}
+                            </div>
+                        </div>
+                    </div>
+            </a>
+        </li>
+
+        {/loop}
+    </ul>
+
+    {elseif $adv_type==4}
+    <ul class="groups">
+        {loop $isgroup $item}
+        <li>
+            <a href="{php echo $this->createMobileUrl('good', array('shop_id' => $item['shop_id'],'id' => $item['goods_id']))}">
+                <div class="groups-img"><img src="{$item['thumb']}"/></div>
+                <h2 class="groups-title">{$item['title']}</h2>
+                <div class="groups-detail">
+                    <div class="groups-detail-left fl">
+                        <div class="price fl"><i>￥</i>{$item['groupprice']}</div>
+                        <div class="des fr">已团{$item['sales']}件</div>
+                    </div>
+                    <div class="groups-detail-right fr mr-4r">
+                        <div class="group-local fl">
+                            <!--{loop $data1[$item['id']] $o}-->
+                            <!--<div class="avatar fr">-->
+                                <!--<img src="{$o['avatar']}"/>-->
+                            <!--</div>-->
+                            <!--{/loop}-->
+                        </div>
+                        <div class="group-btn fr">
+                           去开团
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        {/loop}
+    </ul>
+    {else}
+        {loop $isgroup $item}
+        <a href="{php echo $this->createMobileUrl('good', array('shop_id' => $item['shop_id'],'id' => $item['goods_id']))}">
+        <div class="second_list clearfix">
+            <div class="second_img">
+                <img src="{$item['thumb']}">
+            </div>
+            <div class="second_content">
+                <p class="goods_name">
+                    {$item['title']}
+                </p>
+                <p class="shop_name">
+                    <img src="../addons/yc_youliao/public/images/shop.png">{$item['shop_name']}</p>
+                <div class="price">
+                    <!--首单优惠-->
+                    {if $adv_type==6}
+                    <span class="iconfont money_red">- ￥{$item['isfirstcut']}</span>
+                    <del class="iconfont money_grizzly">￥{$item['marketprice']}</del>
+                    <div class="sheng">下单价￥{php echo($item['marketprice']-$item['isfirstcut'])}</div>
+                    {/if}
+                </div><div class="go_second">
+                <button class="go_second_botton">{$btn}</button>
+                <div class="skill-lod">
+                    <div id="progress-b" class="kill-progress">
+                        <div class="skill-pro-bg"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </a>
+
+        {/loop}
+    {/if}
+
+    </div>
+</div>
+
+<!--列表结束-->
+
+{/if}
+
+<input type="hidden" id='adv_type' value="{$adv_type}">
+<input type="hidden" id='btn' value="{$btn}">
+<input type="hidden" id='upflag' value="">
+{template '../mobile/footer'}
+<script>
+    var page =1;
+    var cid=0;
+    var pageurl=createAppUrl('list','ajax_req');
+    function getCate(cate_id) {
+        $(this).addClass('cur');
+        $('.NotUesed2').html('<div class="listloading"><img src="../addons/yc_youliao/public/images/loading.png" class="loadImg" alt=""></div>');
+        cid=cate_id;
+        url=pageurl+'&type={$adv_type}&cate_id='+cid;
+        pagelist(0, url, '.content', '.NotUesed2', 'list');
+    }
+
+
+    $(function(){
+        getCate(0);
+    })
+
+
+function getData(datatype,type_id) {
+    $(".retrie dt a").removeClass('up');
+    $('.downlist').hide();
+    $('.mask').hide();
+    $('.datatype').text(datatype);
+    $('.type_id').text(type_id);
+    $('.NotUesed2').html('<div class="listloading"><img src="../addons/yc_youliao/public/images/loading.png" class="loadImg" alt=""></div>');
+    url=pageurl+'&type={$adv_type}&datatype='+datatype+'&type_id='+type_id+'&cate_id='+cid;
+    pagelist(0, url, '.content', '.NotUesed2', 'list');
+    }
+
+</script>

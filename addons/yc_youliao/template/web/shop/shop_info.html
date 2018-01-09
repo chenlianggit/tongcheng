@@ -1,0 +1,387 @@
+{php $id=getShop_id()}
+{if $id>0 && $_GPC['add']!='1'}
+{template 'web/shop/shop_header'}
+{template 'web/shop/shop_left'}
+<style>
+    @media (min-width: 768px) {
+        .webapp, .webapp body {
+            height: auto;
+            overflow: auto;
+        }
+    }
+</style>
+<section  id="content">
+    <section >
+        <section class="padder">
+            <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+                <li><a href="{php echo $this->createWebUrl("index")}"><i class="fa fa-home"></i>首页</a></li>
+                <li class="active">商户管理</li>
+            </ul>
+{else}
+{template 'web/header'}
+{template 'web/left'}
+            <section>
+                <section >
+                    <section class="padder">
+                        <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+                            <li><a href="{php echo $this->createWebUrl('index')}"><i class="fa fa-home"></i>首页</a></li>
+                            <li class="active">店铺管理</li>
+                        </ul>
+
+                        <ul class="nav nav-tabs">
+                            <li {if $op =='display'} class="active" {/if}><a href="{php echo $this->createWebUrl('shop',array('op' =>'display'))}">店铺管理</a></li>
+                            {if $op =='post'} <li  class="active" ><a href="{php echo $this->createWebUrl('shop_info',array('op' =>'post'))}"> 编辑商家信息</a></li>{/if}
+
+                        </ul>
+{/if}
+
+
+
+
+            <div class="main">
+                    <form method="post" class="form-horizontal form" enctype="multipart/form-data">
+                        <input type="hidden" name="c" value="site" />
+                        <input type="hidden" name="a" value="entry" />
+                        <input type="hidden" name="m" value="yc_youliao" />
+                        <input type="hidden" name="do" value="shop_info" />
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               编辑商户
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>所属行业</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" style="margin-right:15px;" name="pcate_id"  autocomplete="off"  onchange="changeline(this.options[this.selectedIndex].value)" >
+                                            {if $cate }
+                                            <option value="0">请选择分类</option>
+                                            {loop $cate $row}
+                                            <option value="{$row['cate_id']}" {if $row['cate_id'] == $item['pcate_id']} selected="selected"{/if}>{$row['cate_name']}</option>
+                                            {/loop}
+
+                                            {else}
+                                            <option>暂无分类</option>
+                                            {/if}
+
+
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                    <select class="form-control" style="margin-right:15px;"  name="ccate_id"  autocomplete="off">
+                                        {if $ccate }
+                                        <option value="0">请选择子类</option>
+                                        {loop $ccate $row}
+                                        <option value="{$row['cate_id']}" {if $row['cate_id'] == $item['ccate_id']} selected="selected"{/if}>{$row['cate_name']}</option>
+                                        {/loop}
+
+                                        {else}
+                                        <option value="0">暂无分类</option>
+                                        {/if}
+
+
+                                    </select>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>城市/区域/商圈</label>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" style="margin-right:15px;"  name="city_id" onchange="changearea(this.options[this.selectedIndex].value)"  autocomplete="off">
+                                            {if $city}
+                                            <option value="0">请选择城市</option>
+                                            {loop $city $row}
+                                            <option value="{$row['city_id']}" {if $row['city_id'] == $item['city_id']} selected="selected"{/if}>{$row['name']}</option>
+                                            {/loop}
+
+                                            {else}
+                                            <option value="0">暂无城市</option>
+                                            {/if}
+
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" style="margin-right:15px;"  name="area_id" onchange="changebusiness(this.options[this.selectedIndex].value)"  autocomplete="off">
+                                            {if $area}
+                                            <option value="0">请选择区域</option>
+                                            {loop $area $row}
+                                            <option value="{$row['area_id']}" {if $row['area_id']  == $item['area_id']} selected="selected"{/if}>{$row['area_name']}</option>
+                                            {/loop}
+
+                                            {else}
+                                            <option value="0">暂无区域</option>
+                                            {/if}
+
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-2">
+
+
+                                        <select class="form-control"  name="business_id" autocomplete="off">
+                                            {if $business}
+                                            <option value="0">请选择商圈</option>
+                                            {loop $business $row}
+                                            <option value="{$row['area_id']}" {if $row[area_id] == $item['business_id']} selected="selected"{/if}>{$row['area_name']}</option>
+                                            {/loop}
+
+                                            {else}
+                                            <option value="0">暂无商圈</option>
+                                            {/if}
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                            <div class="form-group" >
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="red mr5">*</span>商铺坐标</label>
+                                <div class="col-sm-9 col-xs-12">
+
+                                    <div class="lt">
+                                        经度 <input type="text" name="lng" id="map_x" value="{$item['lng']}" class="scAddTextName w200">
+                                        纬度 <input type="text" name="lat" id="map_y" value="{$item['lat']}" class="scAddTextName w200">
+                                    </div>
+                                    <div class="btn-bdmap">
+                                        <a style="margin-left: 10px;" onclick="getMapXY();"   class="seleSj">百度地图</a>
+                                    </div>
+                                    <!--百度地图开始-->
+                                    <input type="text" class="form-control input-text" id="suggestId" style="display:none;" placeholder="可以输入指定位置搜索">
+
+                                    <div id="searchResultPanel" ></div>
+
+                                    <div id="allmap" ></div>
+
+                                </div>
+                                <div class="form-group" >
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>店铺电话</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="telphone" id='telphone' class="form-control" value="{$item['telphone']}" />
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>联系人</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="manage" class="form-control" value="{$item['manage']}" />
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="red mr5">*</span>店铺名称</span></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="shop_name" id='name' class="form-control" value="{$item['shop_name']}" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">营业执照</label>
+                                    <div class="col-sm-4">
+                                        {php echo tpl_form_field_image('shop_cert',$item['shop_cert']);}
+
+                                    </div>
+                                </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺LOGO</label>
+                                <div class="col-sm-4">
+                                    {php echo tpl_form_field_image('logo',$item['logo']);}
+                                    <p class="help-block">建议上传宽120px*高120px或长宽比例相同像素图片</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺形象</label>
+                                <div class="col-sm-4">
+                                    {php echo tpl_form_field_image('bgpic',$item['bgpic']);}
+                                    <p class="help-block">建议上传宽768px高300px图片</p>
+                                </div>
+                            </div>
+
+                                <div class="form-group" >
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺地址</label>
+                                    <div class="col-sm-9 col-xs-12">
+                                        <input type="text" name="address" id='address' class="form-control" value="{$item['address']}" />
+                                    </div>
+                                </div>
+                            <div class="form-group" >
+                                <label class="col-xs-12 col-sm-3 col-md-2  control-label">店铺描述</label>
+                                <div class="col-sm-9 col-xs-12">
+                                    <textarea name="intro" rows="2">{$item['intro']}</textarea>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">人均消费</label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="text" onkeyup="clearNoNum(this);"  name="renjun"  class="form-control" value="{$item['renjun']}" />
+                                            <span class="input-group-addon">元/人</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group inco">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺标签</label>
+                                    <div class="col-sm-9 col-xs-12">
+                                        <div class="input_form item_cell_flex checkbox good_inco_list">
+                                            <div class="inco_append_box">{php $item['inco']=json_decode($item['inco'])}
+
+                                                <label><input type="checkbox" name="inco[]" {if in_array('干净卫生',(array)$item['inco'])}checked="checked"{/if} value="干净卫生" > 干净卫生</label>
+                                                <label><input type="checkbox" name="inco[]" {if in_array('环境优雅',(array)$item['inco'])}checked="checked"{/if} value="环境优雅" > 环境优雅</label>
+
+                                                {loop $item['inco'] $i}
+                                                {if !in_array($i,array('干净卫生','环境优雅'))}
+                                                <label>
+                                                    <input type="checkbox" name="inco[]"checked="checked" value="{$i}" > {$i}
+                                                </label>
+                                                {/if}
+                                                {/loop}
+                                            </div>
+                                            <p class="add_btn_box">
+				<span class="input_box input_box_200">
+					<input type="text" class="input_input">
+				</span>
+                                                <span class="font_13px_999 add_btn add_a_inco">添加一个标签</span>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">营业时间</label>
+                                    <div class="text-right">
+                                        <select name="opendtime" class="hour form-control" >
+                                            <option value="">营业</option>
+                                            <option value="0" {if $item['opendtime']==0}selected="selected"{/if}>00 : 00</option>
+                                            <option value="1" {if $item['opendtime']==1}selected="selected"{/if}>01 : 00</option>
+                                            <option value="2" {if $item['opendtime']==2}selected="selected"{/if}>02 : 00</option>
+                                            <option value="3" {if $item['opendtime']==3}selected="selected"{/if}>03 : 00</option>
+                                            <option value="4" {if $item['opendtime']==4}selected="selected"{/if}>04 : 00</option>
+                                            <option value="5" {if $item['opendtime']==5}selected="selected"{/if}>05 : 00</option>
+                                            <option value="6" {if $item['opendtime']==6}selected="selected"{/if}>06 : 00</option>
+                                            <option value="7" {if $item['opendtime']==7}selected="selected"{/if}>07 : 00</option>
+                                            <option value="8" {if $item['opendtime']==8}selected="selected"{/if}>08 : 00</option>
+                                            <option value="9" {if $item['opendtime']==9}selected="selected"{/if}>09 : 00</option>
+                                            <option value="10" {if $item['opendtime']==10}selected="selected"{/if}>10 : 00</option>
+                                            <option value="11" {if $item['opendtime']==11}selected="selected"{/if}>11 : 00</option>
+                                            <option value="12" {if $item['opendtime']==12}checked="checked"{/if}>12 : 00</option>
+                                            <option value="13" {if $item['opendtime']==13}selected="selected"{/if}>13 : 00</option>
+                                            <option value="14" {if $item['opendtime']==14}selected="selected"{/if}>14 : 00</option>
+                                            <option value="15" {if $item['opendtime']==15}selected="selected"{/if}>15 : 00</option>
+                                            <option value="16" {if $item['opendtime']==16}selected="selected"{/if}>16 : 00</option>
+                                            <option value="17" {if $item['opendtime']==17}selected="selected"{/if}>17 : 00</option>
+                                            <option value="18" {if $item['opendtime']==18}selected="selected"{/if}>18 : 00</option>
+                                            <option value="19" {if $item['opendtime']==19}selected="selected"{/if}>19 : 00</option>
+                                            <option value="20" {if $item['opendtime']==20}selected="selected"{/if}>20 : 00</option>
+                                            <option value="21" {if $item['opendtime']==21}selected="selected"{/if}>21 : 00</option>
+                                            <option value="22" {if $item['opendtime']==22}selected="selected"{/if}>22 : 00</option>
+                                            <option value="23" {if $item['opendtime']==23}selected="selected"{/if}>23 : 00</option>
+                                        </select>
+
+                                        <select name="closetime" class="hour form-control">
+                                            <option value="">打烊</option>
+                                            <option value="0" {if $item['closetime']==0}selected="selected"{/if}>00 : 00</option>
+                                            <option value="1" {if $item['closetime']==1}selected="selected"{/if}>01 : 00</option>
+                                            <option value="2" {if $item['closetime']==2}selected="selected"{/if}>02 : 00</option>
+                                            <option value="3" {if $item['closetime']==3}selected="selected"{/if}>03 : 00</option>
+                                            <option value="4" {if $item['closetime']==4}selected="selected"{/if}>04 : 00</option>
+                                            <option value="5" {if $item['closetime']==5}selected="selected"{/if}>05 : 00</option>
+                                            <option value="6" {if $item['closetime']==6}selected="selected"{/if}>06 : 00</option>
+                                            <option value="7" {if $item['closetime']==7}selected="selected"{/if}>07 : 00</option>
+                                            <option value="8" {if $item['closetime']==8}selected="selected"{/if}>08 : 00</option>
+                                            <option value="9" {if $item['closetime']==9}selected="selected"{/if}>09 : 00</option>
+                                            <option value="10" {if $item['closetime']==10}selected="selected"{/if}>10 : 00</option>
+                                            <option value="11" {if $item['closetime']==11}selected="selected"{/if}>11 : 00</option>
+                                            <option value="12" {if $item['closetime']==12}selected="selected"{/if}>12 : 00</option>
+                                            <option value="13" {if $item['closetime']==13}selected="selected"{/if}>13 : 00</option>
+                                            <option value="14" {if $item['closetime']==14}selected="selected"{/if}>14 : 00</option>
+                                            <option value="15" {if $item['closetime']==15}selected="selected"{/if}>15 : 00</option>
+                                            <option value="16" {if $item['closetime']==16}selected="selected"{/if}>16 : 00</option>
+                                            <option value="17" {if $item['closetime']==17}selected="selected"{/if}>17 : 00</option>
+                                            <option value="18" {if $item['closetime']==18}selected="selected"{/if}>18 : 00</option>
+                                            <option value="19" {if $item['closetime']==19}selected="selected"{/if}>19 : 00</option>
+                                            <option value="20" {if $item['closetime']==20}selected="selected"{/if}>20 : 00</option>
+                                            <option value="21" {if $item['closetime']==21}selected="selected"{/if}>21 : 00</option>
+                                            <option value="22" {if $item['closetime']==22}selected="selected"{/if}>22 : 00</option>
+                                            <option value="23" {if $item['closetime']==23}selected="selected"{/if}>23 : 00</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                {php $t=getAdmin_type()}
+                                {if $t== 'Y'}
+                                <div class="col-sm-12">
+                                <div class="line line-dashed line-lg "></div>
+                                </div>
+                                <div class="col-sm-12">
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label mb5">以下仅模块管理员权限可见</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">续期至</label>
+                                    <div class="col-sm-3">
+                                        {php echo tpl_form_field_date('endtime', !empty($item['endtime']) ? date('Y-m-d',$item['endtime']) : date('Y-m-d'), 0)}
+                                        <p class="help-block">店铺到期时间：{php echo date('Y-m-d H:i:s',$item['endtime'])}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">交易费率</label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="text" onkeyup="clearNoNum(this);" name="rate"  class="form-control" value="{$item['rate']}" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <p class="help-block">0或空则表示不收取商家每笔订单费用</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">状态</label>
+                                    <div class="col-sm-9 col-xs-12">
+                                        <label class="radio-inline"><input type="radio" value="1" name="status"   {if   $item['status'] == 1}checked="true"{/if} /> 开启</label>
+                                        <label class="radio-inline"><input type="radio" value="0" name="status"    {if  $item['status'] == 0}checked="true"{/if} /> 关闭</label>
+                                        <label class="radio-inline"><input type="radio" value="0" name="status"    {if  $item['status'] == 3}checked="true"{/if} /> 暂停</label>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">点评</label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="text" onkeyup="clearNoNum(this);"  name="dp"  class="form-control" value="{$item['dp']}" />
+                                            <span class="input-group-addon">分</span>
+                                        </div>
+                                        <p class="help-block">5分为满分</p>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 col-md-2 control-label">排序</label>
+                                        <div class="col-sm-2">
+                                            <input   name="orderby" id="orderby" onkeyup="isNumber();" class="form-control" value="{$item['orderby']}" />
+                                        </div>
+                                    </div>
+                                {/if}
+                                </div>
+                            </div>
+                            <input type="hidden" name="token" value="{$_W['token']}" />
+                        <input type="hidden" name="parent_id" value="{$parent['shop_id']}" />
+                        <input type="hidden" name="shop_id" value="{$item['shop_id']}" />
+                            <input type="hidden" name="op" value="post" />
+                            <div class="width100 btn2">
+                                <input name="submit" type="submit" value="提交" class="btn btn-primary" onclick="return checkform(this.form)">
+                            </div>
+
+
+                    </form>
+                </div>
+
+
+
+    </section>
+</section>
+</section>
+
+{template 'mapjs'}
+{template 'web/footer'}

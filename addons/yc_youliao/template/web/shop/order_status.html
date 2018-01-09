@@ -1,0 +1,12 @@
+{if $g['order_status'] == 0}<span class="label label-danger text-danger">待付款</span>
+{elseif $item['ordertype'] == 1 && $g['order_status'] == 1 && $item['iscomplete'] == 1 }<span class="label label-info text-info">待使用</span>
+{elseif $item['ordertype'] > 1 && $g['order_status'] == 1 && $item['iscomplete'] != 1 }<span class="label label-info text-info">拼团中</span>
+{elseif $item['ordertype'] >1 && $g['order_status'] == 1 && $item['iscomplete'] == 1 }<span class="label label-info text-info">待使用</span>
+{elseif $g['order_status'] == 3}<span class="label label-success text-success">已完成</span>
+{elseif $g['order_status'] == 5 || $g['order_status'] == 2}<span class="label label-warning ">申请退款中</span>
+{elseif $g['order_status'] == 6}<span class="label label-info ">审核通过</span>
+{elseif $g['order_status'] == 7}<span class="label label-warning ">提交退货</span>
+{elseif $g['order_status'] == 8}<span class="label label-warning">收到退货</span>
+{elseif $g['order_status'] == 9}<span class="label label-warning">退款中</span>
+{elseif $g['order_status'] == 10}<span class="label label-warning">已退款</span>
+{else}--{/if}

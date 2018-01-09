@@ -1,0 +1,125 @@
+{template '../mobile/header'}
+
+<link rel="stylesheet" href="{STYLE}mui/css/mui.min.css">
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title" id="info">我的收藏</h1>
+</header>
+	{if $mycollectlist}
+	<div id="pullup" class="mui-content mui-scroll-wrapper">
+		<div class="mui-scroll">
+			<h5 class="mui-content-padded" style="margin:15px 10px 15px 10px;">向左滑动可查看取消收藏</h5>
+			<ul id="collectlist" class="mui-table-view">
+				{loop $mycollectlist $row}
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-yellow mui-icon mui-icon-refresh" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('detail',array('id'=>$row['message_id']))}"></a>
+						<a class="mui-btn mui-btn-red mui-icon mui-icon-trash" style="transform: translate(-90px, 0px);" href="{php echo $this->createMobileUrl('mycollect',array('op'=>'delete','id'=>$row['id']))}"></a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-row">
+							<div class="mui-col-sm-12 mui-col-xs-12"><span style="color:#900;margin-right:5px;">[{php echo getmodulename($row['weid'],$row['mid']);}]</span>{$row['messagetitle']}</div>
+						</div>
+						<div class="mui-row">
+							<div class="mui-col-sm-12 mui-col-xs-12"><span class="mui-badge">收藏时间：{php echo date("Y-m-d H:i:s",$row['time'])}</span></div>
+						</div>
+					</div>
+				</li>
+				{/loop}
+			</ul>
+		</div>
+	</div>
+	{else}
+	<div class="mui-content">
+		<div style="margin-top:40px; text-align:center;">
+			<span class="mui-icon mui-icon-info" style="color:#900;font-size:70px;"></span>
+			<h4>暂无收藏</h4>
+		</div>
+	</div>
+	{/if}
+<script src="{STYLE}mui/js/mui.min.js"></script>
+<script>
+	mui.init({
+		pullRefresh : {
+			container:'#pullup',
+			up : {
+				contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+				contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+				callback :pullupRefresh
+			}
+		}
+	});
+	
+	/**
+	 * 上拉加载具体业务实现
+	 */
+	var count = 2;
+	function pullupRefresh() {
+		setTimeout(function() {
+			$.ajax({
+				url:"{php echo $this->createMobileUrl('mycollect')}",
+				data:{
+					page:count,
+					isajax:1,
+				},
+				dataType:'html',
+				type:'post',        
+				success:function(data){
+					$('#collectlist').append(data);
+					mui('#pullup').pullRefresh().endPullupToRefresh((++count > {$allpage})); //参数为true代表没有更多数据了。
+				},
+			});
+		}, 500);
+	}
+	(function($) {
+		var btnArray = ['确认', '取消'];
+		$('#collectlist').on('tap', '.mui-btn-red', function(event) {
+			var elem = this;
+			var li = elem.parentNode.parentNode;
+			mui.confirm('确认取消收藏吗？', '取消收藏', btnArray, function(e) {
+				if (e.index == 0) {
+					mui.ajax(elem.href,{
+						data:{},
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；
+						headers:{'Content-Type':'application/json'},	              
+						success:function(data){
+							if(data.error == 1){
+								mui.toast(data.message);
+							}else{
+								alert(data.message);
+								li.parentNode.removeChild(li);
+							}
+						},
+					});
+				} else {
+					setTimeout(function() {
+						$.swipeoutClose(li);
+					}, 0);
+				}
+			});
+		});
+		$('#collectlist').on('tap', '.mui-btn-yellow', function(event) {
+			var elem = this;
+			mui.openWindow({
+				url:elem.href,
+				id:'messagedetail',
+				styles:{
+				  top:'45px',//新页面顶部位置
+				  bottom:'0px',//新页面底部位置
+				},
+				createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+				show:{
+				  autoShow:true,//页面loaded事件发生后自动显示，默认为true
+				  aniShow:'slide-in-top',
+				},
+				waiting:{
+				  autoShow:true,//自动显示等待框，默认为true
+				  title:'正在加载...',//等待对话框上显示的提示内容
+				}
+			})
+		});
+	})(mui);
+</script>
+{template '../mobile/footer'}

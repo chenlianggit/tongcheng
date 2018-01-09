@@ -1,0 +1,116 @@
+{template '../mobile/header'}
+<link rel="stylesheet" href="{STYLE}mui/css/mui.min.css">
+<link rel="stylesheet" href="{STYLE}css/mylocal.css">
+<style>
+	.mui-table-view-cell{
+		padding: 8px 15px 12px 8px;
+	}
+	.mui-content-padded{
+		margin-top: 0;
+	}
+	.mui-scroll{
+		position: relative;
+	}
+</style>
+<div class="clearfix"></div>
+	{if $reschatlist}
+	<div id="pullup" class="mui-content">
+		<div class="mui-scroll">
+
+			<h5 class="mui-content-padded"><<< 向左滑动可删除信息 <<<</h5>
+			<ul id="chatlist" class="mui-table-view">
+				{loop $reschatlist $row}
+				<li class="mui-table-view-cell " onclick="window.location.href='{php echo $this->createMobileUrl('chat',array('op'=>'savechat','toopenid'=>$row['chatlist']['openid']))}'">
+					<div class="mui-slider-right mui-disabled">
+						{if $row['chatlist']['type'] == 2}
+						<a class="mui-btn m-edit mui-icon mui-btn-green mui-icon mui-icon-weixin" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('mylocal',array('op'=>'chat_display','toopenid'=>$row['chatlist']['openid']))}"><span class="list-btn-info">查看</span>
+						{else}
+						<a class="mui-btn m-edit mui-icon mui-btn-green mui-icon mui-icon-weixin" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('chat',array('op'=>'savechat','toopenid'=>$row['chatlist']['openid']))}">
+							<span class="list-btn-info">查看</span>
+						</a>
+						{/if}
+						<a class="mui-btn m-delete mui-icon mui-icon-trash mui-btn-gray" style="transform: translate(-0px, 0px);" href="{php echo $this->createMobileUrl('mylocal',array('op'=>'chat_delete','toopenid'=>$row['chatlist']['openid']))}"><span class="list-btn-info">删除</span>
+						</a>
+					</div>
+					<div class="mui-slider-handle">
+						<div class="mui-row">
+							<div class="mui-col-sm-2 mui-col-xs-2">
+								<img src="{$row['chatlist']['avatar']}" class="w-8" />
+							</div>
+							<div class="mui-col-sm-9 mui-col-xs-9">
+								<div><span class="mui-badge">{$row['chatlist']['nickname']}</span></div>
+								<div class="chat-content">{$row['chatlist']['content']}</div>
+							</div>
+							<div class="mui-col-sm-1 mui-col-xs-1">
+								{if $row['hasnotread'] > 0}
+								<span class="mui-badge mui-badge-danger">{$row['hasnotread']}</span>
+								{/if}
+							</div>
+						</div>
+					</div>
+				</li>
+				{/loop}
+			</ul>
+	{else}
+<div class="content">
+	<div class="NotUesed2">
+		<img class="nopic" src="{STYLE}images/tuan_pic3.png" /><span class="nonetext">暂无聊天记录</span>
+	</div>
+</div>
+	{/if}
+		</div>
+<script src="{STYLE}mui/js/mui.min.js"></script>
+<script>
+    mui.init();
+
+    (function($) {
+        var btnArray = ['确认', '取消'];
+        $('#chatlist').on('tap', '.m-delete', function(event) {
+            var elem = this;
+            var li = elem.parentNode.parentNode;
+            mui.confirm('确认删除该条聊天记录？', '删除信息', btnArray, function(e) {
+                if (e.index == 0) {
+                    mui.ajax(elem.href,{
+                        data:{},
+                        dataType:'json',//服务器返回json格式数据
+                        type:'post',//HTTP请求类型
+                        timeout:10000,//超时时间设置为10秒；
+                        headers:{'Content-Type':'application/json'},
+                        success:function(data){
+                            if(data.error == 1){
+                                mui.toast(data.message);
+                            }else{
+                                li.parentNode.removeChild(li);
+                            }
+                        },
+                    });
+                } else {
+                    setTimeout(function() {
+                        $.swipeoutClose(li);
+                    }, 0);
+                }
+            });
+        });
+        $('#chatlist').on('tap', '.m-edit', function(event) {
+            var elem = this;
+            mui.openWindow({
+                url:elem.href,
+                id:'chat',
+                styles:{
+                    top:'45px',//新页面顶部位置
+                    bottom:'0px',//新页面底部位置
+                },
+                createNew:false,//是否重复创建同样id的webview，默认为false:不重复创建，直接显示
+                show:{
+                    autoShow:true,//页面loaded事件发生后自动显示，默认为true
+                    aniShow:'slide-in-top',
+                },
+                waiting:{
+                    autoShow:true,//自动显示等待框，默认为true
+                    title:'正在加载...',//等待对话框上显示的提示内容
+                }
+            })
+        });
+    })(mui);
+    </script>
+{template '../mobile/footer'}

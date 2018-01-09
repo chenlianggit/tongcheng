@@ -1,0 +1,44 @@
+<ul class="am-cf discount-content" >
+    <div class="discount-li">
+{loop $list $item}
+<li class="space_list_li bg_white mb_10 ">
+    <div class="my_dis_content f_14 c_999 am-cf mt_10 z">编号：{$item['ordersn']}</div>
+    <div class="d_time">{php echo date('Y-m-d H:i', $item['createtime'])}</div>
+    <div class="clearfix"></div>
+    <div class="listDiv_group mr_10 mt_5 my_dis_group am-cf">
+        <a href="{php echo $this->createMobileUrl('shop', array('shop_id' => $item['shop_id']))}" target="_blank">
+            <div class="listDiv_groupImg  mr_10">
+                {if $item['logo']}
+                <img class="radius_50" src="{$_W['attachurl']}{$item['logo']}">
+                {else}
+                <img src="{STYLE}images/shop.png">
+                {/if}
+                <h6 class="listDiv_groupH6 mt_5 cl">{$item['shop_name']}</h6>
+                <div class="list_desc ">
+                    <p class="red f_16 ml_15">￥{$item['paymoney']}{if $item['paymoney'] < $item['aftermoney']}<del class=" ml_15 c_999 f_12 ">￥{$item['aftermoney']}</del>{/if}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="my_dis_love am-cf">
+        {if $item['nickname']}
+        <span class="ml_15"><img src="{$item['avatar']}"> <em>{$item['nickname']}</em></span>
+        {else}
+        <a href="{php echo $this->createMobileUrl('shop', array('op' => 'discount','shop_id' => $item['shop_id']))}" class="follow " dzapp-action="follow_uid_808012"><em>再买一单</em></a>
+        {/if}
+    </div>
+    <div class="clearfix"></div>
+</li>
+{/loop}
+    </div>
+</ul>
+<script>
+    {if empty($id)}
+    $(function(){
+        var page = 0;
+        var url=createAppUrl('admin','discount');
+        url=getSearchUrl(url);//获取查询的关键字和日期来组装url
+        pagelist(page,url,'.discount-content','.discount-li','mydiscount');
+    });
+    {/if}
+</script>

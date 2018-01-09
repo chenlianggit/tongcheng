@@ -1,0 +1,99 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<div class="panel memberhead newI" style=" background: url('{STYLE}images/topbg1.jpg') bottom; background-size: cover;">
+    <div class="header-l"><img class="icon-level-p1" src="{if empty($userinfo['avatar'])}{STYLE}images/avatar_default.jpg {else}{$att}{$userinfo['avatar']}{/if}"/></div>
+    <div class="header-r">
+        <ul class="distributor-infor">
+            <li><span class="distributor-infor-c">{$userinfo['nickname']}</span></li>
+        </ul>
+        <ul class="nocheck">
+            <li> <a href="{php echo $this->createMobileUrl('admin',array('op'=>'check'))}">待审核信息：{$nocheck_info}</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('admin',array('op'=>'check_shop'))}">待审核商家：{$nocheck_shop}</a></li>
+            <li> <a href="{php echo $this->createMobileUrl('admin',array('op'=>'account'))}">待审核提现：{$nocheck_amount}</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="clearfix" ></div>
+
+<div class="container-fluid clearFloat b-b-dcdcdc bag-fff">
+    <ul class="etc-nav">
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'check','status'=>'0'))}">
+            <li class="bt_none">
+                <i class="iconfont" style="color: #fea501">&#xe62d;</i>
+                <p class="text-center">审核信息</p>
+                <p class="text-center gray">快速审核发布</p>
+            </li>
+        </a>
+
+
+
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'check','status'=>'1'))}">
+            <li class="ontc bt_none">
+                <i class="iconfont" style="color:#f60;">&#xe669;</i>
+                <p class="text-center">管理信息</p>
+                <p class="text-center gray">管理已发布</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'info_statistics'))}">
+            <li class="bt_none br_none">
+                <i class="iconfont" style="color: #a98a46">&#xe634;</i>
+                <p class="text-center">数据统计</p>
+                <p class="text-center gray">数据分析对比</p>
+            </li>
+        </a>
+
+
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'check_shop'))}">
+            <li>
+                <i class="iconfont" style="color: #dd2727">&#xe668;</i>
+                <p class="text-center">审核商家</p>
+                <p class="text-center gray">快速审核商家</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'check_shop','status'=>'1'))}">
+            <li class="ontc">
+                <i class="iconfont" style="color: #f00">&#xe64d;</i>
+                <p class="text-center">店铺管理</p>
+                <p class="text-center gray">商品及订单</p>
+            </li>
+
+        </a>
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'order'))}">
+            <li class="br_none">
+                <i class="iconfont" style="color: #01AF63">&#xe61d;</i>
+                <p class="text-center">销售明细</p>
+                <p class="text-center gray">用户消费报告</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'account_order'))}">
+            <li class="ontc">
+                <i class="iconfont" style="color: #fea501">&#xe637;</i>
+                <p class="text-center">资金汇总</p>
+                <p class="text-center gray">资金流水</p>
+            </li>
+        </a>
+
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'fans'))}">
+            <li>
+                <i class="iconfont" style="color: #fea501">&#xe651;</i>
+                <p class="text-center">粉丝管理</p>
+                <p class="text-center gray">粉丝互动</p>
+            </li>
+
+        </a>
+        <a href="{php echo $this->createMobileUrl('admin',array('op'=>'ring'))}">
+            <li class="br_none">
+                <i class="iconfont" style="color: #4fc0ea">&#xe62c;</i>
+                <p class="text-center">圈子管理</p>
+                <p class="text-center gray">查看圈子动态</p>
+            </li>
+        </a>
+
+
+    </ul>
+</div>
+
+
+{template '../mobile/footer'}
+

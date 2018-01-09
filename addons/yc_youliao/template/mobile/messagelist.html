@@ -1,0 +1,83 @@
+{template '../mobile/header'}
+
+<link rel="stylesheet" href="{STYLE}css/reset.css"/>
+<link rel="stylesheet" href="{STYLE}iconfont/iconfont.css"/>
+<link rel="stylesheet" href="{STYLE}css/channel.css"/>
+<script src="{STYLE}js/page.js"></script>
+<section class="container">
+		<div class="search-wrapper active">
+			<div class="input-holder">
+				<input type="text" class="search-input" id="searchinput" placeholder="搜索内容" />
+				<button class="search-icon" onClick="searchBtn('{$id}');"><span></span></button>
+			</div>
+			<div class="result-container">
+			</div>
+		</div>
+
+</section>
+<!--头部广告-->
+{php $advs= commonGetData::getAdv(1);}
+{if !empty($advs)}
+{template '../mobile/adv1'}
+{/if}
+<!--足迹-->
+{if $footmark}
+{template '../mobile/footmark'}
+{/if}
+<!--二级分类-->
+{if $allchildren}
+
+<div id="chilChannel">
+
+	{loop $allchildren $mrow}
+
+	<a {if $mrow['autourl'] != ''} href="{$mrow['autourl']}" {else}  href="{php echo $this->createMobileUrl('msglist',array('id'=>$mrow['id']));}"{/if} class="{if $childNum==1}a1{elseif $childNum==2}a2{elseif $childNum==3}a3{elseif $childNum>=4}a4{/if}" >
+		<div><img class="icon" src="{php echo tomedia($mrow['thumb']);}" alt="{$mrow['name']}"/></div>
+		<p>{$mrow['name']}</p>
+	</a>
+		{/loop}
+</div>
+{/if}
+<div class="clearfix"></div>
+
+	{if $html}
+	{$html}
+	{else}
+	<div class="clearfix"></div>
+	<div class="banner-title">
+		<span>为您推荐</span>
+		<div></div>
+	</div>
+<div id="lists">
+	{loop $messagelist $zdrow}
+	{template '../mobile/channel_list'}
+	{/loop}
+</div>
+	{/if}
+
+
+<script type="text/javascript">
+
+$(function(){
+	$('.iconfont1 .iconfont').html('&#xe624;');
+	$('.iconfont2 .iconfont').html('&#xe6b0;');
+	//加载数据
+    var page = 1;
+    var url=createAppUrl('msglist', 'display');
+    url=url+'&id='+'{$id}'+'&flag='+'{$flag}';
+    getMsgReq(page,url,'#lists','#lists');
+
+})
+</script>
+
+<div style="display:none;">
+	touchstart,touchmove,
+	touchend,touchcancel
+</div>
+<div id="editBlock">
+	<a href="{php echo $this->createMobileUrl('edit',array('mid'=>$id))}">
+		<img src="{STYLE}images/edit3.png"></a>
+</div>
+{template '../mobile/shang'}
+{template '../mobile/block'}
+{template '../mobile/footer'}

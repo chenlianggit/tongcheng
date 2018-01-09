@@ -1,0 +1,75 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+<div class="order-panney">
+    {if $type<2}
+    <div style='margin-left: 15%;' class="order-body {if $type==0}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'red_record','type'=>'0'))}'">
+       收到的红包
+    </div>
+    <div class="order-body {if $type==1}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'red_record','type'=>'1'))}'">
+       发出的红包
+    </div>
+ {else}
+    <div style='margin-left: 15%;' class="order-body {if $type==2}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'red_record','type'=>'2'))}'">
+       收到的打赏
+    </div>
+    <div class="order-body {if $type==3}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'red_record','type'=>'3'))}'">
+        发出的打赏
+    </div>
+    {/if}
+
+</div>
+
+<div class="clearfix" ></div>
+
+<div class="contentWap">
+    <ul class="listWap">
+
+        {loop $list $item}
+        <li class="list"   {if  $type<2}
+        onclick="location.href='{php echo $this->createMobileUrl('redpackage',array('id'=>$item['type_id'],'op'=>'showredpackage'))}'"
+        {/if}
+        {if $item['cash_type']==2}
+        onclick="location.href='{php echo $this->createMobileUrl('ring',array('id'=>$item['type_id'],'op'=>'detail'))}'"
+        {else if $item['cash_type']==3}
+        onclick="location.href='{php echo $this->createMobileUrl('detail',array('id'=>$item['type_id'],'op'=>'detail'))}'"
+        {/if}
+        >
+            <div class="d-left"><img src="{$item['avatar']}" alt=""></div>
+            <div class="d-right">
+                <div class="nameDes">
+                    <div class="name">{$item['nickname']}</div>
+                    {if $item['model']}<div class="money">
+                    {if $item['model'] == 2} 口令红包 {/if}
+                    {if $item['model'] != 2}
+                    {if $item['allocation_way']== 1}
+                    普通红包
+                    {/if}
+                    {if $item['allocation_way'] == 2}
+                    拼手气红包
+                    {/if}
+                    {/if}
+                </div>{/if}
+                    <div class="money">￥{$item['amount']}</div>
+                </div>
+                <div class="time">
+                    {php echo date("Y-m-d H:i",$item['create_time'])}
+                </div>
+                {if $type==1}
+                <div class="time">领取{$item['send_num']}/共{$item['total_num']}个</div>
+                {/if}
+            </div>
+        </li>
+      {/loop}
+    </ul>
+</div>
+
+{template '../mobile/footer'}
+    <script>
+        $(function(){
+            var url=createAppUrl('user','red_record')+'&type={$type}';
+            var page = 1;
+            pagelist(page,url,'.contentWap','.listWap','red_record');
+        })
+    </script>
+

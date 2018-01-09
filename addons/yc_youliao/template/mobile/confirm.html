@@ -1,0 +1,125 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/confirm.css" rel="stylesheet" type="text/css"/>
+<section class="accounts">
+<form id='formorder' name="input"  onSubmit="return check(this)" method="post">
+<input type="hidden" name="address" value="{$row['id']}" />
+<input type="hidden" name="op" value="confirm" />
+<input type="hidden" name="shop_id" value="{$shop_id}" />
+<div class="my-memvers">
+  <div class="member-browse">
+        <div class="member-browse-title">
+                <img src="{STYLE}images/shop.png">
+            <span> {$shop['shop_name']}</span>
+            <a class="fr" href="{php echo $this->createMobileUrl('shop',array('shop_id'=>$shop_id))}">  <img src="{STYLE}images/right.png"></a>
+        </div>
+        <ul class="member-browse-ul">
+        		{loop $orderinfo['goodinfo'] $item}
+            <li class="member-browse-li">
+                <div class="row member-browse-summey">
+                    <a class="member-browse-summey-info" href="{php echo $this->createMobileUrl('good',array('id'=>$item['goods_id'],'shop_id'=>$item['shop_id']))}" >
+                        <div class="member-browse-nt">                           
+                            <span class="member-browse-name"> {$item['title']}</span>
+                        </div>
+                    </a>                   
+                </div>
+               <span class='goodsprice' style="display:none;">{$item['totalprice']}</span>
+                <div class="member-browser-pro-list" >
+                    
+                    <a class="member-browser-pro-a" href="#"><span class="pro-img">
+                        <img src="{php echo $_W['attachurl'].$item['thumb']}"></span><p class="pro-info">
+                            <span class="pro-name">单价：&yen;{$item['afterprice']}</span><span class="pro-price">数量：{$item['buynumber']}</strong></span>
+                        	 {if !empty($item['buyrule'])}
+                        	<br/><span class="pro-price">规格：  {$item['buyrule']}</span>{/if}</p>
+                    </a>
+                 
+                </div>
+            </li>
+           
+				{/loop}
+        </ul>
+    </div>
+	    </div>
+
+{if $orderinfo['minuscredit'] > 0}
+      <div class="deductible" >
+                       <li>
+                       <div class="goods_dedu">	
+                           <span class="text">购买此商品可使用{$orderinfo['minuscredit']}积分</span>
+                          <span  class="green">抵扣&yen;{$orderinfo['minuscreditmoney']}元</span>
+                            <div class="dedu_now"></div>
+                       </div>
+                        <span class="container">		
+                    <input type="checkbox"  id="checkbox-10-1" value="" />
+                    <label for="checkbox-10-1" id="checkded" ></label>
+			
+	            	</span>
+                       </li>
+             </div>
+{/if}
+<!--<div class="infobox ">-->
+<!--<ul id='infoul' class="otherInfo">-->
+	<!--<li>备注信息：<textarea name="remark" onchange='oninputchange("detail");' style='width:100%;border: none;' type="text" value="" placeholder="亲，还有什么要交待的话，告诉我们吧！" ></textarea></li>-->
+<!--</ul>-->
+<!--</div>-->
+
+<div class="infobox ">
+<ul  class="detailInfo">
+    <li><span class="fl ">小计</span><span class="fr">&yen;<span class="detail-goodmoney">{php echo $orderinfo['totalmoney'][0]}</span>    	
+    </li>
+    {if $orderinfo['xscut']>0}
+    <li><span class="clearfix fl xsms"><img src="{STYLE}images/xs.png" />限时抢购</span><span class="fr red">- &yen;<span>{$orderinfo['xscut']}</span></span>
+    </li>
+    {/if}
+    {if $orderinfo['minuscreditmoney']>0}
+    <li><span class="clearfix fl "><img src="{STYLE}images/dk.png"/>积分抵扣</span><span class="fr red">- &yen;<span class="detail-credit">0.00</span></span>
+    <input type="hidden" name="iscredit" class="iscredit" value="" />
+    </li>
+    {/if}
+    {if $orderinfo['firstcutmoney'] > 0}
+    <li><span class="clearfix fl "><img src="{STYLE}images/jf.png"/>首单优惠</span><span class="fr  red">- &yen;<span class="detail-card">{$orderinfo['firstcutmoney']}</span></span>
+    </li>
+    {/if}
+
+</ul>
+</div>
+
+
+	
+<div class="carFoot"><button type="submit"  id='submit'  name="submit" value="yes" class="confirm-btn">提交订单</button>
+<p>实付：<i class="price">&yen;<span id='totalprice'>{php echo $orderinfo['totalmoney'][1]}</span></i></p></div>
+<input type="hidden" name="isverify" value="" class="isverify"/>
+<input type="hidden" name="token" value="{$_W['token']}" />
+</form>
+</section>
+
+<script type="text/javascript">
+  var i=1;
+$(function(){   
+
+
+     $("#checkded").click(function(){//积分抵扣
+        var total=parseFloat( $("#totalprice").html());
+        if(i==1){ 
+            var credit=total-{$orderinfo['minuscreditmoney']};
+            $("#totalprice").html(parseFloat(credit).toFixed(2));
+                 $(".detail-credit").html({$orderinfo['minuscreditmoney']});  
+                 $(".iscredit").val('1');
+                i=2;
+            }else if(i==2){
+                var credit=total+{$orderinfo['minuscreditmoney']};
+                $("#totalprice").html(parseFloat(credit).toFixed(2));
+                 $(".detail-credit").html("0.00");   
+                  $(".iscredit").val('0');                    
+                i=1;
+            }
+                
+    });
+
+
+  });
+
+
+</script>
+
+</body>
+</html>   

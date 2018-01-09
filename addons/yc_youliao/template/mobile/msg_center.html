@@ -1,0 +1,133 @@
+{template '../mobile/header'}
+
+<link rel="stylesheet" href="{STYLE}css/reset.css"/>
+<link rel="stylesheet" href="{STYLE}iconfont/iconfont.css"/>
+<link rel="stylesheet" href="{STYLE}css/channel.css"/>
+<script src="{STYLE}js/page.js"></script>
+
+<!--头部广告-->
+{php $advs= commonGetData::getAdv($adv_type);}
+{if !empty($advs)}
+{template '../mobile/adv1'}
+<div class="msglist-title bg-f">
+{/if}
+{if $cfg['disclaimer']}
+	{$cfg['disclaimer']}
+{else}
+免责声明:本平台发布信息（收费、免费）展示，内容与平台本身无关，平台不负任何责任
+{/if}
+</div>
+{php $isshop_admin=$this->isshop_admin();}
+<ul class="mui-table-view mui-table-view-chevron js-height">
+	<li class="mui-table-view-cell">
+		{if !empty($isshop_admin)}
+		<a class="mui-navigate-right mui-media js-pay" href="{php echo $this->createMobileUrl('shop_admin',array('shop_id'=>$isshop_admin['shop_id']))}">
+			<img src="../addons/yc_youliao/public/images/fabu_2.png" alt="" class="mui-media-object mui-pull-left">
+			<span class="mui-media-body mui-block">
+					点击发布商品、管理订单
+
+		{else}
+		<a class="mui-navigate-right mui-media js-pay" href="{php echo $this->createMobileUrl('user',array('op'=>'shop_in'))}">
+			<img src="../addons/yc_youliao/public/images/fabu_2.png" alt="" class="mui-media-object mui-pull-left">
+			<span class="mui-media-body mui-block">
+					我是商家，点击入驻商圈
+
+		{/if}
+				<span class="mui-block mui-text-muted mui-rmb mui-mt5">本地宣传，简单有效，方便快捷</span>
+				<img src="../addons/yc_youliao/public/images/right.png" alt="" class="mui-pull-right">
+				</span>
+		</a>
+	</li>
+</ul>
+<!--同城频道-->
+<div class="center-title">
+	<span><i class="icon iconfont icon-xing"></i>请选择发布类别</span>
+	<div></div>
+</div>
+<div class="channel-send" >
+	{template '../mobile/channel_icon_edit'}
+</div>
+
+
+<div class="clear relative"></div>
+
+<div class="center-title mt_10">
+	<span><i class="icon iconfont icon-xing"></i>最新同城信息</span>
+	<div></div>
+</div>
+{if $allchildren}
+<!--滑动开始-->
+<div id="header" class="swiper-container-horizontal swiper-container-free-mode msg-center">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			{loop $allchildren $arow}
+			<div class="swiper-slide {if $arow['autourl']!=''}none{/if}" >
+				<a onClick="getMsgCenterList({$arow['id']});changeColor(this);" >
+					<div class="name">{$arow['name']}</div>
+				</a>
+			</div>
+			{/loop}
+		</div>
+	</div>
+</div>
+</>
+<script>
+    var mySwiper = new Swiper('.swiper-container',{
+        slidesPerView : 3,
+        slidesPerGroup : 3,
+        prevButton:'.swiper-button-prev',
+        nextButton:'.swiper-button-next',
+
+    })
+</script>
+<!--滑动结束-->
+{/if}
+
+
+
+<div id="lists" class="mt_10">
+	{if $messagelist}
+	{loop $messagelist $zdrow}
+	{template '../mobile/channel_list'}
+	{/loop}
+	{/if}
+
+</div>
+
+<div id="child"></div>
+<script type="text/javascript">
+    $(function(){
+        $('#child').click(function(){
+    	$('#child').hide();
+        })
+    })
+    var page = 1;
+
+    $(function(){
+        var url=createAppUrl('msglist', 'display');
+        $('.iconfont1 .iconfont').html('&#xe624;');
+        $('.iconfont2 .iconfont').html('&#xe6b0;');
+        url=url+'&id='+'{$id}'+'&flag='+'1';
+        getMsgReq(page,url,'#lists','#lists');
+
+    })
+function getMsgCenterList (id) {
+    var url=createAppUrl('msglist', 'display');
+    $('#lists').html('<div class="listloading"><img src="../addons/yc_youliao/public/images/loading.png" class="loadImg" alt=""></div>');
+    url=url+'&id='+id+'&flag='+'1';
+    getMsgReq(0,url,'#lists','#lists');
+}
+
+</script>
+
+<div style="display:none;">
+	touchstart,touchmove,
+	touchend,touchcancel
+</div>
+<div id="editBlock">
+	<a href="{php echo $this->createMobileUrl('edit',array('mid'=>$id))}">
+		<img src="{STYLE}images/edit3.png"></a>
+</div>
+{template '../mobile/shang'}
+{template '../mobile/block'}
+{template '../mobile/footer'}

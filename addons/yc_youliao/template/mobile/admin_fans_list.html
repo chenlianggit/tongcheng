@@ -1,0 +1,63 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/admin_banner'}
+<div class="info-content">
+    <div class="shop-admin order-panney ">
+        <div style="margin-left: 26%;"class="order-body {if $type=='0'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>'fans'))}'">
+            粉丝
+        </div>
+        <div class="order-body {if $type==1}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl('admin',array('op'=>'fans','type'=>'1'))}'">
+           黑名单
+        </div>
+    </div>
+<ul class="fresh-comment">
+
+    {loop $list $item}
+    <li class="info-list">
+            <img src="{$item['avatar']}">
+            <div class="text">
+                <h2>{$item['nickname']}</h2>
+                <p>
+                    {if $type==1}
+                    {php echo date('Y-m-d H:i', $item['createtime'])}
+                    {else}
+                    {if $item['shop_name']}
+                    <i class="iconfont">&#xe668;</i> {$item['shop_name']}<em class="ml-15"></em>
+                    {/if}
+                    <i class="iconfont">&#xe647;</i>{$item['balance']}<em class="ml-15"><i class="iconfont">&#xe637;</i>{$item['credit']}</em>
+                    {/if}
+                </p>
+
+            </div>
+        {if $type==1}
+        <div class="score" onclick="deleteBlack(this,{$item['uid']})">
+            <img src="{STYLE}images/delete.png" >
+        {else}
+            <div class="score" onclick="downscore(this)">
+                <img src="{STYLE}images/b_down.png" >
+                <div class="down-list-pro">
+                <a href="{php echo $this->createMobileUrl('chat',array('toopenid'=>$item['openid']))}"><i class="iconfont" style="color: #4fc0ea">&#xe62c;</i>发送消息</a>
+                <a href="{php echo $this->createMobileUrl('admin',array('op'=>'fans_credit','credit_type'=>'2','mid'=>$item['id']))}"><i class="iconfont" style="color: #F5628C">&#xe647;</i>充值余额</a>
+                <a href="{php echo $this->createMobileUrl('admin',array('op'=>'fans_credit','credit_type'=>'1','mid'=>$item['id']))}"> <i class="iconfont" style="color: #fea501">&#xe637;</i>充值积分</a>
+                    <a href="{php echo $this->createMobileUrl('admin',array('op'=>'fans','type'=>'1','post'=>'add','uid'=>$item['id']))}"> <i class="iconfont" style="color: #fea501">&#xe61d;</i>加入黑名单</a>
+                </div>
+
+            </div>
+        {/if}
+
+    </li>
+   {/loop}
+</ul>
+</div>
+<script>
+    $(function(){
+        var url=createAppUrl('admin','fans');
+        url=getSearchUrl(url)+'&type={$type}';//获取查询的关键字和日期来组装url
+        var page = 0;
+        pagelist(page,url,'.info-content','.fresh-comment','fans');
+    })
+</script>
+
+{template '../mobile/footer'}
+

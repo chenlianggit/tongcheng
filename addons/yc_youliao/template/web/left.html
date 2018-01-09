@@ -1,0 +1,147 @@
+﻿    <div class="hbox stretch bodybox"> <!-- .aside -->
+      <aside class="bg-dark lter aside-md hidden-print nav-off-screen nav-xs" id="nav">
+
+
+            <div   data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-color="#333333"> <!-- nav -->
+              <nav class="nav-primary hidden-xs">
+                <ul class="nav">
+                   <li {if $_GPC['do'] =="index"}class="active"{/if}><a href="{php echo $this->createWebUrl('index')}" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b> </i> <span>社区概览</span> </a> </li>
+                  <li {if $_GPC['do'] =="setting"  ||  $_GPC['do'] =="tpl"  ||  $_GPC['do'] =="city" || $_GPC['do'] =="area"}class="active"{/if}><a href="#layout" > <i class="fa fa-cog icon"> <b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>社区设置</span> </a>
+                    <ul class="nav lt">
+                        <li {if  $_GPC['do'] =="setting" ||  $_GPC['do'] =="tpl" }class="active"{/if}> <a href="{$_W['siteroot']}/web/index.php?c=profile&a=module&do=setting&m=yc_youliao" > <i class="fa fa-angle-right"></i> <span>基础设置</span> </a>
+                      </li>
+                        <li {if $_GPC['do'] =="city" || $_GPC['do'] =="area"}class="active"{/if}> <a href="{php echo $this->createWebUrl('city', array( 'op' =>'display'))}" > <i class="fa fa-angle-right"></i> <span>区域管理</span> </a>
+                        </li>
+
+
+                    </ul>
+                  </li>
+
+
+                    <li {if $_GPC['do'] =="adv"  ||  $_GPC['do'] =="msg" }class="active"{/if}><a href="#layout" > <i class="fa fa-volume-up icon"> <b class="bg-warning"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>通告管理</span> </a>
+                    <ul class="nav lt">
+
+                        <li {if $_GPC['do'] =="adv"}class="active"{/if}> <a href="{php echo $this->createWebUrl('adv', array( 'op' =>'display'))}" > <i class="fa fa-angle-right"></i> <span>广告管理</span> </a>
+                        </li>
+                        <li {if $_GPC['do'] =="msg"}class="active"{/if}> <a href="{php echo $this->createWebUrl('msg',array('op' =>'display'))}" ><i class="fa fa-angle-right"></i>  <span>公告管理</span> </a>
+
+                        </li>
+
+                    </ul>
+                    </li>
+
+                  <li {if $_GPC['do'] =="channel" || $_GPC['do'] =="info"}class="active"{/if}> <a href="#layout" > <i class="fa fa-tags icon"> <b class="bg-success"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>同城频道</span> </a>
+                    <ul class="nav lt">
+                        <li {if $_GPC['do'] =="channel"}class="active"{/if}> <a href="{php echo $this->createWebUrl('channel', array( 'op' =>'display'))}" ><i class="fa fa-angle-right"></i> <span>频道分类</span> </a>
+
+                      </li>
+                      <li {if $_GPC['do'] =="info"}class="active"{/if}> <a href="{php echo $this->createWebUrl('info', array( 'op' => 'display'))}" > <i class="fa fa-angle-right"></i> <span>信息管理</span> </a>
+
+                      </li>
+
+                    </ul>
+                  </li>
+            <!--频道结束-->
+
+            <!--商家开始-->
+             <li {if $_GPC['do'] =="shopcate" ||$_GPC['do'] =="shop" ||$_GPC['do'] =="shop_info" }class="active"{/if}> <a href="#pages" >
+               <i class="fa fa-shopping-cart icon"> <b class="bg-success"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>商户管理</span> </a>
+                    <ul class="nav lt">
+                          <li {if $_GPC['do'] =="shopcate" }class="active"{/if} > <a href="{php echo $this->createWebUrl('shopcate')}" > <i class="fa fa-angle-right"></i> <span>店铺分类</span> </a> </li>
+                          <li  {if $_GPC['do'] =="shop" ||$_GPC['do'] =="shop_info"  }class="active"{/if}> <a href="{php echo $this->createWebUrl('shop')}" > <i class="fa fa-angle-right"></i> <span>店铺管理</span> </a> </li>
+                          <li > <a href="{php echo $this->createWebUrl('shop',array('check' =>'1'))}" > <i class="fa fa-angle-right"></i> <span>审核申请</span> </a> </li>
+
+                     </ul>
+                  </li>
+             <!--商家结束-->
+
+
+            <!--资金流水-->
+                   <li {if $_GPC['do'] =="account"}class="active"{/if}> <a href="#pages" >
+                      <i class="fa fa-table icon"> <b class="bg-primary"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>资金流水</span> </a>
+                    <ul class="nav lt">
+                      <li {if $_GPC['do'] =="account"}class="active"{/if}> <a href="{php echo $this->createWebUrl('account', array('op' => 'check_post'))}" >  <i class="fa fa-angle-right"></i> <span>审核提现</span> </a>
+                      </li>
+                      <li {if $_GPC['do'] =="account"}class="active"{/if}> <a href="{php echo $this->createWebUrl('account')}" > <i class="fa fa-angle-right"> </i> <span>资金流水</span> </a>
+                      </li>
+                        <li {if $_GPC['do'] =="account"}class="active"{/if}> <a href="{php echo $this->createWebUrl('account', array('op' => 'record'))}" > <i class="fa fa-angle-right"> </i> <span>提现记录</span> </a>
+                        </li>
+
+
+                    </ul>
+				  </li>
+
+             <!--圈子管理-->
+                       <li {if $_GPC['do'] =="ring" }class="active"{/if}> <a href="#pages" >   <i class="fa fa-link icon">
+                          <b class="bg-info"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i>
+                          <i class="fa fa-angle-up text-active"></i> </span> <span>圈子管理</span> </a>
+                          <ul class="nav lt">
+                              <!--<li > <a href="{php echo $this->createWebUrl('ring', array('op' => 'talk'))}" > <i class="fa fa-angle-right"></i> <span>话题列表</span> </a> </li>-->
+                            <li > <a href="{php echo $this->createWebUrl('ring')}" > <i class="fa fa-angle-right"></i> <span>信息管理</span> </a> </li>
+
+                           </ul>
+                      </li>
+                    <!--圈子结束-->
+                    <!--会员管理-->
+                    <li {if $_GPC['do'] =="member" ||  $_GPC['do'] =="admin"  }class="active"{/if}><a href="#pages" >
+                    <i class="fa fa-user icon"> <b class="bg-info"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i> </span> <span>粉丝管理</span> </a>
+                    <ul class="nav lt">
+                        <li > <a href="{php echo $this->createWebUrl('member')}" > <i class="fa fa-angle-right"></i> <span>粉丝管理</span> </a> </li>
+                        <!--<li > <a href="{php echo $this->createWebUrl('comment', array('status' => '-1'))}" > <i class="fa fa-angle-right"></i> <span>评论管理</span> </a> </li>-->
+                        <li > <a href="{php echo $this->createWebUrl('admin')}" > <i class="fa fa-angle-right"></i> <span>管理员管理</span> </a> </li>
+
+                    </ul>
+                    </li>
+
+
+				 <li  {if $_GPC['do'] =="uniacidList"}class="active"{/if}> <a href="#pages"  > <i class="fa fa-cogs icon"> <b class="bg-danger"></b> </i> <span class="pull-right"> <i class="fa fa-angle-down text"></i>
+         <i class="fa fa-angle-up text-active"></i> </span> <span>系统设置</span> </a>
+                    <ul class="nav lt">
+
+                      <li>
+                          <a href="{php echo $this->createWebUrl('uniacidList')}" >
+                              <i class="fa fa-angle-right"></i> <span>切换公众号</span> </a>
+                      </li>
+                    </ul>
+                  </li>
+			  
+
+				
+			    </ul>
+           </ul>
+              </nav>
+              <!-- / nav --> </div>
+
+          <footer class="footer lt hidden-xs b-t b-black">
+              <div id="chat" class="dropup">
+                  <section class="dropdown-menu on aside-md m-l-n">
+                      <section class="panel bg-white">
+                          <header class="panel-heading b-b b-light">Active chats</header>
+                          <div class="panel-body animated fadeInRight">
+                              <p class="text-sm">No active chats.</p>
+                              <p><a href="#" class="btn btn-sm btn-default">Start a chat</a></p>
+                          </div>
+                      </section>
+                  </section>
+              </div>
+              <div id="invite" class="dropup">
+                  <section class="dropdown-menu on aside-md m-l-n">
+                      <section class="panel bg-white">
+                          <header class="panel-heading b-b b-light"> John <i class="fa fa-circle text-success"></i> </header>
+                          <div class="panel-body animated fadeInRight">
+                              <p class="text-sm">No contacts in your lists.</p>
+                              <p><a href="#" class="btn btn-sm btn-facebook"><i class="fa fa-fw fa-facebook"></i> Invite from Facebook</a></p>
+                          </div>
+                      </section>
+                  </section>
+              </div>
+              <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-black btn-icon active"> <i class="fa fa-angle-left text"></i> <i class="fa fa-angle-right text-active"></i> </a>
+
+          </footer>
+     
+      </aside>
+
+      <!-- /.aside -->
+     
+
+

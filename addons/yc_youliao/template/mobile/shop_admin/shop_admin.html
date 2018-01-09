@@ -1,0 +1,230 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+
+<div class="panel memberhead newU" style=" background: url('{if $item['bgpic']}{php echo tomedia($item['bgpic'])}{elseif $shopBgpic}{$shopBgpic}{else}{STYLE}images/topbg1.jpg{/if}') bottom; background-size: cover;"  >
+    <div class="headerWap">
+        <div class="header-l">
+            <img class="icon-level-p1" src="{php echo tomedia($item['logo'])}" onerror="this.src='{$shopLogo}'"/>
+        </div>
+
+        <div class="header-r">
+            <ul class="distributor-infor">
+                <li>
+                    <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'info','applay'=>'1'))}">
+                        <span>{$item['shop_name']}</span><i class="iconfont"style=" font-size: 18px;margin:0 0 0 10px; color: #fff;" >&#xe62d;</i>
+                    </a>
+                </li>
+
+                <li><span>入驻日期：{php echo date('Y-m-d',$item['starttime'])}</span></li>
+                <li>
+                    <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'info','applay'=>'1'))}">
+                        <span >到期日期：<span class="endtime">{php echo date('Y-m-d',$item['endtime'])}</span></span>
+                    </a>
+                </li>
+            <li>
+                    <span id="xvqi"><span class="underline">续期</span></span>
+                    <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'renew_re','shop_id'=>$item['shop_id'],))}" class="underline margin_left10" style="color:#fff">缴费记录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<div class='msg'>
+    <a href="{php echo $this->createMobileUrl('user',array('op'=>'msg','type'=>2))}">
+        <img src='{STYLE}images/msg.png' width="30px" height="30px">
+        {if $msg_count>0}<span></span>{/if}
+    </a>
+</div>
+<div class="clearfix" ></div>
+<div class="newU">
+<ul class="nocheck shop-admin">
+    <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'account'))}">余额：{$item['balance']}</a></li>
+    <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'account'))}">已提现：{$account}</a></li>
+    <li> <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'fans'))}">我的会员：{$memberNum}</a></li>
+</ul>
+</div>
+{if !empty($msg) }
+<div class="index_marquee">
+    <div class="marquee_img">
+        <img src="{STYLE}images/radio.png">
+    </div>
+    <a href="{php echo $this->createMobileUrl('user', array('type' => '2','op' => 'msg','msg_id' => $msg['msg_id']))}">
+        <marquee id="scrollArea" scrollamount="2"  scrolldelay="0" >
+            {$msg['msg_title']}
+        </marquee>
+    </a>
+</div>
+{/if}
+<div class="container-fluid clearFloat b-b-dcdcdc bag-fff">
+    <ul class="etc-nav">
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'verify'))}">
+            <li class="bt_none">
+                <i class="iconfont" style="color: #a98a46">&#xe634;</i>
+                <p class="text-center">核销管理</p>
+                <p class="text-center gray">管理及核销订单</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'order','status'=>'all'))}">
+            <li class="bt_none">
+                <i class="iconfont" style="color: #fea501">&#xe68e;</i>
+                <p class="text-center">订单管理</p>
+                <p class="text-center gray">快速管理订单</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'group'))}">
+            <li class="bt_none br_none">
+                <i class="iconfont" style="color: #F5628C">&#xe647;</i>
+                <p class="text-center">拼团管理</p>
+                <p class="text-center gray">拼团列表信息</p>
+            </li>
+
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'discount'))}">
+            <li>
+                <i class="iconfont" style="color:#f60;">&#xe651;</i>
+                <p class="text-center">优惠买单</p>
+                <p class="text-center gray">查看店铺营收</p>
+            </li>
+        </a>
+
+
+
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'goods'))}">
+            <li>
+                <i class="iconfont" style="color: #dd2727">&#xe668;</i>
+                <p class="text-center">商品管理</p>
+                <p class="text-center gray">快速管理商品</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'cate'))}">
+            <li class="br_none">
+                <i class="iconfont" style="color: #f00">&#xe624;</i>
+                <p class="text-center">分类管理</p>
+                <p class="text-center gray">商品分类</p>
+            </li>
+
+        </a>
+        {if $s_data['admin_type']==1 || !empty($a_data)}
+        <a {if $s_data['admin_type']==1}href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'account'))}"{/if}>
+        <li class="ontc">
+                <i class="iconfont" {if $s_data['admin_type']==1}style="color: #fea501"{/if}>&#xe637;</i>
+                <p class="text-center">资金汇总</p>
+                <p class="text-center gray">资金流水</p>
+            </li>
+        </a>
+
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'fans'))}">
+            <li>
+                <i class="iconfont" style="color: #4fc0ea">&#xe64b;</i>
+                <p class="text-center">会员管理</p>
+                <p class="text-center gray">权限分配</p>
+            </li>
+        </a>
+        <a href="{php echo $this->createMobileUrl('shop_admin',array('op'=>'admin'))}">
+            <li class="br_none">
+                <i class="iconfont" style="color: #fea501">&#xe626;</i>
+                <p class="text-center">店员管理</p>
+                <p class="text-center gray">权限分配</p>
+            </li>
+
+        </a>
+
+        {/if}
+    </ul>
+</div>
+
+<div id="qr_code">
+<div id="editBlock" class="move-qr-code" onclick="getShopQr('{$_W['attachurl']}{php echo $this->getShopQr();}')">
+        <img src="{STYLE}images/g_ewm.png">
+</div>
+</div>
+<!-- 协议弹出框 -->
+<!-- 缴费弹出框 -->
+<div class="xieyiBox">
+    <div class="x-mask"></div>
+    <div class="xieyiWap">
+        <p class="tit">请选择续期套餐</p>
+        <div class="cont">
+            <div class="m-radiobox">
+                {if is_numeric($cfg['one_renew']) === true}
+                <label for="renew0" class="m-label">
+                    <input type="radio" name="shop_renew" value="1" checked class="s-checkbox" id="renew0">
+                    <span class="s-checkbox__inner is-checked"></span>
+                    <span class="s-text">一年缴费{$cfg['one_renew']}元</span>
+                </label>
+                {/if}
+                {if is_numeric($cfg['two_renew']) === true}
+                <label for="renew1" class="m-label">
+                    <input type="radio" name="shop_renew" value="2"  class="s-checkbox" id="renew1">
+                    <span class="s-checkbox__inner"></span>
+                    <span class="s-text">两年年缴费{$cfg['two_renew']}元</span>
+                </label>
+                {/if}
+                {if is_numeric($cfg['three_renew']) === true}
+                <label for="renew2" class="m-label">
+                    <input type="radio" name="shop_renew" value="3"  class="s-checkbox" id="renew2">
+                    <span class="s-checkbox__inner"></span>
+                    <span class="s-text">三年缴费{$cfg['three_renew']}元</span>
+                </label>
+                {/if}
+                {if  is_numeric($cfg['one_renew']) === false && is_numeric($cfg['two_renew']) === false  && is_numeric($cfg['three_renew']) === false}
+                <label for="renew2" class="m-label">
+                    <span class="s-text">未设置有效的续费套餐</span>
+                </label>
+                {/if}
+            </div>
+        </div>
+        <div class="xf">
+
+            <div class="xsu" id="xfcan">取消</div>
+            <div class="xsu" id="xfSure">确认</div>
+        </div>
+    </div>
+</div>
+<script>
+    //执行队列（处理拼团订单等）
+    var queueUrl=createAppUrl('ajax_req', 'queue');
+    $.ajax({
+        url:queueUrl,
+        type:'post',
+        dataType:'json',
+        success:function(data){
+        }
+    });
+    $('#xfSure').on('click', function () {
+        xieyiHide();
+        var url=createAppUrl('shop_admin', 'renew');
+        var type = $("input[name='shop_renew']:checked").val();
+        if (!type) {
+            tip('请选择续期套餐');
+            tip_close();
+            false;
+        }else{
+            location.href = url+ "&type=" + type;
+        }
+
+    })
+    $('#xvqi').on('click', function () {
+        $('.xieyiBox').show()
+        setTimeout(function () {
+            $('.xieyiBox').addClass('show')
+        }, 10)
+    })
+    $('.xieyiBox .x-mask').on('click', xieyiHide)
+    $('.xieyiBox #xfcan').on('click', xieyiHide)
+    $('.s-checkbox[name="shop_renew"]').on('change', function () {
+        $('.m-label .is-checked').removeClass('is-checked')
+        $(this).siblings('.s-checkbox__inner').addClass('is-checked')
+    })
+    
+    function xieyiHide() {
+        $('.xieyiBox').removeClass('show')
+        setTimeout(function () {
+            $('.xieyiBox').hide()
+        }, 300)
+    }
+</script>
+
+{template '../mobile/footer'}
+

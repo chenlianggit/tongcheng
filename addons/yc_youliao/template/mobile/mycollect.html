@@ -1,0 +1,144 @@
+{template '../mobile/header'}
+<link  href="{STYLE}css/list.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/miaosha.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<div class="order-panney">
+    <div class="order-body {if $type==2}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'mycollect','type'=>'2'))}'">
+       商品
+    </div>
+    <div class="order-body {if $type==3}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'mycollect','type'=>'3'))}'">
+       店铺
+    </div>
+    <div class="order-body {if $type==1}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl('user',array('op'=>'mycollect','type'=>'1'))}'">
+       信息
+    </div>
+
+</div>
+
+<div class="clearfix" ></div>
+
+<div class="content">
+    <div class="NotUesed2">
+        {if empty($list)}
+        <img class="nopic" src="{STYLE}images/tuan_pic3.png" /><span class="nonetext">亲，暂时没有更多了~</span>
+         {/if}
+        {if $type==3}
+        <div class="shop-list">
+            <ul id="mihua_sq_list" class="am-cf">
+                {loop $list $item}
+                <li class="shop-list-li collect-li">
+                        <div class="shop-list-li-img">
+                            <img class="lazy inline"  src="{$_W['attachurl']}{$item['logo']}" >
+                        </div>
+
+                        <div class="shop-list-info">
+                            <div class="y"></div>
+                            <div class="wap1 mr_5 title">{$item['shop_name']}</div>
+                            <div>
+                                {if !empty($item['dp']) && $item['dp']>0}
+                                <div class="shop_star_s mr_10"><img src="{STYLE}images/{if $item['dp']>=5}5x{elseif $item['dp']>=4 && $item['dp']<=4.9}4x{elseif $item['dp']>=3 && $item['dp']<=3.9}3x{elseif $item['dp']>=2&& $item['dp']<=2.9}2x{elseif $item['dp']>=1 && $item['dp']<=1.9}1x{else}0x{/if}.png"></span></div>
+                                {/if}
+                                {if $item['renjun']}
+                                <div class="renjun"><cite>￥</cite>{$item['renjun']}/人</div>
+                                {/if}
+                                <div class="go_second">
+                                <div class="docancel fl" onclick="cancelCollect({$item['id']},this)">取消收藏</div>
+                                <div class="go_second_botton fl" onclick="location.href='{php echo $this->createMobileUrl('shop', array('shop_id' => $item['shop_id']))}'">去看看</div>
+                                </div>
+                                <div class="shop-list-addr">
+                                    <div class="wap1">
+                                        {php $item['inco']=json_decode($item['inco'])}
+                                        {loop $item['inco'] $i}
+                                        <i>{$i}</i>
+                                        {/loop}
+
+                                    </div>
+
+                                </div>
+                            </div>
+                </li>
+
+                {/loop}
+            </ul>
+            {elseif $type==2}
+
+            {loop $list $item}
+            <div class="collect-li collect-li">
+                <div class="second_list clearfix">
+                    <div class="second_img">
+                        <img src="{$_W['attachurl']}{$item['thumb']}">
+                    </div>
+                    <div class="second_content">
+                        <p class="goods_name">
+                            {$item['title']}
+                        </p>
+                        <p class="shop_name">
+                            <img src="../addons/yc_youliao/public/images/shop.png">{$item['shop_name']}</p>
+                        <div class="price">
+                            <span class="money_red">￥{$item['marketprice']}</span>
+                        </div>
+                        <div class="go_second">
+                        <div class=" docancel fl" onclick="cancelCollect({$item['id']},this)">取消收藏</div>
+                        <div class="go_second_botton fl" onclick="location.href='{php echo $this->createMobileUrl('good', array('shop_id' => $item['shop_id'],'id' => $item['goods_id']))}'">去看看</div>
+
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            {/loop}
+            {elseif $type==1}
+            <div id="messagelist">
+            <div class="tab">
+                <div class="listall">
+                {loop $list $zdrow}
+                <div class="mmm" >
+                    <div class="mtitle">
+                    <span class="modulename">
+                        {if $zdrow['con']['thumbs'][0]}
+                     <img src="{$_W['attachurl']}{$zdrow['con']['thumbs'][0]}">
+                        <span>[{$zdrow['modulename']}]</span>
+                        {else}
+                         [{$zdrow['modulename']}]
+
+                        {/if}
+                    </span>
+                        {$zdrow['con']['title']}
+                    </div>
+                    <div class="mmsg">
+                        <div class="nickname">
+                            <img src="{$zdrow['avatar']}"/>
+                            {$zdrow['nickname']}</div>
+                        <span class="pd5">{php echo date("Y-m-d",$zdrow['createtime']);}</span>
+                        <div class="go_second">
+                            <div class="docancel fl" onclick="cancelCollect({$zdrow['id']},this)">取消收藏</div>
+                            <div class="go_second_botton fl" onClick="location.href='{php echo $this->createMobileUrl('detail',array('id'=>$zdrow['b_id']))}'">去看看</div>
+                        </div>
+                    </div>
+                </div>
+                {/loop}
+            </div>
+            </div>
+        </div>
+            {/if}
+        </div>
+    </div>
+
+{template '../mobile/footer'}
+    <script>
+        function cancelCollect(id,obj) {
+        var url = '{php echo $this->createMobileUrl('user',array('op'=>'mycollect','collect'=>'cancel',));}'+'&id='+id;
+        $.getJSON(url,{},function(s){
+            if(s.result==1){
+                tip ("取消收藏成功!");
+                tip_close();
+                $(obj).parents('.collect-li').remove();
+            }else{
+                tip("取消收藏失败!");
+                tip_close();
+            }
+        })
+        }
+    </script>
+

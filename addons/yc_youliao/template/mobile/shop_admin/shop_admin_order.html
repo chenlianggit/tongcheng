@@ -1,0 +1,39 @@
+{template '../mobile/header'}
+{template '../mobile/upload_img'}
+<link  href="{STYLE}css/user.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/order.css" rel="stylesheet" type="text/css"/>
+<link  href="{STYLE}css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="{STYLE}js/page.js"></script>
+{template '../mobile/shop_admin/shop_admin_banner'}
+
+<div class="info-content " >
+    {if $op=='order'}
+    <div class="shop-admin order-panney ">
+        <div class="order-body {if $status=='all'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'order','status'=>'all'))}'">
+          全部订单
+        </div>
+        <div class="order-body {if $status=='0'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'order','status'=>'0','my'=>1))}'">
+           未付款
+        </div>
+        <div class="order-body {if $status=='1'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'order','status'=>'1','my'=>1))}'">
+           未使用
+        </div>
+        <div class="order-body {if $status=='3'}sel{else}nosel{/if} " onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'order','status'=>'3','my'=>1))}'">
+           已完成
+        </div>
+        <div class="order-body {if $status=='4'}sel{else}nosel{/if}" onclick="location.href='{php echo $this->createMobileUrl($_GPC['do'],array('op'=>'order','status'=>'4','my'=>1))}'">
+           退款
+        </div>
+    </div>
+    {template '../mobile/order_list'}
+    {elseif $op=='group'}
+    {template '../mobile/group_list'}
+    {elseif $op=='discount'}
+    {template '../mobile/discount_list'}
+    {elseif $op=='renew_re'}
+    {template '../mobile/renew_list'}
+    {/if}
+</div>
+
+{template '../mobile/footer'}
+
