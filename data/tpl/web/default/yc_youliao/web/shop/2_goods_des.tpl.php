@@ -1,0 +1,41 @@
+<?php defined('IN_IA') or exit('Access Denied');?><?php  if($isapp==1) { ?>
+<!--手机端编辑器-->
+<link rel="stylesheet" type="text/css"  href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"  href="<?php echo STYLE;?>js/frame/wysiwyg/css/normalize.css" />
+<link rel="stylesheet" type="text/css"  href="<?php echo STYLE;?>js/frame/wysiwyg/css/default.css">
+<link rel="stylesheet" type="text/css"  href="<?php echo STYLE;?>js/frame/wysiwyg/css/wysiwyg-editor.css" />
+<link rel="stylesheet" type="text/css"  href="<?php echo STYLE;?>js/frame/wysiwyg/css/demo.css"  />
+<script type="text/javascript" src="<?php echo STYLE;?>js/frame/wysiwyg/wysiwyg.js"></script>
+<script type="text/javascript" src="<?php echo STYLE;?>js/frame/wysiwyg/wysiwyg-editor.js"></script>
+<script type="text/javascript" src="<?php echo STYLE;?>js/frame/wysiwyg/demo.js"></script>
+<div class="mt_40"></div>
+<div class="col-xs-12 title">商品详情</div>
+<div class="main">
+  <textarea id="editor1" name="content" value="<?php  echo $item['content'];?>">
+  </textarea>
+</div>
+<div class="col-xs-12 title">商品简介</div>
+<div class="main">
+  <textarea id="editor1" name="description" value="<?php  echo $item['description'];?>">
+  </textarea>
+</div>
+<div class="clearfix"></div>
+
+<?php  } else { ?>
+<div class="form-group">
+    <label class="col-xs-12 col-sm-3 col-md-2 control-label">商品详情</label>
+    <div class="col-sm-9 col-xs-12">
+        <?php  echo tpl_ueditor('content', $item['content']);?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-xs-12 col-sm-3 col-md-2 control-label">商品简介</label>
+    <div class="col-sm-9 col-xs-12">
+         <?php  echo tpl_ueditor('description', $item['description']);?>
+    </div>
+</div>
+
+
+<?php  } ?>
+
+

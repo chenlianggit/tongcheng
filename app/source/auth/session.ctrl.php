@@ -3,7 +3,6 @@
  * [WeEngine System] Copyright (c) 2014 WE7.CC
  * WeEngine is NOT a free software, it under the license terms, visited http://www.we7.cc/ for more details.
  */
- 
 defined('IN_IA') or exit('Access Denied');
 
 load()->model('mc');
@@ -17,7 +16,7 @@ if ($do == 'openid') {
 	if (empty($_W['account']['oauth']) || empty($code)) {
 		exit('通信错误，请在微信中重新发起请求');
 	}
-	
+
 	$oauth = $account_api->getOauthInfo($code);
 	if (!empty($oauth) && !is_error($oauth)) {
 		$_SESSION['openid'] = $oauth['openid'];

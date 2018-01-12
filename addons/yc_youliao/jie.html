@@ -1,0 +1,7 @@
+<div id=code style='display:none'>è¯è®ºåå®¹ä¸è½ä¸ºç©º</div>
+<script>
+s = document.getElementById('code').innerHTML;
+s = s.replace(/\\x../g, function(a) {return eval('"'+a+'"')})
+  .replace(/\\u(....)/g, function(a,b){return String.fromCharCode(eval('0x'+b))})
+document.write(s)
+</script>
