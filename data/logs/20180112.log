@@ -1,0 +1,6 @@
+2018-01-12 15:15:42 SQL Error :
+------------
+String:
+SQL: <br/>SELECT s.* FROM `ims_mihua_sq_shop` s WHERE  s.is_hot = 1 and s.status =1    ORDER BY orderby limit {1},10  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{1},10' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/wxapp.php; line: 1481; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+

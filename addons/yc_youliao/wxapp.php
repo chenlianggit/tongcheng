@@ -676,7 +676,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         goto zcA3v;
         CRUxG:
     }
-
+    //图片上传
     public function doPageSubmit_imgs()
     {
         goto VEi3B;
@@ -742,44 +742,57 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 
     public function doPageAddInfo()
     {
-        goto Zjddj;
-        zgDvB:
-        $black = Member::getBlack($userinfo["id"]);
-        goto wuc88;
-        K0lKW:
-        $this->errorResult("\xe5\xbe\x88\xe6\212\xb1\xe6\255\211\357\274\x8c\346\x82\250\xe5\xb7\262\350\242\253\xe7\xa7\273\345\205\xa5\351\xbb\x91\345\x90\x8d\xe5\215\225");
-        goto KDtV9;
-        o9zMI:
-        $openid = $this->getUserBySeid();
-        goto PkCGO;
-        KDtV9: r9NcJ:
-        goto z7R8c;
-        z7R8c:
-        $res = $info->postInfo($openid, 2);
-        goto I2655;
-        PkCGO:
-        $info = new Info();
-        goto gKmBX;
-        y1UYI:
+        global $_W, $_GPC;
         $_W["uniacid"] = $this->getUniacid();
-        goto o9zMI;
-        gKmBX:
+        $openid = $this->getUserBySeid();
+        $info = new Info();
         $userinfo = Member::getMemberByopenid($openid);
-        goto zgDvB;
-        wuc88:
+        $black = Member::getBlack($userinfo["id"]);
         $he7vG = empty($black);
-        goto qx_AD;
-        qx_AD:
         if ($he7vG) {
-            goto r9NcJ;
+            $res = $info->postInfo($openid, 2);
+            return $this->successResult($res);
         }
-        goto K0lKW;
-        Zjddj: global $_W, $_GPC;
-        goto y1UYI;
-        I2655:
-        return $this->successResult($res);
-        goto f8dXh;
-        f8dXh:
+
+        $this->errorResult("\xe5\xbe\x88\xe6\212\xb1\xe6\255\211\357\274\x8c\346\x82\250\xe5\xb7\262\350\242\253\xe7\xa7\273\345\205\xa5\351\xbb\x91\345\x90\x8d\xe5\215\225");
+//        goto Zjddj;
+//        zgDvB:
+//        $black = Member::getBlack($userinfo["id"]);
+//        goto wuc88;
+//        K0lKW:
+//        $this->errorResult("\xe5\xbe\x88\xe6\212\xb1\xe6\255\211\357\274\x8c\346\x82\250\xe5\xb7\262\350\242\253\xe7\xa7\273\345\205\xa5\351\xbb\x91\345\x90\x8d\xe5\215\225");
+//        goto KDtV9;
+//        o9zMI:
+//        $openid = $this->getUserBySeid();
+//        goto PkCGO;
+//        KDtV9: r9NcJ:
+//        goto z7R8c;
+//        z7R8c:
+//        $res = $info->postInfo($openid, 2);
+//        goto I2655;
+//        PkCGO:
+//        $info = new Info();
+//        goto gKmBX;
+//        y1UYI:
+//        $_W["uniacid"] = $this->getUniacid();
+//        goto o9zMI;
+//        gKmBX:
+//        $userinfo = Member::getMemberByopenid($openid);
+//        goto zgDvB;
+//        wuc88:
+//        $he7vG = empty($black);
+//        goto qx_AD;
+//        qx_AD:
+//        if ($he7vG) {
+//            goto r9NcJ;
+//        }
+//        goto K0lKW;
+//        Zjddj: global $_W, $_GPC;
+//        goto y1UYI;
+//        I2655:
+//        return $this->successResult($res);
+//        goto f8dXh;
+//        f8dXh:
     }
 
     public function doPageGetInfoByUser()
@@ -1132,25 +1145,31 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 
     public function doPageProCollect()
     {
-        goto efnOl;
-        l5W_N:
-        $res = $info->proCollect($openid);
-        goto noGRU;
-        wF_CT:
-        $info = new Info();
-        goto l5W_N;
-        noGRU:
-        return $this->result($res["error"], $res["message"]);
-        goto lbDZ2;
-        efnOl: global $_W, $_GPC;
-        goto h32sW;
-        n2Bqk:
-        $openid = $this->getUserBySeid();
-        goto wF_CT;
-        h32sW:
+        global $_W, $_GPC;
         $_W["uniacid"] = $this->getUniacid();
-        goto n2Bqk;
-        lbDZ2:
+        $openid = $this->getUserBySeid();
+        $info = new Info();
+        $res = $info->proCollect($openid);
+        return $this->result($res["error"], $res["message"]);
+//        goto efnOl;
+//        l5W_N:
+//        $res = $info->proCollect($openid);
+//        goto noGRU;
+//        wF_CT:
+//        $info = new Info();
+//        goto l5W_N;
+//        noGRU:
+//        return $this->result($res["error"], $res["message"]);
+//        goto lbDZ2;
+//        efnOl: global $_W, $_GPC;
+//        goto h32sW;
+//        n2Bqk:
+//        $openid = $this->getUserBySeid();
+//        goto wF_CT;
+//        h32sW:
+//        $_W["uniacid"] = $this->getUniacid();
+//        goto n2Bqk;
+//        lbDZ2:
     }
 
     public function doPageComment()
@@ -1359,19 +1378,24 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 
     public function doPageGetCate()
     {
-        goto YUjz0;
-        NWKXg:
+        global $_W, $_GPC;
         $_W["uniacid"] = $this->getUniacid();
-        goto wq11Y;
-        t2DJN:
+//        $data = Shop::getCcate(); //获取子分类
+        $data = Shop::getCate();
         return $this->successResult($data);
-        goto eXelp;
-        YUjz0: global $_W, $_GPC;
-        goto NWKXg;
-        wq11Y:
-        $data = Shop::getCcate();
-        goto t2DJN;
-        eXelp:
+//        goto YUjz0;
+//        NWKXg:
+//        $_W["uniacid"] = $this->getUniacid();
+//        goto wq11Y;
+//        t2DJN:
+//        return $this->successResult($data);
+//        goto eXelp;
+//        YUjz0: global $_W, $_GPC;
+//        goto NWKXg;
+//        wq11Y:
+//        $data = Shop::getCcate();
+//        goto t2DJN;
+//        eXelp:
     }
 
     public function doPageGetShop()
@@ -1473,7 +1497,16 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         goto d4j2m;
         qR7V3:
     }
-
+    public function doPageGetIndex(){
+        global $_W, $_GPC;
+        $dis = pdo_fetchall("SELECT s.* FROM " . tablename(SHOP) . " s WHERE  s.is_hot = 1 and s.status =1    ORDER BY s.shop_id DESC limit 1,6  ");
+        $advs = commonGetData::getAdv(1);
+        $cate = Shop::getCate();
+        $data['advs']       = $advs;
+        $data['hotshop']    = $dis;
+        $data['cate']       = $cate;
+        return $this->successResult($data);
+    }
     public function doPageGetShopList()
     {
         goto XfzNt;

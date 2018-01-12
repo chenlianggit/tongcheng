@@ -1,6 +1,6 @@
 <?php 
 class Info{
-
+    //添加信息
     public function postInfo($openid,$type=1){
         global $_GPC, $_W;
         $cfg=$this->module['config'];
