@@ -92,7 +92,7 @@ class Info{
             $views = mt_rand(1, $views_num);//根据最大的积分数，随机获取签分
             $data['views'] = $views;
         }
-
+        //新增信息
         pdo_insert(INFO, $data);
         $message_id = pdo_insertid();
         if ($moduleres['minscore'] > 0) {
@@ -140,7 +140,14 @@ class Info{
         return $resArr;
 
     }
-
+    // 查询多条信息
+    static function getAllInfo($where,$page,$num,$order='`orderby` DESC'){
+        $goodinfo = Util::getAllDataInSingleTable(GOODS,$where,$page,$num,$order);
+        foreach($goodinfo[0] as $k=>$v){
+            $newgoodinfo[$k] = self::initSingleGoodPro($v);
+        }
+        return array($newgoodinfo,$goodinfo[1],$goodinfo[2]);
+    }
     public function getInfoById ($id){
         global  $_W;
         $data=pdo_fetch('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']}  AND id = {$id} ");
@@ -150,6 +157,16 @@ class Info{
         global  $_W;
         $data=pdo_fetch('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} AND openid = '{$openid}' AND id = {$id} ");
         return $data;
+    }
+    public function getInfoByShop($Shop_id,$where,$page,$num){
+        global  $_W;
+        $mymessagelist = pdo_fetchall("SELECT * FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND shop_id = '{$Shop_id} '{$where} ORDER BY createtime DESC LIMIT ".$page.",".$num);
+        return $mymessagelist;
+    }
+    public function getInfoCountByShop($Shop_id){
+        global  $_W;
+        $mymessagelist = pdo_fetchall("SELECT id FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND shop_id = '{$Shop_id} AND status = 1'");
+        return count($mymessagelist);
     }
     public function getInfoByuser ($openid,$where,$page,$num){
         global  $_W;

@@ -1,0 +1,126 @@
+2018-01-14 17:03:02 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND Shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:03:07 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND Shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:03:10 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND Shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:03:39 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND Shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:03:40 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND Shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:05:43 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:06:10 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(id) FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,99<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,99' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:06:24 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,99<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,99' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:06:28 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 1,99<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 1,99' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:07:12 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:07:54 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT ,<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT ,' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:09:02 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 1,5<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 1,5' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 163; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:12:38 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,99<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,99' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:12:58 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,99<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,99' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:12:59 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 'status = 1 ORDER BY createtime DESC LIMIT 0,99<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status = 1 ORDER BY createtime DESC LIMIT 0,99' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:15:11 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 AND status = '{1}' ORDER BY createtime DESC LIMIT 0,99999<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{1}' ORDER BY createtime DESC LIMIT 0,99999' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:15:32 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 AND status = '{1}' ORDER BY createtime DESC LIMIT 0,99999<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{1}' ORDER BY createtime DESC LIMIT 0,99999' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:15:33 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 AND status = '{1}' ORDER BY createtime DESC LIMIT 0,99999<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{1}' ORDER BY createtime DESC LIMIT 0,99999' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:15:48 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 AND status = '{1}' ORDER BY createtime DESC LIMIT 0,99999<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{1}' ORDER BY createtime DESC LIMIT 0,99999' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:15:50 SQL Error :
+------------
+String:
+SQL: <br/>SELECT id FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 AND status = '{1}' ORDER BY createtime DESC LIMIT 0,99999<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{1}' ORDER BY createtime DESC LIMIT 0,99999' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-14 17:16:08 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND shop_id = '16 AND status = '{1}' ORDER BY createtime DESC LIMIT 0,99999<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '{1}' ORDER BY createtime DESC LIMIT 0,99999' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 168; <br />file: /addons/yc_youliao/wxapp.php; line: 536; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+

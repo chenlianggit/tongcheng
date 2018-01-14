@@ -1,5 +1,143 @@
 <?php
 class Shop{
+    public  function postShopInfo($openid,$type=1){
+
+        global $_GPC, $_W;
+        $cfg=$this->module['config'];
+        $member = pdo_fetch('SELECT id,nickname,openid,avatar FROM ' . tablename(MEMBER) . " WHERE openid = '{$openid}'");
+        if (empty($member)) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '获取您的信息失败！';
+            return $resArr;
+        }
+        $id  = intval($_GPC['shop_id']);//更新还是新增
+        $mid = intval($_GPC['mid']);
+        $logo = $_GPC['logo'];
+        $shop_name = $_GPC['shop_name'];
+        $telphone = $_GPC['telphone'];
+        $lng = trim($_GPC['lng']);
+        $qr_code = $_GPC['imgUrl'];//门店照片
+        $dp = $_GPC['dp'];
+        if(!$shop_name){
+            $resArr['error'] = 1;
+            $resArr['message'] = '请输入店铺名称！';
+            return $resArr;
+        }
+        if(!$logo){
+            $resArr['error'] = 1;
+            $resArr['message'] = '请上传店铺Logo！';
+            return $resArr;
+        }
+        if(!$telphone){
+            $resArr['error'] = 1;
+            $resArr['message'] = '请输入手机号！';
+            return $resArr;
+        }
+        if(!is_array($qr_code)){
+            $resArr['error'] = 1;
+            $resArr['message'] = '请上传门店照片！';
+            return $resArr;
+        }
+        $qr_code = json_encode($qr_code);
+        if ($mid <= 0) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '项目加载失败！';
+            return $resArr;
+        }
+        if (empty($lng)) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '没有获取您所在的地理位置信息！';
+            return $resArr;
+        }
+        if (!$dp) {
+            $dp = '4.'.rand(0,99);//评分随机4或5
+        }
+
+
+        $data = array(
+            'uniacid'       => $_W['uniacid'],
+            'openid'        => $openid,
+            'shop_name' 	=> $shop_name,  //店铺名称
+            'logo'          => $logo,       //LOGO
+            'telphone'      => $telphone,   //手机号码
+            'qr_code'       =>  $qr_code,//门店照片
+            'lng'           => $_GPC['lng'],//坐标
+            'lat'           => $_GPC['lat'],//坐标
+            'inco'          => json_encode( iunserializer($_GPC['inco'])),//商品标签
+            'opendtime'     => $_GPC['opendtime'],  //开店时间
+            'closetime'     => $_GPC['closetime'],  //打烊时间
+            'intro'         => trim($_GPC['intro']),//简介
+            'ccate_id'      => intval($_GPC['cate_id']),//类别
+            'starttime'     => time(),//入驻时间
+            'endtime'       => time() + (util::getYearStamp()) * 3,//到期时间 增加3年
+            'status'        => 1,//已审核
+            'dp'            => $dp,//点评满分5分
+            'address'=> $_GPC['address'],//详细地址
+            'manage'        => $member['nickname'],//联系人
+        );
+        if (!empty($id)) {
+            unset($data['starttime']);
+            unset($data['uniacid']);
+            pdo_update(SHOP, $data, array('shop_id' => $id, 'uniacid' => $_W['uniacid']));
+        } else {
+            pdo_insert(SHOP, $data);
+            $id = pdo_insertid();
+            $resArr['message'] = '恭喜您，添加店铺成功！';
+        }
+        $resArr['error'] = 0;
+        return $resArr;
+//        $views_num=intval($cfg['views_num']);//随机最高浏览数量
+//        if($views_num>0) {
+//            $views = mt_rand(1, $views_num);//根据最大的积分数，随机获取签分
+//            $data['views'] = $views;
+//        }
+//        //新增信息
+//        pdo_insert(INFO, $data);
+//        $message_id = pdo_insertid();
+//        if ($moduleres['minscore'] > 0) {
+//            $datascore['weid'] = $_W['uniacid'];
+//            $datascore['openid'] = $member['openid'];
+//            $datascore['num'] = $moduleres['minscore'];
+//            $datascore['time'] = TIMESTAMP;
+//            $datascore['explain'] = '发布信息奖励积分';
+//            pdo_insert(INTEGRAL, $datascore);
+//        }
+//        if ($moduleres['isneedpay'] == 1 && $moduleres['needpay'] > 0) {
+//            $ordersn = date('Ymd') . random(7, 1);
+//            $dataorder['weid'] = $_W['uniacid'];
+//            $dataorder['from_user'] = $member['openid'];
+//            $dataorder['ordersn'] = $ordersn;
+//            $dataorder['price'] = $moduleres['needpay'];
+//            $dataorder['paytype'] = 1;
+//            $dataorder['createtime'] = TIMESTAMP;
+//            $dataorder['message_id'] = $message_id;
+//            $dataorder['module'] = $mid;
+//            pdo_insert(INFOORDER, $dataorder);
+//            $resArr['ispay'] = 1;
+//            $resArr['ordersn'] = $ordersn;
+//        } else {
+//            $resArr['ispay'] = 0;
+//            $resArr['ordersn'] = '';
+//        }
+//
+//        if($moduleres['isneedpay'] == 1){//需要支付
+//            $resArr['message']=$tipinfo;
+//            $resArr['ordersn']=$ordersn;
+//        }elseif ($moduleres['isshenhe'] == 1 ) {//需要审核
+//            $resArr['message'] = '恭喜您，添加信息成功，请等待管理员审核！';
+//            //模板消息通知管理员审核
+//            if($type==1){
+//                $url= Util::createModuleUrl('detail',array('id'=>$message_id));
+//                $name=$moduleres['name'];
+//                Message::admin_checkmsg('您有一条审核提醒!',$url,$name,$member['nickname'],TIMESTAMP);
+//            }
+//
+//        } else {//无需审核，无需支付
+//            $resArr['message'] = '恭喜您，添加信息成功！';
+//        }
+//        $resArr['error'] = 0;
+//        return $resArr;
+    }
 
 
 public static function getShopInfo($shop_id){
@@ -10,6 +148,35 @@ public static function getShopInfo($shop_id){
     $re = pdo_fetch("select * from  ".tablename(SHOP)." where ".$where,$params);
     return $re;
 }
+    public static function getShopIsMy($shop_id,$openid){
+        global  $_GPC,$_W;
+        $where               = " shop_id=:shop_id and openid=:openid and uniacid=:uniacid ";
+        $params[":shop_id"] = $shop_id;
+        $params[":openid"] = $openid;
+        $params[":uniacid"] = $_W['uniacid'];
+        $re = pdo_fetch("select * from  ".tablename(SHOP)." where ".$where,$params);
+        return $re;
+    }
+    public static function proCollect($openid){
+        global $_W ,$_GPC;
+        $shop_id = intval($_GPC['shop_id']);
+        $collect = pdo_fetch("SELECT * FROM ".tablename(COLLECT)." WHERE weid = {$_W['uniacid']} AND openid = '{$openid}' AND shop_id = {$shop_id}");
+        if(!empty($collect)){
+            pdo_delete(COLLECT,array('weid'=>$_W['uniacid'],'openid'=>$openid,'shop_id'=>$shop_id));
+            $resArr['error'] = 0;
+            $resArr['message'] = "取消收藏成功！";
+            return $resArr;
+        }else{
+            $data['weid'] = $_W['uniacid'];
+            $data['openid'] = $openid;
+            $data['shop_id'] = $shop_id;
+            $data['time'] = TIMESTAMP;
+            pdo_insert(COLLECT,$data);
+            $resArr['message'] = "恭喜您，收藏成功！";
+            $resArr['error'] = 0;
+            return $resArr;
+        }
+    }
 public static function getShop_name($shop_id){
     global  $_GPC,$_W;
     $where               = " shop_id=:shop_id and uniacid=:uniacid";
@@ -301,6 +468,7 @@ public static function getApplynum($shop_id,$f_type){
         pdo_insert(RENEW,$in);
         return $ordersn;
     }
+
     public static function getShopRenew($shop_id=0,$sqlwhere='',$id=0){
         global  $_GPC,$_W;
         if($shop_id>0){
@@ -312,5 +480,6 @@ public static function getApplynum($shop_id,$f_type){
         $re = pdo_fetchall("select r.*,s.logo,s.shop_name,m.avatar,m.nickname from  ".tablename(RENEW)." r  left join ".tablename(SHOP)." s on s.shop_id=r.shop_id   left join".tablename(MEMBER)." m on m.id=r.mid  where r.uniacid = '{$_W['uniacid']}'  ".$where.$sqlwhere.' order by r.id desc ');
         return $re;
     }
+
 }
 
