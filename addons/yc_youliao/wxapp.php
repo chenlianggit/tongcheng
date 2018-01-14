@@ -84,6 +84,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		global $_W;
 		return $_W["attachurl"];
 	}
+	//获取用户标识
 	public function dopageGetSeid()
 	{
 		$userinfo = $this->getOpenid();
@@ -107,7 +108,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$seid = $_GPC["seid"];
 		$userinfo = cache_load($seid);
 		if (empty($userinfo)) {
-			return $this->errorResult("2");
+			return $this->errorResult("用户信息获取失败");
 			die;
 		}
 		return $userinfo;
@@ -124,6 +125,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
     }
 	public function doPageIndex()
 	{
+
 		global $_GPC, $_W;
 		$_W["uniacid"] = $this->getUniacid();
 		$info_condition = '';
@@ -312,7 +314,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         $haspay = $_GPC["haspay"];
         $status = $_GPC["status"];
         $isneedpay = $_GPC["isneedpay"];
-        $where = '1 = 1 ';
+        $where = '';
         if ($haspay) {
             $where .= " AND haspay= " . $haspay;
         }
@@ -322,7 +324,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         if ($status) {
             $where .= " AND status= ".$status;
         } else {
-            $where .= " AND status=1 ";
+            $where .= " AND status = 1 ";
         }
         $shop_id = intval($_GPC["shop_id"]);
         $res = $info->getInfoByShop($shop_id, $where, $page, $num);
@@ -435,8 +437,29 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		if ($info_id > 0) {
 			$where = " and b.id=" . $info_id;
 		}
-		$res = $info->getCollect($openid, $page, $num, $where);
-		return $this->successResult($res);
+		$resInfo = $info->getCollect($openid, $page, $num, $where);
+        $resShop = Shop::getCollect($openid, $page, $num, $where);
+        $isgroup = array();
+        $lat = $_GPC["lat"];
+        $lng = $_GPC["lng"];
+        foreach ($resShop as $k => $arr) {
+            $arr["distance"] = util::getDistance($arr["lat"], $arr["lng"], $lat, $lng);
+            $arr["inco"] = json_decode($arr["inco"]);
+            $isgroup[] = $arr;
+        }
+        $arrSort = array();
+        $sort = array("direction" => "SORT_ASC", "field" => "distance");
+        foreach ($isgroup as $uniqid => $row) {
+            foreach ($row as $key => $value) {
+                $arrSort[$key][$uniqid] = $value;
+            }
+        }
+        if ($sort["direction"] && count($isgroup) > 1) {
+            array_multisort($arrSort[$sort["field"]], constant($sort["direction"]), $isgroup);
+        }
+        $data['info'] = $resInfo;
+        $data['shop'] = $isgroup;
+		return $this->successResult($data);
 	}
 	public function doPageGetInfoOdersn()
 	{
@@ -524,13 +547,83 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		}
 		return $this->successResult($title);
 	}
-	public function doPageGetCate()
+	//获取信息分类
+	public function doPageGetChannel()
 	{
 		global $_W, $_GPC;
 		$_W["uniacid"] = $this->getUniacid();
-		$data = Shop::getCate(); //修改成主类别
+        $module  = commonGetData::getChannel(1, 2); //修改成主类别
+        $data = array();
+        if(!$module ){
+            return $this->errorResult("获取信息分类失败");
+            die;
+        }
+        foreach ($module  as $k =>$v) {
+            $data[$k]['id'] = $v['id'];
+            $data[$k]['name'] = $v['name'];
+            $data[$k]['thumb'] = $v['thumb'];
+        }
 		return $this->successResult($data);
 	}
+
+	//获取商城分类
+    public function doPageGetCate()
+    {
+        global $_W, $_GPC;
+        $_W["uniacid"] = $this->getUniacid();
+        $data = Shop::getCate(); //修改成主类别
+        return $this->successResult($data);
+    }
+    //获取用户的名称和商城名称
+    public function doPageGetUserName()
+    {
+        global $_W, $_GPC;
+        $openid = $this->getUserBySeid();
+        $userinfo = Member::getMemberByopenid($openid);
+        if(!$userinfo){
+            return $this->errorResult("获取用户信息失败");
+        }
+        $shopuser = Shop::getShop_nameByOpenid($openid);
+        if($shopuser && is_array($shopuser)){
+            foreach($shopuser as $k => &$v){
+                if($v['logo']){
+                    $v['logo'] = "https://".$_SERVER ['HTTP_HOST'].'/attachment/'.$v['logo'];
+                }
+            }
+        }
+        $data = $shopuser;
+        $data[] = array('shop_id'=>0,'nickname'=>$userinfo['nickname'],'logo'=>$userinfo['avatar']);
+        return $this->successResult($data);
+    }
+    //获取我的入驻店铺
+    public function doPageGetMyShopList()
+    {
+        global $_W, $_GPC;
+        $_W["uniacid"] = $this->getUniacid();
+        $openid = $this->getUserBySeid();
+        $page = reqInfo::pageIndex();
+        $num = reqInfo::num();
+        $dis = pdo_fetchall("SELECT * FROM " . tablename(SHOP) . "  WHERE  uniacid = '{$_W["uniacid"]}' AND openid = '{$openid}' {$condition}    ORDER BY starttime DESC limit {$page},{$num}  ");
+        $isgroup = array();
+        $lat = $_GPC["lat"];
+        $lng = $_GPC["lng"];
+        foreach ($dis as $k => $arr) {
+            $arr["distance"] = util::getDistance($arr["lat"], $arr["lng"], $lat, $lng);
+            $arr["inco"] = json_decode($arr["inco"]);
+            $isgroup[] = $arr;
+        }
+        $arrSort = array();
+        $sort = array("direction" => "SORT_ASC", "field" => "distance");
+        foreach ($isgroup as $uniqid => $row) {
+            foreach ($row as $key => $value) {
+                $arrSort[$key][$uniqid] = $value;
+            }
+        }
+        if ($sort["direction"] && count($isgroup) > 1) {
+            array_multisort($arrSort[$sort["field"]], constant($sort["direction"]), $isgroup);
+        }
+        return $this->successResult($isgroup);
+    }
 	public function doPageGetShop()
 	{
 		global $_W, $_GPC;

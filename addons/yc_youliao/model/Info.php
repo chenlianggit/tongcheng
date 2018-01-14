@@ -160,7 +160,7 @@ class Info{
     }
     public function getInfoByShop($Shop_id,$where,$page,$num){
         global  $_W;
-        $mymessagelist = pdo_fetchall("SELECT * FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND shop_id = '{$Shop_id} '{$where} ORDER BY createtime DESC LIMIT ".$page.",".$num);
+        $mymessagelist = pdo_fetchall("SELECT * FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND shop_id = '{$Shop_id}'{$where} ORDER BY createtime DESC LIMIT ".$page.",".$num);
         return $mymessagelist;
     }
     public function getInfoCountByShop($Shop_id){

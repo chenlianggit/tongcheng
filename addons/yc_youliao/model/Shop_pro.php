@@ -177,6 +177,11 @@ public static function getShopInfo($shop_id){
             return $resArr;
         }
     }
+    public static function getShop_nameByOpenid($openid){
+        global  $_GPC,$_W;
+        $re = pdo_fetchall(" SELECT shop_id,shop_name as nickname,logo FROM " . tablename(SHOP) . " WHERE  uniacid = '{$_W['uniacid']}' AND openid = '{$openid}'   ORDER BY  starttime desc");
+        return $re;
+    }
 public static function getShop_name($shop_id){
     global  $_GPC,$_W;
     $where               = " shop_id=:shop_id and uniacid=:uniacid";
@@ -337,7 +342,12 @@ public static function getApplynum($shop_id,$f_type){
         Message::admin_acount($title,'￥'.$am.$transfer,$admin_user['nickname'],TIMESTAMP,$id,$paytype);
         return $id ;
     }
-
+    public static function getCollect ($openid,$page,$num,$infosql='')
+    {
+        global $_W;
+        $list = pdo_fetchall("SELECT a.*,b.* FROM ".tablename(COLLECT)." as a,".tablename(SHOP)." as b WHERE a.shop_id = b.shop_id AND a.weid = {$_W['uniacid']} AND a.openid = '{$openid}' {$infosql} ORDER BY a.time DESC LIMIT ".$page.",".$num);
+        return $list;
+    }
     public static function getCate(){
     global  $_GPC,$_W;
      $cate = pdo_fetchall("SELECT * FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and (parent_id =0 or parent_id is null) ORDER BY orderby DESC");
