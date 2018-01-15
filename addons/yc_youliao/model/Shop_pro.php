@@ -67,7 +67,7 @@ class Shop{
             'opendtime'     => $_GPC['opendtime'],  //开店时间
             'closetime'     => $_GPC['closetime'],  //打烊时间
             'intro'         => trim($_GPC['intro']),//简介
-            'ccate_id'      => intval($_GPC['cate_id']),//类别
+            'pcate_id'      => intval($_GPC['cate_id']),//类别
             'starttime'     => time(),//入驻时间
             'endtime'       => time() + (util::getYearStamp()) * 3,//到期时间 增加3年
             'status'        => 1,//已审核
@@ -350,7 +350,7 @@ public static function getApplynum($shop_id,$f_type){
     }
     public static function getCate(){
     global  $_GPC,$_W;
-     $cate = pdo_fetchall("SELECT * FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and (parent_id =0 or parent_id is null) ORDER BY orderby DESC");
+     $cate = pdo_fetchall("SELECT * FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and (parent_id =0 or parent_id is null) ORDER BY orderby ASC");
      return $cate;
     }
 

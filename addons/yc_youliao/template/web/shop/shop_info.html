@@ -249,62 +249,63 @@
                                 <div class="form-group">
 
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">营业时间</label>
-                                    <div class="text-right">
-                                        <select name="opendtime" class="hour form-control" >
-                                            <option value="">营业</option>
-                                            <option value="0" {if $item['opendtime']==0}selected="selected"{/if}>00 : 00</option>
-                                            <option value="1" {if $item['opendtime']==1}selected="selected"{/if}>01 : 00</option>
-                                            <option value="2" {if $item['opendtime']==2}selected="selected"{/if}>02 : 00</option>
-                                            <option value="3" {if $item['opendtime']==3}selected="selected"{/if}>03 : 00</option>
-                                            <option value="4" {if $item['opendtime']==4}selected="selected"{/if}>04 : 00</option>
-                                            <option value="5" {if $item['opendtime']==5}selected="selected"{/if}>05 : 00</option>
-                                            <option value="6" {if $item['opendtime']==6}selected="selected"{/if}>06 : 00</option>
-                                            <option value="7" {if $item['opendtime']==7}selected="selected"{/if}>07 : 00</option>
-                                            <option value="8" {if $item['opendtime']==8}selected="selected"{/if}>08 : 00</option>
-                                            <option value="9" {if $item['opendtime']==9}selected="selected"{/if}>09 : 00</option>
-                                            <option value="10" {if $item['opendtime']==10}selected="selected"{/if}>10 : 00</option>
-                                            <option value="11" {if $item['opendtime']==11}selected="selected"{/if}>11 : 00</option>
-                                            <option value="12" {if $item['opendtime']==12}checked="checked"{/if}>12 : 00</option>
-                                            <option value="13" {if $item['opendtime']==13}selected="selected"{/if}>13 : 00</option>
-                                            <option value="14" {if $item['opendtime']==14}selected="selected"{/if}>14 : 00</option>
-                                            <option value="15" {if $item['opendtime']==15}selected="selected"{/if}>15 : 00</option>
-                                            <option value="16" {if $item['opendtime']==16}selected="selected"{/if}>16 : 00</option>
-                                            <option value="17" {if $item['opendtime']==17}selected="selected"{/if}>17 : 00</option>
-                                            <option value="18" {if $item['opendtime']==18}selected="selected"{/if}>18 : 00</option>
-                                            <option value="19" {if $item['opendtime']==19}selected="selected"{/if}>19 : 00</option>
-                                            <option value="20" {if $item['opendtime']==20}selected="selected"{/if}>20 : 00</option>
-                                            <option value="21" {if $item['opendtime']==21}selected="selected"{/if}>21 : 00</option>
-                                            <option value="22" {if $item['opendtime']==22}selected="selected"{/if}>22 : 00</option>
-                                            <option value="23" {if $item['opendtime']==23}selected="selected"{/if}>23 : 00</option>
-                                        </select>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="hour form-control" name="opendtime" value="{$item['opendtime']}" style="width: 430px !important;">
+                                        <!--<select name="opendtime" class="hour form-control" >-->
+                                            <!--<option value="">营业</option>-->
+                                            <!--<option value="0" {if $item['opendtime']==0}selected="selected"{/if}>00 : 00</option>-->
+                                            <!--<option value="1" {if $item['opendtime']==1}selected="selected"{/if}>01 : 00</option>-->
+                                            <!--<option value="2" {if $item['opendtime']==2}selected="selected"{/if}>02 : 00</option>-->
+                                            <!--<option value="3" {if $item['opendtime']==3}selected="selected"{/if}>03 : 00</option>-->
+                                            <!--<option value="4" {if $item['opendtime']==4}selected="selected"{/if}>04 : 00</option>-->
+                                            <!--<option value="5" {if $item['opendtime']==5}selected="selected"{/if}>05 : 00</option>-->
+                                            <!--<option value="6" {if $item['opendtime']==6}selected="selected"{/if}>06 : 00</option>-->
+                                            <!--<option value="7" {if $item['opendtime']==7}selected="selected"{/if}>07 : 00</option>-->
+                                            <!--<option value="8" {if $item['opendtime']==8}selected="selected"{/if}>08 : 00</option>-->
+                                            <!--<option value="9" {if $item['opendtime']==9}selected="selected"{/if}>09 : 00</option>-->
+                                            <!--<option value="10" {if $item['opendtime']==10}selected="selected"{/if}>10 : 00</option>-->
+                                            <!--<option value="11" {if $item['opendtime']==11}selected="selected"{/if}>11 : 00</option>-->
+                                            <!--<option value="12" {if $item['opendtime']==12}checked="checked"{/if}>12 : 00</option>-->
+                                            <!--<option value="13" {if $item['opendtime']==13}selected="selected"{/if}>13 : 00</option>-->
+                                            <!--<option value="14" {if $item['opendtime']==14}selected="selected"{/if}>14 : 00</option>-->
+                                            <!--<option value="15" {if $item['opendtime']==15}selected="selected"{/if}>15 : 00</option>-->
+                                            <!--<option value="16" {if $item['opendtime']==16}selected="selected"{/if}>16 : 00</option>-->
+                                            <!--<option value="17" {if $item['opendtime']==17}selected="selected"{/if}>17 : 00</option>-->
+                                            <!--<option value="18" {if $item['opendtime']==18}selected="selected"{/if}>18 : 00</option>-->
+                                            <!--<option value="19" {if $item['opendtime']==19}selected="selected"{/if}>19 : 00</option>-->
+                                            <!--<option value="20" {if $item['opendtime']==20}selected="selected"{/if}>20 : 00</option>-->
+                                            <!--<option value="21" {if $item['opendtime']==21}selected="selected"{/if}>21 : 00</option>-->
+                                            <!--<option value="22" {if $item['opendtime']==22}selected="selected"{/if}>22 : 00</option>-->
+                                            <!--<option value="23" {if $item['opendtime']==23}selected="selected"{/if}>23 : 00</option>-->
+                                        <!--</select>-->
 
-                                        <select name="closetime" class="hour form-control">
-                                            <option value="">打烊</option>
-                                            <option value="0" {if $item['closetime']==0}selected="selected"{/if}>00 : 00</option>
-                                            <option value="1" {if $item['closetime']==1}selected="selected"{/if}>01 : 00</option>
-                                            <option value="2" {if $item['closetime']==2}selected="selected"{/if}>02 : 00</option>
-                                            <option value="3" {if $item['closetime']==3}selected="selected"{/if}>03 : 00</option>
-                                            <option value="4" {if $item['closetime']==4}selected="selected"{/if}>04 : 00</option>
-                                            <option value="5" {if $item['closetime']==5}selected="selected"{/if}>05 : 00</option>
-                                            <option value="6" {if $item['closetime']==6}selected="selected"{/if}>06 : 00</option>
-                                            <option value="7" {if $item['closetime']==7}selected="selected"{/if}>07 : 00</option>
-                                            <option value="8" {if $item['closetime']==8}selected="selected"{/if}>08 : 00</option>
-                                            <option value="9" {if $item['closetime']==9}selected="selected"{/if}>09 : 00</option>
-                                            <option value="10" {if $item['closetime']==10}selected="selected"{/if}>10 : 00</option>
-                                            <option value="11" {if $item['closetime']==11}selected="selected"{/if}>11 : 00</option>
-                                            <option value="12" {if $item['closetime']==12}selected="selected"{/if}>12 : 00</option>
-                                            <option value="13" {if $item['closetime']==13}selected="selected"{/if}>13 : 00</option>
-                                            <option value="14" {if $item['closetime']==14}selected="selected"{/if}>14 : 00</option>
-                                            <option value="15" {if $item['closetime']==15}selected="selected"{/if}>15 : 00</option>
-                                            <option value="16" {if $item['closetime']==16}selected="selected"{/if}>16 : 00</option>
-                                            <option value="17" {if $item['closetime']==17}selected="selected"{/if}>17 : 00</option>
-                                            <option value="18" {if $item['closetime']==18}selected="selected"{/if}>18 : 00</option>
-                                            <option value="19" {if $item['closetime']==19}selected="selected"{/if}>19 : 00</option>
-                                            <option value="20" {if $item['closetime']==20}selected="selected"{/if}>20 : 00</option>
-                                            <option value="21" {if $item['closetime']==21}selected="selected"{/if}>21 : 00</option>
-                                            <option value="22" {if $item['closetime']==22}selected="selected"{/if}>22 : 00</option>
-                                            <option value="23" {if $item['closetime']==23}selected="selected"{/if}>23 : 00</option>
-                                        </select>
+                                        <!--<select name="closetime" class="hour form-control">-->
+                                            <!--<option value="">打烊</option>-->
+                                            <!--<option value="0" {if $item['closetime']==0}selected="selected"{/if}>00 : 00</option>-->
+                                            <!--<option value="1" {if $item['closetime']==1}selected="selected"{/if}>01 : 00</option>-->
+                                            <!--<option value="2" {if $item['closetime']==2}selected="selected"{/if}>02 : 00</option>-->
+                                            <!--<option value="3" {if $item['closetime']==3}selected="selected"{/if}>03 : 00</option>-->
+                                            <!--<option value="4" {if $item['closetime']==4}selected="selected"{/if}>04 : 00</option>-->
+                                            <!--<option value="5" {if $item['closetime']==5}selected="selected"{/if}>05 : 00</option>-->
+                                            <!--<option value="6" {if $item['closetime']==6}selected="selected"{/if}>06 : 00</option>-->
+                                            <!--<option value="7" {if $item['closetime']==7}selected="selected"{/if}>07 : 00</option>-->
+                                            <!--<option value="8" {if $item['closetime']==8}selected="selected"{/if}>08 : 00</option>-->
+                                            <!--<option value="9" {if $item['closetime']==9}selected="selected"{/if}>09 : 00</option>-->
+                                            <!--<option value="10" {if $item['closetime']==10}selected="selected"{/if}>10 : 00</option>-->
+                                            <!--<option value="11" {if $item['closetime']==11}selected="selected"{/if}>11 : 00</option>-->
+                                            <!--<option value="12" {if $item['closetime']==12}selected="selected"{/if}>12 : 00</option>-->
+                                            <!--<option value="13" {if $item['closetime']==13}selected="selected"{/if}>13 : 00</option>-->
+                                            <!--<option value="14" {if $item['closetime']==14}selected="selected"{/if}>14 : 00</option>-->
+                                            <!--<option value="15" {if $item['closetime']==15}selected="selected"{/if}>15 : 00</option>-->
+                                            <!--<option value="16" {if $item['closetime']==16}selected="selected"{/if}>16 : 00</option>-->
+                                            <!--<option value="17" {if $item['closetime']==17}selected="selected"{/if}>17 : 00</option>-->
+                                            <!--<option value="18" {if $item['closetime']==18}selected="selected"{/if}>18 : 00</option>-->
+                                            <!--<option value="19" {if $item['closetime']==19}selected="selected"{/if}>19 : 00</option>-->
+                                            <!--<option value="20" {if $item['closetime']==20}selected="selected"{/if}>20 : 00</option>-->
+                                            <!--<option value="21" {if $item['closetime']==21}selected="selected"{/if}>21 : 00</option>-->
+                                            <!--<option value="22" {if $item['closetime']==22}selected="selected"{/if}>22 : 00</option>-->
+                                            <!--<option value="23" {if $item['closetime']==23}selected="selected"{/if}>23 : 00</option>-->
+                                        <!--</select>-->
                                     </div>
 
                                 </div>

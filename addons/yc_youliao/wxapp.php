@@ -132,7 +132,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$lat = '';
 		$lng = '';
 		$formatted_address = '';
-		$weatherdata = '';
+//		$weatherdata = '';
 		$city = '';
 		$cfg = $this->module["config"];
 		if (!empty($_GPC["lat"]) && !empty($_GPC["lng"])) {
@@ -144,27 +144,30 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 			$addresData = util::getDistrictByLatLng($lat, $lng, $mapreq, $chagexy);
 			$formatted_address = $addresData["formatted_address"];
 			$city = $addresData["city"];
-			if ($city) {
-				$sql_city = rtrim($city, "市");
-				if ($cfg["issamecity"] == 0) {
-					$info_condition .= " and city like '" . $sql_city . "%' ";
-				}
-				$weatherurl = ReqInfo::weatherreq();
-				$weatherdata = util::getWeather($weatherurl, $city);
-				$weather2 = json_decode($weatherdata, 1);
-				if ($weather2["status"] == "1002") {
-					$weatherdata = util::getWeather($weatherurl, $addresData["district"]);
-				}
-			}
+//			if ($city) {
+//				$sql_city = rtrim($city, "市");
+//				if ($cfg["issamecity"] == 0) {
+//					$info_condition .= " and city like '" . $sql_city . "%' ";
+//				}
+//				$weatherurl = ReqInfo::weatherreq();
+//				$weatherdata = util::getWeather($weatherurl, $city);
+//				$weather2 = json_decode($weatherdata, 1);
+//				if ($weather2["status"] == "1002") {
+//					$weatherdata = util::getWeather($weatherurl, $addresData["district"]);
+//				}
+//			}
 		}
+        $dis = pdo_fetchall("SELECT s.* FROM " . tablename(SHOP) . " s WHERE  s.is_hot = 1 and s.status =1    ORDER BY s.shop_id DESC limit 1,6  ");
+        $cate = Shop::getCate();
 		$advs = commonGetData::getAdv(1);
 		$module = commonGetData::getChannel(1, 2);
 		$msgNum = ReqInfo::msgNum($cfg);
 		$newMsg = commonGetData::getNewMsg($info_condition, $msgNum, $lat, $lng);
 		$topMsg = commonGetData::getTopMsg($info_condition, $msgNum, $lat, $lng);
 		$hotMsg = commonGetData::getHotMsg($info_condition, $msgNum, $lat, $lng);
-		$data = array("city" => $city, "formatted_address" => $formatted_address, "weatherdata" => $weatherdata, "advs" => $advs, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg);
-		$uid = $_GPC["uid"];
+//		$data = array("city" => $city, "formatted_address" => $formatted_address, "weatherdata" => $weatherdata, "advs" => $advs, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg);
+        $data = array("city" => $city, "formatted_address" => $formatted_address, "advs" => $advs, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg,'hotshop'=>$dis,'cate'=>$cate);
+        $uid = $_GPC["uid"];
 		if ($uid) {
 			$result = MEMBER::isqiandao($uid);
 			$data["isSignIn"] = $result;
@@ -694,7 +697,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$cate_id = intval($_GPC["cid"]);
 		$condition = '';
 		if ($cate_id > 0) {
-			$condition .= " and s.ccate_id =" . $cate_id;
+			$condition .= " and s.pcate_id =" . $cate_id;
 		}
 		$dis = pdo_fetchall("SELECT s.* FROM " . tablename(SHOP) . " s WHERE  s.uniacid = '{$_W["uniacid"]}'  {$condition} and s.status =1    ORDER BY orderby limit {$page},{$num}  ");
 		$isgroup = array();

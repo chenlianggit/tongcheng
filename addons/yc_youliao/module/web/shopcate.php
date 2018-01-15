@@ -55,7 +55,7 @@ if ($op == 'display') {
             'parent_id' => intval($parentid),
             'cate_type' => intval($_GPC['cate_type']),//0商铺消费类,1酒店预订,2影院订座,3外卖点餐,4微商城
             'cate_url' => $_GPC['cate_url'],
-            'thumb'    =>$_GPC['images']
+            'thumb'    =>$_GPC['thumb']
         );
         if ($parentid>0 && $id>0) {
             pdo_update(CATE, $data, array('cate_id' => $id, 'uniacid' => $_W['uniacid']));

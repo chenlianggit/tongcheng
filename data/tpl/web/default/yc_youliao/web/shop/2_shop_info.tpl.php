@@ -249,62 +249,63 @@
                                 <div class="form-group">
 
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">营业时间</label>
-                                    <div class="text-right">
-                                        <select name="opendtime" class="hour form-control" >
-                                            <option value="">营业</option>
-                                            <option value="0" <?php  if($item['opendtime']==0) { ?>selected="selected"<?php  } ?>>00 : 00</option>
-                                            <option value="1" <?php  if($item['opendtime']==1) { ?>selected="selected"<?php  } ?>>01 : 00</option>
-                                            <option value="2" <?php  if($item['opendtime']==2) { ?>selected="selected"<?php  } ?>>02 : 00</option>
-                                            <option value="3" <?php  if($item['opendtime']==3) { ?>selected="selected"<?php  } ?>>03 : 00</option>
-                                            <option value="4" <?php  if($item['opendtime']==4) { ?>selected="selected"<?php  } ?>>04 : 00</option>
-                                            <option value="5" <?php  if($item['opendtime']==5) { ?>selected="selected"<?php  } ?>>05 : 00</option>
-                                            <option value="6" <?php  if($item['opendtime']==6) { ?>selected="selected"<?php  } ?>>06 : 00</option>
-                                            <option value="7" <?php  if($item['opendtime']==7) { ?>selected="selected"<?php  } ?>>07 : 00</option>
-                                            <option value="8" <?php  if($item['opendtime']==8) { ?>selected="selected"<?php  } ?>>08 : 00</option>
-                                            <option value="9" <?php  if($item['opendtime']==9) { ?>selected="selected"<?php  } ?>>09 : 00</option>
-                                            <option value="10" <?php  if($item['opendtime']==10) { ?>selected="selected"<?php  } ?>>10 : 00</option>
-                                            <option value="11" <?php  if($item['opendtime']==11) { ?>selected="selected"<?php  } ?>>11 : 00</option>
-                                            <option value="12" <?php  if($item['opendtime']==12) { ?>checked="checked"<?php  } ?>>12 : 00</option>
-                                            <option value="13" <?php  if($item['opendtime']==13) { ?>selected="selected"<?php  } ?>>13 : 00</option>
-                                            <option value="14" <?php  if($item['opendtime']==14) { ?>selected="selected"<?php  } ?>>14 : 00</option>
-                                            <option value="15" <?php  if($item['opendtime']==15) { ?>selected="selected"<?php  } ?>>15 : 00</option>
-                                            <option value="16" <?php  if($item['opendtime']==16) { ?>selected="selected"<?php  } ?>>16 : 00</option>
-                                            <option value="17" <?php  if($item['opendtime']==17) { ?>selected="selected"<?php  } ?>>17 : 00</option>
-                                            <option value="18" <?php  if($item['opendtime']==18) { ?>selected="selected"<?php  } ?>>18 : 00</option>
-                                            <option value="19" <?php  if($item['opendtime']==19) { ?>selected="selected"<?php  } ?>>19 : 00</option>
-                                            <option value="20" <?php  if($item['opendtime']==20) { ?>selected="selected"<?php  } ?>>20 : 00</option>
-                                            <option value="21" <?php  if($item['opendtime']==21) { ?>selected="selected"<?php  } ?>>21 : 00</option>
-                                            <option value="22" <?php  if($item['opendtime']==22) { ?>selected="selected"<?php  } ?>>22 : 00</option>
-                                            <option value="23" <?php  if($item['opendtime']==23) { ?>selected="selected"<?php  } ?>>23 : 00</option>
-                                        </select>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="hour form-control" name="opendtime" value="<?php  echo $item['opendtime'];?>" style="width: 430px !important;">
+                                        <!--<select name="opendtime" class="hour form-control" >-->
+                                            <!--<option value="">营业</option>-->
+                                            <!--<option value="0" <?php  if($item['opendtime']==0) { ?>selected="selected"<?php  } ?>>00 : 00</option>-->
+                                            <!--<option value="1" <?php  if($item['opendtime']==1) { ?>selected="selected"<?php  } ?>>01 : 00</option>-->
+                                            <!--<option value="2" <?php  if($item['opendtime']==2) { ?>selected="selected"<?php  } ?>>02 : 00</option>-->
+                                            <!--<option value="3" <?php  if($item['opendtime']==3) { ?>selected="selected"<?php  } ?>>03 : 00</option>-->
+                                            <!--<option value="4" <?php  if($item['opendtime']==4) { ?>selected="selected"<?php  } ?>>04 : 00</option>-->
+                                            <!--<option value="5" <?php  if($item['opendtime']==5) { ?>selected="selected"<?php  } ?>>05 : 00</option>-->
+                                            <!--<option value="6" <?php  if($item['opendtime']==6) { ?>selected="selected"<?php  } ?>>06 : 00</option>-->
+                                            <!--<option value="7" <?php  if($item['opendtime']==7) { ?>selected="selected"<?php  } ?>>07 : 00</option>-->
+                                            <!--<option value="8" <?php  if($item['opendtime']==8) { ?>selected="selected"<?php  } ?>>08 : 00</option>-->
+                                            <!--<option value="9" <?php  if($item['opendtime']==9) { ?>selected="selected"<?php  } ?>>09 : 00</option>-->
+                                            <!--<option value="10" <?php  if($item['opendtime']==10) { ?>selected="selected"<?php  } ?>>10 : 00</option>-->
+                                            <!--<option value="11" <?php  if($item['opendtime']==11) { ?>selected="selected"<?php  } ?>>11 : 00</option>-->
+                                            <!--<option value="12" <?php  if($item['opendtime']==12) { ?>checked="checked"<?php  } ?>>12 : 00</option>-->
+                                            <!--<option value="13" <?php  if($item['opendtime']==13) { ?>selected="selected"<?php  } ?>>13 : 00</option>-->
+                                            <!--<option value="14" <?php  if($item['opendtime']==14) { ?>selected="selected"<?php  } ?>>14 : 00</option>-->
+                                            <!--<option value="15" <?php  if($item['opendtime']==15) { ?>selected="selected"<?php  } ?>>15 : 00</option>-->
+                                            <!--<option value="16" <?php  if($item['opendtime']==16) { ?>selected="selected"<?php  } ?>>16 : 00</option>-->
+                                            <!--<option value="17" <?php  if($item['opendtime']==17) { ?>selected="selected"<?php  } ?>>17 : 00</option>-->
+                                            <!--<option value="18" <?php  if($item['opendtime']==18) { ?>selected="selected"<?php  } ?>>18 : 00</option>-->
+                                            <!--<option value="19" <?php  if($item['opendtime']==19) { ?>selected="selected"<?php  } ?>>19 : 00</option>-->
+                                            <!--<option value="20" <?php  if($item['opendtime']==20) { ?>selected="selected"<?php  } ?>>20 : 00</option>-->
+                                            <!--<option value="21" <?php  if($item['opendtime']==21) { ?>selected="selected"<?php  } ?>>21 : 00</option>-->
+                                            <!--<option value="22" <?php  if($item['opendtime']==22) { ?>selected="selected"<?php  } ?>>22 : 00</option>-->
+                                            <!--<option value="23" <?php  if($item['opendtime']==23) { ?>selected="selected"<?php  } ?>>23 : 00</option>-->
+                                        <!--</select>-->
 
-                                        <select name="closetime" class="hour form-control">
-                                            <option value="">打烊</option>
-                                            <option value="0" <?php  if($item['closetime']==0) { ?>selected="selected"<?php  } ?>>00 : 00</option>
-                                            <option value="1" <?php  if($item['closetime']==1) { ?>selected="selected"<?php  } ?>>01 : 00</option>
-                                            <option value="2" <?php  if($item['closetime']==2) { ?>selected="selected"<?php  } ?>>02 : 00</option>
-                                            <option value="3" <?php  if($item['closetime']==3) { ?>selected="selected"<?php  } ?>>03 : 00</option>
-                                            <option value="4" <?php  if($item['closetime']==4) { ?>selected="selected"<?php  } ?>>04 : 00</option>
-                                            <option value="5" <?php  if($item['closetime']==5) { ?>selected="selected"<?php  } ?>>05 : 00</option>
-                                            <option value="6" <?php  if($item['closetime']==6) { ?>selected="selected"<?php  } ?>>06 : 00</option>
-                                            <option value="7" <?php  if($item['closetime']==7) { ?>selected="selected"<?php  } ?>>07 : 00</option>
-                                            <option value="8" <?php  if($item['closetime']==8) { ?>selected="selected"<?php  } ?>>08 : 00</option>
-                                            <option value="9" <?php  if($item['closetime']==9) { ?>selected="selected"<?php  } ?>>09 : 00</option>
-                                            <option value="10" <?php  if($item['closetime']==10) { ?>selected="selected"<?php  } ?>>10 : 00</option>
-                                            <option value="11" <?php  if($item['closetime']==11) { ?>selected="selected"<?php  } ?>>11 : 00</option>
-                                            <option value="12" <?php  if($item['closetime']==12) { ?>selected="selected"<?php  } ?>>12 : 00</option>
-                                            <option value="13" <?php  if($item['closetime']==13) { ?>selected="selected"<?php  } ?>>13 : 00</option>
-                                            <option value="14" <?php  if($item['closetime']==14) { ?>selected="selected"<?php  } ?>>14 : 00</option>
-                                            <option value="15" <?php  if($item['closetime']==15) { ?>selected="selected"<?php  } ?>>15 : 00</option>
-                                            <option value="16" <?php  if($item['closetime']==16) { ?>selected="selected"<?php  } ?>>16 : 00</option>
-                                            <option value="17" <?php  if($item['closetime']==17) { ?>selected="selected"<?php  } ?>>17 : 00</option>
-                                            <option value="18" <?php  if($item['closetime']==18) { ?>selected="selected"<?php  } ?>>18 : 00</option>
-                                            <option value="19" <?php  if($item['closetime']==19) { ?>selected="selected"<?php  } ?>>19 : 00</option>
-                                            <option value="20" <?php  if($item['closetime']==20) { ?>selected="selected"<?php  } ?>>20 : 00</option>
-                                            <option value="21" <?php  if($item['closetime']==21) { ?>selected="selected"<?php  } ?>>21 : 00</option>
-                                            <option value="22" <?php  if($item['closetime']==22) { ?>selected="selected"<?php  } ?>>22 : 00</option>
-                                            <option value="23" <?php  if($item['closetime']==23) { ?>selected="selected"<?php  } ?>>23 : 00</option>
-                                        </select>
+                                        <!--<select name="closetime" class="hour form-control">-->
+                                            <!--<option value="">打烊</option>-->
+                                            <!--<option value="0" <?php  if($item['closetime']==0) { ?>selected="selected"<?php  } ?>>00 : 00</option>-->
+                                            <!--<option value="1" <?php  if($item['closetime']==1) { ?>selected="selected"<?php  } ?>>01 : 00</option>-->
+                                            <!--<option value="2" <?php  if($item['closetime']==2) { ?>selected="selected"<?php  } ?>>02 : 00</option>-->
+                                            <!--<option value="3" <?php  if($item['closetime']==3) { ?>selected="selected"<?php  } ?>>03 : 00</option>-->
+                                            <!--<option value="4" <?php  if($item['closetime']==4) { ?>selected="selected"<?php  } ?>>04 : 00</option>-->
+                                            <!--<option value="5" <?php  if($item['closetime']==5) { ?>selected="selected"<?php  } ?>>05 : 00</option>-->
+                                            <!--<option value="6" <?php  if($item['closetime']==6) { ?>selected="selected"<?php  } ?>>06 : 00</option>-->
+                                            <!--<option value="7" <?php  if($item['closetime']==7) { ?>selected="selected"<?php  } ?>>07 : 00</option>-->
+                                            <!--<option value="8" <?php  if($item['closetime']==8) { ?>selected="selected"<?php  } ?>>08 : 00</option>-->
+                                            <!--<option value="9" <?php  if($item['closetime']==9) { ?>selected="selected"<?php  } ?>>09 : 00</option>-->
+                                            <!--<option value="10" <?php  if($item['closetime']==10) { ?>selected="selected"<?php  } ?>>10 : 00</option>-->
+                                            <!--<option value="11" <?php  if($item['closetime']==11) { ?>selected="selected"<?php  } ?>>11 : 00</option>-->
+                                            <!--<option value="12" <?php  if($item['closetime']==12) { ?>selected="selected"<?php  } ?>>12 : 00</option>-->
+                                            <!--<option value="13" <?php  if($item['closetime']==13) { ?>selected="selected"<?php  } ?>>13 : 00</option>-->
+                                            <!--<option value="14" <?php  if($item['closetime']==14) { ?>selected="selected"<?php  } ?>>14 : 00</option>-->
+                                            <!--<option value="15" <?php  if($item['closetime']==15) { ?>selected="selected"<?php  } ?>>15 : 00</option>-->
+                                            <!--<option value="16" <?php  if($item['closetime']==16) { ?>selected="selected"<?php  } ?>>16 : 00</option>-->
+                                            <!--<option value="17" <?php  if($item['closetime']==17) { ?>selected="selected"<?php  } ?>>17 : 00</option>-->
+                                            <!--<option value="18" <?php  if($item['closetime']==18) { ?>selected="selected"<?php  } ?>>18 : 00</option>-->
+                                            <!--<option value="19" <?php  if($item['closetime']==19) { ?>selected="selected"<?php  } ?>>19 : 00</option>-->
+                                            <!--<option value="20" <?php  if($item['closetime']==20) { ?>selected="selected"<?php  } ?>>20 : 00</option>-->
+                                            <!--<option value="21" <?php  if($item['closetime']==21) { ?>selected="selected"<?php  } ?>>21 : 00</option>-->
+                                            <!--<option value="22" <?php  if($item['closetime']==22) { ?>selected="selected"<?php  } ?>>22 : 00</option>-->
+                                            <!--<option value="23" <?php  if($item['closetime']==23) { ?>selected="selected"<?php  } ?>>23 : 00</option>-->
+                                        <!--</select>-->
                                     </div>
 
                                 </div>
