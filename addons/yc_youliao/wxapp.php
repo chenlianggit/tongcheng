@@ -23,6 +23,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$cfg = pdo_fetchcolumn("SELECT settings FROM " . tablename("uni_account_modules") . " WHERE module = :module AND uniacid = :uniacid", array(":module" => MODULE, ":uniacid" => $_W["uniacid"]));
 		$this->module = unserialize($cfg);
 	}
+
 	public function doPageTest()
 	{
 		global $_GPC, $_W;
@@ -31,6 +32,25 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$data = commonGetData::getAdv(1);
 		return $this->result($errno, $message, $data);
 	}
+	//整理照片
+//    public function doPageTest1()
+//    {
+//        global $_GPC, $_W;
+//        $re = pdo_fetchall("select shop_id,qr_code from  ".tablename(SHOP)." where 1=1  ");
+//
+//        foreach($re as $k => &$v){
+//                $v['qr_code'] = explode(',',$v['qr_code']);
+//                if($v['qr_code'][0]){
+//                    $logo = $v['qr_code'][0];
+//                }else{
+//                    $logo = '';
+//                }
+//                $v['qr_code'] = json_encode($v['qr_code']);
+//           $res =  pdo_update(SHOP, array('qr_code' => $v['qr_code'],'logo'=>$logo ,'uniacid'=> 2), array('shop_id' =>$v['shop_id']));
+//           echo  $v['shop_id'].'修改'.$res.'<br>';
+//        }
+//        exit;
+//    }
 	private function getOpenid()
 	{
 		global $_W, $_GPC;
@@ -665,6 +685,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         if($data['inco']){
             $data['inco'] = json_decode($data['inco'],true);
         }
+        $data['cate_name'] = Shop::getCateByPcate_id($data['pcate_id']);
         if($data['qr_code']){
             $data['qr_code'] = json_decode($data['qr_code'],true);
         }
@@ -730,6 +751,25 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		}
 		return $this->successResult($isgroup);
 	}
+    //搜索框
+    public function doPageSearch()
+    {
+        global $_W, $_GPC;
+        $_W["uniacid"] = $this->getUniacid();
+        $page = reqInfo::pageIndex();
+        $num = reqInfo::num();
+        $key = $_GPC["key"];
+        //shop 搜索店铺  info 搜索信息
+        $type = $_GPC["type"];
+        if($type == 'info'){
+            $info = new Info();
+            $res = $info->searchInfo($key,$page,$num);
+        }else{
+            $res = Shop::searchShop($key,$page,$num);
+        }
+        return $this->successResult($res);
+
+    }
 	public function doPageGetDiscount()
 	{
 		global $_GPC, $_W;

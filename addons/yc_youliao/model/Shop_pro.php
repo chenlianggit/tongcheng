@@ -106,6 +106,33 @@ public static function getShopInfo($shop_id){
         $re = pdo_fetch("select * from  ".tablename(SHOP)." where ".$where,$params);
         return $re;
     }
+    public static function searchShop($key,$page,$num){
+        global $_W ,$_GPC;
+        $data = util::getAllDataInSingleTable(SHOP,array('shop_name@'=>$key,'uniacid'=>$_W['uniacid']),$page,$num,'orderby ASC',false,' *');;
+        $isgroup = array();
+        $lat = $_GPC["lat"];
+        $lng = $_GPC["lng"];
+        if($data[0]){
+            foreach ($data[0] as $k => $arr) {
+                $arr["distance"] = util::getDistance($arr["lat"], $arr["lng"], $lat, $lng);
+                $arr["inco"] = json_decode($arr["inco"]);
+                $arr["qr_code"] = json_decode($arr["qr_code"]);
+                $isgroup[] = $arr;
+            }
+            $arrSort = array();
+            $sort = array("direction" => "SORT_ASC", "field" => "distance");
+            foreach ($isgroup as $uniqid => $row) {
+                foreach ($row as $key => $value) {
+                    $arrSort[$key][$uniqid] = $value;
+                }
+            }
+            if ($sort["direction"] && count($isgroup) > 1) {
+                array_multisort($arrSort[$sort["field"]], constant($sort["direction"]), $isgroup);
+            }
+        }
+
+        return $isgroup;
+    }
     public static function delShop($openid){
         global $_W ,$_GPC;
         $shop_id = intval($_GPC['shop_id']);
@@ -317,7 +344,22 @@ public static function getApplynum($shop_id,$f_type){
      $cate = pdo_fetchall("SELECT * FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and (parent_id =0 or parent_id is null) ORDER BY orderby ASC");
      return $cate;
     }
+    public static function getCateByPcate_id($pcate_id){
+        global  $_GPC,$_W;
+        $cate = pdo_fetch("SELECT cate_id,cate_name FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and cate_id = '{$pcate_id}'");
+        return $cate['cate_name'];
+    }
+    //图片格式化成域名+完整图片
+    static function tomediaImg($img){
+        if($img){
+            $imgData=array();
+            foreach ($img as $a => $b) {
+                $imgData[$a] = tomedia($b);
+            }
+            return $imgData;
+        }
 
+    }
      public static function getCcate(){
       global  $_GPC,$_W;
      $ccate = pdo_fetchall("SELECT * FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and parent_id >0 ORDER BY orderby DESC");

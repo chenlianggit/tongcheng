@@ -148,6 +148,44 @@ class Info{
         }
         return array($newgoodinfo,$goodinfo[1],$goodinfo[2]);
     }
+    //搜索接口
+    public function searchInfo($key,$page,$num){
+        global $_W ,$_GPC;
+        $data = util::getAllDataInSingleTable(INFO,array('content@'=>$key),$page,$num,'id DESC',false,' *',$type='2');
+        $zdmessagelist = '';
+        $lat = $_GPC["lat"];
+        $lng = $_GPC["lng"];
+        if($data[0]){
+            $zdmessagelist = $data[0];
+            foreach ($zdmessagelist as $k => $v) {
+
+                $zdmessagelist[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
+                $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+                $zdmessagelist[$k]['con'] = unserialize($v['content']);
+                $zdmessagelist[$k]['modulename'] = $module['name'];
+
+                if($v['freshtime']) {
+                    $zdmessagelist[$k]['freshtime'] = date("Y-m-d H:i", $v['freshtime']);
+                }
+                $zdmessagelist[$k]['con']['thumbs']= self::tomediaImg($zdmessagelist[$k]['con']['thumbs']);
+
+                $zdmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+
+            }
+        }
+        return $zdmessagelist;
+    }
+    //图片格式化成域名+完整图片
+    static function tomediaImg($img){
+        if($img){
+            $imgData=array();
+            foreach ($img as $a => $b) {
+                $imgData[$a] = tomedia($b);
+            }
+            return $imgData;
+        }
+
+    }
     public function getInfoById ($id){
         global  $_W;
         $data=pdo_fetch('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']}  AND id = {$id} ");

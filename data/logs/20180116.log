@@ -37,3 +37,107 @@ SQL: <br/>DELETE FROM `ims_mihua_sq_shop` WHERE `weid` = :__weid_67 AND `openid`
   ':__shop_id_69' => 16,
 )<hr/>SQL Error: <br/>Unknown column 'weid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 267; <br />file: /framework/function/pdo.func.php; line: 91; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 116; <br />file: /addons/yc_youliao/wxapp.php; line: 636; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
 
+2018-01-16 12:03:01 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_SHOP` WHERE  `shop_name` LIKE :shop_name AND `uniacid` = :uniacid   ORDER BY orderby ASC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':shop_name' => '%望京%',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 111; <br />file: /addons/yc_youliao/wxapp.php; line: 748; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 12:52:41 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `uniacid` = :uniacid   ORDER BY orderby ASC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%大奖%',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 12:53:46 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%大奖%',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 12:56:01 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%大奖%',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 13:40:00 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `weid` = :weid AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%222%',
+  ':weid' => '2',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 13:40:28 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `weid` = :weid AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%222%',
+  ':weid' => '2',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 13:41:05 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `weid` = :weid AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%额外%',
+  ':weid' => '2',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 13:43:06 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `weid` = :weid AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%额外%',
+  ':weid' => '2',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 13:43:57 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `weid` = :weid AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%额外%',
+  ':weid' => '2',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 13:45:18 SQL Error :
+------------
+String:
+SQL: <br/>SELECT  * FROM `ims_mihua_sq_info` WHERE  `content` LIKE :content AND `weid` = :weid AND `uniacid` = :uniacid   ORDER BY id DESC  LIMIT 0,10<hr/>Params: <br/>array (
+  ':content' => '%额外%',
+  ':weid' => '2',
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 381; <br />file: /addons/yc_youliao/class/util.php; line: 337; <br />file: /addons/yc_youliao/model/Info.php; line: 154; <br />file: /addons/yc_youliao/wxapp.php; line: 745; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 15:21:47 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=1 ORDER BY a.time DESC LIMIT 0,10<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 339; <br />file: /addons/yc_youliao/wxapp.php; line: 454; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 15:22:24 SQL Error :
+------------
+String:
+SQL: <br/>select * from  `ims_mihua_sq_shop` where 1=1   order by cash_id desc limit 1<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'cash_id' in 'order clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/wxapp.php; line: 40; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 15:23:19 SQL Error :
+------------
+String:
+SQL: <br/>select shop_id from  `ims_mihua_sq_shop` where 1=1   order by cash_id desc limit 1<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'cash_id' in 'order clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/wxapp.php; line: 40; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
