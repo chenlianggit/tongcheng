@@ -627,6 +627,16 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         }
         return $this->successResult($isgroup);
     }
+    //删除店铺
+    public function doPageDelMyShop()
+    {
+        global $_W, $_GPC;
+        $_W["uniacid"] = $this->getUniacid();
+        $openid = $this->getUserBySeid();
+        $res = Shop::delShop($openid);
+        return $this->result($res["error"], $res["message"]);
+
+    }
 	public function doPageGetShop()
 	{
 		global $_W, $_GPC;

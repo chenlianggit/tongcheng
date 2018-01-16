@@ -11,7 +11,7 @@ class Shop{
             return $resArr;
         }
         $id  = intval($_GPC['shop_id']);//更新还是新增
-        $mid = intval($_GPC['mid']);
+//        $mid = intval($_GPC['mid']);
         $logo = $_GPC['logo'];
         $shop_name = $_GPC['shop_name'];
         $telphone = $_GPC['telphone'];
@@ -39,11 +39,11 @@ class Shop{
             return $resArr;
         }
         $qr_code = json_encode($qr_code);
-        if ($mid <= 0) {
-            $resArr['error'] = 1;
-            $resArr['message'] = '项目加载失败！';
-            return $resArr;
-        }
+//        if ($mid <= 0) {
+//            $resArr['error'] = 1;
+//            $resArr['message'] = '项目加载失败！';
+//            return $resArr;
+//        }
         if (empty($lng)) {
             $resArr['error'] = 1;
             $resArr['message'] = '没有获取您所在的地理位置信息！';
@@ -86,57 +86,6 @@ class Shop{
         }
         $resArr['error'] = 0;
         return $resArr;
-//        $views_num=intval($cfg['views_num']);//随机最高浏览数量
-//        if($views_num>0) {
-//            $views = mt_rand(1, $views_num);//根据最大的积分数，随机获取签分
-//            $data['views'] = $views;
-//        }
-//        //新增信息
-//        pdo_insert(INFO, $data);
-//        $message_id = pdo_insertid();
-//        if ($moduleres['minscore'] > 0) {
-//            $datascore['weid'] = $_W['uniacid'];
-//            $datascore['openid'] = $member['openid'];
-//            $datascore['num'] = $moduleres['minscore'];
-//            $datascore['time'] = TIMESTAMP;
-//            $datascore['explain'] = '发布信息奖励积分';
-//            pdo_insert(INTEGRAL, $datascore);
-//        }
-//        if ($moduleres['isneedpay'] == 1 && $moduleres['needpay'] > 0) {
-//            $ordersn = date('Ymd') . random(7, 1);
-//            $dataorder['weid'] = $_W['uniacid'];
-//            $dataorder['from_user'] = $member['openid'];
-//            $dataorder['ordersn'] = $ordersn;
-//            $dataorder['price'] = $moduleres['needpay'];
-//            $dataorder['paytype'] = 1;
-//            $dataorder['createtime'] = TIMESTAMP;
-//            $dataorder['message_id'] = $message_id;
-//            $dataorder['module'] = $mid;
-//            pdo_insert(INFOORDER, $dataorder);
-//            $resArr['ispay'] = 1;
-//            $resArr['ordersn'] = $ordersn;
-//        } else {
-//            $resArr['ispay'] = 0;
-//            $resArr['ordersn'] = '';
-//        }
-//
-//        if($moduleres['isneedpay'] == 1){//需要支付
-//            $resArr['message']=$tipinfo;
-//            $resArr['ordersn']=$ordersn;
-//        }elseif ($moduleres['isshenhe'] == 1 ) {//需要审核
-//            $resArr['message'] = '恭喜您，添加信息成功，请等待管理员审核！';
-//            //模板消息通知管理员审核
-//            if($type==1){
-//                $url= Util::createModuleUrl('detail',array('id'=>$message_id));
-//                $name=$moduleres['name'];
-//                Message::admin_checkmsg('您有一条审核提醒!',$url,$name,$member['nickname'],TIMESTAMP);
-//            }
-//
-//        } else {//无需审核，无需支付
-//            $resArr['message'] = '恭喜您，添加信息成功！';
-//        }
-//        $resArr['error'] = 0;
-//        return $resArr;
     }
 
 
@@ -156,6 +105,21 @@ public static function getShopInfo($shop_id){
         $params[":uniacid"] = $_W['uniacid'];
         $re = pdo_fetch("select * from  ".tablename(SHOP)." where ".$where,$params);
         return $re;
+    }
+    public static function delShop($openid){
+        global $_W ,$_GPC;
+        $shop_id = intval($_GPC['shop_id']);
+        $collect = pdo_fetch("SELECT * FROM ".tablename(SHOP)." WHERE uniacid = {$_W['uniacid']} AND openid = '{$openid}' AND shop_id = {$shop_id}");
+        if(!empty($collect) && $shop_id){
+            pdo_delete(SHOP,array('uniacid'=>$_W['uniacid'],'openid'=>$openid,'shop_id'=>$shop_id));
+            $resArr['error'] = 0;
+            $resArr['message'] = "删除店铺成功!";
+            return $resArr;
+        }else{
+            $resArr['error'] = 1;
+            $resArr['message'] = "删除店铺失败!";
+            return $resArr;
+        }
     }
     public static function proCollect($openid){
         global $_W ,$_GPC;

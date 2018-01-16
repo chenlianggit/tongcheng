@@ -1,0 +1,39 @@
+2018-01-16 10:47:25 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop` WHERE weid = 2 AND openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' AND shop_id = 0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'weid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 112; <br />file: /addons/yc_youliao/wxapp.php; line: 636; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 10:48:32 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop` WHERE weid = 2 AND openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' AND shop_id = 0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'weid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 112; <br />file: /addons/yc_youliao/wxapp.php; line: 636; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 10:48:44 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop` WHERE weid = 2 AND openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' AND shop_id = 16<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'weid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 112; <br />file: /addons/yc_youliao/wxapp.php; line: 636; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 10:49:21 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop` WHERE weid = 2 AND openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' AND shop_id = 16<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'weid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 113; <br />file: /addons/yc_youliao/wxapp.php; line: 636; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 10:50:59 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop` WHERE weid = 2 AND openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' AND shop_id = 16<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'weid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 112; <br />file: /addons/yc_youliao/wxapp.php; line: 636; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-16 10:51:45 SQL Error :
+------------
+String:
+SQL: <br/>DELETE FROM `ims_mihua_sq_shop` WHERE `weid` = :__weid_67 AND `openid` = :__openid_68 AND `shop_id` = :__shop_id_69<hr/>Params: <br/>array (
+  ':__weid_67' => '2',
+  ':__openid_68' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':__shop_id_69' => 16,
+)<hr/>SQL Error: <br/>Unknown column 'weid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 267; <br />file: /framework/function/pdo.func.php; line: 91; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 116; <br />file: /addons/yc_youliao/wxapp.php; line: 636; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
