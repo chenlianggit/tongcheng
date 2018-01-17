@@ -1,0 +1,36 @@
+2018-01-18 00:16:26 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * 	ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( 39.90469 *PI()/180-lat*PI()/180)/2),2)+COS( 39.90469 *PI()/180)*COS(lat*PI()/180)*POW(SIN(( 116.40717 *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM `ims_mihua_sq_info` WHERE weid = 2 AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1))  ORDER BY distance ASC LIMIT 5<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( 39.90469 *PI()/180-lat*PI()/180)/2),2)+COS(' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 395; <br />file: /addons/yc_youliao/wxapp.php; line: 188; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 00:18:05 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * 	ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( 39.90469 *PI()/180-lat*PI()/180)/2),2)+COS( 39.90469 *PI()/180)*COS(lat*PI()/180)*POW(SIN(( 116.40717 *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM `ims_mihua_sq_info` WHERE weid = 2 AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1))  ORDER BY distance ASC LIMIT 5<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( 39.90469 *PI()/180-lat*PI()/180)/2),2)+COS(' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 395; <br />file: /addons/yc_youliao/wxapp.php; line: 188; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 00:19:24 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * 	ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( 39.90469 *PI()/180-lat*PI()/180)/2),2)+COS( 39.90469 *PI()/180)*COS(lat*PI()/180)*POW(SIN(( 116.40717 *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM `ims_mihua_sq_info` WHERE weid = 2 AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1))  ORDER BY distance ASC LIMIT 5<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( 39.90469 *PI()/180-lat*PI()/180)/2),2)+COS(' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 395; <br />file: /addons/yc_youliao/wxapp.php; line: 188; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 00:28:33 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN((  *PI()/180-lat*PI()/180)/2),2)+COS(  *PI()/180)*COS(lat*PI()/180)*POW(SIN((  *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM `ims_mihua_sq_info` WHERE weid = 2  AND status = 1  ORDER BY distance ASC LIMIT 5<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*PI()/180-lat*PI()/180)/2),2)+COS(  *PI()/180)*COS(lat*PI()/180)*POW(SIN((  *PI(' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 395; <br />file: /addons/yc_youliao/wxapp.php; line: 188; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 00:32:07 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=7 ORDER BY a.time DESC LIMIT 0,10<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 339; <br />file: /addons/yc_youliao/wxapp.php; line: 465; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 00:32:20 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=7 ORDER BY a.time DESC LIMIT 0,10<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 339; <br />file: /addons/yc_youliao/wxapp.php; line: 465; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+

@@ -1,0 +1,6 @@
+2018-01-17 16:54:47 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=7 ORDER BY a.time DESC LIMIT 0,10<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 339; <br />file: /addons/yc_youliao/wxapp.php; line: 464; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+

@@ -389,7 +389,26 @@ static function chathtml($chatcon,$openid){
         }
         return $hotmessagelist;
     }
-
+    //距离最近的最近的
+    static function getNearMsg($info_condition,$shownum= 10,$lat='',$lng=''){
+        global $_W;
+        if(!$lat || !$lng){
+            return array();
+        }
+        $nearmessagelist = pdo_fetchall("SELECT * ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( {$lat} *PI()/180-lat*PI()/180)/2),2)+COS( {$lat} *PI()/180)*COS(lat*PI()/180)*POW(SIN(( {$lng} *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM " . tablename(INFO) . " WHERE weid = {$_W['uniacid']}  AND status = 1 {$info_condition} ORDER BY distance ASC LIMIT {$shownum}");
+        foreach ($nearmessagelist as $k => $v) {
+            $nearmessagelist[$k]['distance'] = round($nearmessagelist[$k]['distance']/1000,2);
+            $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+            $nearmessagelist[$k]['con'] = unserialize($v['content']);
+            $nearmessagelist[$k]['modulename'] = $module['name'];
+            $nearmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+            if($v['freshtime']){
+                $nearmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
+            }
+            $nearmessagelist[$k]['con']['thumbs']= self::tomediaImg($nearmessagelist[$k]['con']['thumbs']);
+        }
+        return $nearmessagelist;
+    }
     static function getNewMsg($info_condition,$shownum= 10,$lat='',$lng=''){
         global $_W;
         $lastedmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} {$info_condition} AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) ORDER BY freshtime DESC LIMIT {$shownum}");

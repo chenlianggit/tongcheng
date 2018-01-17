@@ -185,8 +185,9 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$newMsg = commonGetData::getNewMsg($info_condition, $msgNum, $lat, $lng);
 		$topMsg = commonGetData::getTopMsg($info_condition, $msgNum, $lat, $lng);
 		$hotMsg = commonGetData::getHotMsg($info_condition, $msgNum, $lat, $lng);
+        $nearMsg = commonGetData::getNearMsg($info_condition, $msgNum, $lat, $lng);
 //		$data = array("city" => $city, "formatted_address" => $formatted_address, "weatherdata" => $weatherdata, "advs" => $advs, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg);
-        $data = array("city" => $city, "formatted_address" => $formatted_address, "advs" => $advs, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg,'hotshop'=>$dis,'cate'=>$cate);
+        $data = array("city" => $city, "formatted_address" => $formatted_address, "advs" => $advs,'hotshop'=>$dis, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg,'nearMsg'=>$nearMsg,'cate'=>$cate);
         $uid = $_GPC["uid"];
 		if ($uid) {
 			$result = MEMBER::isqiandao($uid);
@@ -270,7 +271,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 	{
 		global $_GPC;
 		$_W["uniacid"] = $this->getUniacid();
-		$fieldslist = commonGetData::getfield_arr($_GPC["id"], $_W["uniacid"]);
+		$fieldslist = commonGetData::getfieinld_arr($_GPC["id"], $_W["uniacid"]);
 		return $this->successResult($fieldslist);
 	}
 	public function doPageSubmit_imgs()
@@ -737,6 +738,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		foreach ($dis as $k => $arr) {
 			$arr["distance"] = util::getDistance($arr["lat"], $arr["lng"], $lat, $lng);
 			$arr["inco"] = json_decode($arr["inco"]);
+            $arr['qr_code'] = json_decode($arr['qr_code'],true);
 			$isgroup[] = $arr;
 		}
 		$arrSort = array();

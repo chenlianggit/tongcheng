@@ -71,8 +71,9 @@ class Info{
         $data['mid'] = $mid;
         $data['fmid'] = $moduleres['fid'];
         $data['openid'] = $member['openid'];
-        $data['nickname'] = $member['nickname'];
+        $data['nickname'] = $_GPC['nickname'];
         $data['avatar'] = $member['avatar'];
+        $data['shop_id'] = $_GPC['shop_id'];
         $data['province'] = $province;
         $data['city'] = $city;
         $data['district'] = $district;
