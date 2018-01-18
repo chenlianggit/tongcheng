@@ -643,7 +643,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
             }
         }
         $data = $shopuser;
-        $data[] = array('shop_id'=>0,'nickname'=>$userinfo['nickname'],'logo'=>$userinfo['avatar']);
+        $data[] = array('shop_id'=>0,'nickname'=>$userinfo['nickname'],'logo'=>$userinfo['avatar'],'telphone'=>$userinfo['telphone']);
         return $this->successResult($data);
     }
     //获取我的入驻店铺
