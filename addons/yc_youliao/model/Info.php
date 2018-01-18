@@ -207,6 +207,16 @@ class Info{
         $mymessagelist = pdo_fetchall("SELECT id FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND shop_id = '{$Shop_id} AND status = 1'");
         return count($mymessagelist);
     }
+    public function getInfoCount(){
+        global  $_W;
+        $mymessagelist = pdo_fetchall("SELECT count(*) as count FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']}");
+        return $mymessagelist[0]['count'];
+    }
+    public function getMemberCount(){
+        global  $_W;
+        $memberCount = pdo_fetchall("SELECT count(*) as count FROM ".tablename(MEMBER)." WHERE uniacid = {$_W['uniacid']}");
+        return $memberCount[0]['count'];
+    }
     public function getInfoByuser ($openid,$where,$page,$num){
         global  $_W;
         $mymessagelist = pdo_fetchall("SELECT * FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND openid = '{$openid} '{$where} ORDER BY createtime DESC LIMIT ".$page.",".$num);

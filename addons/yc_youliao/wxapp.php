@@ -203,6 +203,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 				}
 			}
 		}
+        $data['count'] = $this->doPageGetNumber();
 		return $this->successResult($data);
 	}
 	public function dopageCredit2money()
@@ -326,6 +327,32 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$res = $info->postInfo($openid, 2);
 		return $this->successResult($res);
 	}
+    //获取信息数和成员数和人气数
+    public function doPageGetNumber()
+    {
+        global $_W, $_GPC;
+        $_W["uniacid"] = $this->getUniacid();
+        $info = new Info();
+        $infoCount   = $info->getInfoCount();
+        $memberCount = $info->getMemberCount();
+        if(!$infoCount){$infoCount=rand(50-99);}
+        if(!$memberCount){$infoCount=rand(50-99);}
+        if($infoCount<10){
+            $infoCount = $infoCount*231;
+        }elseif ($infoCount<100){
+            $infoCount = $infoCount*131;
+        }
+        if($memberCount<10){
+            $memberCount = $memberCount*231;
+        }elseif ($memberCount<100){
+            $memberCount = $memberCount*131;
+        }
+
+        $res['infoCount']   = $infoCount;
+        $res['memberCount'] = $memberCount;
+        $res['Popularity']  = intval(($infoCount+$memberCount)*4.42);
+        return $res;
+    }
 	//获取店铺发布信息
     public function doPageGetInfoByShop()
     {

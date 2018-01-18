@@ -34,3 +34,15 @@ String:
 SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=7 ORDER BY a.time DESC LIMIT 0,10<hr/>Params: <br/>array (
 )<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 339; <br />file: /addons/yc_youliao/wxapp.php; line: 465; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
 
+2018-01-18 10:45:03 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(*) as count FROM `ims_member` WHERE weid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Table 'we7.ims_member' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 212; <br />file: /addons/yc_youliao/wxapp.php; line: 335; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 10:45:03 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(*) as count FROM `ims_mihua_sq_info` WHERE uniacid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'uniacid' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Info.php; line: 217; <br />file: /addons/yc_youliao/wxapp.php; line: 336; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
