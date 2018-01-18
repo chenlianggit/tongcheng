@@ -370,7 +370,25 @@ static function chathtml($chatcon,$openid){
         $item = util::getSingelDataInSingleTable(TPL, $where,'tpl_id');
         return $item;
     }
+    static function getCommentMsg($info_condition,$msgNum,$lat='',$lng=''){
+    global $_W;
+    $commentMsg=pdo_fetchall('SELECT i.*,count(c.info_id) as num FROM ' . tablename(INFO) . "i left join  " . tablename(INFO_COMMENT) . " c on i.id=c.info_id  WHERE i.weid = {$_W['uniacid']} {$info_condition} GROUP BY i.id ORDER BY  num DESC LIMIT $msgNum");
+    foreach ($commentMsg as $k => $v) {
+        if($lat && $lng && $v['lat'] && $v['lng']){
+            $commentMsg[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
+        }
+        $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+        $commentMsg[$k]['con'] = unserialize($v['content']);
+        $commentMsg[$k]['modulename'] = $module['name'];
+        $commentMsg[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+        if($v['freshtime']){
+            $commentMsg[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
+        }
+        $commentMsg[$k]['con']['thumbs']= self::tomediaImg($commentMsg[$k]['con']['thumbs']);
+    }
 
+    return $commentMsg;
+}
     static function getHotMsg($info_condition,$shownum= 10,$lat='',$lng=''){
         global $_W;
         $hotmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) {$info_condition} ORDER BY views DESC LIMIT {$shownum}");
@@ -425,7 +443,6 @@ static function chathtml($chatcon,$openid){
         }
         return $lastedmessagelist;
     }
-
     static function getTopMsg($info_condition,$shownum= 10,$lat='',$lng=''){
         global $_W;
         $zdmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} AND isding = 1 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) {$info_condition} ORDER BY dingtime DESC LIMIT {$shownum}");
@@ -442,6 +459,101 @@ static function chathtml($chatcon,$openid){
         }
         return $zdmessagelist;
     }
+
+    static function getCommentMsgById($id,$page, $num, $lat, $lng){
+        global $_W;
+        $info_condition = ' AND i.mid = '.$id;
+        $commentMsg=pdo_fetchall('SELECT i.*,count(c.info_id) as num FROM ' . tablename(INFO) . "i left join  " . tablename(INFO_COMMENT) . " c on i.id=c.info_id  WHERE i.weid = {$_W['uniacid']} {$info_condition} GROUP BY i.id ORDER BY  num DESC LIMIT  $page,$num");
+        foreach ($commentMsg as $k => $v) {
+            if($lat && $lng && $v['lat'] && $v['lng']){
+                $commentMsg[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
+            }
+            $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+            $commentMsg[$k]['con'] = unserialize($v['content']);
+            $commentMsg[$k]['modulename'] = $module['name'];
+            $commentMsg[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+            if($v['freshtime']){
+                $commentMsg[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
+            }
+            $commentMsg[$k]['con']['thumbs']= self::tomediaImg($commentMsg[$k]['con']['thumbs']);
+        }
+
+        return $commentMsg;
+    }
+    static function getHotMsgById($id ,$page, $num, $lat, $lng){
+        global $_W;
+        $info_condition = ' AND mid = '.$id;
+        $hotmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) {$info_condition} ORDER BY views DESC LIMIT $page,$num");
+        foreach ($hotmessagelist as $k => $v) {
+            if($lat && $lng && $v['lat'] && $v['lng']){
+                $hotmessagelist[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
+            }
+            $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+            $hotmessagelist[$k]['con'] = unserialize($v['content']);
+            $hotmessagelist[$k]['modulename'] = $module['name'];
+            $hotmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+            if($v['freshtime']){
+                $hotmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
+            }
+            $hotmessagelist[$k]['con']['thumbs']= self::tomediaImg($hotmessagelist[$k]['con']['thumbs']);
+        }
+        return $hotmessagelist;
+    }
+    static function getNearMsgById($id,$page, $num, $lat, $lng){
+        global $_W;
+        if(!$lat || !$lng){
+            return array();
+        }
+        $info_condition = ' AND mid = '.$id;
+        $nearmessagelist = pdo_fetchall("SELECT * ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( {$lat} *PI()/180-lat*PI()/180)/2),2)+COS( {$lat} *PI()/180)*COS(lat*PI()/180)*POW(SIN(( {$lng} *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM " . tablename(INFO) . " WHERE weid = {$_W['uniacid']}  AND status = 1 {$info_condition} ORDER BY distance ASC LIMIT $page,$num");
+        foreach ($nearmessagelist as $k => $v) {
+            $nearmessagelist[$k]['distance'] = round($nearmessagelist[$k]['distance']/1000,2);
+            $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+            $nearmessagelist[$k]['con'] = unserialize($v['content']);
+            $nearmessagelist[$k]['modulename'] = $module['name'];
+            $nearmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+            if($v['freshtime']){
+                $nearmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
+            }
+            $nearmessagelist[$k]['con']['thumbs']= self::tomediaImg($nearmessagelist[$k]['con']['thumbs']);
+        }
+        return $nearmessagelist;
+    }
+    static function getNewMsgById($id,$page, $num, $lat, $lng){
+        global $_W;
+        $info_condition = ' AND mid = '.$id;
+        $lastedmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} {$info_condition} AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) ORDER BY freshtime DESC LIMIT $page,$num");
+        foreach ($lastedmessagelist as $k => $v) {
+            $lastedmessagelist[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
+            $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+            $lastedmessagelist[$k]['con'] = unserialize($v['content']);
+            $lastedmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+            if($v['freshtime']) {
+                $lastedmessagelist[$k]['freshtime'] = date("Y-m-d H:i", $v['freshtime']);
+            }
+            $lastedmessagelist[$k]['modulename'] = $module['name'];
+            $lastedmessagelist[$k]['con']['thumbs']= self::tomediaImg($lastedmessagelist[$k]['con']['thumbs']);
+        }
+        return $lastedmessagelist;
+    }
+    static function getTopMsgById($id,$page, $num, $lat, $lng){
+        global $_W;
+        $info_condition = ' AND mid = '.$id;
+        $zdmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} AND isding = 1 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) {$info_condition} ORDER BY dingtime DESC LIMIT $page,$num");
+        foreach ($zdmessagelist as $k => $v) {
+            $zdmessagelist[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
+            $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
+            $zdmessagelist[$k]['con'] = unserialize($v['content']);
+            $zdmessagelist[$k]['modulename'] = $module['name'];
+            if($v['freshtime']) {
+                $zdmessagelist[$k]['freshtime'] = date("Y-m-d H:i", $v['freshtime']);
+            }
+            $zdmessagelist[$k]['con']['thumbs']= self::tomediaImg($zdmessagelist[$k]['con']['thumbs']);
+            $zdmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+        }
+        return $zdmessagelist;
+    }
+
     static function tomediaImg($img){
         if($img){
             $imgData=array();

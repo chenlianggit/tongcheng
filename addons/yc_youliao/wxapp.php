@@ -33,11 +33,23 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		return $this->result($errno, $message, $data);
 	}
 	//整理照片
-//    public function doPageTest1()
-//    {
-//        global $_GPC, $_W;
-//        $re = pdo_fetchall("select shop_id,qr_code from  ".tablename(SHOP)." where 1=1  ");
-//
+    public function doPageTest1()
+    {
+        global $_GPC, $_W;
+        $re = pdo_fetchall("select shop_id,logo,qr_code from  ".tablename(SHOP)." where 1=1  limit 3");
+
+        foreach($re as $k=> &$v){
+            $v['qr_code'] = json_decode($v['qr_code'],true);
+            $v['logo']=str_replace("http","https",$v['logo']);
+            foreach($v['qr_code'] as $k1 => &$v2){
+                $v2 = str_replace("http","https",$v2);
+            }
+            print_r($v);exit;
+            $v['qr_code'] = json_encode($v['qr_code']);
+            $res =  pdo_update(SHOP, array('qr_code' => $v['qr_code'],'logo'=>$logo ,'uniacid'=> 2), array('shop_id' =>$v['shop_id']));
+
+        }
+         print_r($re) ;
 //        foreach($re as $k => &$v){
 //                $v['qr_code'] = explode(',',$v['qr_code']);
 //                if($v['qr_code'][0]){
@@ -49,8 +61,8 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 //           $res =  pdo_update(SHOP, array('qr_code' => $v['qr_code'],'logo'=>$logo ,'uniacid'=> 2), array('shop_id' =>$v['shop_id']));
 //           echo  $v['shop_id'].'修改'.$res.'<br>';
 //        }
-//        exit;
-//    }
+        exit;
+    }
 	private function getOpenid()
 	{
 		global $_W, $_GPC;
@@ -186,8 +198,9 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$topMsg = commonGetData::getTopMsg($info_condition, $msgNum, $lat, $lng);
 		$hotMsg = commonGetData::getHotMsg($info_condition, $msgNum, $lat, $lng);
         $nearMsg = commonGetData::getNearMsg($info_condition, $msgNum, $lat, $lng);
+        $commentMsg = commonGetData::getCommentMsg($info_condition, $msgNum, $lat, $lng);
 //		$data = array("city" => $city, "formatted_address" => $formatted_address, "weatherdata" => $weatherdata, "advs" => $advs, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg);
-        $data = array("city" => $city, "formatted_address" => $formatted_address, "advs" => $advs,'hotshop'=>$dis, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg,'nearMsg'=>$nearMsg,'cate'=>$cate);
+        $data = array("city" => $city, "formatted_address" => $formatted_address, "advs" => $advs,'hotshop'=>$dis, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg,'nearMsg'=>$nearMsg,'cate'=>$cate,'commentMsg'=>$commentMsg);
         $uid = $_GPC["uid"];
 		if ($uid) {
 			$result = MEMBER::isqiandao($uid);
@@ -235,20 +248,31 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		global $_W, $_GPC;
 		$_W["uniacid"] = $this->getUniacid();
 		$id = intval($_GPC["id"]);
-		if ($id == 0) {
+		if (!$id) {
 			$errno = 1;
 			$message = "id is null";
 			return $this->result($errno, $message);
 		}
+        $lat = $_GPC["lat"];
+        $lng = $_GPC["lng"];
 		$page = reqInfo::pageIndex();
 		$num = reqInfo::num();
 		$id = intval($id);
-		$city = '';
-		$cfg = $this->module["config"];
-		if ($cfg["issamecity"] == 0) {
-			$city = $_GPC["city"];
-		}
-		$data = commonGetData::getMsgById($id, $page, $num, $city);
+        $type = $_GPC["type"];
+        switch ($type)
+        {
+            case 'hot':
+                $data = commonGetData::getHotMsgById($id,$page, $num, $lat, $lng);
+                break;
+            case 'comment':
+                $data = commonGetData::getCommentMsgById($id, $page, $num, $lat, $lng);
+                break;
+            case 'near':
+                $data = commonGetData::getNearMsgById($id, $page, $num, $lat, $lng);
+                break;
+            default:
+                $data = commonGetData::getNewMsgById($id, $page, $num, $lat, $lng);
+        }
 		return $this->successResult($data);
 	}
 	public function doPageGetInfoById()

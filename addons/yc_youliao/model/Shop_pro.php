@@ -170,7 +170,7 @@ public static function getShopInfo($shop_id){
     }
     public static function getShop_nameByOpenid($openid){
         global  $_GPC,$_W;
-        $re = pdo_fetchall(" SELECT shop_id,shop_name,telphone as nickname,logo FROM " . tablename(SHOP) . " WHERE  uniacid = '{$_W['uniacid']}' AND openid = '{$openid}'   ORDER BY  starttime desc");
+        $re = pdo_fetchall(" SELECT shop_id,shop_name as nickname,telphone ,logo FROM " . tablename(SHOP) . " WHERE  uniacid = '{$_W['uniacid']}' AND openid = '{$openid}'   ORDER BY  starttime desc");
         return $re;
     }
 public static function getShop_name($shop_id){

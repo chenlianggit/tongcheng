@@ -64,3 +64,39 @@ String:
 SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=11 ORDER BY a.time DESC LIMIT 0,10<hr/>Params: <br/>array (
 )<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 339; <br />file: /addons/yc_youliao/wxapp.php; line: 492; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
 
+2018-01-18 17:16:44 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) 3 ORDER BY views DESC LIMIT 0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3 ORDER BY views DESC LIMIT 0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 375; <br />file: /addons/yc_youliao/wxapp.php; line: 263; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 17:16:44 SQL Error :
+------------
+String:
+SQL: <br/>SELECT i.*,count(c.info_id) as num FROM `ims_mihua_sq_info`i left join  `ims_mihua_sq_info_comment` c on i.id=c.info_id  WHERE i.weid = 2 3 GROUP BY i.id ORDER BY  num DESC LIMIT 0<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3 GROUP BY i.id ORDER BY  num DESC LIMIT 0' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 376; <br />file: /addons/yc_youliao/wxapp.php; line: 263; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 17:21:49 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) 3 ORDER BY views DESC LIMIT <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3 ORDER BY views DESC LIMIT' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 375; <br />file: /addons/yc_youliao/wxapp.php; line: 263; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 17:21:49 SQL Error :
+------------
+String:
+SQL: <br/>SELECT i.*,count(c.info_id) as num FROM `ims_mihua_sq_info`i left join  `ims_mihua_sq_info_comment` c on i.id=c.info_id  WHERE i.weid = 2 3 GROUP BY i.id ORDER BY  num DESC LIMIT <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3 GROUP BY i.id ORDER BY  num DESC LIMIT' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 376; <br />file: /addons/yc_youliao/wxapp.php; line: 263; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 17:23:21 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_info` WHERE weid = 2 AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1))  ORDER BY views DESC LIMIT <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 375; <br />file: /addons/yc_youliao/wxapp.php; line: 263; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-18 17:23:22 SQL Error :
+------------
+String:
+SQL: <br/>SELECT i.*,count(c.info_id) as num FROM `ims_mihua_sq_info`i left join  `ims_mihua_sq_info_comment` c on i.id=c.info_id  WHERE i.weid = 2  GROUP BY i.id ORDER BY  num DESC LIMIT <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 376; <br />file: /addons/yc_youliao/wxapp.php; line: 263; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
