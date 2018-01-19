@@ -348,10 +348,10 @@ class Info{
         return $mymessagelist;
     }
 
-    public function getCollect ($openid,$page,$num,$infosql='')
+    public function getCollect ($openid,$infosql='')
     {
         global $_W;
-        $list = pdo_fetchall("SELECT a.*,b.id as b_id,b.content,b.mid,b.createtime,b.nickname,b.avatar FROM ".tablename(COLLECT)." as a,".tablename(INFO)." as b WHERE a.message_id = b.id AND a.weid = {$_W['uniacid']} AND a.openid = '{$openid}' {$infosql} ORDER BY a.time DESC LIMIT ".$page.",".$num);
+        $list = pdo_fetchall("SELECT a.*,b.id as b_id,b.content,b.mid,b.createtime,b.nickname,b.avatar FROM ".tablename(COLLECT)." as a,".tablename(INFO)." as b WHERE a.message_id = b.id AND a.weid = {$_W['uniacid']} AND a.openid = '{$openid}' {$infosql} ORDER BY a.time DESC  ");
         foreach($list as $k=>$v){
             $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
             $list[$k]['con'] = unserialize($v['content']);

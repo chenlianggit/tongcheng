@@ -505,15 +505,13 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		global $_W, $_GPC;
 		$_W["uniacid"] = $this->getUniacid();
 		$openid = $this->getUserBySeid();
-		$page = reqInfo::pageIndex();
-		$num = reqInfo::num();
 		$info = new Info();
 		$info_id = intval($_GPC["message_id"]);
 		if ($info_id > 0) {
 			$where = " and b.id=" . $info_id;
 		}
-		$resInfo = $info->getCollect($openid, $page, $num, $where);
-        $resShop = Shop::getCollect($openid, $page, $num, $where);
+		$resInfo = $info->getCollect($openid, $where);
+        $resShop = Shop::getCollect($openid, $where);
         $isgroup = array();
         $lat = $_GPC["lat"];
         $lng = $_GPC["lng"];

@@ -333,10 +333,10 @@ public static function getApplynum($shop_id,$f_type){
         Message::admin_acount($title,'￥'.$am.$transfer,$admin_user['nickname'],TIMESTAMP,$id,$paytype);
         return $id ;
     }
-    public static function getCollect ($openid,$page,$num,$infosql='')
+    public static function getCollect ($openid,$infosql='')
     {
         global $_W;
-        $list = pdo_fetchall("SELECT a.*,b.* FROM ".tablename(COLLECT)." as a,".tablename(SHOP)." as b WHERE a.shop_id = b.shop_id AND a.weid = {$_W['uniacid']} AND a.openid = '{$openid}' {$infosql} ORDER BY a.time DESC LIMIT ".$page.",".$num);
+        $list = pdo_fetchall("SELECT a.*,b.* FROM ".tablename(COLLECT)." as a,".tablename(SHOP)." as b WHERE a.shop_id = b.shop_id AND a.weid = {$_W['uniacid']} AND a.openid = '{$openid}' {$infosql} ORDER BY a.time DESC  ");
         return $list;
     }
     public static function getCate(){
