@@ -17,6 +17,7 @@ class Shop{
         $telphone = $_GPC['telphone'];
         $lng = trim($_GPC['lng']);
         $qr_code = $_GPC['imgUrl'];//门店照片
+        $qr_code = explode(',',$qr_code);
         $dp = $_GPC['dp'];
         if(!$shop_name){
             $resArr['error'] = 1;
@@ -63,7 +64,7 @@ class Shop{
             'qr_code'       =>  $qr_code,//门店照片
             'lng'           => $_GPC['lng'],//坐标
             'lat'           => $_GPC['lat'],//坐标
-            'inco'          => json_encode( iunserializer($_GPC['inco'])),//商品标签
+            'inco'          => json_encode( iunserializer(explode(',',$_GPC['inco']))),//商品标签
             'opendtime'     => $_GPC['opendtime'],  //开店时间
             'closetime'     => $_GPC['closetime'],  //打烊时间
             'intro'         => trim($_GPC['intro']),//简介

@@ -55,7 +55,9 @@ class Info{
         unset($_POST['district']);
         unset($_POST['lng']);
         unset($_POST['lat']);
-        $data['content'] = serialize( commonGetData::guolv($_POST));
+        $post = $_POST;
+        $post['thumbs'] = explode(',',$post['thumbs']);
+        $data['content'] = serialize( commonGetData::guolv($post));
         $data['createtime'] = TIMESTAMP;
         $data['freshtime'] = TIMESTAMP;
         $data['status'] = $moduleres['isshenhe'] == 1 ? 0 : 1;
