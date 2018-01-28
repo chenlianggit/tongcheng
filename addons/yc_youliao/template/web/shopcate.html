@@ -41,6 +41,7 @@
 
                                     <td class="w50">ID</td>
                                     <td class="w80">排序</td>
+                                    <!--<td class="w80">热门推荐</td>-->
                                     <td colspan="2">分类名称</td>
                                     <td>分类图标</td>
                                     <td class="w120">操作</td>
@@ -51,6 +52,11 @@
 
                                     <td>{$shopcate['cate_id']}</td>
                                     <td><input  name="displayorder[{$shopcate['cate_id']}]" value="{$shopcate['orderby']}" type="text" class="remberinput w80" /></td>
+                                    <!--<td class="text-l">-->
+                                        <!--<label class="switch">-->
+                                            <!--<input type="checkbox" {if $shopcate['is_hot']==1} onclick="opstatus({$shopcate['cate_id']},'is_hot',0);" checked='checked'{else}onclick="opstatus({$shopcate['cate_id']},'is_hot',1);"{/if}>-->
+                                            <!--<span></span> </label>-->
+                                    <!--</td>-->
                                     <td colspan="2">{$shopcate['cate_name']}</td>
                                     <td><img src="{php echo tomedia($shopcate['thumb']);}" onerror="javascript:this.src='{SQ}public/images/noimg.png'" /></td>
 
@@ -69,13 +75,16 @@
                                     <td>{$shopcate['cate_id']}</td>
                                     <td><input  name="displayorder[{$shopcate['cate_id']}]" value="{$shopcate['orderby']}" type="text" class="remberinput w80" /></td>
 
+
                                     <td class="tdnone"></td>
                                     <td>{$shopcate['cate_name']}</td>
                                     <td><img src="{php echo tomedia($shopcate['thumb']);}" onerror="javascript:this.src='{SQ}public/images/noimg.png'" /></td>
                                     <td class="listbtn">
 
                                         <a href="{php echo $this->createWebUrl('shopcate', array('op' => 'post', 'id' => $shopcate['cate_id'],'parent_id' => $shopcate['parent_id']))}"><i class="fa fa-edit"></i>修改</a>
-                                        <a class="label label-danger pad-5 "  href="{php echo $this->createWebUrl('shopcate', array('op' => 'delete', 'id' => $shopcate['cate_id'],'parent_id' => $shopcate['parent_id']))}"><i class="fa fa-exclamation-triangle"></i>删除</a> </td>
+                                        <a class="label label-danger pad-5 "  href="{php echo $this->createWebUrl('shopcate', array('op' => 'delete', 'id' => $shopcate['cate_id'],'parent_id' => $shopcate['parent_id']))}"><i class="fa fa-exclamation-triangle"></i>删除</a>
+
+                                    </td>
                                 </tr>
                                 {/loop}
                                 {/loop}
@@ -156,6 +165,12 @@
                                         <label class="col-xs-12 col-sm-3 control-label">排序</label>
                                         <div class="col-sm-4 col-xs-4">
                                             <input type="text" name="orderby" class="form-control" value="{$shopcate['orderby']}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-xs-12 col-sm-3 control-label">热门</label>
+                                        <div class="col-sm-4 col-xs-4">
+                                            <input type="text" name="is_hot" class="form-control" value="{$shopcate['is_hot']}" />
                                         </div>
                                     </div>
                                 </div>

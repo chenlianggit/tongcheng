@@ -382,4 +382,11 @@ class Info{
             return $resArr;
         }
     }
+    public function addNum($info_id){
+        global $_W ,$_GPC;
+        $set = "scan=scan+1";
+        $res =  pdo_query("UPDATE ".tablename(INFO)." SET $set WHERE `id` = '{$info_id}' AND `uniacid` = '{$_W['uniacid']}' ");
+        echo pdo_query("UPDATE ".tablename(INFO)." SET $set WHERE `id` = '{$info_id}' AND `uniacid` = '{$_W['uniacid']}' ");
+        exit;
+    }
 }

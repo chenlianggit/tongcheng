@@ -1,0 +1,306 @@
+2018-01-25 16:32:32 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=23 ORDER BY a.time DESC  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 340; <br />file: /addons/yc_youliao/wxapp.php; line: 519; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 16:32:53 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=20 ORDER BY a.time DESC  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 340; <br />file: /addons/yc_youliao/wxapp.php; line: 519; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 16:37:18 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=20 ORDER BY a.time DESC  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 340; <br />file: /addons/yc_youliao/wxapp.php; line: 519; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:26:37 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `dp` = :dp_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890396,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':dp_72' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 630; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:26:56 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `dp` = :dp_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890416,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':dp_72' => '4',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 630; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:27:24 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `dp` = :dp_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890444,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':dp_72' => '4',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 631; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:27:46 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `dp` = :dp_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890466,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':dp_72' => '4',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 631; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:28:33 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `dp` = :dp_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890513,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':dp_72' => '4',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 631; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:31:01 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_shop_comment` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72 , `dp` = :dp_73<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890661,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':parent_id_72' => 0,
+  ':dp_73' => '4',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 631; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:31:24 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_shop_comment` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72 , `dp` = :dp_73<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890683,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':parent_id_72' => 0,
+  ':dp_73' => '4',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 631; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:34:48 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_shop_comment` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72 , `dp` = :dp_73<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890887,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':parent_id_72' => 0,
+  ':dp_73' => 4,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 633; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:36:11 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_mihua_sq_info_comment` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516890971,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '111111',
+  ':shop_id_71' => 20,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Unknown column 'shop_id' in 'field list'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:36:32 SQL Error :
+------------
+String:
+SQL: <br/>SELECT a.*,b.* FROM `ims_mihua_sq_collect` as a,`ims_mihua_sq_shop` as b WHERE a.shop_id = b.shop_id AND a.weid = 2 AND a.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE'  and b.id=21 ORDER BY a.time DESC  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'b.id' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 340; <br />file: /addons/yc_youliao/wxapp.php; line: 519; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:38:17 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_mihua_sq_info_comment` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891097,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Unknown column 'shop_id' in 'field list'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:39:00 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891139,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:40:20 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891220,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 674; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:43:38 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891418,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 674; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:43:57 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891437,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 674; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:46:24 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72 , `dp` = :dp_73<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891584,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+  ':dp_73' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:46:49 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72 , `dp` = :dp_73<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891608,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+  ':dp_73' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:50:39 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72 , `dp` = :dp_73<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516891839,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+  ':dp_73' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:56:05 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_SHOP_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `shop_id` = :shop_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516892165,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':shop_id_71' => 21,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:56:48 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_info_COMMENT` SET `uniacid` = :uniacid_67 , `addtime` = :addtime_68 , `openid` = :openid_69 , `info` = :info_70 , `info_id` = :info_id_71 , `parent_id` = :parent_id_72<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':addtime_68' => 1516892208,
+  ':openid_69' => 'oKC7q0BVul2IyiWnAfD9GIN5a1EE',
+  ':info_70' => '是大师傅地方',
+  ':info_id_71' => 21,
+  ':parent_id_72' => 0,
+)<hr/>SQL Error: <br/>Table 'we7.ims_info_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/wxapp.php; line: 634; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:58:31 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_SHOP_COMMENT` WHERE  `shop_id` = :shop_id AND `uniacid` = :uniacid   order by  comment_id ASC <hr/>Params: <br/>array (
+  ':shop_id' => 21,
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 326; <br />file: /addons/yc_youliao/wxapp.php; line: 647; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:59:10 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_SHOP_COMMENT` WHERE  `shop_id` = :shop_id AND `uniacid` = :uniacid   order by  comment_id ASC <hr/>Params: <br/>array (
+  ':shop_id' => 2,
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 326; <br />file: /addons/yc_youliao/wxapp.php; line: 647; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 22:59:57 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_SHOP_COMMENT` WHERE  `shop_id` = :shop_id AND `uniacid` = :uniacid   order by  comment_id ASC <hr/>Params: <br/>array (
+  ':shop_id' => 2,
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 326; <br />file: /addons/yc_youliao/wxapp.php; line: 647; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 23:03:00 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_SHOP_COMMENT` WHERE  `shop_id` = :shop_id AND `uniacid` = :uniacid   order by  comment_id ASC <hr/>Params: <br/>array (
+  ':shop_id' => 2,
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 326; <br />file: /addons/yc_youliao/wxapp.php; line: 647; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 23:03:16 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_SHOP_COMMENT` WHERE  `shop_id` = :shop_id AND `uniacid` = :uniacid   order by  comment_id ASC <hr/>Params: <br/>array (
+  ':shop_id' => 2,
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 326; <br />file: /addons/yc_youliao/wxapp.php; line: 647; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-25 23:04:38 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_SHOP_COMMENT` WHERE  `shop_id` = :shop_id AND `uniacid` = :uniacid   order by  comment_id ASC <hr/>Params: <br/>array (
+  ':shop_id' => 2,
+  ':uniacid' => '2',
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop_comment' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/class/util.php; line: 327; <br />file: /addons/yc_youliao/wxapp.php; line: 647; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+

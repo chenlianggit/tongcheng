@@ -48,9 +48,16 @@ if ($op == 'display') {
         if (empty($_GPC['cate_name'])) {
             $this->message('抱歉，请输入分类名称！');
         }
+        if($_GPC['is_hot']){
+           $is_hot  = 1;
+        }else{
+            $is_hot = 0;
+        }
+
         $data = array('uniacid' => $_W['uniacid'],
             'cate_name' 	=> $_GPC['cate_name'],
             'orderby' => intval($_GPC['orderby']),
+            'is_hot' => intval($is_hot),
             'title' => $_GPC['title'],
             'parent_id' => intval($parentid),
             'cate_type' => intval($_GPC['cate_type']),//0商铺消费类,1酒店预订,2影院订座,3外卖点餐,4微商城
@@ -79,6 +86,15 @@ if ($op == 'display') {
     }
     pdo_delete(CATE, array('cate_id' => $id, 'parent_id' => $id), 'OR');
     $this->message('分类删除成功！', $this->createWebUrl('shopcate', array('op' => 'display')), 'success');
+}elseif ($op == 'is_hot') {
+    $id 	  = intval($_GPC['id']);
+    $opt= intval($_GPC['opt']);
+    $data = array('is_hot' => $opt);
+    echo $id;exit;
+    pdo_update(CATE, $data, array('cate_id' => $id, 'uniacid' => $_W['uniacid']));
+    if($opt==1)$info="开启";
+    else $info="关闭";
+    $this->message($info.'成功！', $this->createWebUrl('shopcate', array('op' => 'display')), 'success');
 }
 include $this->template('web/shopcate');
 exit();

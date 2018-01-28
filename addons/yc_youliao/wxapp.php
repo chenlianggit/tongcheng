@@ -191,6 +191,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		}
         $dis = pdo_fetchall("SELECT s.* FROM " . tablename(SHOP) . " s WHERE  s.is_hot = 1 and s.status =1    ORDER BY s.shop_id DESC limit 1,6  ");
         $cate = Shop::getCate();
+        $hotCate = Shop::getHotCate();
 		$advs = commonGetData::getAdv(1);
 		$module = commonGetData::getChannel(1, 2);
 		$msgNum = ReqInfo::msgNum($cfg);
@@ -200,7 +201,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         $nearMsg = commonGetData::getNearMsg($info_condition, $msgNum, $lat, $lng);
         $commentMsg = commonGetData::getCommentMsg($info_condition, $msgNum, $lat, $lng);
 //		$data = array("city" => $city, "formatted_address" => $formatted_address, "weatherdata" => $weatherdata, "advs" => $advs, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg);
-        $data = array("city" => $city, "formatted_address" => $formatted_address, "advs" => $advs,'hotshop'=>$dis, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg,'nearMsg'=>$nearMsg,'cate'=>$cate,'commentMsg'=>$commentMsg);
+        $data = array("city" => $city, "formatted_address" => $formatted_address, "advs" => $advs,'hotshop'=>$dis, "module" => $module, "newMsg" => $newMsg, "topMsg" => $topMsg, "hotMsg" => $hotMsg,'nearMsg'=>$nearMsg,'cate'=>$cate,'hotCate'=>$hotCate,'commentMsg'=>$commentMsg);
         $uid = $_GPC["uid"];
 		if ($uid) {
 			$result = MEMBER::isqiandao($uid);
@@ -219,6 +220,10 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         $data['count'] = $this->doPageGetNumber();
 		return $this->successResult($data);
 	}
+	public function dopageGetArea(){
+        $res = Shop::getArea();
+        return $this->successResult($res);
+    }
 	public function dopageCredit2money()
 	{
 		global $_W, $_GPC;
@@ -597,6 +602,57 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 			return $this->successResult($comment);
 		}
 	}
+	//店铺评论
+    public function doPageShopComment()
+    {
+        global $_W, $_GPC;
+        $_W["uniacid"] = $this->getUniacid();
+        $type = intval($_GPC["type"]);
+        $id = intval($_GPC["id"]);
+        $openid = $this->getUserBySeid();
+        if ($type == 1) {
+            if ($id == 0) {
+                return $this->errorResult("id is null");
+            }
+            $info = trim($_GPC["info"]);
+            $pid = intval($_GPC["pid"]);
+            $dp = $_GPC['dp'];//点评
+            if($dp >5){
+                $dp = 5;
+            }elseif($dp <= 0){
+                $dp = 0;
+            }else{
+                $dp= round($dp,2);
+            }
+            if (empty($info)) {
+                return $this->errorResult("评论内容不能为空");
+                die;
+            }
+
+            $data = array("uniacid" => $_W["uniacid"], "addtime" => TIMESTAMP, "openid" => $openid, "info" => $info, "shop_id" =>$id, "parent_id" => $pid,'dp'=>$dp);
+
+            $result = pdo_insert(mihua_sq_shop_comment, $data);
+
+            if (!empty($result)) {
+                return $this->successResult($data);
+            }
+        } else {
+            if ($id > 0) {
+                $comment_where["shop_id"] = $id;
+            } else {
+                $comment_where["openid"] = $openid;
+            }
+            $orderby = " comment_id ASC ";
+            $comment = util::getAllDataBySingleTable(mihua_sq_shop_comment, $comment_where, $orderby, $select = "*", $type = "1");
+            foreach ($comment as $k => $v) {
+                $memberData = Member::getSingleUser($v["openid"]);
+                $comment[$k]["avatar"] = $memberData["avatar"];
+                $comment[$k]["nickname"] = $memberData["nickname"];
+                $comment[$k]["addtime"] = date("Y-m-d H:i", $v["addtime"]);
+            }
+            return $this->successResult($comment);
+        }
+    }
 	public function doPageQiandao()
 	{
 		global $_W, $_GPC;
@@ -722,6 +778,8 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         $infoNum = $info->getInfoCountByShop($shop_id);
         //是否是自己的店铺
         $isMy = Shop::getShopIsMy($shop_id,$openid);
+        $collect = Util::getAllDataNumInSingleTable(COLLECT, array('shop_id'=>$shop_id),2);
+        $commentNum = Util::getAllDataNumInSingleTable(mihua_sq_shop_comment, array('shop_id'=>$shop_id));
         if(!$infoNum){
             $infoNum = 0;
         }
@@ -732,6 +790,8 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         }
         $data['infoNum'] =  $infoNum;
         $data['myself'] =  $isMy;
+        $data['collect'] = intval($collect);
+        $data['comment'] = intval($commentNum);
         if($data['inco']){
             $data['inco'] = json_decode($data['inco'],true);
         }
@@ -874,4 +934,11 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 			}
 		}
 	}
+	public function doPageAdd(){
+	    $info = new Info();
+	    $res = $info->addNum(1);
+	    echo $res;
+	    exit;
+
+    }
 }

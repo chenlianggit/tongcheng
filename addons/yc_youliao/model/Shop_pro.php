@@ -75,6 +75,7 @@ class Shop{
             'dp'            => $dp,//点评满分5分
             'address'=> $_GPC['address'],//详细地址
             'manage'        => $member['nickname'],//联系人
+            'bulletin'      => $_GPC['bulletin'], //公告
         );
         if (!empty($id)) {
             unset($data['starttime']);
@@ -345,6 +346,11 @@ public static function getApplynum($shop_id,$f_type){
      $cate = pdo_fetchall("SELECT * FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and (parent_id =0 or parent_id is null) ORDER BY orderby ASC");
      return $cate;
     }
+    public static function getHotCate(){
+        global  $_GPC,$_W;
+        $cate = pdo_fetchall("SELECT * FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and is_hot = 1 and (parent_id =0 or parent_id is null) ORDER BY orderby ASC limit 5");
+        return $cate;
+    }
     public static function getCateByPcate_id($pcate_id){
         global  $_GPC,$_W;
         $cate = pdo_fetch("SELECT cate_id,cate_name FROM " . tablename(CATE) . " WHERE uniacid = '{$_W['uniacid']}' and cate_id = '{$pcate_id}'");
@@ -372,11 +378,6 @@ public static function getApplynum($shop_id,$f_type){
      return $city;
     }
 
-   public static function getArea(){
-      global  $_GPC,$_W;
-     $area = pdo_fetchall(" SELECT * FROM " . tablename(AREA) . " WHERE  uniacid = '{$_W['uniacid']}'  and (parent_id =0 or parent_id is null) ORDER BY  orderby asc");
-     return $area;
-    }
     public static function getBusiness(){
       global  $_GPC,$_W;
     $business =pdo_fetchall(" SELECT * FROM " . tablename(AREA) . " WHERE  uniacid = '{$_W['uniacid']}'  and parent_id >0 ORDER BY  orderby asc");
@@ -497,6 +498,10 @@ public static function getApplynum($shop_id,$f_type){
         $re = pdo_fetchall("select r.*,s.logo,s.shop_name,m.avatar,m.nickname from  ".tablename(RENEW)." r  left join ".tablename(SHOP)." s on s.shop_id=r.shop_id   left join".tablename(MEMBER)." m on m.id=r.mid  where r.uniacid = '{$_W['uniacid']}'  ".$where.$sqlwhere.' order by r.id desc ');
         return $re;
     }
-
+    public static function getArea(){
+        global  $_GPC,$_W;
+        $list = pdo_fetchall(" SELECT area_id as id,area_name as name FROM " . tablename(AREA) . " WHERE  uniacid = '{$_W['uniacid']}'   and (parent_id is not null or parent_id!=0) ORDER BY  orderby asc");
+        return $list;
+    }
 }
 
