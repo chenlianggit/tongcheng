@@ -440,6 +440,7 @@ static function chathtml($chatcon,$openid){
             }
             $lastedmessagelist[$k]['modulename'] = $module['name'];
             $lastedmessagelist[$k]['con']['thumbs']= self::tomediaImg($lastedmessagelist[$k]['con']['thumbs']);
+            $lastedmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $lastedmessagelist;
     }
@@ -456,6 +457,7 @@ static function chathtml($chatcon,$openid){
             }
             $zdmessagelist[$k]['con']['thumbs']= self::tomediaImg($zdmessagelist[$k]['con']['thumbs']);
             $zdmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+            $zdmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $zdmessagelist;
     }
@@ -476,6 +478,7 @@ static function chathtml($chatcon,$openid){
                 $commentMsg[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $commentMsg[$k]['con']['thumbs']= self::tomediaImg($commentMsg[$k]['con']['thumbs']);
+            $commentMsg[$k]['zan'] = Info::getZanInfo($v['id']);
         }
 
         return $commentMsg;
@@ -496,6 +499,7 @@ static function chathtml($chatcon,$openid){
                 $hotmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $hotmessagelist[$k]['con']['thumbs']= self::tomediaImg($hotmessagelist[$k]['con']['thumbs']);
+            $hotmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $hotmessagelist;
     }
@@ -516,6 +520,7 @@ static function chathtml($chatcon,$openid){
                 $nearmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $nearmessagelist[$k]['con']['thumbs']= self::tomediaImg($nearmessagelist[$k]['con']['thumbs']);
+            $nearmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $nearmessagelist;
     }
@@ -533,6 +538,7 @@ static function chathtml($chatcon,$openid){
             }
             $lastedmessagelist[$k]['modulename'] = $module['name'];
             $lastedmessagelist[$k]['con']['thumbs']= self::tomediaImg($lastedmessagelist[$k]['con']['thumbs']);
+            $lastedmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $lastedmessagelist;
     }
@@ -550,6 +556,7 @@ static function chathtml($chatcon,$openid){
             }
             $zdmessagelist[$k]['con']['thumbs']= self::tomediaImg($zdmessagelist[$k]['con']['thumbs']);
             $zdmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
+            $zdmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $zdmessagelist;
     }
@@ -592,6 +599,7 @@ static function chathtml($chatcon,$openid){
             }
 
             $messagelist[$k]['con']['thumbs']= self::tomediaImg($messagelist[$k]['con']['thumbs']);
+            $messagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
 
         return $messagelist;
@@ -600,6 +608,10 @@ static function chathtml($chatcon,$openid){
         $where['id']=intval($id);
         $where['status']=1;
         $message = pdo_fetch('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$uniacid} AND id = {$id} ");
+        if($message){
+            $message['zan'] = Info::getZanInfo($id);
+        }
+
         return $message;
     }
     static function getAccountDetail($id,$status_sql=''){

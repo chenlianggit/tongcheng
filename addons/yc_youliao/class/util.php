@@ -625,7 +625,23 @@ function String2Array($String)
         }
         return $att_target_file;
     }
-
+    public static function getTURLQR($url,$imgname) {//识别的url，图片名称
+       include 'qrcode.class.php';
+        global $_W;
+        $errorCorrectionLevel = "L";
+        $matrixPointSize      = "4";
+        $imgdir=self::getAttImgdir();
+        $att_target_file      = $imgdir.'/mihua_sq_' .  $imgname . '.png';
+        $target_file          = ATTACHMENT_ROOT.$att_target_file;
+        QRcode::png($url, $target_file, $errorCorrectionLevel, $matrixPointSize);
+        if (!empty($_W['setting']['remote']['type'])) { // 判断系统是否开启了远程附件
+            $remotestatus = file_remote_upload($att_target_file); //上传图片到远程
+            if (is_error($remotestatus)) {
+                message('远程附件上传失败，请检查配置并重新上传');
+            }
+        }
+        return $att_target_file;
+    }
 
     static function getrandomstr($tablename,$length,$colname){
         global $_W;

@@ -1,0 +1,158 @@
+2018-01-29 00:22:00 SQL Error :
+------------
+String:
+SQL: <br/>SELECT shop_id FROM `ims_shop` WHERE openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE and shop_id = 0 and uniacid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 510; <br />file: /addons/yc_youliao/wxapp.php; line: 950; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 00:54:36 SQL Error :
+------------
+String:
+SQL: <br/>SELECT shop_id FROM `ims_shop` WHERE openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE and shop_id = 1 and uniacid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 510; <br />file: /addons/yc_youliao/wxapp.php; line: 950; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 00:55:15 SQL Error :
+------------
+String:
+SQL: <br/>SELECT shop_id FROM `ims_shop` WHERE openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE and shop_id = 3034 and uniacid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 510; <br />file: /addons/yc_youliao/wxapp.php; line: 950; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 00:56:02 SQL Error :
+------------
+String:
+SQL: <br/>SELECT shop_id FROM `ims_shop` WHERE openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE and shop_id = 3034 and uniacid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Table 'we7.ims_shop' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 510; <br />file: /addons/yc_youliao/wxapp.php; line: 950; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 00:58:04 SQL Error :
+------------
+String:
+SQL: <br/>SELECT shop_id FROM `ims_mihua_sq_shop` WHERE openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE and shop_id = 3043 and uniacid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 510; <br />file: /addons/yc_youliao/wxapp.php; line: 950; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 00:58:32 SQL Error :
+------------
+String:
+SQL: <br/>SELECT shop_id FROM `ims_mihua_sq_shop` WHERE openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE and shop_id = 3043 and uniacid = 2<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' in 'where clause'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 510; <br />file: /addons/yc_youliao/wxapp.php; line: 950; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:18:58 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  r.openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE order by r.createtime desc <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE order by r.createtime desc' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:20:10 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  r.openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE order by r.createtime desc <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE order by r.createtime desc' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:20:34 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  r.openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE order by r.createtime desc <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.openid = oKC7q0BVul2IyiWnAfD9GIN5a1EE order by r.createtime desc' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:21:12 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  r.openid = {$openid} order by r.createtime desc <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.openid = {$openid} order by r.createtime desc' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:21:49 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.createtime desc <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.createtime desc' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:21:56 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.createtime desc <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.createtime desc' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:22:00 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.createtime desc <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.createtime desc' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:29:22 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.expired ASC r.status ASC r.createtime DESC<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.status ASC r.createtime DESC' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:29:41 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by expired ASC status ASC createtime DESC<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status ASC createtime DESC' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:29:51 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by expired ASC status ASC <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status ASC' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:30:13 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.expired ASC r.status ASC r.createtime DESC<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.status ASC r.createtime DESC' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 618; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:30:44 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by expired ASC status ASC createtime DESC<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status ASC createtime DESC' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 620; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:31:14 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by expired ASC status ASC createtime DESC<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'status ASC createtime DESC' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 620; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 02:31:24 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by r.expired ASC r.status ASC r.createtime DESC<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r.status ASC r.createtime DESC' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 620; <br />file: /addons/yc_youliao/wxapp.php; line: 981; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 03:41:18 SQL Error :
+------------
+String:
+SQL: <br/>INSERT INTO `ims_mihua_sq_ticket_receive` SET `uniacid` = :uniacid_67 , `info_id` = :info_id_68<hr/>Params: <br/>array (
+  ':uniacid_67' => '2',
+  ':info_id_68' => false,
+)<hr/>SQL Error: <br/>Unknown column 'info_id' in 'field list'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 95; <br />file: /framework/class/db.class.php; line: 254; <br />file: /framework/function/pdo.func.php; line: 86; <br />file: /addons/yc_youliao/model/Info.php; line: 410; <br />file: /addons/yc_youliao/wxapp.php; line: 1036; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 03:53:17 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(*) as count FROM `ims_mihua_sq_zan` WHERE  info_id = <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Info.php; line: 412; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 443; <br />file: /addons/yc_youliao/wxapp.php; line: 198; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 03:53:17 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(*) as count FROM `ims_mihua_sq_zan` WHERE  info_id = <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Info.php; line: 412; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 443; <br />file: /addons/yc_youliao/wxapp.php; line: 198; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 03:53:17 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(*) as count FROM `ims_mihua_sq_zan` WHERE  info_id = <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Info.php; line: 412; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 443; <br />file: /addons/yc_youliao/wxapp.php; line: 198; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 03:53:17 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(*) as count FROM `ims_mihua_sq_zan` WHERE  info_id = <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Info.php; line: 412; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 443; <br />file: /addons/yc_youliao/wxapp.php; line: 198; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-01-29 03:53:17 SQL Error :
+------------
+String:
+SQL: <br/>SELECT count(*) as count FROM `ims_mihua_sq_zan` WHERE  info_id = <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Info.php; line: 412; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 443; <br />file: /addons/yc_youliao/wxapp.php; line: 198; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+

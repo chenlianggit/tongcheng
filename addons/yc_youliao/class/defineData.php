@@ -67,4 +67,6 @@ define('MSG', 'mihua_sq_msg');//公告表
 define('RENEW', 'mihua_sq_shop_renew');//商户缴费表
 define('CFG', 'mihua_sq_shop_cfg');//商户基础设置
 define('REFUND', 'mihua_sq_refund');//用户退款记录
+define('TICKET', 'mihua_sq_ticket');//优惠券
+define('TICKET_REVITE', 'mihua_sq_ticket_receive');//优惠券领取
 ?>

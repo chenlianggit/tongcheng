@@ -110,7 +110,7 @@ public static function getShopInfo($shop_id){
     }
     public static function searchShop($key,$page,$num){
         global $_W ,$_GPC;
-        $data = util::getAllDataInSingleTable(SHOP,array('shop_name@'=>$key,'uniacid'=>$_W['uniacid']),$page,$num,'orderby ASC',false,' *');;
+        $data = util::getAllDataInSingleTable(SHOP,array('shop_name@'=>$key,'uniacid'=>$_W['uniacid']),$page,$num,'orderby ASC',false,' *');
         $isgroup = array();
         $lat = $_GPC["lat"];
         $lng = $_GPC["lng"];
@@ -502,6 +502,181 @@ public static function getApplynum($shop_id,$f_type){
         global  $_GPC,$_W;
         $list = pdo_fetchall(" SELECT area_id as id,area_name as name FROM " . tablename(AREA) . " WHERE  uniacid = '{$_W['uniacid']}'   and (parent_id is not null or parent_id!=0) ORDER BY  orderby asc");
         return $list;
+    }
+    public  function postTicket($openid,$type=1){
+
+        global $_GPC, $_W;
+        $id  = intval($_GPC['shop_id']);//商户id
+        $member = pdo_fetch('SELECT shop_id FROM ' . tablename(SHOP) . " WHERE openid = '{$openid}' and shop_id = {$id} and uniacid = {$_W['uniacid']}");
+        if (empty($member)) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '您不是该商户管理者';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        $name = $_GPC['name'];//名称
+        $type = $_GPC['type'] ? $_GPC['type'] : 2;//类型 默认无门槛
+        $sill_amount = $_GPC['sill_amount'];//门槛金额
+        $amount = $_GPC['amount'];//金额
+        $starttime = strtotime($_GPC['starttime']);//开始时间
+        $endtime = strtotime($_GPC['endtime']);//结束时间
+        $status = 1;//默认开启
+        $numbers = $_GPC['numbers'] ? $_GPC['numbers'] :9999999;
+
+
+        if($starttime > $endtime ){
+            $resArr['error'] = 1;
+            $resArr['message'] = '结束时间不能小于开始时间';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        $data = array(
+            'uniacid'   => $_W['uniacid'],
+            'name'      => $name,
+            'type'      => $type,
+            'sill_amount'=>$sill_amount,
+            'amount'    => $amount,
+            'shop_id'   => $id,
+            'createtime'=> time(),
+            'starttime' => $starttime,
+            'endtime'   => $endtime,
+            'status'    => $status,
+            'numbers'   => $numbers
+        );
+
+        pdo_insert(TICKET, $data);
+        $resArr['message'] = '恭喜您，添加优惠券成功';
+        $resArr['error'] = 0;
+        return $this->result($resArr['error'],  $resArr['message']);
+    }
+    public  function TicketList($openid){
+
+        global $_GPC, $_W;
+        $id  = intval($_GPC['shop_id']);//商户id
+        if(!$id){
+            $resArr['error'] = 1;
+            $resArr['message'] = '商户异常';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        $member = pdo_fetch('SELECT shop_id FROM ' . tablename(SHOP) . " WHERE openid = '{$openid}' and shop_id = {$id} and uniacid = {$_W['uniacid']}");
+        if (empty($member)) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '您不是该商户管理者';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        $data = pdo_fetchall("SELECT * FROM " . tablename(TICKET) . "  WHERE  uniacid = '{$_W["uniacid"]}' AND shop_id = {$id}     ORDER BY   createtime DESC");
+       if(is_array($data)){
+           foreach ($data as $k => &$v){
+               $v['starttime']  = date('Y.m.d',$v['starttime']);
+               $v['endtime']    = date('Y.m.d',$v['endtime']);
+           }
+       }
+
+        return $data;
+    }
+    public  function addTicketReceive($openid){
+
+        global $_GPC, $_W;
+        $id  = intval($_GPC['tid']);//商户id
+        if(!$id){
+            $resArr['error'] = 1;
+            $resArr['message'] = '优惠券异常';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        self::examineTicket($id);
+        $ticket = pdo_fetch('SELECT * FROM ' . tablename(TICKET) . " WHERE id = {$id} and uniacid = {$_W['uniacid']}");
+        if (empty($ticket)) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '暂无该优惠券';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        if($ticket['numbers']<1){
+            $resArr['error'] = 1;
+            $resArr['message'] = '该优惠券暂无库存';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        //减少优惠券
+        $set = "numbers=numbers-1";
+        pdo_query("UPDATE ".tablename(TICKET)." SET $set WHERE `id` = '{$id}' AND `uniacid` = '{$_W['uniacid']}' ");
+        $qr_name = md5($openid.time());
+        $qr_code = util::getTURLQR(pdo_insertid(),$qr_name);//门店照片
+        $data = array(
+            'uniacid'       => $_W['uniacid'],
+            'tid'           => $id,
+            'shop_id'       => $ticket['shop_id'],
+            'openid'        => $openid,
+            'status'        => 0,
+            'expired'       => 0,
+            'createtime'    => time(),
+            'qr_code'       => $qr_code
+        );
+        $res = pdo_insert(TICKET_REVITE, $data);
+        return $res;
+    }
+    public  function ticketReceiveList($openid){
+
+        global $_GPC, $_W;
+        $where = "and r.openid = '".$openid."'";
+        $data = pdo_fetchall("select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  ".tablename(TICKET_REVITE)." r  left join ".tablename(TICKET)." t on r.tid=t.id where r.uniacid = '{$_W['uniacid']}'  ".$where." order by  r.createtime DESC");
+        if(is_array($data)){
+            foreach ($data as $k => &$v){
+                $v['starttime']  = date('Y.m.d',$v['starttime']);
+                $v['endtime']    = date('Y.m.d.',$v['endtime']);
+                unset($v['openid']);
+            }
+        }
+        return $data;
+    }
+
+    public  function ticketReceive($openid){
+
+        global $_GPC, $_W;
+        $id  = intval($_GPC['rid']);//优惠券id
+        $tid = pdo_fetch('SELECT tid FROM ' . tablename(TICKET_REVITE) . " WHERE  id = {$id}");
+        if($tid['tid']){
+            self::examineTicket($tid['tid']);
+        }
+        $where = " and r.openid = '".$openid."'";
+        $where .= " and r.id = ".$id;
+        $data = pdo_fetch("select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  ".tablename(TICKET_REVITE)." r  left join ".tablename(TICKET)." t on r.tid=t.id where r.uniacid = '{$_W['uniacid']}'  ".$where." order by  r.createtime DESC");
+        if($data){
+            $data['starttime']  = date('Y.m.d',$data['starttime']);
+            $data['endtime']    = date('Y.m.d.',$data['endtime']);
+            unset($data['openid']);
+        }
+        return $data;
+    }
+    public  function useTicketReceive($openid){
+
+        global $_GPC, $_W;
+        $id  = intval($_GPC['rid']);//优惠券id
+        $revite = pdo_fetch('SELECT * FROM ' . tablename(TICKET_REVITE) . " WHERE  id = {$id} and uniacid = {$_W['uniacid']}");
+        if(!$revite){
+            $resArr['error'] = 1;
+            $resArr['message'] = '暂无该优惠券';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+
+        if($revite['status'] != 0){
+            $resArr['error'] = 1;
+            $resArr['message'] = '该优惠券已经使用过！无法再次核销';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        if($revite['expired'] != 0){
+            $resArr['error'] = 1;
+            $resArr['message'] = '该优惠券已经过期！无法进行核销';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
+        $res  = pdo_update(TICKET_REVITE, array('status' => 1), array('id' =>$id));
+        return $res;
+    }
+    //检查优惠券是否到期
+    public  function examineTicket($tid){
+        $ticket = pdo_fetch('SELECT * FROM ' . tablename(TICKET) . " WHERE id = {$tid}");
+        if ($ticket && $ticket['status'] == 1 && $ticket['endtime'] < time()) {
+            //更新商家优惠券已过期
+            pdo_update(TICKET, array('status' => 2), array('id' =>$tid));
+            //更新用户领取的优惠券已过期
+            pdo_update(TICKET_REVITE, array('expired' => 1), array('tid' =>$tid));
+        }
     }
 }
 

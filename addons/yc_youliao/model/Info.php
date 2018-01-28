@@ -303,16 +303,24 @@ class Info{
     public function getInfoById ($id){
         global  $_W;
         $data=pdo_fetch('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']}  AND id = {$id} ");
+        if($data){
+            $data['zan'] = Info::getZanInfo($id);
+        }
+        self::addNum($id);
         return $data;
     }
     public function getInfoByOId ($openid,$id){
         global  $_W;
+        self::addNum($id);
         $data=pdo_fetch('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} AND openid = '{$openid}' AND id = {$id} ");
         return $data;
     }
     public function getInfoByShop($Shop_id,$where,$page,$num){
         global  $_W;
         $mymessagelist = pdo_fetchall("SELECT * FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND shop_id = '{$Shop_id}'{$where} ORDER BY createtime DESC LIMIT ".$page.",".$num);
+        foreach ($mymessagelist as $k => $v) {
+            $mymessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
+        }
         return $mymessagelist;
     }
     public function getInfoCountByShop($Shop_id){
@@ -333,6 +341,9 @@ class Info{
     public function getInfoByuser ($openid,$where,$page,$num){
         global  $_W;
         $mymessagelist = pdo_fetchall("SELECT * FROM ".tablename(INFO)." WHERE weid = {$_W['uniacid']} AND openid = '{$openid} '{$where} ORDER BY createtime DESC LIMIT ".$page.",".$num);
+        foreach ($mymessagelist as $k => $v) {
+            $mymessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
+        }
         return $mymessagelist;
     }
 
@@ -382,11 +393,35 @@ class Info{
             return $resArr;
         }
     }
-    public function addNum($info_id){
-        global $_W ,$_GPC;
-        $set = "scan=scan+1";
-        $res =  pdo_query("UPDATE ".tablename(INFO)." SET $set WHERE `id` = '{$info_id}' AND `uniacid` = '{$_W['uniacid']}' ");
-        echo pdo_query("UPDATE ".tablename(INFO)." SET $set WHERE `id` = '{$info_id}' AND `uniacid` = '{$_W['uniacid']}' ");
-        exit;
+    public function addNum($info_id,$type = 1){
+
+        $set = " scan=scan+1 ";
+        if($type != 1){
+            $set = " send=send+1 ";
+        }
+        pdo_query("UPDATE ".tablename(INFO)." SET $set WHERE `id` = '{$info_id}' ");
+
+    }
+    public function addZanInfo($openid){
+        global $_GPC, $_W;
+        $id  = intval($_GPC['info_id']);//商户id
+        $zan = pdo_fetch("SELECT * FROM ".tablename(mihua_sq_zan)." WHERE  openid = '{$openid}' AND info_id = {$id}");
+        if($zan){
+            return 0;
+        }
+        $data = array(
+            'uniacid'   => $_W['uniacid'],
+            'info_id'   => $id,
+            'openid'   => $openid,
+        );
+        $res = pdo_insert(mihua_sq_zan, $data);
+        return $res;
+    }
+    public static function getZanInfo($info_id){
+        $zan = pdo_fetch("SELECT count(*) as count FROM ".tablename(mihua_sq_zan)." WHERE  info_id = {$info_id}");
+        if(!$zan['count']){
+            return 0;
+        }
+        return $zan['count'];
     }
 }

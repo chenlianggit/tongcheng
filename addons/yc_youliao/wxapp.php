@@ -511,7 +511,9 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$_W["uniacid"] = $this->getUniacid();
 		$openid = $this->getUserBySeid();
 		$info = new Info();
+
 		$info_id = intval($_GPC["message_id"]);
+        $info->addNum($info_id);
 		if ($info_id > 0) {
 			$where = " and b.id=" . $info_id;
 		}
@@ -940,5 +942,107 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 	    echo $res;
 	    exit;
 
+    }
+    /*
+     * 添加优惠券
+     */
+    public function doPageAddTicket(){
+        $openid = $this->getUserBySeid();
+        $res = shop::postTicket($openid);
+        echo $this->successResult($res);
+    }
+    /*
+     * 优惠券列表
+     */
+    public function doPageTicketList(){
+
+        $openid = $this->getUserBySeid();
+        $res = shop::TicketList($openid);
+        echo $this->successResult($res);
+    }
+    /*
+     * 用户领取优惠券
+     */
+    public function doPageAddTicketReceive(){
+
+        $openid = $this->getUserBySeid();
+        $res = shop::addTicketReceive($openid);
+        if (!$res) {
+            $errno = 1;
+            $message = "领取失败";
+            return $this->result($errno, $message);
+        }else{
+            $errno = 1;
+            $message = "领取成功";
+            return $this->result($errno, $message);
+        }
+    }
+    /*
+     * 我的优惠券列表
+     */
+    public function doPageTicketReceiveList(){
+
+        $openid = $this->getUserBySeid();
+        $res = shop::ticketReceiveList($openid);
+        echo $this->successResult($res);
+    }
+    /*
+     * 我的优惠券详情
+     */
+    public function doPageTicketReceive(){
+
+        $openid = $this->getUserBySeid();
+        $res = shop::ticketReceive($openid);
+        if (!$res) {
+            $errno = 1;
+            $message = "获取优惠券详情失败";
+            return $this->result($errno, $message);
+        }
+        echo $this->successResult($res);
+    }
+    /*
+     * 核销优惠券
+     */
+    public function doPageUseTicketReceive(){
+        $openid = $this->getUserBySeid();
+        $res = shop::useTicketReceive($openid);
+        if (!$res) {
+            $errno = 1;
+            $message = "核销优惠券失败";
+            return $this->result($errno, $message);
+        }else{
+            $errno = 0;
+            $message = "核销优惠券成功,此张优惠券已作废";
+            return $this->result($errno, $message);
+        }
+    }
+    /*
+     * 信息转发调用
+     */
+    public function doPageDoSendInfo(){
+        global $_W, $_GPC;
+        $id = intval($_GPC["info_id"]);
+        $info = new Info();
+        $info->addNum($id,2);
+        return $this->successResult();
+    }
+    /*
+     * 信息转发调用
+     */
+    public function doPageDoZanInfo(){
+        global $_W, $_GPC;
+        $openid = $this->getUserBySeid();
+        $info = new Info();
+//echo  Info::getZanInfo($_GPC['info_id']);
+        $res = $info->addZanInfo($openid);
+        if (!$res) {
+            $errno = 1;
+            $message = "您已经赞过了！";
+            return $this->result($errno, $message);
+        }else{
+            $errno = 0;
+            $message = "点赞成功";
+            return $this->result($errno, $message);
+        }
     }
 }
