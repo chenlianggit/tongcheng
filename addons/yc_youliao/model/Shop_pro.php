@@ -698,5 +698,36 @@ public static function getApplynum($shop_id,$f_type){
             pdo_update(TICKET_REVITE, array('expired' => 1), array('tid' =>$tid));
         }
     }
+    //获取商家小程序码
+    public static  function getShopBgpic($shop_id){
+        global $_GPC, $_W;
+        $app = pdo_fetch('SELECT * FROM ' . tablename(account_wxapp) . " WHERE uniacid = {$_W['uniacid']}");
+        $shop = pdo_fetch('SELECT * FROM ' . tablename(SHOP) . " WHERE shop_id = $shop_id ");
+        if(!$app || !$shop){
+            return 0;
+        }
+        $param = array('shop_id'=>$shop['shop_id']);
+        $data = array(
+            'token'     => 'xiaoma',
+            'qr_name'   => $shop['shop_name'].time(),
+            'appid'     => $app['key'],
+            'appsecret' => $app['secret'],
+            'path'      => 'pages/index/index',
+            'type'      => '1',
+            'param'     => $param
+        );
+
+        $url = 'http://xiaoma.aldwx.com/Main/action/New_code/Createcode/create_code';
+
+        $res = util::send_post3($url,$data);
+        $resArr = json_decode($res,true);
+        if($resArr['code'] != 200){
+            return 0;
+        }
+        $pic = $resArr['data']['url'];
+        $pic = preg_replace("/^http/","https",$pic);
+        $result = pdo_update(SHOP, array('bgpic' => $pic), array('shop_id' =>$shop_id));
+        return $result;
+    }
 }
 

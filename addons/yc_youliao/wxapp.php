@@ -252,31 +252,25 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 	{
 		global $_W, $_GPC;
 		$_W["uniacid"] = $this->getUniacid();
-		$id = intval($_GPC["id"]);
-		if (!$id) {
-			$errno = 1;
-			$message = "id is null";
-			return $this->result($errno, $message);
-		}
         $lat = $_GPC["lat"];
         $lng = $_GPC["lng"];
 		$page = reqInfo::pageIndex();
 		$num = reqInfo::num();
-		$id = intval($id);
+
         $type = $_GPC["type"];
         switch ($type)
         {
             case 'hot':
-                $data = commonGetData::getHotMsgById($id,$page, $num, $lat, $lng);
+                $data = commonGetData::getHotMsgById($page, $num, $lat, $lng);
                 break;
             case 'comment':
-                $data = commonGetData::getCommentMsgById($id, $page, $num, $lat, $lng);
+                $data = commonGetData::getCommentMsgById( $page, $num, $lat, $lng);
                 break;
             case 'near':
-                $data = commonGetData::getNearMsgById($id, $page, $num, $lat, $lng);
+                $data = commonGetData::getNearMsgById( $page, $num, $lat, $lng);
                 break;
             default:
-                $data = commonGetData::getNewMsgById($id, $page, $num, $lat, $lng);
+                $data = commonGetData::getNewMsgById($page, $num, $lat, $lng);
         }
 		return $this->successResult($data);
 	}
@@ -1044,5 +1038,11 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
             $message = "点赞成功";
             return $this->result($errno, $message);
         }
+    }
+    public function doPageGetShopBgpic(){
+        global $_W, $_GPC;
+        $shop_id = intval($_GPC["shop_id"]);
+        $res = Shop::getShopBgpic($shop_id);
+        return $this->successResult($res);
     }
 }

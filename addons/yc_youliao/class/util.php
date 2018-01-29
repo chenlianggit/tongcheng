@@ -1205,7 +1205,51 @@ return $ordersn;
      $end=strtotime($date2);
      return array($start,$end);
 }
+//post 模拟
+    public  static function  send_post($url,$post_data ) {
+        $options = array(
+            'http' => array(
+                'method'  => 'POST',
+                'header'  => 'Content-type:application/json',//header 需要设置为 JSON
+                'content' => $post_data,
+                'timeout' => 60//超时时间
+            )
+        );
+        $context = stream_context_create( $options );
+        $result = file_get_contents( $url, false, $context);
+        return $result;
+    }
 
+    public static function send_post2($url,$post_data ) {
+        $options = array(
+            'http' => array(
+                'method'  => 'POST',
+                'header'  => 'Content-type:application/x-www-form-urlencoded',//header 需要设置为 JSON
+                'content' => $post_data,
+                'timeout' => 60//超时时间
+            )
+        );
+
+        $context = stream_context_create( $options );
+        $result = file_get_contents( $url, false, $context);
+        return $result;
+    }
+    public static function send_post3($url, $post_data) {
+        $postdata = http_build_query($post_data);
+        $options = array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-type:application/x-www-form-urlencoded',
+                'content' => $postdata,
+                'timeout' => 15 * 60, // 超时时间（单位:s）
+                'client-ip'=>CLIENT_IP,
+                'x-forwarded-for'=>CLIENT_IP
+            )
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        return $result;
+    }
 public static function getYearStamp(){
      return 31556926;
 }
