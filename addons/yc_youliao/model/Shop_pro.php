@@ -513,6 +513,12 @@ public static function getApplynum($shop_id,$f_type){
             $resArr['message'] = '您不是该商户管理者';
             return $this->result($resArr['error'],  $resArr['message']);
         }
+        $ticNum = pdo_fetch('SELECT count(*) as num FROM ' . tablename(TICKET) . " WHERE  shop_id = {$id} and status = 1");
+        if ($ticNum['num'] >= 3) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '已经有三个优惠券在启用了！';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
         $name = $_GPC['name'];//名称
         $type = $_GPC['type'] ? $_GPC['type'] : 2;//类型 默认无门槛
         $sill_amount = $_GPC['sill_amount'];//门槛金额
@@ -663,7 +669,12 @@ public static function getApplynum($shop_id,$f_type){
             $resArr['message'] = '暂无该优惠券';
             return $this->result($resArr['error'],  $resArr['message']);
         }
-
+        $member = pdo_fetch('SELECT shop_id FROM ' . tablename(SHOP) . " WHERE openid = '{$openid}' and shop_id = {$revite['shop_id']}");
+        if (empty($member)) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '您不是该商户管理者，暂不能核销';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
         if($revite['status'] != 0){
             $resArr['error'] = 1;
             $resArr['message'] = '该优惠券已经使用过！无法再次核销';
