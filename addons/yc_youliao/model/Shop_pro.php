@@ -556,12 +556,12 @@ public static function getApplynum($shop_id,$f_type){
             $resArr['message'] = '商户异常';
             return $this->result($resArr['error'],  $resArr['message']);
         }
-        $member = pdo_fetch('SELECT shop_id FROM ' . tablename(SHOP) . " WHERE openid = '{$openid}' and shop_id = {$id} and uniacid = {$_W['uniacid']}");
-        if (empty($member)) {
-            $resArr['error'] = 1;
-            $resArr['message'] = '您不是该商户管理者';
-            return $this->result($resArr['error'],  $resArr['message']);
-        }
+//        $member = pdo_fetch('SELECT shop_id FROM ' . tablename(SHOP) . " WHERE openid = '{$openid}' and shop_id = {$id} and uniacid = {$_W['uniacid']}");
+//        if (empty($member)) {
+//            $resArr['error'] = 1;
+//            $resArr['message'] = '您不是该商户管理者';
+//            return $this->result($resArr['error'],  $resArr['message']);
+//        }
         $data = pdo_fetchall("SELECT * FROM " . tablename(TICKET) . "  WHERE  uniacid = '{$_W["uniacid"]}' AND shop_id = {$id}     ORDER BY   createtime DESC");
        if(is_array($data)){
            foreach ($data as $k => &$v){
@@ -593,11 +593,16 @@ public static function getApplynum($shop_id,$f_type){
             $resArr['message'] = '该优惠券暂无库存';
             return $this->result($resArr['error'],  $resArr['message']);
         }
+        $revite = pdo_fetch('SELECT * FROM ' . tablename(TICKET_REVITE) . " WHERE tid = {$id} and  openid = '{$openid}'");
+        if ($revite) {
+            $resArr['error'] = 1;
+            $resArr['message'] = '已经领取过一张了！';
+            return $this->result($resArr['error'],  $resArr['message']);
+        }
         //减少优惠券
         $set = "numbers=numbers-1";
         pdo_query("UPDATE ".tablename(TICKET)." SET $set WHERE `id` = '{$id}' AND `uniacid` = '{$_W['uniacid']}' ");
-        $qr_name = md5($openid.time());
-        $qr_code = util::getTURLQR(pdo_insertid(),$qr_name);//门店照片
+
         $data = array(
             'uniacid'       => $_W['uniacid'],
             'tid'           => $id,
@@ -606,20 +611,24 @@ public static function getApplynum($shop_id,$f_type){
             'status'        => 0,
             'expired'       => 0,
             'createtime'    => time(),
-            'qr_code'       => $qr_code
+            'qr_code'       => '',
         );
         $res = pdo_insert(TICKET_REVITE, $data);
+        $rid = pdo_insertid();
+        $qr_name = md5($openid.time());
+        $qr_code = util::getTURLQR(pdo_insertid(),$qr_name);//门店照片
+        pdo_update(TICKET_REVITE, array('qr_code' => $qr_code), array('id' =>$rid));
         return $res;
     }
     public  function ticketReceiveList($openid){
 
         global $_GPC, $_W;
         $where = "and r.openid = '".$openid."'";
-        $data = pdo_fetchall("select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  ".tablename(TICKET_REVITE)." r  left join ".tablename(TICKET)." t on r.tid=t.id where r.uniacid = '{$_W['uniacid']}'  ".$where." order by  r.createtime DESC");
+        $data = pdo_fetchall("select r.*,t.sill_amount,t.amount,t.starttime,t.endtime,s.shop_name,s.logo,s.address,s.telphone from  ".tablename(TICKET_REVITE)." r  left join ".tablename(TICKET)." t on r.tid=t.id left join ".tablename(SHOP)." s on r.shop_id = s.shop_id where r.uniacid = '{$_W['uniacid']}'  ".$where." order by  r.createtime DESC");
         if(is_array($data)){
             foreach ($data as $k => &$v){
                 $v['starttime']  = date('Y.m.d',$v['starttime']);
-                $v['endtime']    = date('Y.m.d.',$v['endtime']);
+                $v['endtime']    = date('Y.m.d',$v['endtime']);
                 unset($v['openid']);
             }
         }
@@ -636,10 +645,10 @@ public static function getApplynum($shop_id,$f_type){
         }
         $where = " and r.openid = '".$openid."'";
         $where .= " and r.id = ".$id;
-        $data = pdo_fetch("select r.*,t.sill_amount,t.amount,t.starttime,t.endtime from  ".tablename(TICKET_REVITE)." r  left join ".tablename(TICKET)." t on r.tid=t.id where r.uniacid = '{$_W['uniacid']}'  ".$where." order by  r.createtime DESC");
+        $data = pdo_fetch("select r.*,t.sill_amount,t.amount,t.starttime,t.endtime,s.shop_name,s.logo,s.address,s.telphone from  ".tablename(TICKET_REVITE)." r  left join ".tablename(TICKET)." t on r.tid=t.id left join ".tablename(SHOP)." s on r.shop_id = s.shop_id  where r.uniacid = '{$_W['uniacid']}'  ".$where." order by  r.createtime DESC");
         if($data){
             $data['starttime']  = date('Y.m.d',$data['starttime']);
-            $data['endtime']    = date('Y.m.d.',$data['endtime']);
+            $data['endtime']    = date('Y.m.d',$data['endtime']);
             unset($data['openid']);
         }
         return $data;

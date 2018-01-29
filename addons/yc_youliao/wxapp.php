@@ -972,7 +972,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
             $message = "领取失败";
             return $this->result($errno, $message);
         }else{
-            $errno = 1;
+            $errno = 0;
             $message = "领取成功";
             return $this->result($errno, $message);
         }

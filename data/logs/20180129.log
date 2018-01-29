@@ -156,3 +156,9 @@ String:
 SQL: <br/>SELECT count(*) as count FROM `ims_mihua_sq_zan` WHERE  info_id = <hr/>Params: <br/>array (
 )<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 139; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /addons/yc_youliao/model/Info.php; line: 412; <br />file: /addons/yc_youliao/class/commonGetData.php; line: 443; <br />file: /addons/yc_youliao/wxapp.php; line: 198; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
 
+2018-01-29 16:16:37 SQL Error :
+------------
+String:
+SQL: <br/>select r.*,t.sill_amount,t.amount,t.starttime,t.endtime,s.shop_name,s.logo,s,address,s,telphone from  `ims_mihua_sq_ticket_receive` r  left join `ims_mihua_sq_ticket` t on r.tid=t.id left join `ims_mihua_sq_shop` s on r.shop_id = s.shop_id where r.uniacid = '2'  and r.openid = 'oKC7q0BVul2IyiWnAfD9GIN5a1EE' order by  r.createtime DESC<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Unknown column 's' in 'field list'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/model/Shop_pro.php; line: 627; <br />file: /addons/yc_youliao/wxapp.php; line: 986; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
