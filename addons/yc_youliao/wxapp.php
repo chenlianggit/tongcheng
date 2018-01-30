@@ -276,19 +276,27 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 	}
 	public function doPageGetInfoById()
 	{
-		global $_GPC;
+		global $_GPC,$_W;
 		$_W["uniacid"] = $this->getUniacid();
 		$id = intval($_GPC["id"]);
-		$mid = intval($_GPC["mid"]);
 		if ($id == 0) {
 			$errno = 1;
 			$message = "id is not null";
 			return $this->result($errno, $message);
 		}
+        $iszan = 0;
+		if($_GPC["seid"]){
+            $openid = $this->getUserBySeid();
+            $sq_zan = pdo_fetch("SELECT id FROM " . tablename(mihua_sq_zan) . " WHERE uniacid = {$_W["uniacid"]} AND info_id = {id} AND info_id = '{$openid}'");
+            if($sq_zan){
+                $iszan = 1;
+            }
+        }
 		$data = commonGetData::getInfoById($id, $_W["uniacid"]);
 		$data["content"] = $feildlist = unserialize($data["content"]);
-		$imageeenname = pdo_fetch("SELECT enname FROM " . tablename(FIELDS) . " WHERE weid = {$_W["uniacid"]} AND mid = {$mid} AND mtype in ('images','goodsthumbs','goodsbaoliao')");
+		$imageeenname = pdo_fetch("SELECT enname FROM " . tablename(FIELDS) . " WHERE weid = {$_W["uniacid"]}  AND mtype in ('images','goodsthumbs','goodsbaoliao')");
 		$data["images"] = $feildlist[$imageeenname["enname"]];
+        $data["iszan"] = $iszan;
 		return $this->successResult($data);
 	}
 	public function doPageFields()
@@ -1042,6 +1050,9 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
     public function doPageGetShopBgpic(){
         global $_W, $_GPC;
         $shop_id = intval($_GPC["shop_id"]);
+        if(!$shop_id){
+            return $this->errorResult('店铺ID未传入');
+        }
         $res = Shop::getShopBgpic($shop_id);
         return $this->successResult($res);
     }
