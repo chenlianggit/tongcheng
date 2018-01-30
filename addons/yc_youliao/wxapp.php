@@ -287,7 +287,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         $iszan = 0;
 		if($_GPC["seid"]){
             $openid = $this->getUserBySeid();
-            $sq_zan = pdo_fetch("SELECT id FROM " . tablename(mihua_sq_zan) . " WHERE uniacid = {$_W["uniacid"]} AND info_id = {id} AND info_id = '{$openid}'");
+            $sq_zan = pdo_fetch("SELECT id FROM " . tablename(mihua_sq_zan) . " WHERE uniacid = {$_W["uniacid"]} AND info_id = {$id} AND openid = '{$openid}'");
             if($sq_zan){
                 $iszan = 1;
             }
