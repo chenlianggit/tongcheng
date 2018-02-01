@@ -1050,13 +1050,23 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
             return $this->result($errno, $message);
         }
     }
+    //批量生成小程序码 is_admin 8888
     public function doPageGetShopBgpic(){
         global $_W, $_GPC;
-        $shop_id = intval($_GPC["shop_id"]);
-        if(!$shop_id){
-            return $this->errorResult('店铺ID未传入');
+        $admin = intval($_GPC["is_admin"]);
+
+        if($admin != 8888){
+            return $this->errorResult('不是超级管理员');
         }
-        $res = Shop::getShopBgpic($shop_id);
-        return $this->successResult($res);
+        $page = reqInfo::pageIndex();
+        $num = reqInfo::num();
+        $shopList = pdo_fetchall(" SELECT shop_id,shop_name FROM " . tablename(SHOP) . " WHERE  uniacid = '{$_W['uniacid']}' LIMIT {$page},{$num} ");
+        if(!is_array($shopList)){
+            return $this->errorResult(0);
+        }
+        foreach($shopList as $k =>$v){
+            Shop::getShopBgpic($v['shop_id']);
+        }
+        return $this->successResult('成功');
     }
 }

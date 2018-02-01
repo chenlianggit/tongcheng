@@ -170,13 +170,13 @@
                                         <input type="text" name="shop_name" id='name' class="form-control" value="<?php  echo $item['shop_name'];?>" />
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">营业执照</label>
-                                    <div class="col-sm-4">
-                                        <?php  echo tpl_form_field_image('shop_cert',$item['shop_cert']);?>
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-xs-12 col-sm-3 col-md-2 control-label">营业执照</label>-->
+                                    <!--<div class="col-sm-4">-->
+                                        <!--&lt;!&ndash;<?php  echo tpl_form_field_image('shop_cert',$item['shop_cert']);?>&ndash;&gt;-->
 
-                                    </div>
-                                </div>
+                                    <!--</div>-->
+                                <!--</div>-->
 
                             <div class="form-group">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺LOGO</label>
@@ -185,13 +185,13 @@
                                     <p class="help-block">建议上传宽120px*高120px或长宽比例相同像素图片</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺形象</label>
-                                <div class="col-sm-4">
-                                    <?php  echo tpl_form_field_image('bgpic',$item['bgpic']);?>
-                                    <p class="help-block">建议上传宽768px高300px图片</p>
-                                </div>
-                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺形象</label>-->
+                                <!--<div class="col-sm-4">-->
+                                    <!--&lt;!&ndash;<?php  echo tpl_form_field_image('bgpic',$item['bgpic']);?>&ndash;&gt;-->
+                                    <!--<p class="help-block">建议上传宽768px高300px图片</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
                                 <div class="form-group" >
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺地址</label>

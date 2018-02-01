@@ -84,6 +84,7 @@ class Shop{
         } else {
             pdo_insert(SHOP, $data);
             $id = pdo_insertid();
+            $this->getShopBgpic($id);
             $resArr['message'] = '恭喜您，添加店铺成功！';
         }
         $resArr['error'] = 0;
