@@ -413,6 +413,7 @@ class Info{
             'uniacid'   => $_W['uniacid'],
             'info_id'   => $id,
             'openid'   => $openid,
+            'createtime'=> time()
         );
         $res = pdo_insert(mihua_sq_zan, $data);
         return $res;

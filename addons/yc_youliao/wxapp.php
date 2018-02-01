@@ -285,18 +285,21 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 			return $this->result($errno, $message);
 		}
         $iszan = 0;
-		if($_GPC["seid"]){
-            $openid = $this->getUserBySeid();
+        $seid = $_GPC["seid"];
+        $openid = cache_load($seid);
+		if($openid){
             $sq_zan = pdo_fetch("SELECT id FROM " . tablename(mihua_sq_zan) . " WHERE uniacid = {$_W["uniacid"]} AND info_id = {$id} AND openid = '{$openid}'");
-            if($sq_zan){
+            if(!empty($sq_zan)){
                 $iszan = 1;
             }
         }
 		$data = commonGetData::getInfoById($id, $_W["uniacid"]);
 		$data["content"] = $feildlist = unserialize($data["content"]);
 		$imageeenname = pdo_fetch("SELECT enname FROM " . tablename(FIELDS) . " WHERE weid = {$_W["uniacid"]}  AND mtype in ('images','goodsthumbs','goodsbaoliao')");
+		$zaninfo      = pdo_fetchall("select m.nickname,m.avatar from  ".tablename(mihua_sq_zan)." z  left join ".tablename(MEMBER)." m on z.openid = m.openid  where z.uniacid = '{$_W['uniacid']}' and z.info_id = {$id} order by z.id desc");
 		$data["images"] = $feildlist[$imageeenname["enname"]];
         $data["iszan"] = $iszan;
+        $data['zaninfo'] = $zaninfo ;
 		return $this->successResult($data);
 	}
 	public function doPageFields()

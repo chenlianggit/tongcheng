@@ -712,7 +712,7 @@ public static function getApplynum($shop_id,$f_type){
             'qr_name'   => $shop['shop_name'].time(),
             'appid'     => $app['key'],
             'appsecret' => $app['secret'],
-            'path'      => 'pages/index/index',
+            'path'      => 'yc_youliao/page/shop/detail/index',//店铺
             'type'      => '1',
             'param'     => $param
         );

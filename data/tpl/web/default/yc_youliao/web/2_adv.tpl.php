@@ -96,10 +96,14 @@
 
 
                 <div class="form-group">
-                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">幻灯片链接</label>
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺编号</label>
                     <div class="col-sm-9 col-xs-12">
-                        <input type="text" name="link" id='link' class="form-control" value="<?php  echo $adv['link'];?>" />
+                        <input type="number" name="link" id='link' class="form-control" value="<?php  if($adv['link']){echo $adv['link']; }else{echo 0;} ?>" />
+                        <p class="help-block">请输入店铺编号,点击查看<a href="./index.php?c=site&a=entry&do=shop&m=yc_youliao" target="_blank" style="    background: #33b089;
+    padding: 5px 5px;
+    margin: 10px 0;">店铺编号列表</a></p>
                     </div>
+
                 </div>
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否显示</label>
