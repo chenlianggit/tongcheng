@@ -295,6 +295,9 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
         }
 		$data = commonGetData::getInfoById($id, $_W["uniacid"]);
 		$data["content"] = $feildlist = unserialize($data["content"]);
+        if($data["content"]['thumbs'][0] == ""){
+            $data["content"]['thumbs'] = array();
+        }
 		$imageeenname = pdo_fetch("SELECT enname FROM " . tablename(FIELDS) . " WHERE weid = {$_W["uniacid"]}  AND mtype in ('images','goodsthumbs','goodsbaoliao')");
 		$zaninfo      = pdo_fetchall("select m.nickname,m.avatar from  ".tablename(mihua_sq_zan)." z  left join ".tablename(MEMBER)." m on z.openid = m.openid  where z.uniacid = '{$_W['uniacid']}' and z.info_id = {$id} order by z.id desc");
 		$data["images"] = $feildlist[$imageeenname["enname"]];
@@ -461,6 +464,9 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		foreach ($res as $k => $v) {
 			$module = pdo_fetch("SELECT name FROM " . tablename(CHANNEL) . " WHERE weid = {$_W["uniacid"]} AND id = {$v["mid"]}");
 			$res[$k]["con"] = unserialize($v["content"]);
+            if($res[$k]['con']['thumbs'][0] == ""){
+                $res[$k]['con']['thumbs'] = array();
+            }
 			$res[$k]["modulename"] = $module["name"];
 		}
 		return $res;

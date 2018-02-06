@@ -282,7 +282,9 @@ class Info{
                     $zdmessagelist[$k]['freshtime'] = date("Y-m-d H:i", $v['freshtime']);
                 }
                 $zdmessagelist[$k]['con']['thumbs']= self::tomediaImg($zdmessagelist[$k]['con']['thumbs']);
-
+                if($zdmessagelist[$k]['con']['thumbs'][0] == ""){
+                    $zdmessagelist[$k]['con']['thumbs'] = array();
+                }
                 $zdmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
 
             }
@@ -369,6 +371,9 @@ class Info{
             $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
             $list[$k]['con'] = unserialize($v['content']);
             $list[$k]['modulename'] = $module['name'];
+            if($list[$k]['con']['thumbs'][0] == ""){
+                $list[$k]['con']['thumbs'] = array();
+            }
         }
         return $list;
     }

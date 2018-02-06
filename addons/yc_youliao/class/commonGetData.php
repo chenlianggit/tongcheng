@@ -385,6 +385,9 @@ static function chathtml($chatcon,$openid){
             $commentMsg[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
         }
         $commentMsg[$k]['con']['thumbs']= self::tomediaImg($commentMsg[$k]['con']['thumbs']);
+        if($commentMsg[$k]['con']['thumbs'][0] == ""){
+            $commentMsg[$k]['con']['thumbs'] = array();
+        }
     }
 
     return $commentMsg;
@@ -404,6 +407,9 @@ static function chathtml($chatcon,$openid){
                 $hotmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $hotmessagelist[$k]['con']['thumbs']= self::tomediaImg($hotmessagelist[$k]['con']['thumbs']);
+            if($hotmessagelist[$k]['con']['thumbs'][0] == ""){
+                $hotmessagelist[$k]['con']['thumbs'] = array();
+            }
         }
         return $hotmessagelist;
     }
@@ -424,6 +430,9 @@ static function chathtml($chatcon,$openid){
                 $nearmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $nearmessagelist[$k]['con']['thumbs']= self::tomediaImg($nearmessagelist[$k]['con']['thumbs']);
+            if($nearmessagelist[$k]['con']['thumbs'][0] == ""){
+                $nearmessagelist[$k]['con']['thumbs'] = array();
+            }
         }
         return $nearmessagelist;
     }
@@ -440,6 +449,10 @@ static function chathtml($chatcon,$openid){
             }
             $lastedmessagelist[$k]['modulename'] = $module['name'];
             $lastedmessagelist[$k]['con']['thumbs']= self::tomediaImg($lastedmessagelist[$k]['con']['thumbs']);
+            if($lastedmessagelist[$k]['con']['thumbs'][0] == ""){
+                $lastedmessagelist[$k]['con']['thumbs'] = array();
+            }
+//            print_r($lastedmessagelist[$k]['con']['thumbs']);exit;
             $lastedmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $lastedmessagelist;
@@ -456,6 +469,9 @@ static function chathtml($chatcon,$openid){
                 $zdmessagelist[$k]['freshtime'] = date("Y-m-d H:i", $v['freshtime']);
             }
             $zdmessagelist[$k]['con']['thumbs']= self::tomediaImg($zdmessagelist[$k]['con']['thumbs']);
+            if($zdmessagelist[$k]['con']['thumbs'][0] == ""){
+                $zdmessagelist[$k]['con']['thumbs'] = array();
+            }
             $zdmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
             $zdmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
@@ -477,6 +493,9 @@ static function chathtml($chatcon,$openid){
                 $commentMsg[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $commentMsg[$k]['con']['thumbs']= self::tomediaImg($commentMsg[$k]['con']['thumbs']);
+            if($commentMsg[$k]['con']['thumbs'][0] == ""){
+                $commentMsg[$k]['con']['thumbs'] = array();
+            }
             $commentMsg[$k]['zan'] = Info::getZanInfo($v['id']);
         }
 
@@ -497,6 +516,9 @@ static function chathtml($chatcon,$openid){
                 $hotmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $hotmessagelist[$k]['con']['thumbs']= self::tomediaImg($hotmessagelist[$k]['con']['thumbs']);
+            if($hotmessagelist[$k]['con']['thumbs'][0] == ""){
+                $hotmessagelist[$k]['con']['thumbs'] = array();
+            }
             $hotmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $hotmessagelist;
@@ -517,6 +539,9 @@ static function chathtml($chatcon,$openid){
                 $nearmessagelist[$k]['freshtime'] = date("Y-m-d H:i",$v['freshtime']);
             }
             $nearmessagelist[$k]['con']['thumbs']= self::tomediaImg($nearmessagelist[$k]['con']['thumbs']);
+            if($nearmessagelist[$k]['con']['thumbs'][0] == ""){
+                $nearmessagelist[$k]['con']['thumbs'] = array();
+            }
             $nearmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $nearmessagelist;
@@ -534,6 +559,9 @@ static function chathtml($chatcon,$openid){
             }
             $lastedmessagelist[$k]['modulename'] = $module['name'];
             $lastedmessagelist[$k]['con']['thumbs']= self::tomediaImg($lastedmessagelist[$k]['con']['thumbs']);
+            if($lastedmessagelist[$k]['con']['thumbs'][0] == ""){
+                $lastedmessagelist[$k]['con']['thumbs'] = array();
+            }
             $lastedmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
         return $lastedmessagelist;
@@ -551,6 +579,9 @@ static function chathtml($chatcon,$openid){
                 $zdmessagelist[$k]['freshtime'] = date("Y-m-d H:i", $v['freshtime']);
             }
             $zdmessagelist[$k]['con']['thumbs']= self::tomediaImg($zdmessagelist[$k]['con']['thumbs']);
+            if($zdmessagelist[$k]['con']['thumbs'][0] == ""){
+                $zdmessagelist[$k]['con']['thumbs'] = array();
+            }
             $zdmessagelist[$k]['createtime'] = date("Y-m-d H:i",$v['createtime']);
             $zdmessagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
@@ -595,6 +626,9 @@ static function chathtml($chatcon,$openid){
             }
 
             $messagelist[$k]['con']['thumbs']= self::tomediaImg($messagelist[$k]['con']['thumbs']);
+            if($messagelist[$k]['con']['thumbs'][0] == ""){
+                $messagelist[$k]['con']['thumbs'] = array();
+            }
             $messagelist[$k]['zan'] = Info::getZanInfo($v['id']);
         }
 
