@@ -39,6 +39,7 @@
 
                                     <td class="w80">排序</td>
                                     <td colspan="2">区域/商圈名称</td>
+                                    <td>分类图标</td>
                                     <td>是否热门</td>
                                     <td class="w120">操作</td>
                                 </tr>
@@ -48,6 +49,7 @@
                                     <td><input  name="displayorder[<?php  echo $item['area_id'];?>]" value="<?php  echo $item['orderby'];?>" type="text" class="remberinput w80" /></td>
 
                                     <td colspan="2"><?php  echo $item['area_name'];?></td>
+                                    <td><img src="<?php  echo tomedia($item['thumb']);?>" onerror="javascript:this.src='<?php echo SQ;?>public/images/noimg.png'" /></td>
                                     <td><?php  if($item['is_hot']==1) { ?><img src="<?php echo STYLE;?>images/hot.png" /><?php  } ?></td>
                                     <td class="listbtn">
                                         <?php  if(empty($item['parent_id'])) { ?>
@@ -145,7 +147,12 @@
                                         <input type="text" name="area_name" id='name' class="form-control" value="<?php  echo $item['area_name'];?>" />
                                     </div>
                                 </div>
-
+                            <div class="form-group" >
+                                <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span class="red mr5">*</span>图片</span></label>
+                                <div class="col-sm-6 col-xs-6">
+                                    <?php  echo tpl_form_field_image('thumb',$item['thumb']);?>
+                                </div>
+                            </div>
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label">是否热门</label>
                                     <div class="col-sm-9 col-xs-12">

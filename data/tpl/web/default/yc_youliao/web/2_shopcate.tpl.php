@@ -156,7 +156,7 @@
                                 <div class="form-group" >
                                     <label class="col-xs-12 col-sm-3 control-label"><span class="red mr5">*</span>分类图片</span></label>
                                     <div class="col-sm-6 col-xs-6">
-                                        <?php  echo tpl_form_field_image('thumb',$item['thumb']);?>
+                                        <?php  echo tpl_form_field_image('thumb',$shopcate['thumb']);?>
                                     </div>
                                 </div>
 

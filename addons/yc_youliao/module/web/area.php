@@ -59,7 +59,8 @@ if ($op == 'display') {
             'area_name' 	=> $_GPC['area_name'],
             'orderby' => intval($_GPC['orderby']),
             'parent_id' => intval($parentid),
-            'is_hot'    =>intval($_GPC['is_hot'])
+            'is_hot'    =>intval($_GPC['is_hot']),
+            'thumb'    =>$_GPC['thumb']
         );
         if (!empty($id)) {
             unset($data['parent_id']);

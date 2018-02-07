@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5e7d071f-084f-43b5-93ba-5418aad93a32" name="默认的" comment="提交 店铺公告，收藏人数，评论">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/model/Info.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/model/Info.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/module/web/area.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/module/web/area.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/template/web/area.html" afterPath="$PROJECT_DIR$/addons/yc_youliao/template/web/area.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/template/web/shopcate.html" afterPath="$PROJECT_DIR$/addons/yc_youliao/template/web/shopcate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/2_area.tpl.php" afterPath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/2_area.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/2_shopcate.tpl.php" afterPath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/2_shopcate.tpl.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,105 +18,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wxapp.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/wxapp.php">
+      <file leaf-file-name="area.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/area.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="530" column="30" lean-forward="false" selection-start-line="530" selection-start-column="30" selection-end-line="530" selection-end-column="30" />
+            <state relative-caret-position="1550">
+              <caret line="62" column="39" lean-forward="true" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
               <folding>
-                <marker date="1517897919837" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
-                <marker date="1517897919837" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
-                <marker date="1517897919837" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
-                <marker date="1517897919837" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
-                <marker date="1517897919837" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
-                <marker date="1517897919837" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
-                <marker date="1517897919837" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
-                <marker date="1517897919837" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
-                <marker date="1517897919837" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
-                <marker date="1517897919837" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517897919837" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
-                <marker date="1517897919837" expanded="true" signature="29123:29267" ph="SELECT s.* F... ${tablename(SHOP)}" />
-                <marker date="1517897919837" expanded="true" signature="35356:35460" ph="SELECT shop_... ${tablename(SHOP)}" />
+                <marker date="1517990089777" expanded="true" signature="630:736" ph="SELECT * FRO... ${tablename(AREA)}" />
+                <marker date="1517990089777" expanded="true" signature="1246:1341" ph="SELECT * FRO... ${tablename(CITY)}" />
+                <marker date="1517990089777" expanded="true" signature="1634:1726" ph="SELECT * FRO... ${tablename(AREA)}" />
+                <marker date="1517990089777" expanded="true" signature="1843:1957" ph="SELECT area_... ${tablename(AREA)}" />
+                <marker date="1517990089777" expanded="true" signature="3004:3113" ph="SELECT area_... ${tablename(AREA)}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="commonGetData.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php">
+      <file leaf-file-name="area.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/area.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="380" column="44" lean-forward="false" selection-start-line="380" selection-start-column="33" selection-end-line="380" selection-end-column="44" />
-              <folding>
-                <marker date="1517895875924" expanded="true" signature="266:398" ph="SELECT * FRO... ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="502:625" ph="SELECT id,na... ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="2315:2426" ph="select * fro... ${tablename(ADV)}" />
-                <marker date="1517895875924" expanded="true" signature="3186:3558" ph="SELECT g.*,s... ${tablename(GOODS)}" />
-                <marker date="1517895875924" expanded="true" signature="4453:4629" ph="SELECT count... ${tablename(RING)}" />
-                <marker date="1517895875924" expanded="true" signature="4801:5044" ph="SELECT r.*,u... ${tablename(RING)}" />
-                <marker date="1517895875924" expanded="true" signature="5710:5930" ph="SELECT u.ava... ${tablename(ZAN)}" />
-                <marker date="1517895875924" expanded="true" signature="8766:8953" ph="select r.*,d... ${tablename(DISCOUNT_RE)}" />
-                <marker date="1517895875924" expanded="true" signature="9939:10112" ph="SELECT * FRO... ${tablename(CHAT)}" />
-                <marker date="1517895875924" expanded="true" signature="10422:10570" ph="SELECT * FRO... ${tablename(AREA)}" />
-                <marker date="1517895875924" expanded="true" signature="11300:11336" ph="..." />
-                <marker date="1517895875924" expanded="true" signature="13012:13340" ph="SELECT s.*, ${tablename(SHOP)}" />
-                <marker date="1517895875924" expanded="true" signature="13793:14011" ph="SELECT i.*,c... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="14248:14331" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="15042:15250" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="15518:15601" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="16482:16795" ph="SELECT * ,RO... " />
-                <marker date="1517895875924" expanded="true" signature="16986:17069" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="17879:18058" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="18258:18341" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="19308:19501" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="19693:19776" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="20617:20825" ph="SELECT i.*,c... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="21079:21162" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="21973:22170" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="22432:22515" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="23433:23735" ph="SELECT * ,RO... " />
-                <marker date="1517895875924" expanded="true" signature="23920:24003" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="24866:25034" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="25228:25311" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="26241:26440" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="26626:26709" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="28140:28363" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="28663:28743" ph="SELECT * FRO... ${tablename(CHANNEL)}" />
-                <marker date="1517895875924" expanded="true" signature="29585:29656" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517895875924" expanded="true" signature="29886:30073" ph="SELECT a.*,s... ${tablename(ACCOUNT)}" />
-                <marker date="1517895875924" expanded="true" signature="31375:31487" ph="SELECT * FRO... ${tablename(FIELDS)}" />
-                <marker date="1517895875924" expanded="true" signature="31639:31745" ph="SELECT * FRO... ${tablename(FIELDS)}" />
-                <marker date="1517895875924" expanded="true" signature="32141:32236" ph="SELECT * FRO... ${tablename(WORD)}" />
-                <marker date="1517895875924" expanded="true" signature="32396:32496" ph="SELECT * FRO... ${tablename(CFG)}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Info.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Info.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="365" column="20" lean-forward="false" selection-start-line="365" selection-start-column="20" selection-end-line="365" selection-end-column="20" />
-              <folding>
-                <marker date="1517897838216" expanded="true" signature="171:258" ph="SELECT nickn... ${tablename(MEMBER)}" />
-                <marker date="1517897838216" expanded="true" signature="1160:1274" ph="SELECT isshe... ${tablename(CHANNEL)}" />
-                <marker date="1517897838216" expanded="true" signature="11213:11296" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517897838216" expanded="true" signature="12342:12420" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517897838216" expanded="true" signature="12685:12787" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517897838216" expanded="true" signature="12948:13088" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517897838216" expanded="true" signature="13369:13475" ph="SELECT id FR... ${tablename(INFO)}" />
-                <marker date="1517897838216" expanded="true" signature="13619:13682" ph="SELECT count... " />
-                <marker date="1517897838216" expanded="true" signature="13847:13915" ph="SELECT count... " />
-                <marker date="1517897838216" expanded="true" signature="14105:14244" ph="SELECT * FRO... ${tablename(INFO)}" />
-                <marker date="1517897838216" expanded="true" signature="14546:14807" ph="SELECT i.*,o... ${tablename(INFOORDER)}" />
-                <marker date="1517897838216" expanded="true" signature="14986:15232" ph="SELECT i.*,o... ${tablename(ZDORDER)}" />
-                <marker date="1517897838216" expanded="true" signature="15388:15633" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
-                <marker date="1517897838216" expanded="true" signature="15706:15789" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1517897838216" expanded="true" signature="16227:16336" ph="SELECT * FRO... ${tablename(COLLECT)}" />
-                <marker date="1517897838216" expanded="true" signature="17327:17411" ph="SELECT * FRO... ${tablename(mihua_sq_zan)}" />
-                <marker date="1517897838216" expanded="true" signature="17798:17873" ph="SELECT count... " />
-              </folding>
+            <state relative-caret-position="225">
+              <caret line="150" column="119" lean-forward="false" selection-start-line="150" selection-start-column="119" selection-end-line="150" selection-end-column="119" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,14 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$errno</find>
-      <find>success</find>
-      <find>util</find>
-      <find>getNearMsg</find>
-      <find>$info_condition</find>
-      <find>getHotMsgById</find>
-      <find>shop_id</find>
-      <find>Vysor subscription is active. Thank you for your support</find>
       <find>getShop</find>
       <find>addshop</find>
       <find>mihua_sq_zan</find>
@@ -141,24 +58,36 @@
       <find>dopageshop</find>
       <find>dataList</find>
       <find>shop</find>
-      <find>post</find>
       <find>bgpic</find>
       <find>pdo_fetchall</find>
       <find>page</find>
       <find>$page</find>
       <find>GetModuleById</find>
-      <find>dopageindex</find>
       <find>msg</find>
       <find>thumbs</find>
       <find>coll</find>
-      <find>unserialize</find>
       <find>getcoll</find>
+      <find>unserialize</find>
+      <find>ak</find>
+      <find>百度</find>
+      <find>$module</find>
+      <find>$this-&gt;module</find>
+      <find>config</find>
+      <find>mapak</find>
+      <find>GetLaction</find>
+      <find>post</find>
+      <find>$op</find>
+      <find>dopageindex</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
     <dirStrings>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao\template</dir>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao</dir>
-      <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons</dir>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao\class</dir>
+      <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons</dir>
+      <dir>E:\wamp\www\tongcheng1-9\tongcheng</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -169,7 +98,6 @@
       <list>
         <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/shop.html" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/shopcate.php" />
-        <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/shopcate.html" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/model/City.php" />
         <option value="E:/下载/Compressed/Tieba-Cloud-Sign-master/lib/mysql_autoload.php" />
@@ -191,6 +119,9 @@
         <option value="$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/model/Info.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" />
+        <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/area.php" />
+        <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/shopcate.html" />
+        <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/area.html" />
       </list>
     </option>
   </component>
@@ -208,8 +139,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-6" />
+    <option name="y" value="4" />
     <option name="width" value="1346" />
     <option name="height" value="735" />
   </component>
@@ -251,20 +183,6 @@
               <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="class" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -272,7 +190,44 @@
               <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="data" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="framework" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="framework" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="class" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -334,18 +289,19 @@
       <workItem from="1517653490943" duration="1423000" />
       <workItem from="1517671392635" duration="627000" />
       <workItem from="1517811402834" duration="1023000" />
-      <workItem from="1517886062201" duration="4112000" />
+      <workItem from="1517886062201" duration="11018000" />
+      <workItem from="1517979426075" duration="2206000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104229000" />
+    <option name="totallyTimeSpent" value="113341000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="0" width="1346" height="735" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18421052" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09077599" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -383,338 +339,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://E:/下载/Compressed/Tieba-Cloud-Sign-master/lib/mysql_autoload.php" />
-    <entry file="file://E:/下载/Compressed/Tieba-Cloud-Sign-master/setup/install.php" />
-    <entry file="file://E:/下载/Compressed/Tieba-Cloud-Sign-master/config.php" />
-    <entry file="file://$PROJECT_DIR$/app/source/site/site.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4443">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/source/utility/share.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2368">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/source/utility/preview.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/source/utility/file.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/source/utility/checkupgrade.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/source/utility/wxcode.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-504">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Qr_code.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="57" lean-forward="false" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/source/entry/site.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/PayResult.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="314" column="46" lean-forward="true" selection-start-line="314" selection-start-column="46" selection-end-line="314" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/source/utility/click.ctrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/function/global.func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3850">
-          <caret line="154" column="5" lean-forward="false" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/mobile/ring.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1009">
-          <caret line="175" column="31" lean-forward="true" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Member.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/public/js/common.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="17" column="12223" lean-forward="false" selection-start-line="17" selection-start-column="12223" selection-end-line="17" selection-end-column="12223" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/we7_coupon/template/mobile/clerkhome.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="63" column="56" lean-forward="false" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/library/qrcode/phpqrcode.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="3092" column="16" lean-forward="false" selection-start-line="3092" selection-start-column="16" selection-end-line="3092" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="565" column="5" lean-forward="true" selection-start-line="565" selection-start-column="5" selection-end-line="565" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/qrcode.php" />
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/qrcode.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="2479" column="30" lean-forward="false" selection-start-line="2479" selection-start-column="30" selection-end-line="2479" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_8.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="814" column="9" lean-forward="false" selection-start-line="814" selection-start-column="9" selection-end-line="814" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/class/db.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="239" column="20" lean-forward="false" selection-start-line="239" selection-start-column="20" selection-end-line="239" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/function/pdo.func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="80" column="21" lean-forward="false" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Group.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="32" column="11" lean-forward="true" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/webCommon.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1513516698000" expanded="true" signature="5592:6521" ph="..." />
-            <marker date="1513516698000" expanded="true" signature="5643:6336" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="5682:6328" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="5922:6304" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="5942:6163" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="5970:6016" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="6187:6296" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="6215:6256" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="6366:6509" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="6404:6501" ph="{...}" />
-            <marker date="1513516698000" expanded="true" signature="7641:7713" ph="select * fro... ${tablename(MSTIME)}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/reqInfo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/qrcode.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61825">
-          <caret line="2478" column="127" lean-forward="false" selection-start-line="2478" selection-start-column="127" selection-end-line="2478" selection-end-column="127" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/near_merchant.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/ImageCrop.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/function_common.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9275">
-          <caret line="371" column="4" lean-forward="false" selection-start-line="371" selection-start-column="4" selection-end-line="398" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/defineData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_5.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="1046" column="9" lean-forward="false" selection-start-line="1046" selection-start-column="9" selection-end-line="1046" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_6.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="99" column="9" lean-forward="false" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/redpackage_util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Google/Chrome/User Data/Default/Extensions/gidgenkbbabolejbgbpnhbimgjbffefm/1.8.3_0/uglify.js" />
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/autoLoad.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="78" column="100" lean-forward="false" selection-start-line="78" selection-start-column="96" selection-end-line="78" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/shop.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="31" column="20" lean-forward="true" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Adv.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-185">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/adv.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="63" lean-forward="false" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/adv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2500">
-          <caret line="100" column="158" lean-forward="false" selection-start-line="100" selection-start-column="158" selection-end-line="100" selection-end-column="158" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="178" column="45" lean-forward="true" selection-start-line="178" selection-start-column="45" selection-end-line="178" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30900">
-          <caret line="1236" column="27" lean-forward="false" selection-start-line="1236" selection-start-column="27" selection-end-line="1236" selection-end-column="27" />
-          <folding>
-            <marker date="1517229542464" expanded="true" signature="1153:2084" ph="..." />
-            <marker date="1517229542464" expanded="true" signature="1342:2041" ph="[...]" />
-            <marker date="1517229542464" expanded="true" signature="3151:3218" ph="..." />
-            <marker date="1517229542464" expanded="true" signature="7292:7358" ph="SELECT COUNT... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="8317:8380" ph="SELECT ${$se... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="8773:8836" ph="SELECT ${$se... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="8885:8962" ph="SELECT ${$se... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="9373:9427" ph="SELECT COUNT... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="9455:9508" ph="SELECT ${$se... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="9851:9928" ph="SELECT COUNT... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="10086:10160" ph="SELECT COUNT... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="10471:10532" ph="SELECT COUNT... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="18899:19000" ph="select * fro... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="26258:26322" ph="SELECT * FRO... ${tablename(TPL)}" />
-            <marker date="1517229542464" expanded="true" signature="30704:30802" ph="select * fro... ${tablename($tablename)}" />
-            <marker date="1517229542464" expanded="true" signature="31338:31778" ph="SELECT g.goo... ${tablename(ORDER_GOODS)}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/陈亮/php/code.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -764,10 +388,445 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/autoLoad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/db.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="483" column="80" lean-forward="false" selection-start-line="483" selection-start-column="74" selection-end-line="483" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/captcha.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/cloudapi.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/coupon.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/loader.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/pay.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/ali.pay.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/agent.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/source/profile/common.ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-225">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/library/qiniu/src/Qiniu/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/source/profile/module.ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-543">
+          <caret line="116" column="8" lean-forward="true" selection-start-line="116" selection-start-column="8" selection-end-line="116" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/near_merchant.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-477">
+          <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/resource/components/ueditor/lang/zh-cn/zh-cn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2452">
+          <caret line="431" column="26" lean-forward="true" selection-start-line="431" selection-start-column="26" selection-end-line="431" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/City.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-279">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/city.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="56" lean-forward="true" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/webCommon.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/redpackage_util.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/function_common.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9275">
+          <caret line="371" column="4" lean-forward="false" selection-start-line="371" selection-start-column="4" selection-end-line="398" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/defineData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="78" column="100" lean-forward="false" selection-start-line="78" selection-start-column="96" selection-end-line="78" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Discount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Goods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1513516697000" expanded="true" signature="560:785" ph="SELECT SUM(`... ${tablename(ORDER_GOODS)}" />
+            <marker date="1513516697000" expanded="true" signature="6721:6851" ph="select virtu... ${tablename(OPTION)}" />
+            <marker date="1513516697000" expanded="true" signature="12284:12430" ph="SELECT * FRO... ${tablename(GOODS_CATE)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Group.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="32" column="11" lean-forward="true" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="372" column="31" lean-forward="false" selection-start-line="372" selection-start-column="31" selection-end-line="372" selection-end-column="31" />
+          <folding>
+            <marker date="1517897838216" expanded="true" signature="171:258" ph="SELECT nickn... ${tablename(MEMBER)}" />
+            <marker date="1517897838216" expanded="true" signature="1160:1274" ph="SELECT isshe... ${tablename(CHANNEL)}" />
+            <marker date="1517897838216" expanded="true" signature="11213:11296" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1517897838216" expanded="true" signature="12342:12420" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="12685:12787" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="12948:13088" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="13369:13475" ph="SELECT id FR... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="13619:13682" ph="SELECT count... " />
+            <marker date="1517897838216" expanded="true" signature="13847:13915" ph="SELECT count... " />
+            <marker date="1517897838216" expanded="true" signature="14105:14244" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="14546:14807" ph="SELECT i.*,o... ${tablename(INFOORDER)}" />
+            <marker date="1517897838216" expanded="true" signature="14986:15232" ph="SELECT i.*,o... ${tablename(ZDORDER)}" />
+            <marker date="1517897838216" expanded="true" signature="15388:15633" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
+            <marker date="1517897838216" expanded="true" signature="15706:15789" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1517897838216" expanded="true" signature="16227:16336" ph="SELECT * FRO... ${tablename(COLLECT)}" />
+            <marker date="1517897838216" expanded="true" signature="17327:17411" ph="SELECT * FRO... ${tablename(mihua_sq_zan)}" />
+            <marker date="1517897838216" expanded="true" signature="17798:17873" ph="SELECT count... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Member.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1515900949869" expanded="true" signature="4608:5222" ph="..." />
+            <marker date="1515900949869" expanded="true" signature="4614:4978" ph="..." />
+            <marker date="1515900949869" expanded="true" signature="4997:5215" ph="..." />
+            <marker date="1515900949869" expanded="true" signature="6149:6408" ph="SELECT m.uid... ${tablename('mc_mapping_fans')}" />
+            <marker date="1515900949869" expanded="true" signature="6561:6634" ph="select * fro... ${tablename(QIAN)}" />
+            <marker date="1515900949869" expanded="true" signature="7564:7634" ph="select openi... ${tablename('mc_mapping_fans')}" />
+            <marker date="1515900949869" expanded="true" signature="8694:8801" ph="select msg_i... ${tablename($tablename)}" />
+            <marker date="1515900949869" expanded="true" signature="8922:9076" ph="select * fro... ${tablename(MSG)}" />
+            <marker date="1515900949869" expanded="true" signature="9135:9257" ph="select * fro... ${tablename(MSG)}" />
+            <marker date="1515900949869" expanded="true" signature="9466:9588" ph="select * fro... ${tablename(MSG)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Msg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/PayResult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1513516697000" expanded="true" signature="3633:3781" ph="select * fro... ${tablename(BALANCE)}" />
+            <marker date="1513516697000" expanded="true" signature="3947:4005" ph="select credi... ${tablename('mc_members')}" />
+            <marker date="1513516697000" expanded="true" signature="4536:4592" ph="select acid ${tablename('account')}" />
+            <marker date="1513516697000" expanded="true" signature="5172:5275" ph="select * fro... ${tablename(RENEW)}" />
+            <marker date="1513516697000" expanded="true" signature="7586:7639" ph="select * fro... ${tablename(CASH)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Qr_code.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Queue.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Redpackage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Message.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1513516697000" expanded="true" signature="28577:28626" ph="SELECT * FRO... ${tablename(ORDER)}" />
+            <marker date="1513516697000" expanded="true" signature="28747:28807" ph="select nickn... ${tablename('mc_members')}" />
+            <marker date="1513516697000" expanded="true" signature="29059:29112" ph="select from_... ${tablename(MEMBER)}" />
+            <marker date="1513516697000" expanded="true" signature="29415:29468" ph="select from_... ${tablename(MEMBER)}" />
+            <marker date="1513516697000" expanded="true" signature="29691:29744" ph="select from_... ${tablename(MEMBER)}" />
+            <marker date="1513516697000" expanded="true" signature="29922:29990" ph="SELECT * FRO... ${tablename(MEMBER)}" />
+            <marker date="1513516697000" expanded="true" signature="30455:30542" ph="SELECT * FRO... ${tablename(MSG_TEMPLATE)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/class/account.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4320">
+          <caret line="717" column="45" lean-forward="true" selection-start-line="717" selection-start-column="45" selection-end-line="717" selection-end-column="45" />
+          <folding>
+            <marker date="1515683287932" expanded="true" signature="16310:16411" ph="SELECT modul... " />
+            <marker date="1515683287932" expanded="true" signature="26968:27077" ph="SELECT `fani... ${tablename('mc_mapping_fans')}" />
+            <marker date="1515683287932" expanded="true" signature="32711:32795" ph="SELECT * FRO... ${tablename('core_paylog')}" />
+            <marker date="1515683287932" expanded="true" signature="33484:33588" ph="..." />
+            <marker date="1515683287932" expanded="true" signature="33530:33577" ph="{...}" />
+            <marker date="1515683287932" expanded="true" signature="33867:33918" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/site.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="663" column="24" lean-forward="true" selection-start-line="663" selection-start-column="24" selection-end-line="663" selection-end-column="24" />
+          <folding>
+            <marker date="1513516698000" expanded="true" signature="4557:4669" ph="SELECT * FRO... ${tablename(INORDER)}" />
+            <marker date="1513516698000" expanded="true" signature="4785:4899" ph="SELECT * FRO... ${tablename(INFOORDER)}" />
+            <marker date="1513516698000" expanded="true" signature="5015:5127" ph="SELECT * FRO... ${tablename(ZDORDER)}" />
+            <marker date="1513516698000" expanded="true" signature="5240:5353" ph="SELECT * FRO... ${tablename(ORDER)}" />
+            <marker date="1513516698000" expanded="true" signature="8884:8987" ph="select * fro... ${tablename(RENEW)}" />
+            <marker date="1513516698000" expanded="true" signature="13233:13622" ph="..." />
+            <marker date="1513516698000" expanded="true" signature="13287:13611" ph="{...}" />
+            <marker date="1513516698000" expanded="true" signature="13438:13609" ph="{...}" />
+            <marker date="1513516698000" expanded="true" signature="16993:17140" ph="SELECT * FRO... ${tablename(AREA)}" />
+            <marker date="1513516698000" expanded="true" signature="17320:17451" ph="SELECT city_... ${tablename(CITY)}" />
+            <marker date="1513516698000" expanded="true" signature="17782:17907" ph="SELECT * FRO... ${tablename(AREA)}" />
+            <marker date="1513516698000" expanded="true" signature="24482:24542" ph="select acid ${tablename('account')}" />
+            <marker date="1513516698000" expanded="true" signature="24879:24949" ph="SELECT name ${tablename(CHANNEL)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="61" column="65" lean-forward="false" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="65" />
+          <folding>
+            <marker date="1513516697000" expanded="true" signature="584:687" ph="SELECT * FRO... ${tablename('mihua_sq_mstime')}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/2_setting.tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="811" column="42" lean-forward="true" selection-start-line="811" selection-start-column="42" selection-end-line="811" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/we7.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="3471" column="123" lean-forward="true" selection-start-line="3471" selection-start-column="123" selection-end-line="3471" selection-end-column="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/reqInfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="81" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/util.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26400">
+          <caret line="1056" column="63" lean-forward="false" selection-start-line="1056" selection-start-column="63" selection-end-line="1056" selection-end-column="63" />
+          <folding>
+            <marker date="1517229542464" expanded="true" signature="1153:2084" ph="..." />
+            <marker date="1517229542464" expanded="true" signature="1342:2041" ph="[...]" />
+            <marker date="1517229542464" expanded="true" signature="3151:3218" ph="..." />
+            <marker date="1517229542464" expanded="true" signature="7292:7358" ph="SELECT COUNT... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="8317:8380" ph="SELECT ${$se... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="8773:8836" ph="SELECT ${$se... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="8885:8962" ph="SELECT ${$se... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="9373:9427" ph="SELECT COUNT... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="9455:9508" ph="SELECT ${$se... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="9851:9928" ph="SELECT COUNT... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="10086:10160" ph="SELECT COUNT... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="10471:10532" ph="SELECT COUNT... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="18899:19000" ph="select * fro... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="26258:26322" ph="SELECT * FRO... ${tablename(TPL)}" />
+            <marker date="1517229542464" expanded="true" signature="30704:30802" ph="select * fro... ${tablename($tablename)}" />
+            <marker date="1517229542464" expanded="true" signature="31338:31778" ph="SELECT g.goo... ${tablename(ORDER_GOODS)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/shopcate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2341">
+          <caret line="98" column="40" lean-forward="true" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
+          <folding>
+            <marker date="1516775987207" expanded="true" signature="738:845" ph="SELECT * FRO... ${tablename(CATE)}" />
+            <marker date="1516775987207" expanded="true" signature="1263:1388" ph="SELECT cate_... ${tablename(CATE)}" />
+            <marker date="1516775987207" expanded="true" signature="1445:1537" ph="SELECT * FRO... ${tablename(CATE)}" />
+            <marker date="1516775987207" expanded="true" signature="1658:1772" ph="SELECT cate_... ${tablename(CATE)}" />
+            <marker date="1516775987207" expanded="true" signature="3191:3289" ph="SELECT cate_... ${tablename(CATE)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/shopcate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="153" column="42" lean-forward="true" selection-start-line="153" selection-start-column="42" selection-end-line="153" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop_pro.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="338" column="27" lean-forward="false" selection-start-line="338" selection-start-column="27" selection-end-line="338" selection-end-column="27" />
+          <caret line="349" column="27" lean-forward="false" selection-start-line="349" selection-start-column="27" selection-end-line="349" selection-end-column="27" />
           <folding>
             <marker date="1517471439187" expanded="true" signature="165:255" ph="SELECT id,ni... ${tablename(MEMBER)}" />
             <marker date="1517471439187" expanded="true" signature="3534:3575" ph="select * fro... ${tablename(SHOP)}" />
@@ -809,49 +868,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/wxapp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="530" column="30" lean-forward="false" selection-start-line="530" selection-start-column="30" selection-end-line="530" selection-end-column="30" />
+        <state relative-caret-position="180">
+          <caret line="193" column="30" lean-forward="false" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
           <folding>
-            <marker date="1517897919837" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
-            <marker date="1517897919837" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
-            <marker date="1517897919837" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
-            <marker date="1517897919837" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
-            <marker date="1517897919837" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
-            <marker date="1517897919837" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
-            <marker date="1517897919837" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
-            <marker date="1517897919837" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
-            <marker date="1517897919837" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
-            <marker date="1517897919837" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
-            <marker date="1517897919837" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1517897919837" expanded="true" signature="29123:29267" ph="SELECT s.* F... ${tablename(SHOP)}" />
-            <marker date="1517897919837" expanded="true" signature="35356:35460" ph="SELECT shop_... ${tablename(SHOP)}" />
+            <marker date="1517990423792" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
+            <marker date="1517990423792" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
+            <marker date="1517990423792" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
+            <marker date="1517990423792" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
+            <marker date="1517990423792" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
+            <marker date="1517990423792" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
+            <marker date="1517990423792" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
+            <marker date="1517990423792" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
+            <marker date="1517990423792" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
+            <marker date="1517990423792" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1517990423792" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1517990423792" expanded="true" signature="29123:29267" ph="SELECT s.* F... ${tablename(SHOP)}" />
+            <marker date="1517990423792" expanded="true" signature="35356:35460" ph="SELECT shop_... ${tablename(SHOP)}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Info.php">
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/area.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="365" column="20" lean-forward="false" selection-start-line="365" selection-start-column="20" selection-end-line="365" selection-end-column="20" />
+        <state relative-caret-position="1550">
+          <caret line="62" column="39" lean-forward="true" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
           <folding>
-            <marker date="1517897838216" expanded="true" signature="171:258" ph="SELECT nickn... ${tablename(MEMBER)}" />
-            <marker date="1517897838216" expanded="true" signature="1160:1274" ph="SELECT isshe... ${tablename(CHANNEL)}" />
-            <marker date="1517897838216" expanded="true" signature="11213:11296" ph="SELECT name ${tablename(CHANNEL)}" />
-            <marker date="1517897838216" expanded="true" signature="12342:12420" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="12685:12787" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="12948:13088" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="13369:13475" ph="SELECT id FR... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="13619:13682" ph="SELECT count... " />
-            <marker date="1517897838216" expanded="true" signature="13847:13915" ph="SELECT count... " />
-            <marker date="1517897838216" expanded="true" signature="14105:14244" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="14546:14807" ph="SELECT i.*,o... ${tablename(INFOORDER)}" />
-            <marker date="1517897838216" expanded="true" signature="14986:15232" ph="SELECT i.*,o... ${tablename(ZDORDER)}" />
-            <marker date="1517897838216" expanded="true" signature="15388:15633" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
-            <marker date="1517897838216" expanded="true" signature="15706:15789" ph="SELECT name ${tablename(CHANNEL)}" />
-            <marker date="1517897838216" expanded="true" signature="16227:16336" ph="SELECT * FRO... ${tablename(COLLECT)}" />
-            <marker date="1517897838216" expanded="true" signature="17327:17411" ph="SELECT * FRO... ${tablename(mihua_sq_zan)}" />
-            <marker date="1517897838216" expanded="true" signature="17798:17873" ph="SELECT count... " />
+            <marker date="1517990089777" expanded="true" signature="630:736" ph="SELECT * FRO... ${tablename(AREA)}" />
+            <marker date="1517990089777" expanded="true" signature="1246:1341" ph="SELECT * FRO... ${tablename(CITY)}" />
+            <marker date="1517990089777" expanded="true" signature="1634:1726" ph="SELECT * FRO... ${tablename(AREA)}" />
+            <marker date="1517990089777" expanded="true" signature="1843:1957" ph="SELECT area_... ${tablename(AREA)}" />
+            <marker date="1517990089777" expanded="true" signature="3004:3113" ph="SELECT area_... ${tablename(AREA)}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/area.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="150" column="119" lean-forward="false" selection-start-line="150" selection-start-column="119" selection-end-line="150" selection-end-column="119" />
+          <folding />
         </state>
       </provider>
     </entry>
