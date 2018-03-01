@@ -170,13 +170,13 @@
                                         <input type="text" name="shop_name" id='name' class="form-control" value="{$item['shop_name']}" />
                                     </div>
                                 </div>
-                                <!--<div class="form-group">-->
-                                    <!--<label class="col-xs-12 col-sm-3 col-md-2 control-label">营业执照</label>-->
-                                    <!--<div class="col-sm-4">-->
-                                        <!--&lt;!&ndash;{php echo tpl_form_field_image('shop_cert',$item['shop_cert']);}&ndash;&gt;-->
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">营业执照</label>
+                                    <div class="col-sm-4">
+                                        <!--{php echo tpl_form_field_image('shop_cert',$item['shop_cert']);}-->
 
-                                    <!--</div>-->
-                                <!--</div>-->
+                                    </div>
+                                </div>
 
                             <div class="form-group">
                                 <label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺LOGO</label>
@@ -185,6 +185,13 @@
                                     <p class="help-block">建议上传宽120px*高120px或长宽比例相同像素图片</p>
                                 </div>
                             </div>
+
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">简介图片</label>
+                                    <div class="col-sm-4">
+                                        {php echo tpl_form_field_multi_image('qr_code',$item['qr_code']);}
+                                    </div>
+                                </div>
                             <!--<div class="form-group">-->
                                 <!--<label class="col-xs-12 col-sm-3 col-md-2 control-label">店铺形象</label>-->
                                 <!--<div class="col-sm-4">-->
@@ -222,11 +229,12 @@
                                         <div class="input_form item_cell_flex checkbox good_inco_list">
                                             <div class="inco_append_box">{php $item['inco']=json_decode($item['inco'])}
 
-                                                <label><input type="checkbox" name="inco[]" {if in_array('干净卫生',(array)$item['inco'])}checked="checked"{/if} value="干净卫生" > 干净卫生</label>
-                                                <label><input type="checkbox" name="inco[]" {if in_array('环境优雅',(array)$item['inco'])}checked="checked"{/if} value="环境优雅" > 环境优雅</label>
-
+                                                <label><input type="checkbox" name="inco[]" {if in_array('支付宝支付',(array)$item['inco'])}checked="checked"{/if} value="支付宝支付" > 支付宝支付</label>
+                                                <label><input type="checkbox" name="inco[]" {if in_array('微信支付',(array)$item['inco'])}checked="checked"{/if} value="微信支付" > 微信支付</label>
+                                                <label><input type="checkbox" name="inco[]" {if in_array('WIFI',(array)$item['inco'])}checked="checked"{/if} value="WIFI" > WIFI</label>
+                                                <label><input type="checkbox" name="inco[]" {if in_array('停车位',(array)$item['inco'])}checked="checked"{/if} value="停车位" > 停车位</label>
                                                 {loop $item['inco'] $i}
-                                                {if !in_array($i,array('干净卫生','环境优雅'))}
+                                                {if !in_array($i,array('支付宝支付','微信支付','WIFI','停车位'))}
                                                 <label>
                                                     <input type="checkbox" name="inco[]"checked="checked" value="{$i}" > {$i}
                                                 </label>

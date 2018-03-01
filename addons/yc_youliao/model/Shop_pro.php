@@ -98,6 +98,7 @@ public static function getShopInfo($shop_id){
     $params[":shop_id"] = $shop_id;
     $params[":uniacid"] = $_W['uniacid'];
     $re = pdo_fetch("select * from  ".tablename(SHOP)." where ".$where,$params);
+    self::addNum($shop_id);
     return $re;
 }
     public static function getShopIsMy($shop_id,$openid){
@@ -190,6 +191,7 @@ public static function getShopInfoAll($shop_id){
     $params[":shop_id"] = $shop_id;
     $params[":uniacid"] = $_W['uniacid'];
     $re = pdo_fetch("select s.*,c.cate_name, a.area_name from  ".tablename(SHOP)." s left join ".tablename(CATE)." c on s.ccate_id=c.cate_id or s.pcate_id=c.cate_id and c.uniacid=s.uniacid  left join ".tablename(AREA)." a on a.area_id=s.business_id and a.uniacid=s.uniacid and s.status=1 where ".$where,$params);
+    self::addNum($shop_id);
     return $re;
 }
 
@@ -501,7 +503,7 @@ public static function getApplynum($shop_id,$f_type){
     }
     public static function getArea(){
         global  $_GPC,$_W;
-        $list = pdo_fetchall(" SELECT area_id as id,area_name as name FROM " . tablename(AREA) . " WHERE  uniacid = '{$_W['uniacid']}'   and (parent_id is not null or parent_id!=0) ORDER BY  orderby asc");
+        $list = pdo_fetchall(" SELECT area_id as id,area_name as name,thumb FROM " . tablename(AREA) . " WHERE  uniacid = '{$_W['uniacid']}'   and (parent_id is not null or parent_id!=0) ORDER BY  orderby asc");
         return $list;
     }
     public  function postTicket($openid,$type=1){
@@ -730,5 +732,8 @@ public static function getApplynum($shop_id,$f_type){
         $result = pdo_update(SHOP, array('bgpic' => $pic), array('shop_id' =>$shop_id));
         return $result;
     }
+    public function addNum($shop_id){
+        $set = " scan=scan+1 ";
+        pdo_query("UPDATE ".tablename(SHOP)." SET $set WHERE `shop_id` = '{$shop_id}' ");
+    }
 }
-

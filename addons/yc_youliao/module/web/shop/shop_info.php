@@ -22,6 +22,9 @@ if ($op == 'post') {
     $business =Shop::getBusiness();
     if (!empty($id) && $_GPC['add']!='1')
         $item = Shop::getShopInfo($id);
+        if(!empty($item['qr_code'])){
+            $item['qr_code'] = json_decode($item['qr_code'],true);
+        }
     else
         $shopcate = array('displayorder' => 0,);
     if (!empty($parentid)) {
@@ -31,6 +34,15 @@ if ($op == 'post') {
             $this->message('抱歉，上级分类不存在或是已经被删除！', referer(), 'error');
     }
     if (checksubmit('submit')) {
+        foreach($_GPC['qr_code'] as $k => &$v ){
+
+            if(preg_match_all('/^&#039/', $v)){
+                unset($_GPC['qr_code'][$k]);
+            }
+            if(preg_match_all('/^images/', $v)){
+                $v = 'https://'.$_SERVER['HTTP_HOST'].'/attachment/'.$v;
+            }
+        }
 
         if (empty($_GPC['shop_name']))     $this->message('店铺名称不能为空！');
         if (empty($_GPC['lng']) || empty($_GPC['lat']) )     $this->message('店铺坐标不能为空！');
@@ -54,7 +66,8 @@ if ($op == 'post') {
             'inco'=>json_encode( iunserializer($_GPC['inco'])),//商品标签
             'opendtime' => $_GPC['opendtime'],
             'address' => $_GPC['address'],
-            'closetime' => $_GPC['closetime']
+            'closetime' => $_GPC['closetime'],
+            'qr_code'   =>json_encode($_GPC['qr_code']),
 
         );
         $t=getAdmin_type();

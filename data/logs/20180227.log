@@ -1,0 +1,12 @@
+2018-02-27 22:00:09 SQL Error :
+------------
+String:
+SQL: <br/>select s.*,count(t.shop_id) as num from  `ims_mihua_sq_shop` s  left join `ims_mihua_sq_ticket_receive` t on s.shop_id = t.shop_id  where s.uniacid = '2' AND status = 1  group by s.shop_id order by num desc<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Column 'status' in where clause is ambiguous<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/wxapp.php; line: 869; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-02-27 22:02:54 SQL Error :
+------------
+String:
+SQL: <br/>select s.*,count(t.shop_id) as num from  `ims_mihua_sq_shop` s  left join `ims_mihua_sq_ticket_receive` t on s.shop_id = t.shop_id  where s.uniacid = '2' AND status = 1   order by num desc limit 0,10 group by s.shop_id<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'group by s.shop_id' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/wxapp.php; line: 869; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+

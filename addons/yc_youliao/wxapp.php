@@ -850,30 +850,54 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$num = reqInfo::num();
 		$cate_id = intval($_GPC["cid"]);
 		$condition = '';
+        $lat = $_GPC["lat"];
+        $lng = $_GPC["lng"];
+        $key = $_GPC['key'];
 		if ($cate_id > 0) {
-			$condition .= " and s.pcate_id =" . $cate_id;
+			$condition .= " and pcate_id =" . $cate_id;
 		}
-		$dis = pdo_fetchall("SELECT s.* FROM " . tablename(SHOP) . " s WHERE  s.uniacid = '{$_W["uniacid"]}'  {$condition} and s.status =1    ORDER BY orderby limit {$page},{$num}  ");
+		if($key == 'near'){
+            $dis = pdo_fetchall("SELECT * ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( {$lat} *PI()/180-lat*PI()/180)/2),2)+COS( {$lat} *PI()/180)*COS(lat*PI()/180)*POW(SIN(( {$lng} *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM " . tablename(SHOP) . " WHERE uniacid = {$_W['uniacid']}  AND status = 1 {$condition}  ORDER BY distance ASC LIMIT {$page},{$num}");
+
+        }elseif($key == 'ticket'){
+            $condition = '';
+            if ($cate_id > 0) {
+                $condition .= " and s.pcate_id =" . $cate_id;
+            }
+            $dis = pdo_fetchall("select s.*,count(t.shop_id) as num from  ".tablename(SHOP)." s  left join ".tablename(TICKET_REVITE)." t on s.shop_id = t.shop_id  where s.uniacid = '{$_W['uniacid']}' AND s.status = 1 {$condition} group by s.shop_id  order by num desc limit {$page},{$num} ");
+
+        }elseif($key == 'scan'){
+            $dis = pdo_fetchall("SELECT * FROM " . tablename(SHOP) . "  WHERE  uniacid = '{$_W["uniacid"]}'  {$condition} and status =1    ORDER BY scan DESC limit {$page},{$num}  ");
+
+        }
+        else{
+            $dis = pdo_fetchall("SELECT * FROM " . tablename(SHOP) . "  WHERE  uniacid = '{$_W["uniacid"]}'  {$condition} and status =1    ORDER BY orderby limit {$page},{$num}  ");
+
+        }
+
 		$isgroup = array();
-		$lat = $_GPC["lat"];
-		$lng = $_GPC["lng"];
+
 		foreach ($dis as $k => $arr) {
 			$arr["distance"] = util::getDistance($arr["lat"], $arr["lng"], $lat, $lng);
 			$arr["inco"] = json_decode($arr["inco"]);
             $arr['qr_code'] = json_decode($arr['qr_code'],true);
 			$isgroup[] = $arr;
 		}
-		$arrSort = array();
-		$sort = array("direction" => "SORT_ASC", "field" => "distance");
-		foreach ($isgroup as $uniqid => $row) {
-			foreach ($row as $key => $value) {
-				$arrSort[$key][$uniqid] = $value;
-			}
-		}
-		if ($sort["direction"] && count($isgroup) > 1) {
-			array_multisort($arrSort[$sort["field"]], constant($sort["direction"]), $isgroup);
-		}
-		return $this->successResult($isgroup);
+        return $this->successResult($isgroup);
+
+
+		//按照距离排序
+//		$arrSort = array();
+//		$sort = array("direction" => "SORT_ASC", "field" => "distance");
+//		foreach ($isgroup as $uniqid => $row) {
+//			foreach ($row as $key => $value) {
+//				$arrSort[$key][$uniqid] = $value;
+//			}
+//		}
+//		if ($sort["direction"] && count($isgroup) > 1) {
+//			array_multisort($arrSort[$sort["field"]], constant($sort["direction"]), $isgroup);
+//		}
+
 	}
     //搜索框
     public function doPageSearch()
