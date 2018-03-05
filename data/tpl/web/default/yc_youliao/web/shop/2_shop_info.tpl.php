@@ -52,10 +52,12 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>所属行业</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" style="margin-right:15px;" name="pcate_id"  autocomplete="off"  onchange="changeline(this.options[this.selectedIndex].value)" >
+                                        <select class="form-control" style="margin-right:15px;" name="pcate_id"  autocomplete="off"   >
+                                            <!--onchange="changeline(this.options[this.selectedIndex].value)"-->
                                             <?php  if($cate ) { ?>
                                             <option value="0">请选择分类</option>
                                             <?php  if(is_array($cate)) { foreach($cate as $row) { ?>
+
                                             <option value="<?php  echo $row['cate_id'];?>" <?php  if($row['cate_id'] == $item['pcate_id']) { ?> selected="selected"<?php  } ?>><?php  echo $row['cate_name'];?></option>
                                             <?php  } } ?>
 
@@ -66,21 +68,21 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-sm-2">
-                                    <select class="form-control" style="margin-right:15px;"  name="ccate_id"  autocomplete="off">
+                                    <!--<div class="col-sm-2">-->
+                                    <!--<select class="form-control" style="margin-right:15px;"  name="ccate_id"  autocomplete="off">-->
                                         <?php  if($ccate ) { ?>
-                                        <option value="0">请选择子类</option>
+                                        <!--<option value="0">请选择子类</option>-->
                                         <?php  if(is_array($ccate)) { foreach($ccate as $row) { ?>
-                                        <option value="<?php  echo $row['cate_id'];?>" <?php  if($row['cate_id'] == $item['ccate_id']) { ?> selected="selected"<?php  } ?>><?php  echo $row['cate_name'];?></option>
+                                        <!--<option value="<?php  echo $row['cate_id'];?>" <?php  if($row['cate_id'] == $item['ccate_id']) { ?> selected="selected"<?php  } ?>><?php  echo $row['cate_name'];?></option>-->
                                         <?php  } } ?>
 
                                         <?php  } else { ?>
-                                        <option value="0">暂无分类</option>
+                                        <!--<option value="0">暂无分类</option>-->
                                         <?php  } ?>
 
 
-                                    </select>
-                                </div>
+                                    <!--</select>-->
+                                <!--</div>-->
                             </div>
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>城市/区域/商圈</label>
@@ -99,7 +101,8 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <select class="form-control" style="margin-right:15px;"  name="area_id" onchange="changebusiness(this.options[this.selectedIndex].value)"  autocomplete="off">
+                                        <select class="form-control" style="margin-right:15px;"  name="area_id"   autocomplete="off">
+                                            <!--onchange="changebusiness(this.options[this.selectedIndex].value)"-->
                                             <?php  if($area) { ?>
                                             <option value="0">请选择区域</option>
                                             <?php  if(is_array($area)) { foreach($area as $row) { ?>
@@ -113,23 +116,23 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-sm-2">
+                                    <!--<div class="col-sm-2">-->
 
 
-                                        <select class="form-control"  name="business_id" autocomplete="off">
+                                        <!--<select class="form-control"  name="business_id" autocomplete="off">-->
                                             <?php  if($business) { ?>
-                                            <option value="0">请选择商圈</option>
+                                            <!--<option value="0">请选择商圈</option>-->
                                             <?php  if(is_array($business)) { foreach($business as $row) { ?>
-                                            <option value="<?php  echo $row['area_id'];?>" <?php  if($row['area_id'] == $item['business_id']) { ?> selected="selected"<?php  } ?>><?php  echo $row['area_name'];?></option>
+                                            <!--<option value="<?php  echo $row['area_id'];?>" <?php  if($row['area_id'] == $item['business_id']) { ?> selected="selected"<?php  } ?>><?php  echo $row['area_name'];?></option>-->
                                             <?php  } } ?>
 
                                             <?php  } else { ?>
-                                            <option value="0">暂无商圈</option>
+                                            <!--<option value="0">暂无商圈</option>-->
                                             <?php  } ?>
 
-                                        </select>
+                                        <!--</select>-->
 
-                                    </div>
+                                    <!--</div>-->
 
                                 </div>
 

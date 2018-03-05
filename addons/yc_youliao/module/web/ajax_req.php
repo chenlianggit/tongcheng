@@ -18,7 +18,9 @@ if($op == 'changearea'){
 
 }if($op == 'changearea2'){
     $city_id = intval($_GPC['id']);
-
+    if(!$city_id){
+        echo json_encode(array('status'=>'2','str'=>'请先选择城市'));
+    }
     if( $city_id){
         $condition="and city_id=".$city_id;
     }

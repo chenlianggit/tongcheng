@@ -52,10 +52,12 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>所属行业</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" style="margin-right:15px;" name="pcate_id"  autocomplete="off"  onchange="changeline(this.options[this.selectedIndex].value)" >
+                                        <select class="form-control" style="margin-right:15px;" name="pcate_id"  autocomplete="off"   >
+                                            <!--onchange="changeline(this.options[this.selectedIndex].value)"-->
                                             {if $cate }
                                             <option value="0">请选择分类</option>
                                             {loop $cate $row}
+
                                             <option value="{$row['cate_id']}" {if $row['cate_id'] == $item['pcate_id']} selected="selected"{/if}>{$row['cate_name']}</option>
                                             {/loop}
 
@@ -66,21 +68,21 @@
 
                                         </select>
                                     </div>
-                                    <div class="col-sm-2">
-                                    <select class="form-control" style="margin-right:15px;"  name="ccate_id"  autocomplete="off">
-                                        {if $ccate }
-                                        <option value="0">请选择子类</option>
-                                        {loop $ccate $row}
-                                        <option value="{$row['cate_id']}" {if $row['cate_id'] == $item['ccate_id']} selected="selected"{/if}>{$row['cate_name']}</option>
-                                        {/loop}
+                                    <!--<div class="col-sm-2">-->
+                                    <!--<select class="form-control" style="margin-right:15px;"  name="ccate_id"  autocomplete="off">-->
+                                        <!--{if $ccate }-->
+                                        <!--<option value="0">请选择子类</option>-->
+                                        <!--{loop $ccate $row}-->
+                                        <!--<option value="{$row['cate_id']}" {if $row['cate_id'] == $item['ccate_id']} selected="selected"{/if}>{$row['cate_name']}</option>-->
+                                        <!--{/loop}-->
 
-                                        {else}
-                                        <option value="0">暂无分类</option>
-                                        {/if}
+                                        <!--{else}-->
+                                        <!--<option value="0">暂无分类</option>-->
+                                        <!--{/if}-->
 
 
-                                    </select>
-                                </div>
+                                    <!--</select>-->
+                                <!--</div>-->
                             </div>
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-3 col-md-2 control-label"><span style='color:red'>*</span>城市/区域/商圈</label>
@@ -99,7 +101,8 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <select class="form-control" style="margin-right:15px;"  name="area_id" onchange="changebusiness(this.options[this.selectedIndex].value)"  autocomplete="off">
+                                        <select class="form-control" style="margin-right:15px;"  name="area_id"   autocomplete="off">
+                                            <!--onchange="changebusiness(this.options[this.selectedIndex].value)"-->
                                             {if $area}
                                             <option value="0">请选择区域</option>
                                             {loop $area $row}
@@ -113,23 +116,23 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-sm-2">
+                                    <!--<div class="col-sm-2">-->
 
 
-                                        <select class="form-control"  name="business_id" autocomplete="off">
-                                            {if $business}
-                                            <option value="0">请选择商圈</option>
-                                            {loop $business $row}
-                                            <option value="{$row['area_id']}" {if $row[area_id] == $item['business_id']} selected="selected"{/if}>{$row['area_name']}</option>
-                                            {/loop}
+                                        <!--<select class="form-control"  name="business_id" autocomplete="off">-->
+                                            <!--{if $business}-->
+                                            <!--<option value="0">请选择商圈</option>-->
+                                            <!--{loop $business $row}-->
+                                            <!--<option value="{$row['area_id']}" {if $row[area_id] == $item['business_id']} selected="selected"{/if}>{$row['area_name']}</option>-->
+                                            <!--{/loop}-->
 
-                                            {else}
-                                            <option value="0">暂无商圈</option>
-                                            {/if}
+                                            <!--{else}-->
+                                            <!--<option value="0">暂无商圈</option>-->
+                                            <!--{/if}-->
 
-                                        </select>
+                                        <!--</select>-->
 
-                                    </div>
+                                    <!--</div>-->
 
                                 </div>
 
