@@ -106,7 +106,7 @@
                                             {if $area}
                                             <option value="0">请选择区域</option>
                                             {loop $area $row}
-                                            <option value="{$row['area_id']}" {if $row['area_id']  == $item['area_id']} selected="selected"{/if}>{$row['area_name']}</option>
+                                            <option value="{$row['id']}" {if $row['id']  == $item['area_id']} selected="selected"{/if}>{$row['name']}</option>
                                             {/loop}
 
                                             {else}

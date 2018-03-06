@@ -106,7 +106,7 @@
                                             <?php  if($area) { ?>
                                             <option value="0">请选择区域</option>
                                             <?php  if(is_array($area)) { foreach($area as $row) { ?>
-                                            <option value="<?php  echo $row['area_id'];?>" <?php  if($row['area_id']  == $item['area_id']) { ?> selected="selected"<?php  } ?>><?php  echo $row['area_name'];?></option>
+                                            <option value="<?php  echo $row['id'];?>" <?php  if($row['id']  == $item['area_id']) { ?> selected="selected"<?php  } ?>><?php  echo $row['name'];?></option>
                                             <?php  } } ?>
 
                                             <?php  } else { ?>

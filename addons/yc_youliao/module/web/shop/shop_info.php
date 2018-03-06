@@ -19,6 +19,7 @@ if ($op == 'post') {
     $ccate = Shop::getCcate();
     $city =Shop::getCity();
     $area = Shop::getArea();
+
     $business =Shop::getBusiness();
     if (!empty($id) && $_GPC['add']!='1')
         $item = Shop::getShopInfo($id);

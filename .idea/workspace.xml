@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5e7d071f-084f-43b5-93ba-5418aad93a32" name="默认的" comment="提交 店铺公告，收藏人数，评论">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html" afterPath="$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/shop/2_shop_info.tpl.php" afterPath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/shop/2_shop_info.tpl.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,82 +17,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wxapp.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wxapp.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/addons/yc_youliao/wxapp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21100">
-              <caret line="844" column="33" lean-forward="false" selection-start-line="844" selection-start-column="26" selection-end-line="844" selection-end-column="33" />
+            <state relative-caret-position="108">
+              <caret line="856" column="27" lean-forward="true" selection-start-line="856" selection-start-column="27" selection-end-line="856" selection-end-column="27" />
               <folding>
-                <marker date="1519742011686" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
-                <marker date="1519742011686" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
-                <marker date="1519742011686" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
-                <marker date="1519742011686" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
-                <marker date="1519742011686" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
-                <marker date="1519742011686" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
-                <marker date="1519742011686" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1519742011686" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="29240:29560" ph="SELECT * ,RO... " />
-                <marker date="1519742011686" expanded="true" signature="29776:30011" ph="select s.*,c... " />
-                <marker date="1519742011686" expanded="true" signature="29776:30026" ph="select s.*,c... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="29776:30033" ph="select s.*,c... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="30104:30243" ph="SELECT * FRO... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="30313:30450" ph="SELECT * FRO... ${tablename(SHOP)}" />
-                <marker date="1519742011686" expanded="true" signature="36546:36650" ph="SELECT shop_... ${tablename(SHOP)}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shop_info.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="87" column="133" lean-forward="false" selection-start-line="87" selection-start-column="125" selection-end-line="87" selection-end-column="133" />
-              <folding>
-                <element signature="n#style#0;n#select#0;n#div#1;n#div#1;n#div#1;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#!!top" expanded="true" />
-                <marker date="1520241677702" expanded="false" signature="3442:3460" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shop_info.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="42" column="72" lean-forward="false" selection-start-line="42" selection-start-column="72" selection-end-line="42" selection-end-column="72" />
-              <folding>
-                <marker date="1519884355590" expanded="true" signature="886:1000" ph="SELECT cate_... ${tablename(SHOP)}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="City.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/City.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ajax_req.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-              <folding>
-                <marker date="1520242266268" expanded="true" signature="224:362" ph="SELECT area_... ${tablename(AREA)}" />
-                <marker date="1520242266268" expanded="true" signature="795:972" ph="SELECT area_... ${tablename(AREA)}" />
-                <marker date="1520242266268" expanded="true" signature="1326:1509" ph="SELECT area_... ${tablename(AREA)}" />
-                <marker date="1520242266268" expanded="true" signature="1859:1997" ph="SELECT cate_... ${tablename(CATE)}" />
-                <marker date="1520242266268" expanded="true" signature="4741:4864" ph="SELECT count... ${tablename(MSTIME)}" />
-                <marker date="1520242266268" expanded="true" signature="11000:11120" ph="select * fro... ${tablename(ADDRESS)}" />
+                <marker date="1520332608881" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
+                <marker date="1520332608881" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
+                <marker date="1520332608881" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
+                <marker date="1520332608881" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
+                <marker date="1520332608881" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
+                <marker date="1520332608881" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
+                <marker date="1520332608881" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1520332608881" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="29316:29636" ph="SELECT * ,RO... " />
+                <marker date="1520332608881" expanded="true" signature="29878:30113" ph="select s.*,c... " />
+                <marker date="1520332608881" expanded="true" signature="29878:30128" ph="select s.*,c... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="29878:30135" ph="select s.*,c... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="30206:30345" ph="SELECT * FRO... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="30415:30552" ph="SELECT * FRO... ${tablename(SHOP)}" />
+                <marker date="1520332608881" expanded="true" signature="36648:36752" ph="SELECT shop_... ${tablename(SHOP)}" />
               </folding>
             </state>
           </provider>
@@ -101,12 +50,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>msg</find>
-      <find>thumbs</find>
-      <find>coll</find>
-      <find>getcoll</find>
-      <find>unserialize</find>
-      <find>ak</find>
       <find>百度</find>
       <find>$module</find>
       <find>$this-&gt;module</find>
@@ -126,22 +69,28 @@
       <find>getshop</find>
       <find>col-sm-4</find>
       <find>display</find>
-      <find>$item</find>
       <find>changeline</find>
       <find>business_id</find>
       <find>changearea2</find>
       <find>城市/区域/商圈</find>
+      <find>$item</find>
+      <find>请填写正确</find>
+      <find>phone</find>
+      <find>postInfo</find>
+      <find>telphone</find>
+      <find>Search</find>
+      <find>area</find>
     </findStrings>
     <replaceStrings>
       <replace />
     </replaceStrings>
     <dirStrings>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao\template</dir>
-      <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao</dir>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao\class</dir>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons</dir>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng</dir>
       <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao\public\css</dir>
+      <dir>E:\wamp\www\tongcheng1-9\tongcheng\addons\yc_youliao</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -172,11 +121,11 @@
         <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/area.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/shopcate.html" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/area.html" />
-        <option value="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/model/Shop_pro.php" />
+        <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html" />
-        <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php" />
+        <option value="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" />
       </list>
     </option>
   </component>
@@ -195,8 +144,6 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="55" />
-    <option name="y" value="151" />
     <option name="width" value="1346" />
     <option name="height" value="728" />
   </component>
@@ -215,7 +162,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -233,21 +180,6 @@
               <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="addons" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="yc_youliao" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
@@ -274,7 +206,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,18 +268,20 @@
       <workItem from="1519783826229" duration="17000" />
       <workItem from="1519879431154" duration="5523000" />
       <workItem from="1519977471595" duration="288000" />
-      <workItem from="1520240995271" duration="1784000" />
+      <workItem from="1520240995271" duration="4117000" />
+      <workItem from="1520308102865" duration="2601000" />
+      <workItem from="1520331595327" duration="1730000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129919000" />
+    <option name="totallyTimeSpent" value="136583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19985358" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -369,6 +303,29 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -588,13 +545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Message.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -680,33 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/wxapp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21100">
-          <caret line="844" column="33" lean-forward="false" selection-start-line="844" selection-start-column="26" selection-end-line="844" selection-end-column="33" />
-          <folding>
-            <marker date="1519742011686" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
-            <marker date="1519742011686" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
-            <marker date="1519742011686" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
-            <marker date="1519742011686" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
-            <marker date="1519742011686" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
-            <marker date="1519742011686" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
-            <marker date="1519742011686" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
-            <marker date="1519742011686" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="29240:29560" ph="SELECT * ,RO... " />
-            <marker date="1519742011686" expanded="true" signature="29776:30011" ph="select s.*,c... " />
-            <marker date="1519742011686" expanded="true" signature="29776:30026" ph="select s.*,c... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="29776:30033" ph="select s.*,c... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="30104:30243" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="30313:30450" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1519742011686" expanded="true" signature="36546:36650" ph="SELECT shop_... ${tablename(SHOP)}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/public/css/app.form.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -714,10 +637,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop_pro.php">
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
-          <caret line="100" column="27" lean-forward="false" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
+          <caret line="421" column="8" lean-forward="false" selection-start-line="421" selection-start-column="8" selection-end-line="421" selection-end-column="367" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/City.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+          <folding>
+            <marker date="1520242266268" expanded="true" signature="224:362" ph="SELECT area_... ${tablename(AREA)}" />
+            <marker date="1520242266268" expanded="true" signature="795:972" ph="SELECT area_... ${tablename(AREA)}" />
+            <marker date="1520242266268" expanded="true" signature="1326:1509" ph="SELECT area_... ${tablename(AREA)}" />
+            <marker date="1520242266268" expanded="true" signature="1859:1997" ph="SELECT cate_... ${tablename(CATE)}" />
+            <marker date="1520242266268" expanded="true" signature="4741:4864" ph="SELECT count... ${tablename(MSTIME)}" />
+            <marker date="1520242266268" expanded="true" signature="11000:11120" ph="select * fro... ${tablename(ADDRESS)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4250">
+          <caret line="170" column="60" lean-forward="false" selection-start-line="170" selection-start-column="56" selection-end-line="170" selection-end-column="60" />
+          <folding>
+            <marker date="1515904009525" expanded="true" signature="257:298" ph="select * fro... ${tablename(SHOP)}" />
+            <marker date="1515904009525" expanded="true" signature="573:614" ph="select * fro... ${tablename(SHOP)}" />
+            <marker date="1515904009525" expanded="true" signature="908:1166" ph="select s.*,c... ${tablename(SHOP)}" />
+            <marker date="1515904009525" expanded="true" signature="1448:1497" ph="select cate_... ${tablename(CATE)}" />
+            <marker date="1515904009525" expanded="true" signature="1838:1892" ph="SELECT count... ${tablename(SHOP_APPLY)}" />
+            <marker date="1515904009525" expanded="true" signature="2197:2311" ph="select * fro... ${tablename(ACCOUNT)}" />
+            <marker date="1515904009525" expanded="true" signature="2358:2474" ph="select * fro... ${tablename(ACCOUNT)}" />
+            <marker date="1515904009525" expanded="true" signature="5747:5881" ph="SELECT * FRO... ${tablename(CATE)}" />
+            <marker date="1515904009525" expanded="true" signature="6004:6115" ph="SELECT * FRO... ${tablename(CATE)}" />
+            <marker date="1515904009525" expanded="true" signature="6235:6330" ph="SELECT * FRO... ${tablename(CITY)}" />
+            <marker date="1515904009525" expanded="true" signature="6450:6586" ph="SELECT * FRO... ${tablename(AREA)}" />
+            <marker date="1515904009525" expanded="true" signature="6712:6825" ph="SELECT * FRO... ${tablename(AREA)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1300">
+          <caret line="52" column="50" lean-forward="true" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
+          <folding>
+            <marker date="1520245764175" expanded="true" signature="887:1001" ph="SELECT cate_... ${tablename(SHOP)}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="108" column="83" lean-forward="false" selection-start-line="108" selection-start-column="83" selection-end-line="108" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#1;n#div#1;n#div#1;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#!!top" expanded="true" />
+            <marker date="1520245681043" expanded="false" signature="3442:3460" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="16" column="41" lean-forward="false" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+          <folding>
+            <element signature="e#4456#4504#0#PHP" expanded="false" />
+            <marker date="1517897838216" expanded="true" signature="171:258" ph="SELECT nickn... ${tablename(MEMBER)}" />
+            <marker date="1517897838216" expanded="true" signature="1160:1274" ph="SELECT isshe... ${tablename(CHANNEL)}" />
+            <marker date="1517897838216" expanded="true" signature="11213:11296" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1517897838216" expanded="true" signature="12342:12420" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="12685:12787" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="12948:13088" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="13369:13475" ph="SELECT id FR... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="13619:13682" ph="SELECT count... " />
+            <marker date="1517897838216" expanded="true" signature="13847:13915" ph="SELECT count... " />
+            <marker date="1517897838216" expanded="true" signature="14105:14244" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1517897838216" expanded="true" signature="14546:14807" ph="SELECT i.*,o... ${tablename(INFOORDER)}" />
+            <marker date="1517897838216" expanded="true" signature="14986:15232" ph="SELECT i.*,o... ${tablename(ZDORDER)}" />
+            <marker date="1517897838216" expanded="true" signature="15388:15633" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
+            <marker date="1517897838216" expanded="true" signature="15706:15789" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1517897838216" expanded="true" signature="16227:16336" ph="SELECT * FRO... ${tablename(COLLECT)}" />
+            <marker date="1517897838216" expanded="true" signature="17327:17411" ph="SELECT * FRO... ${tablename(mihua_sq_zan)}" />
+            <marker date="1517897838216" expanded="true" signature="17798:17873" ph="SELECT count... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop_pro.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="112" column="27" lean-forward="false" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
           <folding>
             <marker date="1519742373179" expanded="true" signature="165:255" ph="SELECT id,ni... ${tablename(MEMBER)}" />
             <marker date="1519742373179" expanded="true" signature="3534:3575" ph="select * fro... ${tablename(SHOP)}" />
@@ -757,60 +779,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Info.php">
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/wxapp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="310" column="8" lean-forward="false" selection-start-line="310" selection-start-column="8" selection-end-line="310" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="421" column="8" lean-forward="false" selection-start-line="421" selection-start-column="8" selection-end-line="421" selection-end-column="367" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/City.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/ajax_req.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+        <state relative-caret-position="108">
+          <caret line="856" column="27" lean-forward="true" selection-start-line="856" selection-start-column="27" selection-end-line="856" selection-end-column="27" />
           <folding>
-            <marker date="1520242266268" expanded="true" signature="224:362" ph="SELECT area_... ${tablename(AREA)}" />
-            <marker date="1520242266268" expanded="true" signature="795:972" ph="SELECT area_... ${tablename(AREA)}" />
-            <marker date="1520242266268" expanded="true" signature="1326:1509" ph="SELECT area_... ${tablename(AREA)}" />
-            <marker date="1520242266268" expanded="true" signature="1859:1997" ph="SELECT cate_... ${tablename(CATE)}" />
-            <marker date="1520242266268" expanded="true" signature="4741:4864" ph="SELECT count... ${tablename(MSTIME)}" />
-            <marker date="1520242266268" expanded="true" signature="11000:11120" ph="select * fro... ${tablename(ADDRESS)}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="42" column="72" lean-forward="false" selection-start-line="42" selection-start-column="72" selection-end-line="42" selection-end-column="72" />
-          <folding>
-            <marker date="1519884355590" expanded="true" signature="886:1000" ph="SELECT cate_... ${tablename(SHOP)}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="87" column="133" lean-forward="false" selection-start-line="87" selection-start-column="125" selection-end-line="87" selection-end-column="133" />
-          <folding>
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#1;n#div#1;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#!!top" expanded="true" />
-            <marker date="1520241677702" expanded="false" signature="3442:3460" ph="..." />
+            <marker date="1520332608881" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
+            <marker date="1520332608881" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
+            <marker date="1520332608881" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
+            <marker date="1520332608881" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
+            <marker date="1520332608881" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
+            <marker date="1520332608881" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
+            <marker date="1520332608881" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1520332608881" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="29316:29636" ph="SELECT * ,RO... " />
+            <marker date="1520332608881" expanded="true" signature="29878:30113" ph="select s.*,c... " />
+            <marker date="1520332608881" expanded="true" signature="29878:30128" ph="select s.*,c... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="29878:30135" ph="select s.*,c... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="30206:30345" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="30415:30552" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1520332608881" expanded="true" signature="36648:36752" ph="SELECT shop_... ${tablename(SHOP)}" />
           </folding>
         </state>
       </provider>

@@ -849,7 +849,8 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
 		$page = reqInfo::pageIndex();
 		$num = reqInfo::num();
 		$cate_id = intval($_GPC["cid"]);
-		$condition = '';
+		$area_id = $_GPC["area_id"] ? $_GPC["area_id"]:1;
+		$condition = ' and area_id = '.$area_id;
         $lat = $_GPC["lat"];
         $lng = $_GPC["lng"];
         $key = $_GPC['key'];
@@ -860,7 +861,7 @@ class Yc_youliaoModuleWxapp extends WeModuleWxapp
             $dis = pdo_fetchall("SELECT * ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( {$lat} *PI()/180-lat*PI()/180)/2),2)+COS( {$lat} *PI()/180)*COS(lat*PI()/180)*POW(SIN(( {$lng} *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM " . tablename(SHOP) . " WHERE uniacid = {$_W['uniacid']}  AND status = 1 {$condition}  ORDER BY distance ASC LIMIT {$page},{$num}");
 
         }elseif($key == 'ticket'){
-            $condition = '';
+            $condition = ' and s.area_id = '.$area_id;
             if ($cate_id > 0) {
                 $condition .= " and s.pcate_id =" . $cate_id;
             }

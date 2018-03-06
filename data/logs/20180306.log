@@ -1,0 +1,18 @@
+2018-03-06 18:35:03 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop`  WHERE  uniacid = '2'   and area_id =  and status =1    ORDER BY scan DESC limit 0,10  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and status =1    ORDER BY scan DESC limit 0,10' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/wxapp.php; line: 870; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-03-06 18:35:14 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop`  WHERE  uniacid = '2'   and area_id =  and status =1    ORDER BY orderby limit 0,10  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and status =1    ORDER BY orderby limit 0,10' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/wxapp.php; line: 874; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
+2018-03-06 18:35:36 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mihua_sq_shop`  WHERE  uniacid = '2'   and area_id =  and status =1    ORDER BY orderby limit 0,100  <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and status =1    ORDER BY orderby limit 0,100' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 408; <br />file: /framework/class/db.class.php; line: 162; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/yc_youliao/wxapp.php; line: 874; <br />file: /app/source/entry/wxapp.ctrl.php; line: 41; <br />file: /app/index.php; line: 114; <br />
+
