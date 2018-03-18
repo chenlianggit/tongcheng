@@ -480,7 +480,13 @@ static function chathtml($chatcon,$openid){
 
     static function getCommentMsgById($page, $num, $lat, $lng){
         global $_W;
-        $commentMsg=pdo_fetchall('SELECT i.*,count(c.info_id) as num FROM ' . tablename(INFO) . "i left join  " . tablename(INFO_COMMENT) . " c on i.id=c.info_id  WHERE i.weid = {$_W['uniacid']}  GROUP BY i.id ORDER BY  num DESC LIMIT  $page,$num");
+        global $_W,$_GPC;
+        $id = $_GPC["id"];
+        $condition = '';
+        if(intval($id) > 0){
+            $condition = ' and i.mid = '.$id;
+        }
+        $commentMsg=pdo_fetchall('SELECT i.*,count(c.info_id) as num FROM ' . tablename(INFO) . "i left join  " . tablename(INFO_COMMENT) . " c on i.id=c.info_id  WHERE i.weid = {$_W['uniacid']} {$condition}  GROUP BY i.id ORDER BY  num DESC LIMIT  $page,$num");
         foreach ($commentMsg as $k => $v) {
             if($lat && $lng && $v['lat'] && $v['lng']){
                 $commentMsg[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
@@ -502,8 +508,13 @@ static function chathtml($chatcon,$openid){
         return $commentMsg;
     }
     static function getHotMsgById($page, $num, $lat, $lng){
-        global $_W;
-        $hotmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1))  ORDER BY views DESC LIMIT $page,$num");
+        global $_W,$_GPC;
+        $id = $_GPC["id"];
+        $condition = '';
+        if(intval($id) > 0){
+            $condition = ' and mid = '.$id;
+        }
+        $hotmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} {$condition} AND isneedpay = 1 AND haspay > 0 AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1))  ORDER BY views DESC LIMIT $page,$num");
         foreach ($hotmessagelist as $k => $v) {
             if($lat && $lng && $v['lat'] && $v['lng']){
                 $hotmessagelist[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
@@ -524,11 +535,16 @@ static function chathtml($chatcon,$openid){
         return $hotmessagelist;
     }
     static function getNearMsgById($page, $num, $lat, $lng){
-        global $_W;
+        global $_W,$_GPC;
         if(!$lat || !$lng){
             return array();
         }
-        $nearmessagelist = pdo_fetchall("SELECT * ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( {$lat} *PI()/180-lat*PI()/180)/2),2)+COS( {$lat} *PI()/180)*COS(lat*PI()/180)*POW(SIN(( {$lng} *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM " . tablename(INFO) . " WHERE weid = {$_W['uniacid']}  AND status = 1  ORDER BY distance ASC LIMIT $page,$num");
+        $id = $_GPC["id"];
+        $condition = '';
+        if(intval($id) > 0){
+            $condition = ' and mid = '.$id;
+        }
+        $nearmessagelist = pdo_fetchall("SELECT * ,ROUND(6378.138*2*ASIN(SQRT(POW(SIN(( {$lat} *PI()/180-lat*PI()/180)/2),2)+COS( {$lat} *PI()/180)*COS(lat*PI()/180)*POW(SIN(( {$lng} *PI()/180-lng*PI()/180)/2),2)))*1000) AS distance FROM " . tablename(INFO) . " WHERE weid = {$_W['uniacid']} {$condition} AND status = 1  ORDER BY distance ASC LIMIT $page,$num");
         foreach ($nearmessagelist as $k => $v) {
             $nearmessagelist[$k]['distance'] = round($nearmessagelist[$k]['distance']/1000,2);
             $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");
@@ -547,8 +563,13 @@ static function chathtml($chatcon,$openid){
         return $nearmessagelist;
     }
     static function getNewMsgById($page, $num, $lat, $lng){
-        global $_W;
-        $lastedmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']}  AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) ORDER BY freshtime DESC LIMIT $page,$num");
+        global $_W,$_GPC;
+        $id = $_GPC["id"];
+        $condition = '';
+        if(intval($id) > 0){
+            $condition = ' and mid = '.$id;
+        }
+        $lastedmessagelist = pdo_fetchall('SELECT * FROM ' . tablename(INFO) . " WHERE weid = {$_W['uniacid']} {$condition} AND status = 1 AND (isneedpay=0 or (isneedpay=1 and haspay=1)) ORDER BY freshtime DESC LIMIT $page,$num");
         foreach ($lastedmessagelist as $k => $v) {
             $lastedmessagelist[$k]['distance'] = util::getDistance($v['lat'], $v['lng'], $lat, $lng);
             $module = pdo_fetch('SELECT name FROM ' . tablename(CHANNEL) . " WHERE weid = {$_W['uniacid']} AND id = {$v['mid']}");

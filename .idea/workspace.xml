@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e7d071f-084f-43b5-93ba-5418aad93a32" name="默认的" comment="提交 店铺公告，收藏人数，评论">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html" afterPath="$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/shop/2_shop_info.tpl.php" afterPath="$PROJECT_DIR$/data/tpl/web/default/yc_youliao/web/shop/2_shop_info.tpl.php" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php" afterPath="$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,27 +17,148 @@
       <file leaf-file-name="wxapp.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/addons/yc_youliao/wxapp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="856" column="27" lean-forward="true" selection-start-line="856" selection-start-column="27" selection-end-line="856" selection-end-column="27" />
+            <state relative-caret-position="547">
+              <caret line="98" column="47" lean-forward="true" selection-start-line="98" selection-start-column="47" selection-end-line="98" selection-end-column="47" />
               <folding>
-                <marker date="1520332608881" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
-                <marker date="1520332608881" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
-                <marker date="1520332608881" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
-                <marker date="1520332608881" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
-                <marker date="1520332608881" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
-                <marker date="1520332608881" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
-                <marker date="1520332608881" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
-                <marker date="1520332608881" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="29316:29636" ph="SELECT * ,RO... " />
-                <marker date="1520332608881" expanded="true" signature="29878:30113" ph="select s.*,c... " />
-                <marker date="1520332608881" expanded="true" signature="29878:30128" ph="select s.*,c... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="29878:30135" ph="select s.*,c... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="30206:30345" ph="SELECT * FRO... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="30415:30552" ph="SELECT * FRO... ${tablename(SHOP)}" />
-                <marker date="1520332608881" expanded="true" signature="36648:36752" ph="SELECT shop_... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
+                <marker date="1520869422161" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
+                <marker date="1520869422161" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
+                <marker date="1520869422161" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
+                <marker date="1520869422161" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
+                <marker date="1520869422161" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
+                <marker date="1520869422161" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1520869422161" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="29316:29636" ph="SELECT * ,RO... " />
+                <marker date="1520869422161" expanded="true" signature="29878:30128" ph="select s.*,c... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="30206:30345" ph="SELECT * FRO... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="30415:30552" ph="SELECT * FRO... ${tablename(SHOP)}" />
+                <marker date="1520869422161" expanded="true" signature="36648:36752" ph="SELECT shop_... ${tablename(SHOP)}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commonGetData.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1114">
+              <caret line="571" column="123" lean-forward="false" selection-start-line="571" selection-start-column="123" selection-end-line="571" selection-end-column="123" />
+              <folding>
+                <marker date="1521294006568" expanded="true" signature="266:398" ph="SELECT * FRO... ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="502:625" ph="SELECT id,na... ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="2315:2426" ph="select * fro... ${tablename(ADV)}" />
+                <marker date="1521294006568" expanded="true" signature="3186:3558" ph="SELECT g.*,s... ${tablename(GOODS)}" />
+                <marker date="1521294006568" expanded="true" signature="4453:4629" ph="SELECT count... ${tablename(RING)}" />
+                <marker date="1521294006568" expanded="true" signature="4801:5044" ph="SELECT r.*,u... ${tablename(RING)}" />
+                <marker date="1521294006568" expanded="true" signature="5710:5930" ph="SELECT u.ava... ${tablename(ZAN)}" />
+                <marker date="1521294006568" expanded="true" signature="8766:8953" ph="select r.*,d... ${tablename(DISCOUNT_RE)}" />
+                <marker date="1521294006568" expanded="true" signature="9939:10112" ph="SELECT * FRO... ${tablename(CHAT)}" />
+                <marker date="1521294006568" expanded="true" signature="10422:10570" ph="SELECT * FRO... ${tablename(AREA)}" />
+                <marker date="1521294006568" expanded="true" signature="11300:11336" ph="..." />
+                <marker date="1521294006568" expanded="true" signature="13012:13340" ph="SELECT s.*, ${tablename(SHOP)}" />
+                <marker date="1521294006568" expanded="true" signature="13793:14011" ph="SELECT i.*,c... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="14248:14331" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="15042:15250" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="15518:15601" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="16482:16795" ph="SELECT * ,RO... " />
+                <marker date="1521294006568" expanded="true" signature="16986:17069" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="17879:18058" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="18258:18341" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="19308:19501" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="19693:19776" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="20780:21001" ph="SELECT i.*,c... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="21255:21338" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="22290:22500" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="22762:22845" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="23904:24218" ph="SELECT * ,RO... " />
+                <marker date="1521294006568" expanded="true" signature="24403:24486" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="25490:25670" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="25864:25947" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="26877:27076" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="27262:27345" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="28776:28999" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="29299:29379" ph="SELECT * FRO... ${tablename(CHANNEL)}" />
+                <marker date="1521294006568" expanded="true" signature="30221:30292" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1521294006568" expanded="true" signature="30522:30709" ph="SELECT a.*,s... ${tablename(ACCOUNT)}" />
+                <marker date="1521294006568" expanded="true" signature="32011:32123" ph="SELECT * FRO... ${tablename(FIELDS)}" />
+                <marker date="1521294006568" expanded="true" signature="32275:32381" ph="SELECT * FRO... ${tablename(FIELDS)}" />
+                <marker date="1521294006568" expanded="true" signature="32777:32872" ph="SELECT * FRO... ${tablename(WORD)}" />
+                <marker date="1521294006568" expanded="true" signature="33032:33132" ph="SELECT * FRO... ${tablename(CFG)}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Info.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Info.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1944">
+              <caret line="291" column="29" lean-forward="false" selection-start-line="291" selection-start-column="15" selection-end-line="291" selection-end-column="29" />
+              <folding>
+                <marker date="1520869421994" expanded="true" signature="171:258" ph="SELECT nickn... ${tablename(MEMBER)}" />
+                <marker date="1520869421994" expanded="true" signature="1160:1274" ph="SELECT isshe... ${tablename(CHANNEL)}" />
+                <marker date="1520869421994" expanded="true" signature="11213:11296" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1520869421994" expanded="true" signature="12342:12420" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1520869421994" expanded="true" signature="12685:12787" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1520869421994" expanded="true" signature="12948:13088" ph="SELECT * FRO... ${tablename(INFO)}" />
+                <marker date="1520869421994" expanded="true" signature="13369:13475" ph="SELECT id FR... ${tablename(INFO)}" />
+                <marker date="1520869421994" expanded="true" signature="13619:13682" ph="SELECT count... " />
+                <marker date="1520869421994" expanded="true" signature="13847:13915" ph="SELECT count... " />
+                <marker date="1520869421994" expanded="true" signature="14546:14807" ph="SELECT i.*,o... ${tablename(INFOORDER)}" />
+                <marker date="1520869421994" expanded="true" signature="14986:15232" ph="SELECT i.*,o... ${tablename(ZDORDER)}" />
+                <marker date="1520869421994" expanded="true" signature="15388:15633" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
+                <marker date="1520869421994" expanded="true" signature="15706:15789" ph="SELECT name ${tablename(CHANNEL)}" />
+                <marker date="1520869421994" expanded="true" signature="16227:16336" ph="SELECT * FRO... ${tablename(COLLECT)}" />
+                <marker date="1520869421994" expanded="true" signature="17327:17411" ph="SELECT * FRO... ${tablename(mihua_sq_zan)}" />
+                <marker date="1520869421994" expanded="true" signature="17798:17873" ph="SELECT count... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Shop_pro.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop_pro.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="830">
+              <caret line="220" column="42" lean-forward="false" selection-start-line="220" selection-start-column="42" selection-end-line="220" selection-end-column="42" />
+              <folding>
+                <marker date="1520869421997" expanded="true" signature="165:255" ph="SELECT id,ni... ${tablename(MEMBER)}" />
+                <marker date="1520869421997" expanded="true" signature="3534:3575" ph="select * fro... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="3967:4008" ph="select * fro... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="5356:5462" ph="SELECT * FRO... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="6012:6118" ph="SELECT * FRO... ${tablename(COLLECT)}" />
+                <marker date="1520869421997" expanded="true" signature="6824:6992" ph="SELECT shop_... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="7260:7301" ph="select * fro... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="7595:7868" ph="select s.*,c... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="8178:8227" ph="select cate_... ${tablename(CATE)}" />
+                <marker date="1520869421997" expanded="true" signature="8568:8622" ph="SELECT count... ${tablename(SHOP_APPLY)}" />
+                <marker date="1520869421997" expanded="true" signature="8927:9041" ph="select * fro... ${tablename(ACCOUNT)}" />
+                <marker date="1520869421997" expanded="true" signature="9088:9204" ph="select * fro... ${tablename(ACCOUNT)}" />
+                <marker date="1520869421997" expanded="true" signature="13118:13307" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
+                <marker date="1520869421997" expanded="true" signature="13429:13562" ph="SELECT * FRO... ${tablename(CATE)}" />
+                <marker date="1520869421997" expanded="true" signature="13689:13845" ph="SELECT * FRO... ${tablename(CATE)}" />
+                <marker date="1520869421997" expanded="true" signature="13988:14104" ph="SELECT cate_... ${tablename(CATE)}" />
+                <marker date="1520869421997" expanded="true" signature="14493:14604" ph="SELECT * FRO... ${tablename(CATE)}" />
+                <marker date="1520869421997" expanded="true" signature="14724:14819" ph="SELECT * FRO... ${tablename(CITY)}" />
+                <marker date="1520869421997" expanded="true" signature="14946:15059" ph="SELECT * FRO... ${tablename(AREA)}" />
+                <marker date="1520869421997" expanded="true" signature="19999:20261" ph="select r.*,s... ${tablename(RENEW)}" />
+                <marker date="1520869421997" expanded="true" signature="20388:20565" ph="SELECT area_... ${tablename(AREA)}" />
+                <marker date="1520869421997" expanded="true" signature="20751:20856" ph="SELECT shop_... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="21098:21189" ph="SELECT count... ${tablename(TICKET)}" />
+                <marker date="1520869421997" expanded="true" signature="23293:23420" ph="SELECT * FRO... ${tablename(TICKET)}" />
+                <marker date="1520869421997" expanded="true" signature="24031:24102" ph="SELECT * FRO... ${tablename(TICKET)}" />
+                <marker date="1520869421997" expanded="true" signature="24537:24627" ph="SELECT * FRO... ${tablename(TICKET_REVITE)}" />
+                <marker date="1520869421997" expanded="true" signature="25792:26107" ph="select r.*,t... ${tablename(TICKET_REVITE)}" />
+                <marker date="1520869421997" expanded="true" signature="26545:26606" ph="SELECT tid F... ${tablename(TICKET_REVITE)}" />
+                <marker date="1520869421997" expanded="true" signature="26811:27127" ph="select r.*,t... ${tablename(TICKET_REVITE)}" />
+                <marker date="1520869421997" expanded="true" signature="27507:27586" ph="SELECT * FRO... ${tablename(TICKET_REVITE)}" />
+                <marker date="1520869421997" expanded="true" signature="27817:27902" ph="SELECT shop_... ${tablename(SHOP)}" />
+                <marker date="1520869421997" expanded="true" signature="28735:28786" ph="SELECT * FRO... ${tablename(TICKET)}" />
+                <marker date="1520869421997" expanded="true" signature="29222:29285" ph="SELECT * FRO... ${tablename(account_wxapp)}" />
+                <marker date="1520869421997" expanded="true" signature="29332:29386" ph="SELECT * FRO... ${tablename(SHOP)}" />
               </folding>
             </state>
           </provider>
@@ -50,12 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>百度</find>
-      <find>$module</find>
-      <find>$this-&gt;module</find>
-      <find>config</find>
-      <find>mapak</find>
-      <find>GetLaction</find>
       <find>post</find>
       <find>$op</find>
       <find>dopageindex</find>
@@ -80,6 +192,12 @@
       <find>telphone</find>
       <find>Search</find>
       <find>area</find>
+      <find>info</find>
+      <find>GetModuleById</find>
+      <find>Module</find>
+      <find>doPageSearch</find>
+      <find>$condition</find>
+      <find>doPageGetModuleById</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -116,7 +234,6 @@
         <option value="$USER_HOME$/AppData/Local/Google/Chrome/User Data/Default/Extensions/gidgenkbbabolejbgbpnhbimgjbffefm/1.8.3_0/uglify.js" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/adv.html" />
         <option value="E:/陈亮/php/code.php" />
-        <option value="$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/model/Info.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/area.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/shopcate.html" />
@@ -126,6 +243,7 @@
         <option value="$PROJECT_DIR$/addons/yc_youliao/module/web/shop/shop_info.php" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/template/web/shop/shop_info.html" />
         <option value="$PROJECT_DIR$/addons/yc_youliao/wxapp.php" />
+        <option value="$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php" />
       </list>
     </option>
   </component>
@@ -144,6 +262,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="294" />
+    <option name="y" value="117" />
     <option name="width" value="1346" />
     <option name="height" value="728" />
   </component>
@@ -163,6 +283,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -196,24 +317,17 @@
               <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="framework" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="tongcheng" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tongcheng" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="framework" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="class" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="nodejs_interpreter_path" value="D:/nodejs/node" />
+    <property name="nodejs_interpreter_path" value="node" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -271,36 +385,41 @@
       <workItem from="1520240995271" duration="4117000" />
       <workItem from="1520308102865" duration="2601000" />
       <workItem from="1520331595327" duration="1730000" />
+      <workItem from="1520873746275" duration="25000" />
+      <workItem from="1520874479553" duration="20000" />
+      <workItem from="1521192522700" duration="1347000" />
+      <workItem from="1521290495394" duration="3126000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136583000" />
+    <option name="totallyTimeSpent" value="141101000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="971" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15535714" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -626,7 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="667" column="16" lean-forward="false" selection-start-line="667" selection-start-column="16" selection-end-line="667" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -637,18 +755,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="421" column="8" lean-forward="false" selection-start-line="421" selection-start-column="8" selection-end-line="421" selection-end-column="367" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/City.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -656,14 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="24" column="43" lean-forward="true" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-          <folding>
-            <marker date="1520242266268" expanded="true" signature="224:362" ph="SELECT area_... ${tablename(AREA)}" />
-            <marker date="1520242266268" expanded="true" signature="795:972" ph="SELECT area_... ${tablename(AREA)}" />
-            <marker date="1520242266268" expanded="true" signature="1326:1509" ph="SELECT area_... ${tablename(AREA)}" />
-            <marker date="1520242266268" expanded="true" signature="1859:1997" ph="SELECT cate_... ${tablename(CATE)}" />
-            <marker date="1520242266268" expanded="true" signature="4741:4864" ph="SELECT count... ${tablename(MSTIME)}" />
-            <marker date="1520242266268" expanded="true" signature="11000:11120" ph="select * fro... ${tablename(ADDRESS)}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -671,20 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4250">
           <caret line="170" column="60" lean-forward="false" selection-start-line="170" selection-start-column="56" selection-end-line="170" selection-end-column="60" />
-          <folding>
-            <marker date="1515904009525" expanded="true" signature="257:298" ph="select * fro... ${tablename(SHOP)}" />
-            <marker date="1515904009525" expanded="true" signature="573:614" ph="select * fro... ${tablename(SHOP)}" />
-            <marker date="1515904009525" expanded="true" signature="908:1166" ph="select s.*,c... ${tablename(SHOP)}" />
-            <marker date="1515904009525" expanded="true" signature="1448:1497" ph="select cate_... ${tablename(CATE)}" />
-            <marker date="1515904009525" expanded="true" signature="1838:1892" ph="SELECT count... ${tablename(SHOP_APPLY)}" />
-            <marker date="1515904009525" expanded="true" signature="2197:2311" ph="select * fro... ${tablename(ACCOUNT)}" />
-            <marker date="1515904009525" expanded="true" signature="2358:2474" ph="select * fro... ${tablename(ACCOUNT)}" />
-            <marker date="1515904009525" expanded="true" signature="5747:5881" ph="SELECT * FRO... ${tablename(CATE)}" />
-            <marker date="1515904009525" expanded="true" signature="6004:6115" ph="SELECT * FRO... ${tablename(CATE)}" />
-            <marker date="1515904009525" expanded="true" signature="6235:6330" ph="SELECT * FRO... ${tablename(CITY)}" />
-            <marker date="1515904009525" expanded="true" signature="6450:6586" ph="SELECT * FRO... ${tablename(AREA)}" />
-            <marker date="1515904009525" expanded="true" signature="6712:6825" ph="SELECT * FRO... ${tablename(AREA)}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -692,9 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1300">
           <caret line="52" column="50" lean-forward="true" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
-          <folding>
-            <marker date="1520245764175" expanded="true" signature="887:1001" ph="SELECT cate_... ${tablename(SHOP)}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -702,106 +787,147 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="108" column="83" lean-forward="false" selection-start-line="108" selection-start-column="83" selection-end-line="108" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop_pro.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="220" column="42" lean-forward="false" selection-start-line="220" selection-start-column="42" selection-end-line="220" selection-end-column="42" />
           <folding>
-            <element signature="n#style#0;n#select#0;n#div#1;n#div#1;n#div#1;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#section#0;n#!!top" expanded="true" />
-            <marker date="1520245681043" expanded="false" signature="3442:3460" ph="..." />
+            <marker date="1520869421997" expanded="true" signature="165:255" ph="SELECT id,ni... ${tablename(MEMBER)}" />
+            <marker date="1520869421997" expanded="true" signature="3534:3575" ph="select * fro... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="3967:4008" ph="select * fro... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="5356:5462" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="6012:6118" ph="SELECT * FRO... ${tablename(COLLECT)}" />
+            <marker date="1520869421997" expanded="true" signature="6824:6992" ph="SELECT shop_... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="7260:7301" ph="select * fro... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="7595:7868" ph="select s.*,c... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="8178:8227" ph="select cate_... ${tablename(CATE)}" />
+            <marker date="1520869421997" expanded="true" signature="8568:8622" ph="SELECT count... ${tablename(SHOP_APPLY)}" />
+            <marker date="1520869421997" expanded="true" signature="8927:9041" ph="select * fro... ${tablename(ACCOUNT)}" />
+            <marker date="1520869421997" expanded="true" signature="9088:9204" ph="select * fro... ${tablename(ACCOUNT)}" />
+            <marker date="1520869421997" expanded="true" signature="13118:13307" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
+            <marker date="1520869421997" expanded="true" signature="13429:13562" ph="SELECT * FRO... ${tablename(CATE)}" />
+            <marker date="1520869421997" expanded="true" signature="13689:13845" ph="SELECT * FRO... ${tablename(CATE)}" />
+            <marker date="1520869421997" expanded="true" signature="13988:14104" ph="SELECT cate_... ${tablename(CATE)}" />
+            <marker date="1520869421997" expanded="true" signature="14493:14604" ph="SELECT * FRO... ${tablename(CATE)}" />
+            <marker date="1520869421997" expanded="true" signature="14724:14819" ph="SELECT * FRO... ${tablename(CITY)}" />
+            <marker date="1520869421997" expanded="true" signature="14946:15059" ph="SELECT * FRO... ${tablename(AREA)}" />
+            <marker date="1520869421997" expanded="true" signature="19999:20261" ph="select r.*,s... ${tablename(RENEW)}" />
+            <marker date="1520869421997" expanded="true" signature="20388:20565" ph="SELECT area_... ${tablename(AREA)}" />
+            <marker date="1520869421997" expanded="true" signature="20751:20856" ph="SELECT shop_... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="21098:21189" ph="SELECT count... ${tablename(TICKET)}" />
+            <marker date="1520869421997" expanded="true" signature="23293:23420" ph="SELECT * FRO... ${tablename(TICKET)}" />
+            <marker date="1520869421997" expanded="true" signature="24031:24102" ph="SELECT * FRO... ${tablename(TICKET)}" />
+            <marker date="1520869421997" expanded="true" signature="24537:24627" ph="SELECT * FRO... ${tablename(TICKET_REVITE)}" />
+            <marker date="1520869421997" expanded="true" signature="25792:26107" ph="select r.*,t... ${tablename(TICKET_REVITE)}" />
+            <marker date="1520869421997" expanded="true" signature="26545:26606" ph="SELECT tid F... ${tablename(TICKET_REVITE)}" />
+            <marker date="1520869421997" expanded="true" signature="26811:27127" ph="select r.*,t... ${tablename(TICKET_REVITE)}" />
+            <marker date="1520869421997" expanded="true" signature="27507:27586" ph="SELECT * FRO... ${tablename(TICKET_REVITE)}" />
+            <marker date="1520869421997" expanded="true" signature="27817:27902" ph="SELECT shop_... ${tablename(SHOP)}" />
+            <marker date="1520869421997" expanded="true" signature="28735:28786" ph="SELECT * FRO... ${tablename(TICKET)}" />
+            <marker date="1520869421997" expanded="true" signature="29222:29285" ph="SELECT * FRO... ${tablename(account_wxapp)}" />
+            <marker date="1520869421997" expanded="true" signature="29332:29386" ph="SELECT * FRO... ${tablename(SHOP)}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Info.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="41" lean-forward="false" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        <state relative-caret-position="-1944">
+          <caret line="291" column="29" lean-forward="false" selection-start-line="291" selection-start-column="15" selection-end-line="291" selection-end-column="29" />
           <folding>
-            <element signature="e#4456#4504#0#PHP" expanded="false" />
-            <marker date="1517897838216" expanded="true" signature="171:258" ph="SELECT nickn... ${tablename(MEMBER)}" />
-            <marker date="1517897838216" expanded="true" signature="1160:1274" ph="SELECT isshe... ${tablename(CHANNEL)}" />
-            <marker date="1517897838216" expanded="true" signature="11213:11296" ph="SELECT name ${tablename(CHANNEL)}" />
-            <marker date="1517897838216" expanded="true" signature="12342:12420" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="12685:12787" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="12948:13088" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="13369:13475" ph="SELECT id FR... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="13619:13682" ph="SELECT count... " />
-            <marker date="1517897838216" expanded="true" signature="13847:13915" ph="SELECT count... " />
-            <marker date="1517897838216" expanded="true" signature="14105:14244" ph="SELECT * FRO... ${tablename(INFO)}" />
-            <marker date="1517897838216" expanded="true" signature="14546:14807" ph="SELECT i.*,o... ${tablename(INFOORDER)}" />
-            <marker date="1517897838216" expanded="true" signature="14986:15232" ph="SELECT i.*,o... ${tablename(ZDORDER)}" />
-            <marker date="1517897838216" expanded="true" signature="15388:15633" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
-            <marker date="1517897838216" expanded="true" signature="15706:15789" ph="SELECT name ${tablename(CHANNEL)}" />
-            <marker date="1517897838216" expanded="true" signature="16227:16336" ph="SELECT * FRO... ${tablename(COLLECT)}" />
-            <marker date="1517897838216" expanded="true" signature="17327:17411" ph="SELECT * FRO... ${tablename(mihua_sq_zan)}" />
-            <marker date="1517897838216" expanded="true" signature="17798:17873" ph="SELECT count... " />
+            <marker date="1520869421994" expanded="true" signature="171:258" ph="SELECT nickn... ${tablename(MEMBER)}" />
+            <marker date="1520869421994" expanded="true" signature="1160:1274" ph="SELECT isshe... ${tablename(CHANNEL)}" />
+            <marker date="1520869421994" expanded="true" signature="11213:11296" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1520869421994" expanded="true" signature="12342:12420" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1520869421994" expanded="true" signature="12685:12787" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1520869421994" expanded="true" signature="12948:13088" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1520869421994" expanded="true" signature="13369:13475" ph="SELECT id FR... ${tablename(INFO)}" />
+            <marker date="1520869421994" expanded="true" signature="13619:13682" ph="SELECT count... " />
+            <marker date="1520869421994" expanded="true" signature="13847:13915" ph="SELECT count... " />
+            <marker date="1520869421994" expanded="true" signature="14546:14807" ph="SELECT i.*,o... ${tablename(INFOORDER)}" />
+            <marker date="1520869421994" expanded="true" signature="14986:15232" ph="SELECT i.*,o... ${tablename(ZDORDER)}" />
+            <marker date="1520869421994" expanded="true" signature="15388:15633" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
+            <marker date="1520869421994" expanded="true" signature="15706:15789" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1520869421994" expanded="true" signature="16227:16336" ph="SELECT * FRO... ${tablename(COLLECT)}" />
+            <marker date="1520869421994" expanded="true" signature="17327:17411" ph="SELECT * FRO... ${tablename(mihua_sq_zan)}" />
+            <marker date="1520869421994" expanded="true" signature="17798:17873" ph="SELECT count... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/model/Shop_pro.php">
+    <entry file="file://$PROJECT_DIR$/addons/yc_youliao/class/commonGetData.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="112" column="27" lean-forward="false" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
+        <state relative-caret-position="1114">
+          <caret line="571" column="123" lean-forward="false" selection-start-line="571" selection-start-column="123" selection-end-line="571" selection-end-column="123" />
           <folding>
-            <marker date="1519742373179" expanded="true" signature="165:255" ph="SELECT id,ni... ${tablename(MEMBER)}" />
-            <marker date="1519742373179" expanded="true" signature="3534:3575" ph="select * fro... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="3967:4008" ph="select * fro... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="5356:5462" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="6012:6118" ph="SELECT * FRO... ${tablename(COLLECT)}" />
-            <marker date="1519742373179" expanded="true" signature="6824:6992" ph="SELECT shop_... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="7260:7301" ph="select * fro... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="7595:7868" ph="select s.*,c... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="8178:8227" ph="select cate_... ${tablename(CATE)}" />
-            <marker date="1519742373179" expanded="true" signature="8568:8622" ph="SELECT count... ${tablename(SHOP_APPLY)}" />
-            <marker date="1519742373179" expanded="true" signature="8927:9041" ph="select * fro... ${tablename(ACCOUNT)}" />
-            <marker date="1519742373179" expanded="true" signature="9088:9204" ph="select * fro... ${tablename(ACCOUNT)}" />
-            <marker date="1519742373179" expanded="true" signature="13118:13307" ph="SELECT a.*,b... ${tablename(COLLECT)}" />
-            <marker date="1519742373179" expanded="true" signature="13429:13562" ph="SELECT * FRO... ${tablename(CATE)}" />
-            <marker date="1519742373179" expanded="true" signature="13689:13845" ph="SELECT * FRO... ${tablename(CATE)}" />
-            <marker date="1519742373179" expanded="true" signature="13988:14104" ph="SELECT cate_... ${tablename(CATE)}" />
-            <marker date="1519742373179" expanded="true" signature="14493:14604" ph="SELECT * FRO... ${tablename(CATE)}" />
-            <marker date="1519742373179" expanded="true" signature="14724:14819" ph="SELECT * FRO... ${tablename(CITY)}" />
-            <marker date="1519742373179" expanded="true" signature="14946:15059" ph="SELECT * FRO... ${tablename(AREA)}" />
-            <marker date="1519742373179" expanded="true" signature="19999:20261" ph="select r.*,s... ${tablename(RENEW)}" />
-            <marker date="1519742373179" expanded="true" signature="20388:20565" ph="SELECT area_... ${tablename(AREA)}" />
-            <marker date="1519742373179" expanded="true" signature="20751:20856" ph="SELECT shop_... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="21098:21189" ph="SELECT count... ${tablename(TICKET)}" />
-            <marker date="1519742373179" expanded="true" signature="23293:23420" ph="SELECT * FRO... ${tablename(TICKET)}" />
-            <marker date="1519742373179" expanded="true" signature="24031:24102" ph="SELECT * FRO... ${tablename(TICKET)}" />
-            <marker date="1519742373179" expanded="true" signature="24537:24627" ph="SELECT * FRO... ${tablename(TICKET_REVITE)}" />
-            <marker date="1519742373179" expanded="true" signature="25792:26107" ph="select r.*,t... ${tablename(TICKET_REVITE)}" />
-            <marker date="1519742373179" expanded="true" signature="26545:26606" ph="SELECT tid F... ${tablename(TICKET_REVITE)}" />
-            <marker date="1519742373179" expanded="true" signature="26811:27127" ph="select r.*,t... ${tablename(TICKET_REVITE)}" />
-            <marker date="1519742373179" expanded="true" signature="27507:27586" ph="SELECT * FRO... ${tablename(TICKET_REVITE)}" />
-            <marker date="1519742373179" expanded="true" signature="27817:27902" ph="SELECT shop_... ${tablename(SHOP)}" />
-            <marker date="1519742373179" expanded="true" signature="28735:28786" ph="SELECT * FRO... ${tablename(TICKET)}" />
-            <marker date="1519742373179" expanded="true" signature="29222:29285" ph="SELECT * FRO... ${tablename(account_wxapp)}" />
-            <marker date="1519742373179" expanded="true" signature="29332:29386" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1521294006568" expanded="true" signature="266:398" ph="SELECT * FRO... ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="502:625" ph="SELECT id,na... ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="2315:2426" ph="select * fro... ${tablename(ADV)}" />
+            <marker date="1521294006568" expanded="true" signature="3186:3558" ph="SELECT g.*,s... ${tablename(GOODS)}" />
+            <marker date="1521294006568" expanded="true" signature="4453:4629" ph="SELECT count... ${tablename(RING)}" />
+            <marker date="1521294006568" expanded="true" signature="4801:5044" ph="SELECT r.*,u... ${tablename(RING)}" />
+            <marker date="1521294006568" expanded="true" signature="5710:5930" ph="SELECT u.ava... ${tablename(ZAN)}" />
+            <marker date="1521294006568" expanded="true" signature="8766:8953" ph="select r.*,d... ${tablename(DISCOUNT_RE)}" />
+            <marker date="1521294006568" expanded="true" signature="9939:10112" ph="SELECT * FRO... ${tablename(CHAT)}" />
+            <marker date="1521294006568" expanded="true" signature="10422:10570" ph="SELECT * FRO... ${tablename(AREA)}" />
+            <marker date="1521294006568" expanded="true" signature="11300:11336" ph="..." />
+            <marker date="1521294006568" expanded="true" signature="13012:13340" ph="SELECT s.*, ${tablename(SHOP)}" />
+            <marker date="1521294006568" expanded="true" signature="13793:14011" ph="SELECT i.*,c... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="14248:14331" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="15042:15250" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="15518:15601" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="16482:16795" ph="SELECT * ,RO... " />
+            <marker date="1521294006568" expanded="true" signature="16986:17069" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="17879:18058" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="18258:18341" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="19308:19501" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="19693:19776" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="20780:21001" ph="SELECT i.*,c... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="21255:21338" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="22290:22500" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="22762:22845" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="23904:24218" ph="SELECT * ,RO... " />
+            <marker date="1521294006568" expanded="true" signature="24403:24486" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="25490:25670" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="25864:25947" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="26877:27076" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="27262:27345" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="28776:28999" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="29299:29379" ph="SELECT * FRO... ${tablename(CHANNEL)}" />
+            <marker date="1521294006568" expanded="true" signature="30221:30292" ph="SELECT * FRO... ${tablename(INFO)}" />
+            <marker date="1521294006568" expanded="true" signature="30522:30709" ph="SELECT a.*,s... ${tablename(ACCOUNT)}" />
+            <marker date="1521294006568" expanded="true" signature="32011:32123" ph="SELECT * FRO... ${tablename(FIELDS)}" />
+            <marker date="1521294006568" expanded="true" signature="32275:32381" ph="SELECT * FRO... ${tablename(FIELDS)}" />
+            <marker date="1521294006568" expanded="true" signature="32777:32872" ph="SELECT * FRO... ${tablename(WORD)}" />
+            <marker date="1521294006568" expanded="true" signature="33032:33132" ph="SELECT * FRO... ${tablename(CFG)}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/addons/yc_youliao/wxapp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="856" column="27" lean-forward="true" selection-start-line="856" selection-start-column="27" selection-end-line="856" selection-end-column="27" />
+        <state relative-caret-position="547">
+          <caret line="98" column="47" lean-forward="true" selection-start-line="98" selection-start-column="47" selection-end-line="98" selection-end-column="47" />
           <folding>
-            <marker date="1520332608881" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
-            <marker date="1520332608881" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
-            <marker date="1520332608881" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
-            <marker date="1520332608881" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
-            <marker date="1520332608881" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
-            <marker date="1520332608881" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
-            <marker date="1520332608881" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
-            <marker date="1520332608881" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="29316:29636" ph="SELECT * ,RO... " />
-            <marker date="1520332608881" expanded="true" signature="29878:30113" ph="select s.*,c... " />
-            <marker date="1520332608881" expanded="true" signature="29878:30128" ph="select s.*,c... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="29878:30135" ph="select s.*,c... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="30206:30345" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="30415:30552" ph="SELECT * FRO... ${tablename(SHOP)}" />
-            <marker date="1520332608881" expanded="true" signature="36648:36752" ph="SELECT shop_... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="858:965" ph="SELECT setti... ${tablename(&quot;uni_account_modules&quot;)}" />
+            <marker date="1520869422161" expanded="true" signature="1350:1422" ph="select shop_... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="3752:3875" ph="SELECT modul... ${tablename(&quot;wxapp_versions&quot;)}" />
+            <marker date="1520869422161" expanded="true" signature="4039:4106" ph="SELECT weid ${tablename(CHANNEL)}" />
+            <marker date="1520869422161" expanded="true" signature="5193:5307" ph="SELECT s.* F... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="6653:6767" ph="SELECT s.* F... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="10318:10442" ph="SELECT id FR... ${tablename(mihua_sq_zan)}" />
+            <marker date="1520869422161" expanded="true" signature="10793:10921" ph="SELECT ennam... ${tablename(FIELDS)}" />
+            <marker date="1520869422161" expanded="true" signature="10957:11156" ph="select m.nic... ${tablename(mihua_sq_zan)}" />
+            <marker date="1520869422161" expanded="true" signature="16087:16170" ph="SELECT name ${tablename(CHANNEL)}" />
+            <marker date="1520869422161" expanded="true" signature="25354:25508" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="29316:29636" ph="SELECT * ,RO... " />
+            <marker date="1520869422161" expanded="true" signature="29878:30128" ph="select s.*,c... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="30206:30345" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="30415:30552" ph="SELECT * FRO... ${tablename(SHOP)}" />
+            <marker date="1520869422161" expanded="true" signature="36648:36752" ph="SELECT shop_... ${tablename(SHOP)}" />
           </folding>
         </state>
       </provider>
